@@ -30,8 +30,10 @@ Progress recorded on 2026-08-31:
   predictive evaluation, and reproducible artifact bundle.
 - [x] Generate predicted-class Grad-CAM maps and named-feature scores for every frozen test
   sample, with target, mapping, and checkpoint consistency checks.
-- [ ] Add Integrated Gradients and feature-wise Occlusion Sensitivity to the same checkpoint and
-  samples before declaring the Autumn gate complete.
+- [x] Add signed Integrated Gradients with convergence checks, distinct training-only baseline
+  sensitivity, and paired Grad-CAM agreement on the same checkpoint and samples.
+- [ ] Add feature-wise Occlusion Sensitivity to the same checkpoint and samples before declaring
+  the Autumn gate complete.
 
 ## Winter 2027 - baselines, SOM2IMG, and controlled runs (weeks 11-20)
 

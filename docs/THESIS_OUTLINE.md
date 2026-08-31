@@ -38,6 +38,12 @@ documented in `docs/logs/2026-08-31-grid-cnn-grad-cam-pilot.md`. The accepted ru
 clean commit and retained split indices, preprocessing, mapping, checkpoint, predictions, raw
 maps, traced feature scores, metrics, and figures.
 
+Integrated Gradients evidence on the same checkpoint and samples is documented in
+`docs/logs/2026-08-31-integrated-gradients-pilot.md`. Zero and transformed training mean were
+recorded as equivalent, while transformed training median supplied the distinct baseline
+sensitivity condition. Signed raw values, completeness deltas, retry counts, baseline-paired
+scores, and Grad-CAM agreement are retained.
+
 ## 5. Results
 
 - Predictive performance.
@@ -52,6 +58,12 @@ accuracy and 0.9017 macro F1, compared with 0.6279 accuracy and 0.3857 macro F1 
 majority-class baseline. Predicted-class Grad-CAM produced finite 5 x 6 maps for all 86 test
 samples and traced all 30 named features. These are functional results only; faithfulness,
 multi-seed stability, and cross-method agreement remain TODO.
+
+Integrated Gradients passed the declared completeness rule for all samples and both distinct
+baselines after one zero-baseline retry. Median agreement with Grad-CAM was 0.396 Spearman for
+zero/train mean and 0.332 for training median; median top-5 overlap was 0.40 for both. The two IG
+baselines agreed more strongly with one another (median Spearman 0.790 and top-5 overlap 0.80),
+but baseline dependence remained visible. Faithfulness and multi-seed replication remain TODO.
 
 ## 6. Discussion
 

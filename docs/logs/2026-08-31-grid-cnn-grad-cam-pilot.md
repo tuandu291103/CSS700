@@ -65,8 +65,8 @@ methods remain untested. The validation-to-test performance difference also need
 
 ## Follow-up
 
-1. Implement Integrated Gradients against both zero and training-mean baselines while retaining
-   signed raw values and convergence deltas.
+1. **Completed 2026-08-31:** Integrated Gradients with signed values, convergence diagnostics,
+   and distinct training-median sensitivity; see `2026-08-31-integrated-gradients-pilot.md`.
 2. Implement feature-wise Occlusion Sensitivity with zero replacement in standardized space.
 3. Run top-feature deletion against random and bottom-ranked controls before interpreting the
    Grad-CAM rankings as faithful.
