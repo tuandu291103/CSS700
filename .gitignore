@@ -1,0 +1,24 @@
+.DS_Store
+.env
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# Research data and generated artifacts are reproducible, not source code.
+data/raw/
+data/interim/
+data/processed/
+artifacts/
+checkpoints/
+models/
+reports/figures/generated/
+
+# Keep directory documentation and small, curated examples.
+!data/README.md
