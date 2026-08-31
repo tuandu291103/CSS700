@@ -1,0 +1,37 @@
+experiment:
+  name: breast-cancer-grid-cnn-baseline
+  seed: 42
+
+dataset:
+  name: breast_cancer_wisconsin
+  test_size: 0.15
+  validation_size: 0.15
+  stratify: true
+
+preprocessing:
+  numerical_scaler: standard
+  fit_on_training_only: true
+
+encoding:
+  method: grid
+  ordering: original_column_order
+  padding_value: 0.0
+
+model:
+  architecture: small_cnn
+  device: cpu
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  early_stopping_patience: 12
+  selection_metric: validation_macro_f1
+
+explanations:
+  target: predicted_class
+  grad_cam_layer: features.2
+  grad_cam_sign_handling: positive_evidence_relu
+  grad_cam_resize: bilinear_align_corners_false
+  top_k:
+    - 5
+    - 10

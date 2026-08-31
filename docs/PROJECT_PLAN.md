@@ -9,7 +9,7 @@ This plan keeps that sequence while adding explicit decision gates and a writing
 - [x] Select Python, PyTorch, Captum, and scikit-learn as the initial stack.
 - [x] Scaffold a tested Grid Encoding pilot and living thesis documentation.
 - [ ] Confirm scope decisions and unanswered methodology questions with the committee.
-- [ ] Create the private GitHub repository, push the initial commit, and enable issue tracking.
+- [x] Create the private GitHub repository, push the initial commit, and enable issue tracking.
 
 ## Autumn 2026 - foundation and three tracing methods (weeks 1-10)
 

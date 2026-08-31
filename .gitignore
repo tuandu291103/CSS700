@@ -17,7 +17,7 @@ data/interim/
 data/processed/
 artifacts/
 checkpoints/
-models/
+/models/
 reports/figures/generated/
 
 # Keep directory documentation and small, curated examples.

@@ -45,6 +45,7 @@ python -m pip install -e ".[dev]"
 make doctor
 make test
 make pilot
+make train-grid
 ```
 
 Install the heavier CNN, explanation, plotting, and notebook stack before model work:
@@ -63,6 +64,17 @@ python -m pip install -e . --no-deps
 `make pilot` performs the first reproducibility checkpoint: it makes stratified train,
 validation, and test splits, fits preprocessing on training data only, creates fixed grid
 images, and exports a documented feature-to-pixel mapping under `artifacts/`.
+
+`make train-grid` trains the validation-selected Grid CNN, evaluates its frozen checkpoint,
+and writes predictive metrics, predictions, figures, and reproducibility metadata to a new
+append-only run directory. Generate predicted-class Grad-CAM outputs for that checkpoint with:
+
+```bash
+make grad-cam RUN_DIR=artifacts/<grid-cnn-run-id>
+```
+
+Raw maps, named-feature attributions, class-stratified aggregate summaries, method settings,
+runtime, and reviewed example figures are added to the same run bundle.
 
 ## Research workflow
 

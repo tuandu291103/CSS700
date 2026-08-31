@@ -1,4 +1,4 @@
-.PHONY: install install-research test lint format doctor pilot clean
+.PHONY: install install-research test lint format doctor pilot train-grid grad-cam clean
 
 PYTHON ?= python3
 
@@ -9,7 +9,7 @@ install-research:
 	$(PYTHON) -m pip install -e ".[research,dev]"
 
 test:
-	$(PYTHON) -m pytest
+	PYTHONPATH=src $(PYTHON) -m pytest
 
 lint:
 	$(PYTHON) -m ruff check .
@@ -19,10 +19,16 @@ format:
 	$(PYTHON) -m ruff check --fix .
 
 doctor:
-	$(PYTHON) -m css700.cli doctor
+	PYTHONPATH=src $(PYTHON) -m css700.cli doctor
 
 pilot:
-	$(PYTHON) -m css700.cli pilot --config configs/pilot.yaml
+	PYTHONPATH=src $(PYTHON) -m css700.cli pilot --config configs/pilot.yaml
+
+train-grid:
+	PYTHONPATH=src $(PYTHON) -m css700.cli train-grid --config configs/grid_cnn.yaml
+
+grad-cam:
+	PYTHONPATH=src $(PYTHON) -m css700.cli grad-cam --run-dir "$(RUN_DIR)"
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +

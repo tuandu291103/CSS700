@@ -4,9 +4,11 @@ import argparse
 import csv
 import importlib.util
 import json
+import os
 import platform
 import subprocess
 import sys
+import tempfile
 from datetime import UTC, datetime
 from importlib import metadata
 from pathlib import Path
@@ -29,6 +31,13 @@ RESEARCH_MODULES = (
     "seaborn",
     "minisom",
 )
+
+
+def _configure_runtime_cache() -> None:
+    cache_root = Path(tempfile.gettempdir()) / "css700-runtime-cache"
+    cache_root.mkdir(parents=True, exist_ok=True)
+    os.environ.setdefault("MPLCONFIGDIR", str(cache_root / "matplotlib"))
+    os.environ.setdefault("XDG_CACHE_HOME", str(cache_root))
 
 
 def _module_status(name: str) -> str:
@@ -167,6 +176,28 @@ def pilot(args: argparse.Namespace) -> int:
     return 0
 
 
+def train_grid(args: argparse.Namespace) -> int:
+    """Train and evaluate the validation-selected Grid CNN baseline."""
+
+    _configure_runtime_cache()
+    from css700.experiments import run_grid_cnn_experiment
+
+    summary = run_grid_cnn_experiment(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def explain_grad_cam(args: argparse.Namespace) -> int:
+    """Generate and trace predicted-class Grad-CAM maps for a frozen Grid CNN run."""
+
+    _configure_runtime_cache()
+    from css700.experiments import run_grad_cam_experiment
+
+    summary = run_grad_cam_experiment(Path(args.run_dir), batch_size=int(args.batch_size))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="css700")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -178,6 +209,18 @@ def build_parser() -> argparse.ArgumentParser:
     pilot_parser.add_argument("--config", default="configs/pilot.yaml")
     pilot_parser.add_argument("--output-dir", default="artifacts")
     pilot_parser.set_defaults(function=pilot)
+    train_parser = subparsers.add_parser(
+        "train-grid", help="train and evaluate the Breast Cancer Grid CNN"
+    )
+    train_parser.add_argument("--config", default="configs/grid_cnn.yaml")
+    train_parser.add_argument("--output-dir", default="artifacts")
+    train_parser.set_defaults(function=train_grid)
+    grad_cam_parser = subparsers.add_parser(
+        "grad-cam", help="explain a frozen Grid CNN run with predicted-class Grad-CAM"
+    )
+    grad_cam_parser.add_argument("--run-dir", required=True)
+    grad_cam_parser.add_argument("--batch-size", type=int, default=32)
+    grad_cam_parser.set_defaults(function=explain_grad_cam)
     return parser
 
 
