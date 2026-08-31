@@ -198,6 +198,17 @@ def explain_grad_cam(args: argparse.Namespace) -> int:
     return 0 if summary["status"] == "ok" else 1
 
 
+def explain_integrated_gradients(args: argparse.Namespace) -> int:
+    """Generate Integrated Gradients and compare them with frozen Grad-CAM outputs."""
+
+    _configure_runtime_cache()
+    from css700.experiments import run_integrated_gradients_experiment
+
+    summary = run_integrated_gradients_experiment(Path(args.run_dir), Path(args.config))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="css700")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -221,6 +232,15 @@ def build_parser() -> argparse.ArgumentParser:
     grad_cam_parser.add_argument("--run-dir", required=True)
     grad_cam_parser.add_argument("--batch-size", type=int, default=32)
     grad_cam_parser.set_defaults(function=explain_grad_cam)
+    integrated_gradients_parser = subparsers.add_parser(
+        "integrated-gradients",
+        help="trace Integrated Gradients and compare them with Grad-CAM",
+    )
+    integrated_gradients_parser.add_argument("--run-dir", required=True)
+    integrated_gradients_parser.add_argument(
+        "--config", default="configs/integrated_gradients.yaml"
+    )
+    integrated_gradients_parser.set_defaults(function=explain_integrated_gradients)
     return parser
 
 

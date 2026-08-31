@@ -76,6 +76,16 @@ make grad-cam RUN_DIR=artifacts/<grid-cnn-run-id>
 Raw maps, named-feature attributions, class-stratified aggregate summaries, method settings,
 runtime, and reviewed example figures are added to the same run bundle.
 
+Continue on the same frozen checkpoint with signed Integrated Gradients, convergence checks,
+training-only baselines, and paired Grad-CAM agreement metrics:
+
+```bash
+make integrated-gradients RUN_DIR=artifacts/<grid-cnn-run-id>
+```
+
+Because standardization maps the training mean to zero, the command records zero and training
+mean as equivalent baseline names and calculates a distinct training-median sensitivity run.
+
 ## Research workflow
 
 1. Create or select a versioned YAML config.

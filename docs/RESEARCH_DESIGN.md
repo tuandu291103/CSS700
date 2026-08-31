@@ -67,6 +67,9 @@ if its internal layout algorithm differs.
   aggregation.
 - **Integrated Gradients:** record baseline image, integration steps, internal batch size, and
   convergence delta; test zero and training-mean baselines on a pre-declared subset.
+- For the standardized Grid pilot, zero and the transformed training mean are numerically
+  equivalent. Record that alias rather than presenting it as a sensitivity comparison, and use
+  the transformed training median as the distinct training-only sensitivity baseline.
 - **Occlusion:** mask complete feature pixels/regions, not arbitrary sliding windows; define the
   replacement value in preprocessed space and record forward-pass count.
 - Retain signed raw values when meaningful. Rank by a pre-registered transformation, such as

@@ -32,6 +32,8 @@ jobs:
           python-version: "3.12"
           cache: pip
       - name: Install model test dependencies
-        run: python -m pip install -e ".[dev]" "torch>=2.5,<3"
-      - name: Run CNN, training, and Grad-CAM tests
-        run: python -m pytest tests/test_model.py tests/test_training.py tests/test_grad_cam.py
+        run: python -m pip install -e ".[dev]" "torch>=2.5,<3" "captum>=0.7,<1"
+      - name: Run CNN, training, and attribution tests
+        run: >-
+          python -m pytest tests/test_model.py tests/test_training.py tests/test_grad_cam.py
+          tests/test_integrated_gradients.py
