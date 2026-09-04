@@ -1,0 +1,38 @@
+method: cumulative_feature_deletion
+target: frozen_predicted_class
+ranking_methods:
+  - grad_cam
+  - integrated_gradients_zero
+  - occlusion_zero
+ranking_orders:
+  - top
+  - bottom
+control: random
+deletion_steps:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+replacements:
+  - zero
+  - training_median
+random_repeats: 100
+random_seed: 20260903
+bootstrap_resamples: 1000
+bootstrap_seed: 20260904
+confidence_level: 0.95
+inference_batch_size: 512
+primary_curve_metric: mean_target_logit_drop
+primary_summary_metric: normalized_target_logit_drop_aopc
+secondary_metrics:
+  - mean_target_probability_drop
+  - prediction_flip_rate
+  - accuracy
+  - macro_f1
+retain_signed_drops: true

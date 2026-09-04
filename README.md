@@ -97,6 +97,17 @@ The command masks exactly one mapped feature pixel at a time, retains signed pre
 logit and probability drops, ranks by absolute logit drop, and compares Occlusion with Grad-CAM
 and both retained Integrated Gradients baselines on the same frozen samples.
 
+Evaluate whether the three primary rankings affect frozen model behavior in the expected order:
+
+```bash
+make faithfulness RUN_DIR=artifacts/<grid-cnn-run-id>
+```
+
+This runs cumulative top-, bottom-, and repeated random-feature deletion with standardized-zero
+and training-median replacements. It retains sample curves, normalized area-over-perturbation-
+curve summaries, paired contrasts, fixed-seed random controls, and hierarchical bootstrap
+intervals. Scientific ordering is reported independently of the technical quality gate.
+
 ## Research workflow
 
 1. Create or select a versioned YAML config.

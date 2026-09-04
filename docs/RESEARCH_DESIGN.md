@@ -93,6 +93,13 @@ target-confidence and performance decline. Compare against matched random and bo
 features. Report deletion curves and area-over-perturbation-curve style summaries with
 uncertainty, not only a single k.
 
+For the seed-42 Grid pilot, use `k = 0, 1, 2, 3, 5, 10, 15, 20, 25, 30`; share 100 fixed random
+permutations across methods; and report standardized-zero replacement as primary with transformed
+training median as sensitivity. The primary summary is normalized target-logit-drop AOPC. Use
+1,000 hierarchical bootstrap resamples over samples and random-control repeats for 95% intervals.
+Treat the observed top/random/bottom ordering as a result rather than a software quality gate,
+and disclose that zero replacement is method-aligned with zero-based Occlusion.
+
 ### Agreement
 
 - Spearman rank correlation on a consistent feature universe;

@@ -220,6 +220,17 @@ def explain_occlusion(args: argparse.Namespace) -> int:
     return 0 if summary["status"] == "ok" else 1
 
 
+def evaluate_faithfulness(args: argparse.Namespace) -> int:
+    """Evaluate three frozen explanation rankings with controlled cumulative deletion."""
+
+    _configure_runtime_cache()
+    from css700.experiments import run_faithfulness_experiment
+
+    summary = run_faithfulness_experiment(Path(args.run_dir), Path(args.config))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="css700")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -259,6 +270,13 @@ def build_parser() -> argparse.ArgumentParser:
     occlusion_parser.add_argument("--run-dir", required=True)
     occlusion_parser.add_argument("--config", default="configs/occlusion.yaml")
     occlusion_parser.set_defaults(function=explain_occlusion)
+    faithfulness_parser = subparsers.add_parser(
+        "faithfulness",
+        help="evaluate frozen explanation rankings with cumulative feature deletion",
+    )
+    faithfulness_parser.add_argument("--run-dir", required=True)
+    faithfulness_parser.add_argument("--config", default="configs/faithfulness.yaml")
+    faithfulness_parser.set_defaults(function=evaluate_faithfulness)
     return parser
 
 
