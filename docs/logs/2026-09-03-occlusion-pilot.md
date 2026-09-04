@@ -93,7 +93,7 @@ limited to one dataset split, one model seed, one encoding, and one replacement 
 
 ## Follow-up
 
-1. Implement cumulative top-, random-, and bottom-ranked feature deletion curves for all three
-   rankings, with uncertainty summaries and area-over-perturbation-curve metrics.
+1. **Completed 2026-09-03:** Cumulative top-, random-, and bottom-ranked feature deletion curves
+   for all three rankings; see `2026-09-03-faithfulness-pilot.md`.
 2. Repeat the Grid model and explanation pipeline across at least three training seeds.
 3. Add tabular Random Forest and XGBoost baselines before beginning the broader SOM2IMG matrix.

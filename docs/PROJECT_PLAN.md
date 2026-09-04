@@ -34,8 +34,11 @@ Progress through 2026-09-03:
   sensitivity, and paired Grad-CAM agreement on the same checkpoint and samples.
 - [x] Add signed feature-wise Occlusion Sensitivity with exact zero-replacement masks, runtime
   accounting, and paired three-method agreement on the same checkpoint and samples.
-- [x] Complete the Autumn three-method gate for the seed-42 Grid pilot; cumulative faithfulness
-  and multi-seed stability remain separate evaluation milestones.
+- [x] Complete the Autumn three-method gate for the seed-42 Grid pilot; track cumulative
+  faithfulness and multi-seed stability as separate evaluation milestones.
+- [x] Complete the first cumulative top/random/bottom deletion-faithfulness pilot with zero and
+  training-median replacements plus hierarchical bootstrap intervals. Multi-seed replication
+  remains required before drawing general conclusions.
 
 ## Winter 2027 - baselines, SOM2IMG, and controlled runs (weeks 11-20)
 

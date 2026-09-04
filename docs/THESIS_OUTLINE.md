@@ -50,6 +50,12 @@ standardized zero and retains signed predicted-class logit and probability drops
 raw scores, aggregate summaries, runtime accounting, pairwise sample-level metrics, and reviewed
 figures are retained in the same frozen run bundle.
 
+Cumulative deletion-faithfulness evidence is documented in
+`docs/logs/2026-09-03-faithfulness-pilot.md`. Pre-registered top-, bottom-, and repeated-random
+deletion uses both standardized-zero and training-median replacement. Per-sample curves, model-
+performance metrics, normalized AOPC summaries, hierarchical bootstrap intervals, paired control
+contrasts, and reviewed figures are retained.
+
 ## 5. Results
 
 - Predictive performance.
@@ -75,8 +81,17 @@ Occlusion produced finite named-feature scores for all 86 samples with masks tha
 the 30 feature pixels. Median rank agreement was 0.969 between zero-baseline Integrated Gradients
 and zero-replacement Occlusion, compared with 0.367 between Grad-CAM and Occlusion. Their median
 top-5 overlaps were 0.80 and 0.40, respectively. The shared zero reference may contribute to the
-strong input-level-method agreement. This remains a method-agreement result; cumulative deletion
-controls and multi-seed replication remain TODO.
+strong input-level-method agreement. That comparison alone does not establish correctness;
+cumulative deletion below supplies conditional faithfulness evidence, while multi-seed
+replication remains TODO.
+
+Under standardized-zero deletion, mean target-logit-drop AOPC was 1.049 for Grad-CAM, 1.122 for
+zero-baseline Integrated Gradients, and 1.115 for zero-replacement Occlusion, compared with 0.759
+for the shared random control. Each top-minus-random 95% bootstrap interval remained above zero;
+the ordering persisted under training-median replacement. At k = 10, top deletion reduced
+accuracy from 0.907 to 0.686, 0.628, and 0.651 respectively, while bottom-ten deletion caused no
+prediction flips. This is conditional single-model evidence; deletion realism and multi-seed
+stability remain TODO.
 
 ## 6. Discussion
 
