@@ -70,8 +70,11 @@ if its internal layout algorithm differs.
 - For the standardized Grid pilot, zero and the transformed training mean are numerically
   equivalent. Record that alias rather than presenting it as a sensitivity comparison, and use
   the transformed training median as the distinct training-only sensitivity baseline.
-- **Occlusion:** mask complete feature pixels/regions, not arbitrary sliding windows; define the
-  replacement value in preprocessed space and record forward-pass count.
+- **Occlusion:** mask complete feature pixels/regions, not arbitrary sliding windows. For the
+  standardized Grid pilot, replace one mapped feature pixel at a time with zero (the transformed
+  training mean), measure the signed predicted-class logit drop as the primary score, retain the
+  signed probability drop as a secondary score, and rank by absolute logit drop. Record both
+  conceptual model evaluations and actual batched forward calls.
 - Retain signed raw values when meaningful. Rank by a pre-registered transformation, such as
   absolute magnitude, rather than silently discarding direction.
 

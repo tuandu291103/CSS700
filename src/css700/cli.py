@@ -209,6 +209,17 @@ def explain_integrated_gradients(args: argparse.Namespace) -> int:
     return 0 if summary["status"] == "ok" else 1
 
 
+def explain_occlusion(args: argparse.Namespace) -> int:
+    """Generate feature-wise occlusion scores and compare all frozen explanation outputs."""
+
+    _configure_runtime_cache()
+    from css700.experiments import run_occlusion_experiment
+
+    summary = run_occlusion_experiment(Path(args.run_dir), Path(args.config))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="css700")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -241,6 +252,13 @@ def build_parser() -> argparse.ArgumentParser:
         "--config", default="configs/integrated_gradients.yaml"
     )
     integrated_gradients_parser.set_defaults(function=explain_integrated_gradients)
+    occlusion_parser = subparsers.add_parser(
+        "occlusion",
+        help="trace feature-wise Occlusion Sensitivity and compare all explanation methods",
+    )
+    occlusion_parser.add_argument("--run-dir", required=True)
+    occlusion_parser.add_argument("--config", default="configs/occlusion.yaml")
+    occlusion_parser.set_defaults(function=explain_occlusion)
     return parser
 
 

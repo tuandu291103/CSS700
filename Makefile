@@ -1,4 +1,4 @@
-.PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients clean
+.PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients occlusion clean
 
 PYTHON ?= python3
 
@@ -32,6 +32,9 @@ grad-cam:
 
 integrated-gradients:
 	PYTHONPATH=src $(PYTHON) -m css700.cli integrated-gradients --run-dir "$(RUN_DIR)"
+
+occlusion:
+	PYTHONPATH=src $(PYTHON) -m css700.cli occlusion --run-dir "$(RUN_DIR)"
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +

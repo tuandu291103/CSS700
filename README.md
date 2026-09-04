@@ -86,6 +86,17 @@ make integrated-gradients RUN_DIR=artifacts/<grid-cnn-run-id>
 Because standardization maps the training mean to zero, the command records zero and training
 mean as equivalent baseline names and calculates a distinct training-median sensitivity run.
 
+Complete the three-method Grid checkpoint with feature-wise zero-replacement Occlusion
+Sensitivity and paired per-sample agreement tables:
+
+```bash
+make occlusion RUN_DIR=artifacts/<grid-cnn-run-id>
+```
+
+The command masks exactly one mapped feature pixel at a time, retains signed predicted-class
+logit and probability drops, ranks by absolute logit drop, and compares Occlusion with Grad-CAM
+and both retained Integrated Gradients baselines on the same frozen samples.
+
 ## Research workflow
 
 1. Create or select a versioned YAML config.

@@ -5,12 +5,18 @@ from css700.interpretability.integrated_gradients import (
     IntegratedGradientsResult,
     integrated_gradients,
 )
+from css700.interpretability.occlusion import (
+    OcclusionSensitivityResult,
+    occlusion_sensitivity,
+)
 from css700.interpretability.tracing import trace_attributions_to_features
 
 __all__ = [
     "GradCAMResult",
     "IntegratedGradientsResult",
+    "OcclusionSensitivityResult",
     "grad_cam",
     "integrated_gradients",
+    "occlusion_sensitivity",
     "trace_attributions_to_features",
 ]
