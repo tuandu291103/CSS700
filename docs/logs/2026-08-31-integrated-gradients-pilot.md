@@ -82,7 +82,9 @@ samples.
 
 ## Follow-up
 
-1. Implement feature-wise Occlusion Sensitivity using zero replacement in standardized space.
-2. Compare all three methods on the same samples with paired rank and top-k metrics.
+1. **Completed 2026-09-03:** Feature-wise Occlusion Sensitivity using zero replacement in
+   standardized space; see `2026-09-03-occlusion-pilot.md`.
+2. **Completed 2026-09-03:** Compare all three methods on the same samples with paired rank and
+   top-k metrics; see `2026-09-03-occlusion-pilot.md`.
 3. Run top-, random-, and bottom-ranked feature deletion curves for faithfulness.
 4. Repeat the complete Grid condition across at least three training seeds.

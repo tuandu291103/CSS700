@@ -44,6 +44,12 @@ recorded as equivalent, while transformed training median supplied the distinct 
 sensitivity condition. Signed raw values, completeness deltas, retry counts, baseline-paired
 scores, and Grad-CAM agreement are retained.
 
+Feature-wise Occlusion Sensitivity and the first complete three-method comparison are documented
+in `docs/logs/2026-09-03-occlusion-pilot.md`. The run masks one named Grid feature at a time with
+standardized zero and retains signed predicted-class logit and probability drops. Exact masks,
+raw scores, aggregate summaries, runtime accounting, pairwise sample-level metrics, and reviewed
+figures are retained in the same frozen run bundle.
+
 ## 5. Results
 
 - Predictive performance.
@@ -64,6 +70,13 @@ baselines after one zero-baseline retry. Median agreement with Grad-CAM was 0.39
 zero/train mean and 0.332 for training median; median top-5 overlap was 0.40 for both. The two IG
 baselines agreed more strongly with one another (median Spearman 0.790 and top-5 overlap 0.80),
 but baseline dependence remained visible. Faithfulness and multi-seed replication remain TODO.
+
+Occlusion produced finite named-feature scores for all 86 samples with masks that covered exactly
+the 30 feature pixels. Median rank agreement was 0.969 between zero-baseline Integrated Gradients
+and zero-replacement Occlusion, compared with 0.367 between Grad-CAM and Occlusion. Their median
+top-5 overlaps were 0.80 and 0.40, respectively. The shared zero reference may contribute to the
+strong input-level-method agreement. This remains a method-agreement result; cumulative deletion
+controls and multi-seed replication remain TODO.
 
 ## 6. Discussion
 

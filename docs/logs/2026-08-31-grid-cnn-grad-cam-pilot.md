@@ -67,7 +67,8 @@ methods remain untested. The validation-to-test performance difference also need
 
 1. **Completed 2026-08-31:** Integrated Gradients with signed values, convergence diagnostics,
    and distinct training-median sensitivity; see `2026-08-31-integrated-gradients-pilot.md`.
-2. Implement feature-wise Occlusion Sensitivity with zero replacement in standardized space.
+2. **Completed 2026-09-03:** Feature-wise Occlusion Sensitivity with zero replacement in
+   standardized space; see `2026-09-03-occlusion-pilot.md`.
 3. Run top-feature deletion against random and bottom-ranked controls before interpreting the
    Grad-CAM rankings as faithful.
 4. Repeat the complete Grid condition for at least three training seeds.

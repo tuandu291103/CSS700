@@ -24,7 +24,7 @@ This plan keeps that sequence while adding explicit decision gates and a writing
 **Autumn gate:** all three methods run on the same Grid model and test samples; failures and
 method-specific assumptions are documented.
 
-Progress recorded on 2026-08-31:
+Progress through 2026-09-03:
 
 - [x] Complete the seed-42 end-to-end Grid pilot, including a clean-commit CNN checkpoint,
   predictive evaluation, and reproducible artifact bundle.
@@ -32,8 +32,10 @@ Progress recorded on 2026-08-31:
   sample, with target, mapping, and checkpoint consistency checks.
 - [x] Add signed Integrated Gradients with convergence checks, distinct training-only baseline
   sensitivity, and paired Grad-CAM agreement on the same checkpoint and samples.
-- [ ] Add feature-wise Occlusion Sensitivity to the same checkpoint and samples before declaring
-  the Autumn gate complete.
+- [x] Add signed feature-wise Occlusion Sensitivity with exact zero-replacement masks, runtime
+  accounting, and paired three-method agreement on the same checkpoint and samples.
+- [x] Complete the Autumn three-method gate for the seed-42 Grid pilot; cumulative faithfulness
+  and multi-seed stability remain separate evaluation milestones.
 
 ## Winter 2027 - baselines, SOM2IMG, and controlled runs (weeks 11-20)
 
