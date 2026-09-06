@@ -23,6 +23,10 @@ These do not block the initial Grid pilot, but they should be resolved before th
    zero/training mean, a conditional value, or more than one sensitivity setting?
 7. Should Random Forest and XGBoost comparisons use built-in global importance only, or TreeSHAP
    for like-for-like local explanations as well?
+
+   **Provisional implementation:** The first predictive baseline retains built-in importance only
+   as a separately labeled global diagnostic. A local TreeSHAP comparison remains deferred until
+   its class target, background/reference data, and committee scope are confirmed.
 8. What threshold defines adequate CNN performance beyond beating the majority-class baseline?
 9. Should sample-level uncertainty use bootstrap intervals, and does the program expect formal
    hypothesis tests or primarily estimation and effect sizes?

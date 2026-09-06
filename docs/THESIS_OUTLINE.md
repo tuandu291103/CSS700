@@ -62,6 +62,12 @@ seed 42 while model seeds 7, 42, and 2026 vary. Predictive metrics, pairwise pre
 same-target explanation rank/top-k stability, and deletion-faithfulness contrasts are retained in
 a standalone analysis artifact with source-run provenance and cross-run quality checks.
 
+Random Forest and XGBoost predictive baseline evidence is documented in
+`docs/logs/2026-09-06-tabular-baselines.md`. Both model families reuse the exact Grid split and
+training-only preprocessing across seeds 7, 42, and 2026. Complete validation searches, selected
+models, untouched-test predictions, predictive metrics, seed agreement, and model-native global
+importance are retained. Global tree importance remains separate from local explanation results.
+
 ## 5. Results
 
 - Predictive performance.
@@ -107,6 +113,14 @@ and top-10 overlap 0.70. All three methods retained positive top-minus-random de
 at every seed. Predictive behavior was therefore comparatively stable, but explanation rankings
 remained meaningfully sensitive to model training. These three-seed estimates are descriptive,
 not population-level variance estimates.
+
+On the same fixed splits and model seeds, Random Forest achieved mean test accuracy 0.9496 and
+macro F1 0.9462, while XGBoost achieved 0.9651 and 0.9624. Both exceeded the Grid CNN means of
+0.9186 accuracy and 0.9141 macro F1 in this pilot. Random Forest prediction agreement across
+seeds was 0.988-1.000; XGBoost produced identical class predictions across all three seeds.
+Model-native global rankings were also stable within family: pairwise Spearman was 0.974-0.978
+for Random Forest and 0.715-0.871 for XGBoost, with identical top-five feature sets within each
+family. These global rankings are not like-for-like local explanation comparators.
 
 ## 6. Discussion
 

@@ -56,6 +56,16 @@ Progress through 2026-09-06:
 **Winter gate:** expected-scope raw experiments are complete and reproducible before analysis
 choices are tuned to observed results.
 
+Pilot-dataset progress through 2026-09-06:
+
+- [x] Complete fixed-split, three-seed Random Forest and XGBoost predictive baselines with
+  validation-only model selection, untouched-test evaluation, and reproducible run artifacts.
+- [x] Retain model-native global importance with within-family seed stability while keeping it
+  explicitly separate from local, class-targeted explanations.
+- [ ] Freeze and implement the local SHAP/LIME comparison protocol.
+- [ ] Resolve the second dataset and authoritative SOM2IMG implementation before expanding the
+  full controlled matrix.
+
 ## Spring 2027 - analysis, thesis, and defense (weeks 21-32)
 
 | Weeks | Milestone | Exit evidence |
