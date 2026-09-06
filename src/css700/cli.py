@@ -231,6 +231,21 @@ def evaluate_faithfulness(args: argparse.Namespace) -> int:
     return 0 if summary["status"] == "ok" else 1
 
 
+def analyze_grid_stability(args: argparse.Namespace) -> int:
+    """Analyze fixed-split predictive, explanation, and faithfulness stability."""
+
+    _configure_runtime_cache()
+    from css700.experiments import run_grid_stability_experiment
+
+    summary = run_grid_stability_experiment(
+        [Path(path) for path in args.run_dir],
+        Path(args.config),
+        Path(args.output_dir),
+    )
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="css700")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -277,6 +292,14 @@ def build_parser() -> argparse.ArgumentParser:
     faithfulness_parser.add_argument("--run-dir", required=True)
     faithfulness_parser.add_argument("--config", default="configs/faithfulness.yaml")
     faithfulness_parser.set_defaults(function=evaluate_faithfulness)
+    stability_parser = subparsers.add_parser(
+        "grid-stability",
+        help="compare fixed-split Grid runs across model-training seeds",
+    )
+    stability_parser.add_argument("--run-dir", action="append", required=True)
+    stability_parser.add_argument("--config", default="configs/grid_stability.yaml")
+    stability_parser.add_argument("--output-dir", default="artifacts")
+    stability_parser.set_defaults(function=analyze_grid_stability)
     return parser
 
 

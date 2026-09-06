@@ -112,6 +112,20 @@ Measure pairwise rank correlation and top-k overlap across training seeds, simil
 Integrated Gradients baselines, and any stochastic explainer settings. Separate model-training
 instability from explainer instability where possible.
 
+For the first Grid replication, hold the split, preprocessing, layout, hyperparameters, and test
+samples fixed with data-split seed 42 while training models with pre-registered seeds 7, 42, and
+2026. Compare predicted-class explanations primarily where the model pair predicts the same class;
+label different-target comparisons as exploratory. Summarize predictive metrics, pairwise
+prediction agreement, per-sample explanation rank/top-k stability, and deletion-faithfulness
+contrasts across seeds. Three seeds support descriptive stability estimates, not a population-level
+variance claim.
+
+Use the original 128 integration steps and completeness rule for Integrated Gradients, but allow
+a 1,024-step retry for any replicate sample that fails initially. This multi-seed retry ceiling is
+stored separately from the historical seed-42 pilot config so the earlier config hash remains
+reproducible. Integration effort may vary by sample, but every retained attribution must pass the
+same absolute-or-relative completeness threshold.
+
 ### Computational cost
 
 Record wall-clock time per sample, number of model forward/backward passes, batch size, device,

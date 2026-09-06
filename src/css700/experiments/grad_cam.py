@@ -11,6 +11,7 @@ import numpy as np
 import torch
 import yaml
 
+from css700.config import resolve_experiment_seeds
 from css700.data import load_breast_cancer_splits
 from css700.encoding import GridEncoder
 from css700.interpretability import grad_cam, trace_attributions_to_features
@@ -94,10 +95,10 @@ def run_grad_cam_experiment(run_dir: Path, *, batch_size: int = 32) -> dict[str,
         raise FileExistsError(f"Grad-CAM outputs already exist: {existing}")
 
     config = yaml.safe_load((run_dir / "config.yaml").read_text(encoding="utf-8"))
-    seed = int(config["experiment"]["seed"])
+    seeds = resolve_experiment_seeds(config)
     dataset_config = config["dataset"]
     bundle = load_breast_cancer_splits(
-        seed=seed,
+        seed=seeds.data_split_seed,
         test_size=float(dataset_config["test_size"]),
         validation_size=float(dataset_config["validation_size"]),
         stratify=bool(dataset_config["stratify"]),
@@ -233,9 +234,7 @@ def run_grad_cam_experiment(run_dir: Path, *, batch_size: int = 32) -> dict[str,
     padding_mask = encoder.padding_mask()
     padding_values = raw_maps[:, ~padding_mask]
     padding_pixel_count = int((~padding_mask).sum())
-    mean_padding_attribution = (
-        float(padding_values.mean()) if padding_pixel_count else None
-    )
+    mean_padding_attribution = float(padding_values.mean()) if padding_pixel_count else None
     checks = {
         "all_values_finite": bool(np.isfinite(raw_maps).all()),
         "maps_match_input_shape": list(raw_maps.shape) == list(test_images.shape),
@@ -287,8 +286,6 @@ def run_grad_cam_experiment(run_dir: Path, *, batch_size: int = 32) -> dict[str,
         "run_dir": str(run_dir),
         "samples": len(test_images),
         "seconds_per_sample": summary["seconds_per_sample"],
-        "top_five_features_by_target_group": summary[
-            "top_five_features_by_target_group"
-        ],
+        "top_five_features_by_target_group": summary["top_five_features_by_target_group"],
         "checks": checks,
     }

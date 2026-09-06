@@ -108,6 +108,18 @@ and training-median replacements. It retains sample curves, normalized area-over
 curve summaries, paired contrasts, fixed-seed random controls, and hierarchical bootstrap
 intervals. Scientific ordering is reported independently of the technical quality gate.
 
+For fixed-split model-training stability, train the registered seed-7 and seed-2026 configs and
+run the complete explanation and faithfulness sequence on each. Then compare those runs with the
+seed-42 reference:
+
+```bash
+make grid-stability RUN_DIRS="artifacts/<seed-7-run> artifacts/<seed-42-run> artifacts/<seed-2026-run>"
+```
+
+The stability analysis verifies identical splits, preprocessing, layout, and hyperparameters;
+reports predictive and deletion-faithfulness variation; and evaluates predicted-class explanation
+stability primarily where each model pair predicts the same target.
+
 ## Research workflow
 
 1. Create or select a versioned YAML config.

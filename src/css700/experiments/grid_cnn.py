@@ -15,6 +15,7 @@ import numpy as np
 import torch
 import yaml
 
+from css700.config import resolve_experiment_seeds
 from css700.data import load_breast_cancer_splits
 from css700.encoding import GridEncoder
 from css700.models import SmallTabularImageCNN
@@ -145,11 +146,11 @@ def run_grid_cnn_experiment(config_path: Path, output_dir: Path) -> dict[str, An
     config_bytes = config_path.read_bytes()
     config = yaml.safe_load(config_bytes)
     worktree_dirty_at_start = _git_worktree_dirty()
-    seed = int(config["experiment"]["seed"])
+    seeds = resolve_experiment_seeds(config)
     dataset_config = config["dataset"]
     model_config = config["model"]
     bundle = load_breast_cancer_splits(
-        seed=seed,
+        seed=seeds.data_split_seed,
         test_size=float(dataset_config["test_size"]),
         validation_size=float(dataset_config["validation_size"]),
         stratify=bool(dataset_config["stratify"]),
@@ -160,10 +161,12 @@ def run_grid_cnn_experiment(config_path: Path, output_dir: Path) -> dict[str, An
     test_images = encoder.transform(bundle.x_test)
 
     started_at = datetime.now(UTC)
-    run_id = (
-        f"{started_at.strftime('%Y%m%d-%H%M%S')}__breast-cancer__grid__small-cnn"
-        f"__seed-{seed}__baseline"
+    seed_label = (
+        f"split-seed-{seeds.data_split_seed}__model-seed-{seeds.model_seed}__replicate"
+        if seeds.explicit_separation
+        else f"seed-{seeds.model_seed}__baseline"
     )
+    run_id = f"{started_at.strftime('%Y%m%d-%H%M%S')}__breast-cancer__grid__small-cnn__{seed_label}"
     run_dir = output_dir / run_id
     directories = {
         name: run_dir / name
@@ -187,7 +190,7 @@ def run_grid_cnn_experiment(config_path: Path, output_dir: Path) -> dict[str, An
         bundle.y_validation,
         test_images,
         bundle.y_test,
-        seed=seed,
+        seed=seeds.model_seed,
         epochs=int(model_config["epochs"]),
         batch_size=int(model_config["batch_size"]),
         learning_rate=float(model_config["learning_rate"]),
@@ -230,7 +233,9 @@ def run_grid_cnn_experiment(config_path: Path, output_dir: Path) -> dict[str, An
             "input_channels": int(train_images.shape[1]),
             "num_classes": len(bundle.target_names),
             "best_epoch": outcome.best_epoch,
-            "seed": seed,
+            "seed": seeds.model_seed,
+            "data_split_seed": seeds.data_split_seed,
+            "model_seed": seeds.model_seed,
         },
         checkpoint_path,
     )
@@ -294,6 +299,8 @@ def run_grid_cnn_experiment(config_path: Path, output_dir: Path) -> dict[str, An
         "commit_sha": _git_sha(),
         "git_worktree_dirty_at_start": worktree_dirty_at_start,
         "config_sha256": hashlib.sha256(config_bytes).hexdigest(),
+        "data_split_seed": seeds.data_split_seed,
+        "model_seed": seeds.model_seed,
         "python": platform.python_version(),
         "platform": platform.platform(),
         "device": str(model_config.get("device", "cpu")),
@@ -317,4 +324,6 @@ def run_grid_cnn_experiment(config_path: Path, output_dir: Path) -> dict[str, An
         "test_macro_f1": outcome.test.metrics["macro_f1"],
         "majority_accuracy": outcome.majority_metrics["accuracy"],
         "quality_gate": quality_gate,
+        "data_split_seed": seeds.data_split_seed,
+        "model_seed": seeds.model_seed,
     }

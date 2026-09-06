@@ -37,4 +37,4 @@ jobs:
         run: >-
           python -m pytest tests/test_model.py tests/test_training.py tests/test_grad_cam.py
           tests/test_integrated_gradients.py tests/test_occlusion.py
-          tests/test_feature_deletion.py
+          tests/test_feature_deletion.py tests/test_stability.py

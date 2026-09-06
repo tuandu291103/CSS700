@@ -1,4 +1,4 @@
-.PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients occlusion faithfulness clean
+.PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients occlusion faithfulness grid-stability clean
 
 PYTHON ?= python3
 
@@ -38,6 +38,9 @@ occlusion:
 
 faithfulness:
 	PYTHONPATH=src $(PYTHON) -m css700.cli faithfulness --run-dir "$(RUN_DIR)"
+
+grid-stability:
+	PYTHONPATH=src $(PYTHON) -m css700.cli grid-stability $(foreach run,$(RUN_DIRS),--run-dir "$(run)")
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +
