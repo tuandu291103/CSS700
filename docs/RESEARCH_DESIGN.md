@@ -21,6 +21,18 @@ identifiers.
 Global tree importance and local explanation values are different objects. They will be reported
 separately; local SHAP values for tree models may be used for like-for-like local comparisons.
 
+For the first tabular predictive baseline, reuse the Breast Cancer split fingerprint from Grid
+split seed 42 and train Random Forest and XGBoost with model seeds 7, 42, and 2026. Candidate
+models are fit on the training partition only, selected by validation macro F1 with configuration
+order breaking ties, and evaluated once on the untouched test partition without refitting on
+validation data. Use the existing training-only standardized features to preserve exact feature
+order and preprocessing parity; tree models do not otherwise require scaling.
+
+Retain Random Forest mean-decrease-in-impurity importance and XGBoost gain importance as separate
+global, model-native diagnostics. Report their within-family seed stability, but do not compare
+their raw magnitudes across families or treat them as local, class-targeted explanations. Local
+TreeSHAP/LIME comparisons require a separately frozen target and background protocol.
+
 ## Controlled experiment matrix
 
 Expected scope contains:

@@ -1,4 +1,4 @@
-.PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients occlusion faithfulness grid-stability clean
+.PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients occlusion faithfulness grid-stability train-tabular-baselines clean
 
 PYTHON ?= python3
 
@@ -41,6 +41,9 @@ faithfulness:
 
 grid-stability:
 	PYTHONPATH=src $(PYTHON) -m css700.cli grid-stability $(foreach run,$(RUN_DIRS),--run-dir "$(run)")
+
+train-tabular-baselines:
+	PYTHONPATH=src $(PYTHON) -m css700.cli train-tabular-baselines --config configs/tabular_baselines.yaml
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +

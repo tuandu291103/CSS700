@@ -246,6 +246,17 @@ def analyze_grid_stability(args: argparse.Namespace) -> int:
     return 0 if summary["status"] == "ok" else 1
 
 
+def train_tabular_baselines(args: argparse.Namespace) -> int:
+    """Train and compare validation-selected Random Forest and XGBoost baselines."""
+
+    _configure_runtime_cache()
+    from css700.experiments import run_tabular_baselines_experiment
+
+    summary = run_tabular_baselines_experiment(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="css700")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -300,6 +311,13 @@ def build_parser() -> argparse.ArgumentParser:
     stability_parser.add_argument("--config", default="configs/grid_stability.yaml")
     stability_parser.add_argument("--output-dir", default="artifacts")
     stability_parser.set_defaults(function=analyze_grid_stability)
+    tabular_parser = subparsers.add_parser(
+        "train-tabular-baselines",
+        help="train fixed-split Random Forest and XGBoost baselines",
+    )
+    tabular_parser.add_argument("--config", default="configs/tabular_baselines.yaml")
+    tabular_parser.add_argument("--output-dir", default="artifacts")
+    tabular_parser.set_defaults(function=train_tabular_baselines)
     return parser
 
 

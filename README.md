@@ -120,6 +120,18 @@ The stability analysis verifies identical splits, preprocessing, layout, and hyp
 reports predictive and deletion-faithfulness variation; and evaluates predicted-class explanation
 stability primarily where each model pair predicts the same target.
 
+Train validation-selected Random Forest and XGBoost baselines on the same fixed split and model
+seeds with:
+
+```bash
+make train-tabular-baselines
+```
+
+The command retains the complete validation search, untouched-test predictions, predictive
+metrics, serialized models, seed agreement, and model-native global importance. Random Forest
+impurity importance and XGBoost gain importance are explicitly labeled as global diagnostics;
+they are not treated as local class-targeted explanations or compared on a shared magnitude scale.
+
 ## Research workflow
 
 1. Create or select a versioned YAML config.
