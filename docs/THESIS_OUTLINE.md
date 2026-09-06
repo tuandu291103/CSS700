@@ -56,6 +56,12 @@ deletion uses both standardized-zero and training-median replacement. Per-sample
 performance metrics, normalized AOPC summaries, hierarchical bootstrap intervals, paired control
 contrasts, and reviewed figures are retained.
 
+Fixed-split model-training-seed evidence is documented in
+`docs/logs/2026-09-06-grid-multiseed-stability.md`. The split and 86 test samples remain fixed at
+seed 42 while model seeds 7, 42, and 2026 vary. Predictive metrics, pairwise prediction agreement,
+same-target explanation rank/top-k stability, and deletion-faithfulness contrasts are retained in
+a standalone analysis artifact with source-run provenance and cross-run quality checks.
+
 ## 5. Results
 
 - Predictive performance.
@@ -68,30 +74,39 @@ contrasts, and reviewed figures are retained.
 Pilot result to develop in the draft: the validation-selected Grid CNN achieved 0.9070 test
 accuracy and 0.9017 macro F1, compared with 0.6279 accuracy and 0.3857 macro F1 for the
 majority-class baseline. Predicted-class Grad-CAM produced finite 5 x 6 maps for all 86 test
-samples and traced all 30 named features. These are functional results only; faithfulness,
-multi-seed stability, and cross-method agreement remain TODO.
+samples and traced all 30 named features. The subsequent results below evaluate cross-method
+agreement, conditional deletion faithfulness, and model-seed stability.
 
 Integrated Gradients passed the declared completeness rule for all samples and both distinct
 baselines after one zero-baseline retry. Median agreement with Grad-CAM was 0.396 Spearman for
 zero/train mean and 0.332 for training median; median top-5 overlap was 0.40 for both. The two IG
 baselines agreed more strongly with one another (median Spearman 0.790 and top-5 overlap 0.80),
-but baseline dependence remained visible. Faithfulness and multi-seed replication remain TODO.
+but baseline dependence remained visible.
 
 Occlusion produced finite named-feature scores for all 86 samples with masks that covered exactly
 the 30 feature pixels. Median rank agreement was 0.969 between zero-baseline Integrated Gradients
 and zero-replacement Occlusion, compared with 0.367 between Grad-CAM and Occlusion. Their median
 top-5 overlaps were 0.80 and 0.40, respectively. The shared zero reference may contribute to the
 strong input-level-method agreement. That comparison alone does not establish correctness;
-cumulative deletion below supplies conditional faithfulness evidence, while multi-seed
-replication remains TODO.
+cumulative deletion below supplies conditional faithfulness evidence.
 
 Under standardized-zero deletion, mean target-logit-drop AOPC was 1.049 for Grad-CAM, 1.122 for
 zero-baseline Integrated Gradients, and 1.115 for zero-replacement Occlusion, compared with 0.759
 for the shared random control. Each top-minus-random 95% bootstrap interval remained above zero;
 the ordering persisted under training-median replacement. At k = 10, top deletion reduced
 accuracy from 0.907 to 0.686, 0.628, and 0.651 respectively, while bottom-ten deletion caused no
-prediction flips. This is conditional single-model evidence; deletion realism and multi-seed
-stability remain TODO.
+prediction flips. This was conditional single-model evidence; the fixed-split replication below
+tests training-seed sensitivity, while deletion realism remains a limitation.
+
+Across fixed-split model seeds 7, 42, and 2026, mean test accuracy was 0.9186 with sample standard
+deviation 0.0116, and mean macro F1 was 0.9141 with sample standard deviation 0.0123. All three
+models agreed on 79 of 86 test predictions. For model pairs predicting the same target, median
+per-sample rank stability was 0.718 Spearman for Grad-CAM, 0.746 for zero-baseline Integrated
+Gradients, and 0.712 for zero-replacement Occlusion; every method had median top-5 overlap 0.60
+and top-10 overlap 0.70. All three methods retained positive top-minus-random deletion intervals
+at every seed. Predictive behavior was therefore comparatively stable, but explanation rankings
+remained meaningfully sensitive to model training. These three-seed estimates are descriptive,
+not population-level variance estimates.
 
 ## 6. Discussion
 

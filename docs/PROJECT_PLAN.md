@@ -24,7 +24,7 @@ This plan keeps that sequence while adding explicit decision gates and a writing
 **Autumn gate:** all three methods run on the same Grid model and test samples; failures and
 method-specific assumptions are documented.
 
-Progress through 2026-09-03:
+Progress through 2026-09-06:
 
 - [x] Complete the seed-42 end-to-end Grid pilot, including a clean-commit CNN checkpoint,
   predictive evaluation, and reproducible artifact bundle.
@@ -38,7 +38,11 @@ Progress through 2026-09-03:
   faithfulness and multi-seed stability as separate evaluation milestones.
 - [x] Complete the first cumulative top/random/bottom deletion-faithfulness pilot with zero and
   training-median replacements plus hierarchical bootstrap intervals. Multi-seed replication
-  remains required before drawing general conclusions.
+  was completed next to assess training-seed sensitivity.
+- [x] Complete a fixed-split Grid replication across pre-registered model seeds 7, 42, and 2026,
+  including predictive agreement, same-target explanation stability, and deletion-faithfulness
+  stability. Treat the three-seed estimates as descriptive and retain broader replication for the
+  controlled experiment matrix.
 
 ## Winter 2027 - baselines, SOM2IMG, and controlled runs (weeks 11-20)
 
