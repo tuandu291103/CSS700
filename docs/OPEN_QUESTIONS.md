@@ -4,9 +4,10 @@ These do not block the initial Grid pilot, but they should be resolved before th
 
 ## Highest priority
 
-1. **SOM2IMG implementation:** Do you already have access to the exact code, manuscript, and
-   recommended hyperparameters from W. D. Selke / the committee? Reimplementation risk is the
-   largest technical uncertainty in the proposal.
+1. **SOM2IMG implementation:** The local six-page manuscript has now been reviewed. Can you share
+   the exact author code/version and recommended hyperparameters from W. D. Selke / the committee?
+   The manuscript does not specify collision handling or the full training settings. See
+   `docs/SOM2IMG_READINESS.md` and `docs/logs/2026-09-06-som-mapping-readiness.md`.
 2. **Second dataset:** Should the second dataset test multiclass behavior, mixed feature types,
    or simply replicate the numerical binary setting? This choice changes preprocessing,
    attribution targets, and the strength of the conclusions.
@@ -31,6 +32,11 @@ These do not block the initial Grid pilot, but they should be resolved before th
 9. Should sample-level uncertainty use bootstrap intervals, and does the program expect formal
    hypothesis tests or primarily estimation and effect sizes?
 10. For SOM feature collisions, what mapping and aggregation behavior is authoritative?
+
+    **Readiness evidence:** A provisional, training-only native-BMU diagnostic assigned 30
+    features to 22 pixels, with 13 features in five collision groups. This is not an author-code
+    reproduction. One-to-one tracing now rejects shared pixels; the SOM2IMG CNN remains gated
+    on an explicit rendering/allocation policy and matched scaling/orientation decisions.
 
 ## Project and writing
 

@@ -27,6 +27,11 @@ interpretation, uncertainty, and limitations. Prose marked `TODO` is not a resul
 - Tabular comparison methods.
 - Metrics, statistical analysis, compute, and reproducibility.
 
+Mapping-readiness work is specified in `docs/SOM2IMG_READINESS.md`. Tracing validates complete
+feature identities, coordinate bounds and one-to-one assignments, and returns columns in
+original feature-index order. Shared-pixel layouts require an explicit rendering and
+attribution-allocation policy before independent feature explanations can be reported.
+
 ## 4. Experiments
 
 - Pilot validation and tracing unit tests.
@@ -67,6 +72,12 @@ Random Forest and XGBoost predictive baseline evidence is documented in
 training-only preprocessing across seeds 7, 42, and 2026. Complete validation searches, selected
 models, untouched-test predictions, predictive metrics, seed agreement, and model-native global
 importance are retained. Global tree importance remains separate from local explanation results.
+
+The train-only SOM mapping-readiness diagnostic is documented in
+`docs/logs/2026-09-06-som-mapping-readiness.md`. With one fixed, explicitly provisional MiniSom
+configuration, 30 features occupied 22 pixels and 13 features shared five pixels. This is
+implementation-risk evidence, not an authoritative SOM2IMG reproduction or a CNN result.
+No collision resolution, encoder comparison or new predictive claim was made.
 
 ## 5. Results
 

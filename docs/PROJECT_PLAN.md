@@ -63,6 +63,9 @@ Pilot-dataset progress through 2026-09-06:
 - [x] Retain model-native global importance with within-family seed stability while keeping it
   explicitly separate from local, class-targeted explanations.
 - [ ] Freeze and implement the local SHAP/LIME comparison protocol.
+- [x] Review the local SOM2IMG manuscript and complete a reproducible, training-only native-BMU
+  collision diagnostic. Document unresolved settings and reject ambiguous feature tracing;
+  do not count this diagnostic as an implemented or evaluated SOM2IMG CNN.
 - [ ] Resolve the second dataset and authoritative SOM2IMG implementation before expanding the
   full controlled matrix.
 
