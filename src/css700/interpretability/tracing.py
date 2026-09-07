@@ -4,6 +4,7 @@ import numpy as np
 from numpy.typing import ArrayLike, NDArray
 
 from css700.encoding.grid import FeaturePixel
+from css700.encoding.mapping import audit_feature_mapping
 
 
 def trace_attributions_to_features(
@@ -24,16 +25,10 @@ def trace_attributions_to_features(
     if array.ndim != 4:
         raise ValueError("attributions must have shape [samples, channels, rows, columns]")
 
+    audit = audit_feature_mapping(mapping, tuple(array.shape[1:]))
+    if not audit["one_to_one"]:
+        raise ValueError("pixel collisions require an explicit attribution-allocation policy")
     values = np.empty((array.shape[0], len(mapping)), dtype=np.float64)
-    for position, pixel in enumerate(mapping):
-        outside_tensor = (
-            pixel.channel >= array.shape[1]
-            or pixel.row >= array.shape[2]
-            or pixel.column >= array.shape[3]
-        )
-        if outside_tensor:
-            raise ValueError(
-                f"mapping for {pixel.feature_name!r} is outside the attribution tensor"
-            )
-        values[:, position] = array[:, pixel.channel, pixel.row, pixel.column]
+    for pixel in mapping:
+        values[:, pixel.feature_index] = array[:, pixel.channel, pixel.row, pixel.column]
     return np.abs(values) if absolute else values

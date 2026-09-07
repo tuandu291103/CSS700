@@ -18,6 +18,7 @@ import numpy as np
 import yaml
 
 from css700.data import load_breast_cancer_splits
+from css700.data.splits import split_fingerprint
 from css700.evaluation import spearman_agreement, top_k_overlap
 from css700.training import evaluate_tabular_estimator, train_tabular_baseline
 
@@ -62,23 +63,6 @@ def _package_versions() -> dict[str, str]:
         except metadata.PackageNotFoundError:
             versions[distribution] = "missing"
     return versions
-
-
-def split_fingerprint(
-    train: np.ndarray,
-    validation: np.ndarray,
-    test: np.ndarray,
-) -> str:
-    """Hash ordered split indices using the versioned split-fingerprint contract."""
-
-    digest = hashlib.sha256()
-    digest.update(b"css700-split-v1\0")
-    for name, values in (("train", train), ("validation", validation), ("test", test)):
-        ordered = np.ascontiguousarray(values, dtype="<i8")
-        digest.update(name.encode() + b"\0")
-        digest.update(len(ordered).to_bytes(8, "little"))
-        digest.update(ordered.tobytes())
-    return digest.hexdigest()
 
 
 def _write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> None:

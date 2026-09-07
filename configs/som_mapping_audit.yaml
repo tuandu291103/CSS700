@@ -1,0 +1,18 @@
+# Diagnostic only: these are investigator-selected settings, not author defaults.
+experiment:
+  data_split_seed: 42
+  layout_seed: 42
+  expected_split_fingerprint: 79e85d4ceae692441b84f6921174e89879dc7eca4e27e8e6f6744799a67aa7cb
+dataset:
+  name: breast_cancer
+  test_size: 0.15
+  validation_size: 0.15
+  stratify: true
+som:
+  sigma: 1.0
+  learning_rate: 0.5
+  update_steps: 1000
+# Fixed in implementation: training-only StandardScaler (Grid parity), transposition,
+# h=ceil(sqrt(d)), w=ceil(d/h), Gaussian neighborhood, Euclidean BMU, rectangular
+# topology, asymptotic learning/sigma decay, random training-feature initialization,
+# shuffled update sequence, no epochs. No collision resolution or CNN training.

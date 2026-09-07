@@ -257,6 +257,17 @@ def train_tabular_baselines(args: argparse.Namespace) -> int:
     return 0 if summary["status"] == "ok" else 1
 
 
+def audit_som_mapping(args: argparse.Namespace) -> int:
+    """Audit provisional train-only SOM pixel assignments without training a CNN."""
+
+    _configure_runtime_cache()
+    from css700.experiments.som_mapping_audit import run_som_mapping_audit
+
+    summary = run_som_mapping_audit(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="css700")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -318,6 +329,13 @@ def build_parser() -> argparse.ArgumentParser:
     tabular_parser.add_argument("--config", default="configs/tabular_baselines.yaml")
     tabular_parser.add_argument("--output-dir", default="artifacts")
     tabular_parser.set_defaults(function=train_tabular_baselines)
+    som_parser = subparsers.add_parser(
+        "audit-som-mapping",
+        help="audit native SOM collisions with provisional training-only settings",
+    )
+    som_parser.add_argument("--config", default="configs/som_mapping_audit.yaml")
+    som_parser.add_argument("--output-dir", default="artifacts")
+    som_parser.set_defaults(function=audit_som_mapping)
     return parser
 
 

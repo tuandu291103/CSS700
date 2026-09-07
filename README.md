@@ -132,6 +132,21 @@ metrics, serialized models, seed agreement, and model-native global importance. 
 impurity importance and XGBoost gain importance are explicitly labeled as global diagnostics;
 they are not treated as local class-targeted explanations or compared on a shared magnitude scale.
 
+## SOM2IMG readiness
+
+Before the first SOM2IMG CNN, audit native SOM feature assignments with:
+
+```bash
+make audit-som-mapping
+```
+
+This is a training-only, fixed-settings collision diagnostic, not an authoritative SOM2IMG
+reproduction. It saves all candidate assignments and refuses to mark the encoder ready for a
+CNN. See `docs/SOM2IMG_READINESS.md` for the source review, frozen settings, and unresolved
+collision/scaling/orientation choices. Feature tracing now rejects shared pixels unless an
+explicit allocation policy is implemented and preserves original feature order even when
+mapping records are reordered.
+
 ## Research workflow
 
 1. Create or select a versioned YAML config.
