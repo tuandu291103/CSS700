@@ -32,6 +32,12 @@ feature identities, coordinate bounds and one-to-one assignments, and returns co
 original feature-index order. Shared-pixel layouts require an explicit rendering and
 attribution-allocation policy before independent feature explanations can be reported.
 
+The next local tabular comparison is proposed in `docs/SHAP_COMPARISON_PROTOCOL.md` (draft
+v0.1, 2026-09-09): probability-output TreeSHAP, a common training-only background, explicit
+binary-class handling, independent reconstruction checks and same-target rank comparisons.
+This is planned methodology, not evidence. Cross-model/output-scale differences prevent an
+explainer-only interpretation of tree SHAP versus the existing CNN explanations.
+
 ## 4. Experiments
 
 - Pilot validation and tracing unit tests.

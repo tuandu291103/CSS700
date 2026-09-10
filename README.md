@@ -132,6 +132,10 @@ metrics, serialized models, seed agreement, and model-native global importance. 
 impurity importance and XGBoost gain importance are explicitly labeled as global diagnostics;
 they are not treated as local class-targeted explanations or compared on a shared magnitude scale.
 
+The next local tree explanation step is drafted in `docs/SHAP_COMPARISON_PROTOCOL.md`.
+It proposes training-only probability-output TreeSHAP and explicitly separates cross-model
+agreement from explainer-only effects. It is not an implemented or frozen experiment yet.
+
 ## SOM2IMG readiness
 
 Before the first SOM2IMG CNN, audit native SOM feature assignments with:

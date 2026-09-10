@@ -33,6 +33,13 @@ global, model-native diagnostics. Report their within-family seed stability, but
 their raw magnitudes across families or treat them as local, class-targeted explanations. Local
 TreeSHAP/LIME comparisons require a separately frozen target and background protocol.
 
+The proposed local TreeSHAP design is in `docs/SHAP_COMPARISON_PROTOCOL.md` (draft v0.1,
+2026-09-09). It proposes probability-output, interventional explanations with a shared
+training-only background, independent reconstruction checks and same-target rank comparisons.
+It explicitly separates cross-model agreement from explainer-only effects and does not equate
+tree probability attributions with existing CNN logit attributions. The draft is not yet an
+implemented or frozen experiment; LIME still requires a separate protocol.
+
 ## Controlled experiment matrix
 
 Expected scope contains:

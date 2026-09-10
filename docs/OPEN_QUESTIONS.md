@@ -28,6 +28,12 @@ These do not block the initial Grid pilot, but they should be resolved before th
    **Provisional implementation:** The first predictive baseline retains built-in importance only
    as a separately labeled global diagnostic. A local TreeSHAP comparison remains deferred until
    its class target, background/reference data, and committee scope are confirmed.
+
+   **Draft available (2026-09-09):** `docs/SHAP_COMPARISON_PROTOCOL.md` proposes probability
+   output, interventional TreeSHAP, all 397 training rows as a shared background, explicit
+   binary class handling, independent reconstruction checks and same-target comparisons.
+   Review these choices before implementation; no local TreeSHAP results exist yet. CNN
+   logit versus tree probability outputs remain an explicit comparison limitation.
 8. What threshold defines adequate CNN performance beyond beating the majority-class baseline?
 9. Should sample-level uncertainty use bootstrap intervals, and does the program expect formal
    hypothesis tests or primarily estimation and effect sizes?
