@@ -69,8 +69,11 @@ Pilot-dataset progress through 2026-09-12:
   Committee review remains outstanding; this is not approval of the final thesis design.
 - [x] Run and report the seed-42 pilot attempt; diagnose the RF numerical-routing failure
   and add a pre-explanation guard. See `docs/logs/2026-09-12-tree-shap-pilot.md`.
-- [ ] Repair numerical routing, validate unchanged-model equivalence, and accept a new
-  seed-42 TreeSHAP pilot before explaining saved seeds 7 and 2026.
+- [x] Repair numerical routing, validate unchanged-model equivalence, and accept a new
+  seed-42 TreeSHAP pilot; all four model/background conditions passed. See
+  `docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`.
+- [ ] Extend accepted TreeSHAP v1.1 to saved seeds 7 and 2026 and report local training-seed
+  stability without treating repeated sample/seed pairs as independent observations.
 - [ ] Complete LIME design separately.
 - [x] Review the local SOM2IMG manuscript and complete a reproducible, training-only native-BMU
   collision diagnostic. Document unresolved settings and reject ambiguous feature tracing;

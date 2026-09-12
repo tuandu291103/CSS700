@@ -28,10 +28,10 @@ These do not block the initial Grid pilot, but they should be resolved before th
    **Provisional implementation (2026-09-12):** Built-in importance remains a separate global
    diagnostic. Yu authorized implementing local TreeSHAP v1 with probability output,
    interventional replacement, 397 training-background rows and a fixed 100-row sensitivity.
-   The seed-42 attempt is incomplete: RF numerical routing differs from the predictor, and
-   the new guard rejects it before explanation. No RF agreement result is promoted.
-   See `docs/SHAP_COMPARISON_PROTOCOL.md` and `docs/logs/2026-09-12-tree-shap-pilot.md`.
-   Resolve numerical fidelity before replication; committee review of scope/targets is
+   The original v1 attempt failed RF numerical routing; its outputs remain diagnostic.
+   A routing-equivalent copy in v1.1 passed all four seed-42 model/background conditions;
+   see `docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md` and the separate numerical
+   repair protocol. TreeSHAP seed replication and committee review of scope/targets are
    still outstanding. CNN-logit versus tree-probability output remains a comparison limitation.
 8. What threshold defines adequate CNN performance beyond beating the majority-class baseline?
 9. Should sample-level uncertainty use bootstrap intervals, and does the program expect formal

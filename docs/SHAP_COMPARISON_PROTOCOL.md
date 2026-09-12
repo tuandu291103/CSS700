@@ -6,12 +6,17 @@ settings are in `configs/tree_shap_seed_42.yaml`. These are investigator choices
 requirements. The original draft is retained in commit `80f721d`; accepted results belong in
 a separate experiment log, not in this protocol.
 
-**Execution checkpoint, 2026-09-12:** v1 has been implemented, but the pilot is incomplete.
+**Original v1 checkpoint, 2026-09-12:** the first pilot was not accepted.
 The Random Forest sensitivity condition failed independent reconstruction on training rows.
 A subsequent routing audit found numerical split disagreements even for the full background,
-so no RF agreement result is promoted. Resolve and revalidate numerical fidelity before
-replicating seeds. The settings and tolerances below remain unchanged; no library patch or
-background replacement has been accepted. See the execution record in section 4.
+so no RF agreement result from that run is promoted. The settings and tolerances below
+remain unchanged; the repair changes numerical representation, not background IDs/weights
+or the scientific question. See the execution record in section 4.
+
+**Subsequent v1.1 checkpoint:** the routing-equivalent copy passed the repaired seed-42
+pilot with all four conditions accepted. The original v1 outputs remain diagnostic;
+accepted evidence is in `docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`.
+Committee review and three-seed TreeSHAP replication remain outstanding.
 
 ## 1. Question and scope
 
@@ -242,9 +247,9 @@ Implementation sequence (committee review remains outstanding):
 1. Promote the approved choices to a versioned executable config; implement adapters, tests
    and independent probability reconstruction checks without importing the CNN runtime.
 2. Commit code/config, run the two seed-42 models, and write a pilot report with all failures
-   and undefined comparisons visible. Attempted 2026-09-12; numerical RF routing repair and
-   a new accepted pilot remain outstanding. No model retraining is needed.
-3. Only after the repaired pilot passes, extend technically accepted settings to seeds 7 and 2026; retain the same
+   and undefined comparisons visible. The original attempt failed on 2026-09-12; following
+   numerical RF routing repair, v1.1 passed (see the separate repair log). No model was retrained.
+3. With the repaired pilot accepted, extend its settings to seeds 7 and 2026; retain the same
    background, split, feature universe and interpretation boundaries.
 
 Review decisions: confirm local TreeSHAP scope, probability output, full-training background,

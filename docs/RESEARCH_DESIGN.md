@@ -39,10 +39,13 @@ training-only background, independent reconstruction checks and same-target rank
 It explicitly separates cross-model agreement from explainer-only effects and does not equate
 tree probability attributions with existing CNN logit attributions. The implementation and
 seed-42 attempt are documented in `docs/logs/2026-09-12-tree-shap-pilot.md`. A Random Forest
-numerical-routing discrepancy prevents acceptance, even though the full-background aggregate
+numerical-routing discrepancy prevented initial acceptance, even though the full-background aggregate
 reconstruction residual initially fell within tolerance. A training-only routing guard now
-stops that condition before explanation. Repair and revalidate predictor/explainer numerical
-equivalence before extending to more seeds; LIME still requires a separate protocol.
+stops that native condition before explanation. The subsequent v1.1 routing-equivalent copy
+passed all four seed-42 conditions, including exhaustive synthetic contribution checks and
+unchanged-model probability checks. See `docs/TREE_SHAP_NUMERICAL_REPAIR.md` and
+`docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`. Extend these accepted settings to
+the saved seeds without reselection; LIME still requires a separate protocol.
 
 ## Controlled experiment matrix
 

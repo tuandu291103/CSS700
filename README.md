@@ -149,8 +149,10 @@ Cross-model/output-scale differences remain explicit, and committee approval is 
 Forest model triggered numerical-routing checks. Its failure evidence is retained in
 `docs/logs/2026-09-12-tree-shap-pilot.md`. The command now selects the versioned v1.1 repair
 in `docs/TREE_SHAP_NUMERICAL_REPAIR.md`: a copied forest with equivalent float32 branching,
-not a changed predictor. Scientific settings and tolerances are unchanged; full pilot
-acceptance and seed replication require a new verified run.
+not a changed predictor. Scientific settings and tolerances are unchanged. The repaired
+seed-42 run passed all four conditions; see
+`docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`. Replication on seeds 7 and 2026
+is the next milestone, not a completed result.
 
 ## SOM2IMG readiness
 

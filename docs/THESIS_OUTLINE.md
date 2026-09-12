@@ -35,10 +35,15 @@ attribution-allocation policy before independent feature explanations can be rep
 The local tabular comparison is specified in `docs/SHAP_COMPARISON_PROTOCOL.md` (provisional
 v1, frozen 2026-09-10): probability-output TreeSHAP, a common training-only background, explicit
 binary-class handling, independent reconstruction checks and same-target rank comparisons.
-The implementation exists, but the 2026-09-12 pilot is incomplete because of RF numerical
-routing disagreements. A training-only split-semantics guard now supplements reconstruction.
+The original v1 attempt failed because of RF numerical routing disagreements. A training-only
+split-semantics guard now supplements reconstruction for the native implementation.
 Cross-model/output-scale differences prevent an explainer-only interpretation of tree SHAP
 versus the existing CNN explanations. Committee approval is not claimed.
+
+The subsequent v1.1 implementation uses copied RF thresholds with a finite-float32 routing
+equivalence certificate and the predictor's input conversion. Original models and source
+background rows/weights are unchanged. The repair and accepted seed-42 pilot are documented
+in `docs/TREE_SHAP_NUMERICAL_REPAIR.md` and the walkthrough/repair experiment log.
 
 ## 4. Experiments
 
@@ -94,6 +99,11 @@ guard rejects even its full background before explanation. XGBoost passed recons
 for both backgrounds in the initial attempt. This is validation evidence, not a completed
 cross-model agreement experiment; no RF ranking or seed-stability claim is promoted.
 
+The repaired seed-42 v1.1 pilot passed all four model/background conditions; see
+`docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`. Original failed bundles remain
+diagnostic. New signed attributions, background values, copied thresholds, routing certificates,
+source hashes and same-target comparison tables belong to a separate accepted bundle.
+
 ## 5. Results
 
 - Predictive performance.
@@ -148,6 +158,15 @@ Model-native global rankings were also stable within family: pairwise Spearman w
 for Random Forest and 0.715-0.871 for XGBoost, with identical top-five feature sets within each
 family. These global rankings are not like-for-like local explanation comparators.
 
+First accepted TreeSHAP result: full-training versus fixed-100-row-background median rank
+agreement was 0.9913 for RF and 0.9915 for XGBoost (86 samples each). RF–XGBoost agreement
+was moderate: mean Spearman 0.620, sample-bootstrap 95% interval [0.597, 0.639], median 0.648
+and median top-five overlap 0.60 among 84 same-target samples. Tree–CNN mean agreement
+ranged from 0.138 to 0.380 across the six comparisons, each with 79 eligible samples.
+This is one-seed, descriptive evidence on differing eligible sets, not a formal contrast or
+an isolated model/method effect. One background subset does not establish general robustness.
+Local TreeSHAP seed replication remains outstanding.
+
 ## 6. Discussion
 
 - When traced explanations appear reliable.
@@ -166,7 +185,8 @@ Implementation fidelity is an additional threat: the seed-42 RF case showed that
 aggregate additivity residuals can coexist with inconsistent near-threshold routing.
 Numerical checks must be tied to the actual predictor and background semantics, not just
 plausible-looking attribution sums. This local engineering observation is not a claim of
-novelty or a general failure of TreeSHAP; a validated repair remains outstanding.
+novelty or a general failure of TreeSHAP. The v1.1 routing-equivalent repair passed the
+seed-42 technical gate; broader validation and replication remain necessary.
 
 ## 8. Conclusion and future work
 
