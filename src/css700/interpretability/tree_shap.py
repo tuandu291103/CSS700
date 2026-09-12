@@ -7,6 +7,7 @@ from typing import Any
 
 import numpy as np
 
+from css700.interpretability.forest_adapter import equivalent_forest_payload
 from css700.interpretability.tree_routing import (
     TreeRoutingMismatch,
     random_forest_routing_audit,
@@ -166,6 +167,7 @@ class ProbabilityTreeSHAP:
         family: str,
         atol: float = 1e-5,
         rtol: float = 1e-5,
+        random_forest_adapter: str = "native_guarded",
     ) -> None:
         import shap
 
@@ -192,15 +194,26 @@ class ProbabilityTreeSHAP:
             raise ValueError("invalid reconstruction tolerances")
         self.atol, self.rtol = atol, rtol
         self.routing_audit = None
+        self.adapter_payload = None
+        source_background = self.background.copy()
+        explanation_model = model
+        self.adapter = "original_fitted_estimator"
         if family == "random_forest":
             if shap.__version__ != "0.52.0":
                 raise ValueError("review the RF routing guard before changing SHAP 0.52.0")
-            self.routing_audit = random_forest_routing_audit(model, self.background)
-            if not self.routing_audit["passed"]:
-                raise TreeRoutingMismatch(self.routing_audit)
-        self.background_mean = binary_probabilities(model, self.background).mean(axis=0)
-        explanation_model = model
-        self.adapter = "original_fitted_estimator"
+            if random_forest_adapter == "native_guarded":
+                self.routing_audit = random_forest_routing_audit(model, self.background)
+                if not self.routing_audit["passed"]:
+                    raise TreeRoutingMismatch(self.routing_audit)
+            elif random_forest_adapter == "float32_equivalent_v1":
+                self.adapter_payload, self.background, self.routing_audit = (
+                    equivalent_forest_payload(model, self.background)
+                )
+                explanation_model = self.adapter_payload
+                self.adapter = "copied_forest_float32_equivalent_v1"
+            else:
+                raise ValueError("unsupported Random Forest adapter")
+        self.background_mean = binary_probabilities(model, source_background).mean(axis=0)
         if family == "xgboost":
             explanation_model = verified_numeric_booster(model)
             self.adapter = "original_fitted_booster_verified_numerical_splits"
@@ -218,6 +231,14 @@ class ProbabilityTreeSHAP:
             or self.explainer.model.model_output != "probability"
         ):
             raise RuntimeError("TreeSHAP output/perturbation contract changed")
+        if self.adapter_payload is not None:
+            expected = binary_probabilities(model, source_background)
+            actual = self.explainer.model.predict(self.background)
+            if not np.allclose(expected, actual, atol=1e-12, rtol=0):
+                raise RuntimeError("copied forest background probabilities differ from predictor")
+            self.routing_audit["max_background_probability_difference"] = float(
+                np.abs(expected - actual).max()
+            )
 
     def explain(self, values: np.ndarray, *, batch_size: int = 32) -> TreeShapResult:
         values = np.asarray(values, dtype=np.float64)
@@ -253,6 +274,10 @@ class ProbabilityTreeSHAP:
             atol=self.atol,
             rtol=self.rtol,
         )
+        if self.adapter_payload is not None:
+            checks["copied_forest_matches_original_probabilities"] = bool(
+                np.allclose(self.explainer.model.predict(values), probabilities, atol=1e-12, rtol=0)
+            )
         return TreeShapResult(
             result, base, probabilities, residuals, checks, rule, time.perf_counter() - started
         )

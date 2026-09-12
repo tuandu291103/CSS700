@@ -348,7 +348,7 @@ def build_parser() -> argparse.ArgumentParser:
     som_parser.add_argument("--output-dir", default="artifacts")
     som_parser.set_defaults(function=audit_som_mapping)
     tree_parser = subparsers.add_parser("tree-shap", help="explain frozen seed-42 tree models")
-    tree_parser.add_argument("--config", default="configs/tree_shap_seed_42.yaml")
+    tree_parser.add_argument("--config", default="configs/tree_shap_seed_42_v1_1.yaml")
     tree_parser.add_argument("--output-dir", default="artifacts")
     tree_parser.set_defaults(function=explain_trees)
     return parser

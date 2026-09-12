@@ -15,6 +15,11 @@ background replacement has been accepted. See the execution record in section 4.
 
 ## 1. Question and scope
 
+The separately versioned numerical repair is specified in `docs/TREE_SHAP_NUMERICAL_REPAIR.md`
+and `configs/tree_shap_seed_42_v1_1.yaml`. It preserves the scientific settings below while
+using a routing-equivalent RF copy and the predictor's input conversion for explanation.
+The v1 failure record remains intact; any v1.1 accepted result belongs in a new session log.
+
 For the existing Breast Cancer models, how stable are local tree explanations, and how do
 their feature rankings compare with the traced CNN explanations for the same samples and
 target classes? SHAP is a comparator, not ground truth.

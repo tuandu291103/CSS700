@@ -8,10 +8,12 @@ from types import SimpleNamespace
 
 import numpy as np
 import pytest
+import yaml
 
 from css700.evaluation.local_agreement import paired_rank_rows, summarize_rank_rows
-from css700.experiments.tree_shap import run_tree_shap_experiment
+from css700.experiments.tree_shap import _validate_config, run_tree_shap_experiment
 from css700.experiments.tree_shap_sources import named_feature_matrix, prediction_arrays
+from css700.interpretability.forest_adapter import floor_float32_thresholds
 from css700.interpretability.tree_routing import random_forest_routing_audit
 from css700.interpretability.tree_shap import (
     binary_probabilities,
@@ -96,6 +98,37 @@ def test_routing_guard_distinguishes_background_and_threshold_precision() -> Non
     report = random_forest_routing_audit(model, np.array([[np.nextafter(high, np.inf)]]))
     assert report["mismatch_counts"] == {"background_role": 1, "query_role": 0}
     assert random_forest_routing_audit(model, np.array([[low], [high]]))["passed"]
+
+
+def test_floor_thresholds_preserve_float32_boundary_routing() -> None:
+    lower = np.array([-16.000004, -1.0, -1e-30, 0.0, 1e-30, 1.0, 16.000002], dtype=np.float32)
+    upper = np.nextafter(lower, np.float32(np.inf))
+    thresholds = (lower.astype(float) + upper.astype(float)) / 2
+    original = thresholds.copy()
+    floored = floor_float32_thresholds(thresholds)
+    np.testing.assert_array_equal(thresholds, original)
+    np.testing.assert_array_equal(floored, lower.astype(float))
+    for values in (lower.astype(float), upper.astype(float)):
+        np.testing.assert_array_equal(values <= floored, values <= thresholds)
+    np.testing.assert_array_equal(floor_float32_thresholds(lower), lower)
+    for bad in (np.array([np.nan]), np.array([np.inf]), np.array([-1e300]), np.array([1e300])):
+        with pytest.raises(ValueError):
+            floor_float32_thresholds(bad)
+
+
+def test_numerical_repair_config_preserves_scientific_settings() -> None:
+    configs = Path(__file__).resolve().parents[1] / "configs"
+    original = yaml.safe_load((configs / "tree_shap_seed_42.yaml").read_text())
+    repaired = yaml.safe_load((configs / "tree_shap_seed_42_v1_1.yaml").read_text())
+    _validate_config(original)
+    _validate_config(repaired)
+    assert repaired.pop("protocol_version") == "tree-shap-probability-v1.1"
+    original.pop("protocol_version")
+    assert repaired["shap"].pop("random_forest_adapter") == "float32_equivalent_v1"
+    assert original == repaired
+    original["protocol_version"] = "tree-shap-probability-v1.1"
+    with pytest.raises(ValueError, match="adapter"):
+        _validate_config(original)
 
 
 def test_source_matrix_identity_and_duplicate_checks() -> None:

@@ -145,11 +145,12 @@ The XGBoost adapter verifies numerical splits before using the unchanged fitted 
 Raw values and source hashes are retained; failures cannot be promoted to accepted results.
 Cross-model/output-scale differences remain explicit, and committee approval is not claimed.
 
-**2026-09-12 checkpoint:** the pilot is not yet accepted. The fixed Random Forest model
-triggers a training-only numerical-routing safeguard before explanation; the command
-currently exits with `quality_gate_failed` and preserves diagnostic artifacts. XGBoost
-passed the original reconstruction checks, but the full comparison and seed replication
-remain on hold. See `docs/logs/2026-09-12-tree-shap-pilot.md` for the failure and next step.
+**2026-09-12 checkpoint:** the original v1 pilot was not accepted because the fixed Random
+Forest model triggered numerical-routing checks. Its failure evidence is retained in
+`docs/logs/2026-09-12-tree-shap-pilot.md`. The command now selects the versioned v1.1 repair
+in `docs/TREE_SHAP_NUMERICAL_REPAIR.md`: a copied forest with equivalent float32 branching,
+not a changed predictor. Scientific settings and tolerances are unchanged; full pilot
+acceptance and seed replication require a new verified run.
 
 ## SOM2IMG readiness
 

@@ -51,8 +51,15 @@ def _save_result(path: Path, result: Any) -> None:
 
 
 def _validate_config(config: dict) -> None:
-    if config["protocol_version"] != "tree-shap-probability-v1":
+    if config["protocol_version"] not in ("tree-shap-probability-v1", "tree-shap-probability-v1.1"):
         raise ValueError("unsupported TreeSHAP protocol")
+    required_adapter = (
+        "float32_equivalent_v1"
+        if config["protocol_version"] == "tree-shap-probability-v1.1"
+        else "native_guarded"
+    )
+    if config["shap"].get("random_forest_adapter", "native_guarded") != required_adapter:
+        raise ValueError("Random Forest adapter must match the registered protocol version")
     if config["background"]["sensitivity_size"] != 100:
         raise ValueError("v1 requires the registered 100-row sensitivity background")
     for key, expected in (
@@ -87,6 +94,15 @@ def _figure(path: Path, summaries: list[dict], *, complete: bool) -> None:
     from matplotlib import pyplot as plt
 
     rows = [row for row in summaries if row["group"] == "all" and row["eligible_samples"]]
+    labels = {
+        "random_forest__train_all": "RF (397)",
+        "random_forest__train_100": "RF (100)",
+        "xgboost__train_all": "XGB (397)",
+        "xgboost__train_100": "XGB (100)",
+        "grid_grad_cam": "Grid Grad-CAM",
+        "grid_integrated_gradients_zero": "Grid IG-zero",
+        "grid_occlusion_zero": "Grid Occlusion",
+    }
     figure, axis = plt.subplots(figsize=(12, max(4, len(rows) * 0.5)))
     for i, row in enumerate(rows):
         score = row["spearman"]
@@ -95,7 +111,12 @@ def _figure(path: Path, summaries: list[dict], *, complete: bool) -> None:
             axis.plot(interval, [i, i], color="tab:blue")
         axis.plot(score["mean"], i, "o", color="tab:blue")
     axis.set_yticks(
-        range(len(rows)), [f"{r['comparison']} (n={r['eligible_samples']})" for r in rows]
+        range(len(rows)),
+        [
+            " vs ".join(labels.get(side, side) for side in r["comparison"].split(" vs "))
+            + f" (n={r['eligible_samples']})"
+            for r in rows
+        ],
     )
     axis.set(
         xlim=(-1.05, 1.05),
@@ -135,6 +156,7 @@ def run_tree_shap_experiment(config_path: Path, output_dir: Path) -> dict[str, A
         "worktree_dirty_at_start": dirty,
         "created_at_utc": datetime.now(UTC).isoformat(),
         "config_sha256": hashlib.sha256(config_bytes).hexdigest(),
+        "protocol_version": config["protocol_version"],
         "python": platform.python_version(),
         "platform": platform.platform(),
         "status": "running",
@@ -239,12 +261,36 @@ def run_tree_shap_experiment(config_path: Path, output_dir: Path) -> dict[str, A
                             family=family,
                             atol=settings["reconstruction_atol"],
                             rtol=settings["reconstruction_rtol"],
+                            random_forest_adapter=settings.get(
+                                "random_forest_adapter", "native_guarded"
+                            ),
                         )
                         report["initialization_seconds"] = time.perf_counter() - init_start
                         report["adapter"] = explainer.adapter
                         if explainer.routing_audit is not None:
                             _json(condition_root / "routing_audit.json", explainer.routing_audit)
+                        np.savez_compressed(
+                            condition_root / "explainer_background.npz",
+                            values=explainer.background,
+                            sample_ids=background_ids,
+                        )
+                        if explainer.adapter_payload is not None:
+                            np.savez_compressed(
+                                condition_root / "adapter_thresholds.npz",
+                                **{
+                                    f"tree_{i}": tree["thresholds"]
+                                    for i, tree in enumerate(explainer.adapter_payload["trees"])
+                                },
+                            )
                         report["background_retained_exactly"] = True
+                        report["background_representation"] = (
+                            "predictor_float32_values_stored_in_float64"
+                            if explainer.adapter_payload is not None
+                            else "source_float64"
+                        )
+                        report["max_abs_background_representation_change"] = float(
+                            np.abs(explainer.background - background).max()
+                        )
                         warm = explainer.explain(bundle.x_train[:1])
                         smoke = explainer.explain(
                             bundle.x_train[:smoke_size], batch_size=settings["batch_size"]

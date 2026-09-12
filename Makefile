@@ -51,7 +51,7 @@ audit-som-mapping:
 	PYTHONPATH=src $(PYTHON) -m css700.cli audit-som-mapping --config configs/som_mapping_audit.yaml
 
 tree-shap:
-	PYTHONPATH=src $(PYTHON) -m css700.cli tree-shap --config configs/tree_shap_seed_42.yaml
+	PYTHONPATH=src $(PYTHON) -m css700.cli tree-shap --config configs/tree_shap_seed_42_v1_1.yaml
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +
