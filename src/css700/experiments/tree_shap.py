@@ -1,4 +1,4 @@
-"""Append-only seed-42 probability TreeSHAP pilot on existing frozen models."""
+"""Append-only probability TreeSHAP on the registered frozen tree models."""
 
 import csv
 import hashlib
@@ -51,6 +51,13 @@ def _save_result(path: Path, result: Any) -> None:
 
 
 def _validate_config(config: dict) -> None:
+    if (
+        type(config["model_seed"]) is not int
+        or config["model_seed"] not in (7, 42, 2026)
+        or type(config["data_split_seed"]) is not int
+        or config["data_split_seed"] != 42
+    ):
+        raise ValueError("registered model seeds are 7, 42, 2026; split seed must remain 42")
     if config["protocol_version"] not in ("tree-shap-probability-v1", "tree-shap-probability-v1.1"):
         raise ValueError("unsupported TreeSHAP protocol")
     required_adapter = (
@@ -87,7 +94,7 @@ def _validate_config(config: dict) -> None:
             raise ValueError(f"{section}.{key} must be a positive integer")
 
 
-def _figure(path: Path, summaries: list[dict], *, complete: bool) -> None:
+def _figure(path: Path, summaries: list[dict], *, complete: bool, model_seed: int) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
@@ -123,7 +130,7 @@ def _figure(path: Path, summaries: list[dict], *, complete: bool) -> None:
         xlabel="Mean absolute-score Spearman; 95% sample-bootstrap interval",
         title=(
             (
-                "Seed-42 same-target agreement\n"
+                f"Seed-{model_seed} same-target agreement\n"
                 if complete
                 else "INCOMPLETE PILOT: diagnostics only\n"
             )
@@ -143,9 +150,11 @@ def run_tree_shap_experiment(config_path: Path, output_dir: Path) -> dict[str, A
     config_bytes = config_path.read_bytes()
     config = yaml.safe_load(config_bytes)
     _validate_config(config)
+    model_seed = config["model_seed"]
+    phase = "pilot" if model_seed == 42 else "replicate"
     run_id = (
         datetime.now(UTC).strftime("%Y%m%d-%H%M%S-%f")
-        + "__breast-cancer__tree-shap__seed-42__pilot"
+        + f"__breast-cancer__tree-shap__seed-{model_seed}__{phase}"
     )
     root = output_dir / run_id
     root.mkdir(parents=True, exist_ok=False)
@@ -157,6 +166,8 @@ def run_tree_shap_experiment(config_path: Path, output_dir: Path) -> dict[str, A
         "created_at_utc": datetime.now(UTC).isoformat(),
         "config_sha256": hashlib.sha256(config_bytes).hexdigest(),
         "protocol_version": config["protocol_version"],
+        "model_seed": model_seed,
+        "data_split_seed": config["data_split_seed"],
         "python": platform.python_version(),
         "platform": platform.platform(),
         "status": "running",
@@ -455,7 +466,12 @@ def run_tree_shap_experiment(config_path: Path, output_dir: Path) -> dict[str, A
         _csv(root / "class_aggregate_features.csv", aggregates)
         _json(root / "agreement_summary.json", summaries)
         if summaries:
-            _figure(root / "agreement.png", summaries, complete=len(accepted) == 4 and not errors)
+            _figure(
+                root / "agreement.png",
+                summaries,
+                complete=len(accepted) == 4 and not errors,
+                model_seed=model_seed,
+            )
         checks["all_four_conditions_accepted"] = len(accepted) == 4
         checks["source_artifacts_unchanged"] = all(
             file_sha256(Path(path)) == value for path, value in source_data["file_hashes"].items()

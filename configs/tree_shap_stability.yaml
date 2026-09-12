@@ -1,0 +1,16 @@
+analysis: tree_shap_fixed_split_training_seed_stability_v1
+model_seeds: [7, 42, 2026]
+reference_run: artifacts/20260912-171418-618975__breast-cancer__tree-shap__seed-42__pilot
+seed_configs:
+  7: configs/tree_shap_seed_7_v1_1.yaml
+  42: configs/tree_shap_seed_42_v1_1.yaml
+  2026: configs/tree_shap_seed_2026_v1_1.yaml
+families: [random_forest, xgboost]
+backgrounds: [train_all, train_100]
+primary_background: train_all
+primary_target: same_predicted_class
+ranking: absolute
+bootstrap_resamples: 1000
+bootstrap_seed: 2026
+minimum_interval_group: 10
+cross_seed_inference: separate_seed_pairs_no_pooled_intervals

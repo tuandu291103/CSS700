@@ -1,6 +1,6 @@
 .PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients occlusion faithfulness grid-stability train-tabular-baselines audit-som-mapping clean
 
-.PHONY: tree-shap
+.PHONY: tree-shap tree-shap-replicas tree-shap-stability
 
 PYTHON ?= python3
 
@@ -52,6 +52,13 @@ audit-som-mapping:
 
 tree-shap:
 	PYTHONPATH=src $(PYTHON) -m css700.cli tree-shap --config configs/tree_shap_seed_42_v1_1.yaml
+
+tree-shap-replicas:
+	PYTHONPATH=src $(PYTHON) -m css700.cli tree-shap --config configs/tree_shap_seed_7_v1_1.yaml
+	PYTHONPATH=src $(PYTHON) -m css700.cli tree-shap --config configs/tree_shap_seed_2026_v1_1.yaml
+
+tree-shap-stability:
+	PYTHONPATH=src $(PYTHON) -m css700.cli tree-shap-stability $(foreach run,$(RUN_DIRS),--run-dir "$(run)")
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +

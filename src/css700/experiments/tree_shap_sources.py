@@ -76,8 +76,13 @@ def named_feature_matrix(
 
 
 def load_sources(config: dict) -> dict[str, Any]:
-    if config["model_seed"] != 42 or config["data_split_seed"] != 42:
-        raise ValueError("this registered pilot requires model and split seed 42")
+    model_seed = config["model_seed"]
+    if (
+        type(model_seed) is not int
+        or model_seed not in (7, 42, 2026)
+        or config["data_split_seed"] != 42
+    ):
+        raise ValueError("registered model seeds are 7, 42, 2026; split seed must remain 42")
     bundle = load_breast_cancer_splits(seed=42)
     if tuple(bundle.target_names) != ("malignant", "benign"):
         raise ValueError("unexpected dataset class names")
@@ -125,7 +130,7 @@ def load_sources(config: dict) -> dict[str, Any]:
         raise ValueError("source tree quality gate failed")
     grid_config = yaml.safe_load(source(grid_root, "config.yaml").read_text())
     seeds = resolve_experiment_seeds(grid_config)
-    if seeds.model_seed != 42 or seeds.data_split_seed != 42:
+    if seeds.model_seed != model_seed or seeds.data_split_seed != 42:
         raise ValueError("source Grid seeds mismatch")
     grid_manifest = read_json(grid_root, "manifest.json")
     predictive = read_json(grid_root, "metrics/predictive_metrics.json")
@@ -142,10 +147,12 @@ def load_sources(config: dict) -> dict[str, Any]:
     tree_rows = read_csv(tree_root, "metrics/test_predictions.csv")
     tree_predictions, model_paths = {}, {}
     for family in ("random_forest", "xgboost"):
-        model_paths[family] = source(tree_root, f"models/{family}__seed-42.joblib")
+        model_paths[family] = source(tree_root, f"models/{family}__seed-{model_seed}.joblib")
         if hashes[str(model_paths[family])] != config["model_sha256"][family]:
             raise ValueError("frozen model hash mismatch; do not deserialize")
-        rows = [r for r in tree_rows if r["model_name"] == family and int(r["model_seed"]) == 42]
+        rows = [
+            r for r in tree_rows if r["model_name"] == family and int(r["model_seed"]) == model_seed
+        ]
         tree_predictions[family] = prediction_arrays(rows, bundle.test_indices, bundle.y_test)
     grid_predictions = prediction_arrays(
         read_csv(grid_root, "model/test_predictions.csv"),

@@ -154,6 +154,17 @@ seed-42 run passed all four conditions; see
 `docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`. Replication on seeds 7 and 2026
 is the next milestone, not a completed result.
 
+The frozen replication sequence is in `docs/TREE_SHAP_REPLICATION_PROTOCOL.md`. Explain the
+saved seed-7/2026 models and then compare those new runs with the accepted seed-42 reference:
+
+```bash
+make tree-shap-replicas PYTHON=.venv/bin/python
+make tree-shap-stability PYTHON=.venv/bin/python RUN_DIRS="artifacts/<seed-7-run> artifacts/20260912-171418-618975__breast-cancer__tree-shap__seed-42__pilot artifacts/<seed-2026-run>"
+```
+
+The analyzer revalidates accepted inputs, keeps each seed-pair estimate separate and saves
+new append-only outputs. It does not treat repeated sample/seed pairs as independent data.
+
 ## SOM2IMG readiness
 
 Before the first SOM2IMG CNN, audit native SOM feature assignments with:

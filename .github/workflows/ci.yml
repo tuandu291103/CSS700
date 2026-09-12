@@ -55,4 +55,4 @@ jobs:
           python -m pip install -e ".[dev]" "shap==0.52.0" "xgboost==3.4.1"
           "matplotlib>=3.9,<4"
       - name: Run tree explanation and integrity tests
-        run: python -m pytest tests/test_tree_shap.py
+        run: python -m pytest tests/test_tree_shap.py tests/test_tree_shap_stability.py

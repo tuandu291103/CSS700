@@ -269,12 +269,23 @@ def audit_som_mapping(args: argparse.Namespace) -> int:
 
 
 def explain_trees(args: argparse.Namespace) -> int:
-    """Run the frozen seed-42 probability TreeSHAP pilot without importing a CNN."""
+    """Explain registered frozen tree models without importing a CNN."""
 
     _configure_runtime_cache()
     from css700.experiments.tree_shap import run_tree_shap_experiment
 
     summary = run_tree_shap_experiment(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def analyze_tree_stability(args: argparse.Namespace) -> int:
+    _configure_runtime_cache()
+    from css700.experiments.tree_shap_stability import run_tree_shap_stability
+
+    summary = run_tree_shap_stability(
+        [Path(path) for path in args.run_dir], Path(args.config), Path(args.output_dir)
+    )
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 
@@ -347,10 +358,17 @@ def build_parser() -> argparse.ArgumentParser:
     som_parser.add_argument("--config", default="configs/som_mapping_audit.yaml")
     som_parser.add_argument("--output-dir", default="artifacts")
     som_parser.set_defaults(function=audit_som_mapping)
-    tree_parser = subparsers.add_parser("tree-shap", help="explain frozen seed-42 tree models")
+    tree_parser = subparsers.add_parser("tree-shap", help="explain registered frozen tree models")
     tree_parser.add_argument("--config", default="configs/tree_shap_seed_42_v1_1.yaml")
     tree_parser.add_argument("--output-dir", default="artifacts")
     tree_parser.set_defaults(function=explain_trees)
+    tree_stability = subparsers.add_parser(
+        "tree-shap-stability", help="compare accepted TreeSHAP seeds"
+    )
+    tree_stability.add_argument("--run-dir", action="append", required=True)
+    tree_stability.add_argument("--config", default="configs/tree_shap_stability.yaml")
+    tree_stability.add_argument("--output-dir", default="artifacts")
+    tree_stability.set_defaults(function=analyze_tree_stability)
     return parser
 
 
