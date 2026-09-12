@@ -32,11 +32,13 @@ feature identities, coordinate bounds and one-to-one assignments, and returns co
 original feature-index order. Shared-pixel layouts require an explicit rendering and
 attribution-allocation policy before independent feature explanations can be reported.
 
-The next local tabular comparison is proposed in `docs/SHAP_COMPARISON_PROTOCOL.md` (draft
-v0.1, 2026-09-09): probability-output TreeSHAP, a common training-only background, explicit
+The local tabular comparison is specified in `docs/SHAP_COMPARISON_PROTOCOL.md` (provisional
+v1, frozen 2026-09-10): probability-output TreeSHAP, a common training-only background, explicit
 binary-class handling, independent reconstruction checks and same-target rank comparisons.
-This is planned methodology, not evidence. Cross-model/output-scale differences prevent an
-explainer-only interpretation of tree SHAP versus the existing CNN explanations.
+The implementation exists, but the 2026-09-12 pilot is incomplete because of RF numerical
+routing disagreements. A training-only split-semantics guard now supplements reconstruction.
+Cross-model/output-scale differences prevent an explainer-only interpretation of tree SHAP
+versus the existing CNN explanations. Committee approval is not claimed.
 
 ## 4. Experiments
 
@@ -84,6 +86,13 @@ The train-only SOM mapping-readiness diagnostic is documented in
 configuration, 30 features occupied 22 pixels and 13 features shared five pixels. This is
 implementation-risk evidence, not an authoritative SOM2IMG reproduction or a CNN result.
 No collision resolution, encoder comparison or new predictive claim was made.
+
+The first local TreeSHAP attempt and numerical-routing diagnosis are documented in
+`docs/logs/2026-09-12-tree-shap-pilot.md`. Both clean-commit attempts retain failure evidence.
+The initial RF 100-row background failed training-smoke reconstruction; the strengthened
+guard rejects even its full background before explanation. XGBoost passed reconstruction
+for both backgrounds in the initial attempt. This is validation evidence, not a completed
+cross-model agreement experiment; no RF ranking or seed-stability claim is promoted.
 
 ## 5. Results
 
@@ -152,6 +161,12 @@ family. These global rankings are not like-for-like local explanation comparator
 - Dataset/model/generalization limits.
 - Baseline, perturbation, rank-normalization, and mapping dependence.
 - No clinical or real-world decision claims.
+
+Implementation fidelity is an additional threat: the seed-42 RF case showed that small
+aggregate additivity residuals can coexist with inconsistent near-threshold routing.
+Numerical checks must be tied to the actual predictor and background semantics, not just
+plausible-looking attribution sums. This local engineering observation is not a claim of
+novelty or a general failure of TreeSHAP; a validated repair remains outstanding.
 
 ## 8. Conclusion and future work
 

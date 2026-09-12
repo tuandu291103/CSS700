@@ -25,15 +25,14 @@ These do not block the initial Grid pilot, but they should be resolved before th
 7. Should Random Forest and XGBoost comparisons use built-in global importance only, or TreeSHAP
    for like-for-like local explanations as well?
 
-   **Provisional implementation:** The first predictive baseline retains built-in importance only
-   as a separately labeled global diagnostic. A local TreeSHAP comparison remains deferred until
-   its class target, background/reference data, and committee scope are confirmed.
-
-   **Draft available (2026-09-09):** `docs/SHAP_COMPARISON_PROTOCOL.md` proposes probability
-   output, interventional TreeSHAP, all 397 training rows as a shared background, explicit
-   binary class handling, independent reconstruction checks and same-target comparisons.
-   Review these choices before implementation; no local TreeSHAP results exist yet. CNN
-   logit versus tree probability outputs remain an explicit comparison limitation.
+   **Provisional implementation (2026-09-12):** Built-in importance remains a separate global
+   diagnostic. Yu authorized implementing local TreeSHAP v1 with probability output,
+   interventional replacement, 397 training-background rows and a fixed 100-row sensitivity.
+   The seed-42 attempt is incomplete: RF numerical routing differs from the predictor, and
+   the new guard rejects it before explanation. No RF agreement result is promoted.
+   See `docs/SHAP_COMPARISON_PROTOCOL.md` and `docs/logs/2026-09-12-tree-shap-pilot.md`.
+   Resolve numerical fidelity before replication; committee review of scope/targets is
+   still outstanding. CNN-logit versus tree-probability output remains a comparison limitation.
 8. What threshold defines adequate CNN performance beyond beating the majority-class baseline?
 9. Should sample-level uncertainty use bootstrap intervals, and does the program expect formal
    hypothesis tests or primarily estimation and effect sizes?

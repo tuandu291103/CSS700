@@ -56,7 +56,7 @@ Progress through 2026-09-06:
 **Winter gate:** expected-scope raw experiments are complete and reproducible before analysis
 choices are tuned to observed results.
 
-Pilot-dataset progress through 2026-09-09:
+Pilot-dataset progress through 2026-09-12:
 
 - [x] Complete fixed-split, three-seed Random Forest and XGBoost predictive baselines with
   validation-only model selection, untouched-test evaluation, and reproducible run artifacts.
@@ -64,7 +64,14 @@ Pilot-dataset progress through 2026-09-09:
   explicitly separate from local, class-targeted explanations.
 - [x] Draft the local TreeSHAP target, background, validation and comparison protocol with
   explicit cross-model/output-scale limitations; see `docs/SHAP_COMPARISON_PROTOCOL.md`.
-- [ ] Review, freeze and implement the local TreeSHAP protocol; complete LIME design separately.
+- [x] Freeze and implement provisional local TreeSHAP v1, with source integrity checks,
+  training-only backgrounds, independent reconstruction, and isolated runtime tests.
+  Committee review remains outstanding; this is not approval of the final thesis design.
+- [x] Run and report the seed-42 pilot attempt; diagnose the RF numerical-routing failure
+  and add a pre-explanation guard. See `docs/logs/2026-09-12-tree-shap-pilot.md`.
+- [ ] Repair numerical routing, validate unchanged-model equivalence, and accept a new
+  seed-42 TreeSHAP pilot before explaining saved seeds 7 and 2026.
+- [ ] Complete LIME design separately.
 - [x] Review the local SOM2IMG manuscript and complete a reproducible, training-only native-BMU
   collision diagnostic. Document unresolved settings and reject ambiguous feature tracing;
   do not count this diagnostic as an implemented or evaluated SOM2IMG CNN.
