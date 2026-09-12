@@ -12,6 +12,7 @@ import pytest
 from css700.evaluation.local_agreement import paired_rank_rows, summarize_rank_rows
 from css700.experiments.tree_shap import run_tree_shap_experiment
 from css700.experiments.tree_shap_sources import named_feature_matrix, prediction_arrays
+from css700.interpretability.tree_routing import random_forest_routing_audit
 from css700.interpretability.tree_shap import (
     binary_probabilities,
     normalize_binary_shap,
@@ -71,6 +72,30 @@ def test_numeric_booster_guard_rejects_real_categories() -> None:
     booster = SimpleNamespace(feature_types=None, save_raw=lambda **_: json.dumps(payload))
     with pytest.raises(ValueError, match="categorical"):
         verified_numeric_booster(SimpleNamespace(get_booster=lambda: booster))
+
+
+def test_routing_guard_distinguishes_background_and_threshold_precision() -> None:
+    low = float(np.nextafter(np.float32(16), np.float32(np.inf)))
+    high = float(np.nextafter(np.float32(low), np.float32(np.inf)))
+    threshold = (low + high) / 2
+    tree = SimpleNamespace(
+        children_left=np.array([1, -1, -1]),
+        feature=np.array([0, -2, -2]),
+        threshold=np.array([threshold, -2, -2]),
+    )
+    model = SimpleNamespace(n_features_in_=1, estimators_=[SimpleNamespace(tree_=tree)])
+    # Midpoint rounds UP in SHAP's independent Node: the high input changes side.
+    assert float(np.float32(threshold)) == high
+    report = random_forest_routing_audit(model, np.array([[low], [high]]))
+    assert not report["passed"]
+    assert report["mismatch_counts"] == {"background_role": 1, "query_role": 1}
+    assert report["checked_comparisons_per_role"] == 2
+    assert report["examples"][0]["stored_threshold"] == threshold
+    # A representable threshold still needs background input rounding semantics.
+    tree.threshold[0] = high
+    report = random_forest_routing_audit(model, np.array([[np.nextafter(high, np.inf)]]))
+    assert report["mismatch_counts"] == {"background_role": 1, "query_role": 0}
+    assert random_forest_routing_audit(model, np.array([[low], [high]]))["passed"]
 
 
 def test_source_matrix_identity_and_duplicate_checks() -> None:

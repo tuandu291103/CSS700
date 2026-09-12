@@ -7,6 +7,11 @@ from typing import Any
 
 import numpy as np
 
+from css700.interpretability.tree_routing import (
+    TreeRoutingMismatch,
+    random_forest_routing_audit,
+)
+
 
 def training_background(
     training_values: np.ndarray,
@@ -186,6 +191,13 @@ class ProbabilityTreeSHAP:
         if min(atol, rtol) < 0 or not np.isfinite([atol, rtol]).all():
             raise ValueError("invalid reconstruction tolerances")
         self.atol, self.rtol = atol, rtol
+        self.routing_audit = None
+        if family == "random_forest":
+            if shap.__version__ != "0.52.0":
+                raise ValueError("review the RF routing guard before changing SHAP 0.52.0")
+            self.routing_audit = random_forest_routing_audit(model, self.background)
+            if not self.routing_audit["passed"]:
+                raise TreeRoutingMismatch(self.routing_audit)
         self.background_mean = binary_probabilities(model, self.background).mean(axis=0)
         explanation_model = model
         self.adapter = "original_fitted_estimator"

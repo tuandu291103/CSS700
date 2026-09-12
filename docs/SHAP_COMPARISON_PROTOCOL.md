@@ -6,6 +6,13 @@ settings are in `configs/tree_shap_seed_42.yaml`. These are investigator choices
 requirements. The original draft is retained in commit `80f721d`; accepted results belong in
 a separate experiment log, not in this protocol.
 
+**Execution checkpoint, 2026-09-12:** v1 has been implemented, but the pilot is incomplete.
+The Random Forest sensitivity condition failed independent reconstruction on training rows.
+A subsequent routing audit found numerical split disagreements even for the full background,
+so no RF agreement result is promoted. Resolve and revalidate numerical fidelity before
+replicating seeds. The settings and tolerances below remain unchanged; no library patch or
+background replacement has been accepted. See the execution record in section 4.
+
 ## 1. Question and scope
 
 For the existing Breast Cancer models, how stable are local tree explanations, and how do
@@ -56,7 +63,7 @@ can subsample above its default cap of 100. [Independent masker documentation](h
 Compatibility reference inspected locally: SHAP 0.52.0, scikit-learn 1.9.0, XGBoost 3.4.1 and
 NumPy 2.5.2, all matching `requirements.lock.txt`. Installed `_tree.py` and `_tabular.py`
 confirm the relevant adapter, background and check behavior. This source inspection does
-not establish runtime compatibility; the implementation still needs a smoke test. Do not
+not establish runtime compatibility; runtime acceptance requires the checks below. Do not
 silently change output space, background, approximation mode or dependencies if it fails.
 
 ### Training-only compatibility record (2026-09-10)
@@ -129,6 +136,36 @@ delete failing rows, relax tolerances after seeing agreement results, or switch 
 Declare any repair/config change and rerun in a new artifact directory. Poor rank agreement,
 negative correlations or constant explanations are scientific observations, not technical failures.
 
+### Numerical-routing failure and strengthened gate (2026-09-12)
+
+The first clean-commit run (`87a7962`) passed the original full-background numerical checks
+but failed RF reconstruction for the 100-row background before explaining its test rows.
+The maximum training-smoke residual was about `2.5012e-5`, above the unchanged tolerance.
+
+The predictor converts inputs to float32 while retaining stored tree thresholds. This input
+conversion is documented in the [Random Forest API](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html).
+Installed SHAP 0.52.0 casts query inputs but retains background precision; its interventional
+native routine stores thresholds in float32, as shown by the `Node` structure and
+`dense_independent` routine in the [versioned SHAP source](https://github.com/shap/shap/blob/v0.52.0/shap/cext/tree_shap.h).
+These differences can change branch decisions near thresholds. A training-only audit reproduced
+such disagreements. Merely casting the background did not eliminate all discrepancies and
+has not been adopted as a repair.
+
+The implementation now rejects an RF condition before explanation if training-background
+values yield different node comparisons under the predictor and SHAP routing rules. The audit
+checks both background and query roles at every internal node, including nodes a whole row
+does not reach, since interventional feature mixtures can change paths. Counts are node/value
+comparisons, not counts of wrong predictions. Passing this training-only guard is necessary,
+not proof for arbitrary held-out inputs; reconstruction remains independently required.
+The guard is explicitly tied to the reviewed SHAP version and is covered by synthetic
+near-threshold fixtures. Failed audits are retained as `routing_audit.json`.
+
+Do not promote the first run's RF full-background ranks just because its averaged residual
+fell within tolerance. Both runs and their diagnostics remain append-only. Any numerical
+adapter repair needs a versioned description, original-model equivalence tests, a clean code
+commit and a new pilot before seed replication. No looser tolerance, post hoc SHAP adjustment,
+model retraining, or output-space switch is authorized by this failure record.
+
 ## 5. Comparisons and interpretation limits
 
 | Comparison | Eligible primary rows | What it measures |
@@ -200,8 +237,9 @@ Implementation sequence (committee review remains outstanding):
 1. Promote the approved choices to a versioned executable config; implement adapters, tests
    and independent probability reconstruction checks without importing the CNN runtime.
 2. Commit code/config, run the two seed-42 models, and write a pilot report with all failures
-   and undefined comparisons visible. No model retraining is needed.
-3. Extend only technically accepted settings to the saved seeds 7 and 2026; retain the same
+   and undefined comparisons visible. Attempted 2026-09-12; numerical RF routing repair and
+   a new accepted pilot remain outstanding. No model retraining is needed.
+3. Only after the repaired pilot passes, extend technically accepted settings to seeds 7 and 2026; retain the same
    background, split, feature universe and interpretation boundaries.
 
 Review decisions: confirm local TreeSHAP scope, probability output, full-training background,

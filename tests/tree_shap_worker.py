@@ -8,6 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 
 from css700.interpretability import ProbabilityTreeSHAP
+from css700.interpretability.tree_routing import TreeRoutingMismatch
 
 
 def main() -> None:
@@ -49,6 +50,19 @@ def main() -> None:
     ).explain(features[:3])
     np.testing.assert_array_equal(result.values, 0)
     assert all(result.checks.values())
+    low = np.nextafter(np.float32(16), np.float32(np.inf))
+    high = np.nextafter(low, np.float32(np.inf))
+    edge = np.zeros_like(features)
+    edge[:, 0] = np.where(labels == 0, low, high)
+    boundary_model = RandomForestClassifier(
+        n_estimators=1, max_features=None, bootstrap=False, random_state=3
+    ).fit(edge, labels)
+    try:
+        ProbabilityTreeSHAP(boundary_model, edge, names, family="random_forest")
+    except TreeRoutingMismatch as error:
+        assert error.audit["mismatch_counts"]["query_role"] == 60
+    else:
+        raise AssertionError("near-threshold RF fixture must fail before explanation")
     assert "torch" not in sys.modules
     print("TreeSHAP fixtures passed; numerical booster unchanged; no PyTorch imported")
 

@@ -19,6 +19,7 @@ from threadpoolctl import threadpool_limits
 from css700.evaluation.local_agreement import paired_rank_rows, summarize_rank_rows
 from css700.experiments.som_mapping_audit import _git_state
 from css700.experiments.tree_shap_sources import file_sha256, load_sources
+from css700.interpretability.tree_routing import TreeRoutingMismatch
 from css700.interpretability.tree_shap import (
     ProbabilityTreeSHAP,
     binary_probabilities,
@@ -79,7 +80,7 @@ def _validate_config(config: dict) -> None:
             raise ValueError(f"{section}.{key} must be a positive integer")
 
 
-def _figure(path: Path, summaries: list[dict]) -> None:
+def _figure(path: Path, summaries: list[dict], *, complete: bool) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
@@ -100,8 +101,12 @@ def _figure(path: Path, summaries: list[dict]) -> None:
         xlim=(-1.05, 1.05),
         xlabel="Mean absolute-score Spearman; 95% sample-bootstrap interval",
         title=(
-            "Seed-42 same-target agreement\n"
-            "Descriptive cross-model/method comparisons; not faithfulness"
+            (
+                "Seed-42 same-target agreement\n"
+                if complete
+                else "INCOMPLETE PILOT: diagnostics only\n"
+            )
+            + "Descriptive cross-model/method comparisons; not faithfulness"
         ),
     )
     axis.axvline(0, color="gray", linewidth=0.7)
@@ -237,6 +242,8 @@ def run_tree_shap_experiment(config_path: Path, output_dir: Path) -> dict[str, A
                         )
                         report["initialization_seconds"] = time.perf_counter() - init_start
                         report["adapter"] = explainer.adapter
+                        if explainer.routing_audit is not None:
+                            _json(condition_root / "routing_audit.json", explainer.routing_audit)
                         report["background_retained_exactly"] = True
                         warm = explainer.explain(bundle.x_train[:1])
                         smoke = explainer.explain(
@@ -330,6 +337,9 @@ def run_tree_shap_experiment(config_path: Path, output_dir: Path) -> dict[str, A
                         accepted[condition] = selected
                         report["status"] = "ok"
                     except Exception as error:
+                        if isinstance(error, TreeRoutingMismatch):
+                            _json(condition_root / "routing_audit.json", error.audit)
+                            report["training_routing_check_passed"] = False
                         report.update(
                             status="failed", error_type=type(error).__name__, error=str(error)
                         )
@@ -399,7 +409,7 @@ def run_tree_shap_experiment(config_path: Path, output_dir: Path) -> dict[str, A
         _csv(root / "class_aggregate_features.csv", aggregates)
         _json(root / "agreement_summary.json", summaries)
         if summaries:
-            _figure(root / "agreement.png", summaries)
+            _figure(root / "agreement.png", summaries, complete=len(accepted) == 4 and not errors)
         checks["all_four_conditions_accepted"] = len(accepted) == 4
         checks["source_artifacts_unchanged"] = all(
             file_sha256(Path(path)) == value for path, value in source_data["file_hashes"].items()
