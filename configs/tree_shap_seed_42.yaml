@@ -1,0 +1,29 @@
+# Provisional research protocol v1; user-authorized pilot, not committee approval.
+protocol_version: tree-shap-probability-v1
+model_seed: 42
+data_split_seed: 42
+expected_split_sha256: 79e85d4ceae692441b84f6921174e89879dc7eca4e27e8e6f6744799a67aa7cb
+tree_run: artifacts/20260906-210148__breast-cancer__tabular__rf-xgboost__split-seed-42__model-seeds-7-42-2026__baseline
+tree_training_config: configs/tabular_baselines.yaml
+grid_run: artifacts/20260831-083111__breast-cancer__grid__small-cnn__seed-42__baseline
+model_sha256:
+  random_forest: c213421a80e647c77a7a6264ae67ec7734035371f52ef43ca338020855c73e19
+  xgboost: 0e4bca17083e2e6ef79a99a987feca086d9fcd4cf324c2d1b512e9266dc615c6
+shap:
+  model_output: probability
+  feature_perturbation: interventional
+  approximate: false
+  batch_size: 32
+  smoke_training_rows: 8
+  reconstruction_atol: 1.0e-5
+  reconstruction_rtol: 1.0e-5
+background:
+  primary: all_training_rows
+  sensitivity_size: 100
+  sensitivity_seed: 2026
+comparison:
+  ranking: absolute
+  primary_target: same_predicted_class
+  bootstrap_resamples: 1000
+  bootstrap_seed: 2026
+  minimum_interval_group: 10

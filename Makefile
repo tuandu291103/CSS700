@@ -1,5 +1,7 @@
 .PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients occlusion faithfulness grid-stability train-tabular-baselines audit-som-mapping clean
 
+.PHONY: tree-shap
+
 PYTHON ?= python3
 
 install:
@@ -47,6 +49,9 @@ train-tabular-baselines:
 
 audit-som-mapping:
 	PYTHONPATH=src $(PYTHON) -m css700.cli audit-som-mapping --config configs/som_mapping_audit.yaml
+
+tree-shap:
+	PYTHONPATH=src $(PYTHON) -m css700.cli tree-shap --config configs/tree_shap_seed_42.yaml
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +

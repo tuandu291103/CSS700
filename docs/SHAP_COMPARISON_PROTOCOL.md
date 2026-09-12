@@ -1,8 +1,10 @@
 # Local TreeSHAP comparison protocol
 
-Status: **draft v0.1 for Yu/committee review, 2026-09-09**. This is a proposed design, not a
-frozen experiment or a completed result. No TreeSHAP values have been generated for this draft.
-The proposed choices below are investigator decisions, not requirements from the library.
+Status: **provisional research protocol v1, frozen for the seed-42 pilot, 2026-09-10**.
+Yu authorized continuation from the draft; this does not claim committee approval. Executable
+settings are in `configs/tree_shap_seed_42.yaml`. These are investigator choices, not library
+requirements. The original draft is retained in commit `80f721d`; accepted results belong in
+a separate experiment log, not in this protocol.
 
 ## 1. Question and scope
 
@@ -28,11 +30,11 @@ All 86 test rows remain eligible, including errors. Never use their labels, attr
 agreement scores to choose a background, SHAP setting or model. Existing test outcomes are
 already known: this is prospective for SHAP, not a newly untouched test-set study.
 
-## 2. Proposed settings
+## 2. Frozen seed-42 settings
 
 | Decision | Primary proposal | Reason / boundary |
 |---|---|---|
-| Explainer | TreeExplainer on each original fitted estimator | Not native global importance or a prebuilt internal tree adapter |
+| Explainer | TreeExplainer on the fitted Random Forest estimator / verified numerical XGBoost booster | Original fitted trees; see compatibility record below |
 | Explained function | Class probability, `model_output="probability"` | Explicit output semantics for both tree families |
 | Feature removal assumption | `feature_perturbation="interventional"` | Explicit shared background; never rely on `auto` |
 | Background | All 397 standardized training rows, equal weight, original split order | Avoid background subsampling randomness in this small pilot |
@@ -56,6 +58,20 @@ NumPy 2.5.2, all matching `requirements.lock.txt`. Installed `_tree.py` and `_ta
 confirm the relevant adapter, background and check behavior. This source inspection does
 not establish runtime compatibility; the implementation still needs a smoke test. Do not
 silently change output space, background, approximation mode or dependencies if it fails.
+
+### Training-only compatibility record (2026-09-10)
+
+The initial smoke test exposed a categorical-capability flag mismatch: the frozen XGBoost
+wrapper has `enable_categorical=True`, while its booster has no categorical feature metadata,
+every saved `split_type` is zero, and all category arrays are empty. SHAP 0.52.0 rejects that
+wrapper flag for interventional explanations even in this numerical case.
+
+The v1 adapter therefore passes the original fitted booster to TreeExplainer after verifying
+all trees and category arrays. It does not mutate the predictor, patch SHAP, retrain, change
+probability output or change the background. Reconstruction still uses the original wrapper's
+`predict_proba`. Actual categorical metadata/splits are rejected. Training-only checks passed
+for both models after this explicit compatibility adjustment; tests verify unchanged booster
+bytes and that no PyTorch module is imported by the tree process.
 
 ## 3. Class and output normalization
 
@@ -90,7 +106,7 @@ For every sample and class, independently calculate
 `residual = base_value + sum(signed_phi) - model_probability` and require
 `abs(residual) <= 1e-5 + 1e-5 * abs(model_probability)`. Apply the same proposed tolerance to
 base-value agreement with the mean model probability on the actual retained background.
-These are draft engineering tolerances to freeze before the pilot, not SHAP guarantees.
+These are fixed v1 engineering tolerances, not SHAP guarantees.
 The built-in additivity check is not sufficient for this probability-output setting, so the
 independent reconstruction check is mandatory. [TreeExplainer validation documentation](https://shap.readthedocs.io/en/stable/generated/shap.TreeExplainer.html).
 
@@ -179,7 +195,7 @@ class-stratified aggregates. Report initialization and explanation runtime separ
 batch size, CPU/thread settings, one training-only warm-up, and the repeatability-check cost.
 Do not equate internal tree-path work with CNN forward/backward-call counts.
 
-Review proposed settings with Yu/committee, then:
+Implementation sequence (committee review remains outstanding):
 
 1. Promote the approved choices to a versioned executable config; implement adapters, tests
    and independent probability reconstruction checks without importing the CNN runtime.

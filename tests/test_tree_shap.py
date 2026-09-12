@@ -1,0 +1,155 @@
+import importlib.util
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+from types import SimpleNamespace
+
+import numpy as np
+import pytest
+
+from css700.evaluation.local_agreement import paired_rank_rows, summarize_rank_rows
+from css700.experiments.tree_shap import run_tree_shap_experiment
+from css700.experiments.tree_shap_sources import named_feature_matrix, prediction_arrays
+from css700.interpretability.tree_shap import (
+    binary_probabilities,
+    normalize_binary_shap,
+    reconstruction_checks,
+    training_background,
+    verified_numeric_booster,
+)
+
+
+def test_background_only_training_and_fixed_subset() -> None:
+    data = np.arange(48).reshape(12, 4)
+    ids = np.arange(12) + 100
+    all_values, all_ids = training_background(data, ids, np.array([0, 1]))
+    np.testing.assert_array_equal(all_values, data)
+    np.testing.assert_array_equal(all_ids, ids)
+    subset, selected = training_background(data, ids, np.array([0, 1]), size=5)
+    expected = np.sort(np.random.default_rng(2026).permutation(12)[:5])
+    np.testing.assert_array_equal(selected, ids[expected])
+    np.testing.assert_array_equal(subset, data[expected])
+    with pytest.raises(ValueError, match="overlap"):
+        training_background(data, ids, np.array([100]))
+    with pytest.raises(ValueError, match="unique"):
+        training_background(data, np.ones(12, dtype=int), np.array([100]))
+    with pytest.raises(ValueError, match="invalid"):
+        training_background(data * np.nan, ids, np.array([0]))
+
+
+def test_binary_class_zero_and_independent_reconstruction() -> None:
+    raw = np.array([[0.1, 0.2, -0.1]])
+    values, base, rule = normalize_binary_shap(raw, 0.4, samples=1, features=3, family="xgboost")
+    assert rule.startswith("class_0")
+    np.testing.assert_array_equal(values[0, :, 0], -raw[0])
+    residuals, checks = reconstruction_checks(
+        values, base, np.array([[0.4, 0.6]]), base, atol=1e-5, rtol=1e-5
+    )
+    assert all(checks.values())
+    assert np.abs(residuals).max() < 1e-10
+    _, bad = reconstruction_checks(values, base, np.array([[0.1, 0.9]]), base, atol=1e-5, rtol=1e-5)
+    assert not bad["probability_reconstruction"]
+    with pytest.raises(ValueError, match="shapes"):
+        normalize_binary_shap(
+            values.transpose(0, 2, 1), base, samples=1, features=3, family="random_forest"
+        )
+    with pytest.raises(ValueError, match="class order"):
+        binary_probabilities(SimpleNamespace(classes_=[1, 0]), raw)
+
+
+def test_numeric_booster_guard_rejects_real_categories() -> None:
+    tree = {
+        "split_type": [1],
+        "categories": [0],
+        "categories_nodes": [],
+        "categories_segments": [],
+        "categories_sizes": [],
+    }
+    payload = {"learner": {"gradient_booster": {"model": {"trees": [tree]}}}}
+    booster = SimpleNamespace(feature_types=None, save_raw=lambda **_: json.dumps(payload))
+    with pytest.raises(ValueError, match="categorical"):
+        verified_numeric_booster(SimpleNamespace(get_booster=lambda: booster))
+
+
+def test_source_matrix_identity_and_duplicate_checks() -> None:
+    ids, labels, predictions = np.array([20]), np.array([0]), np.array([1])
+    rows = [
+        dict(
+            sample_id="20",
+            feature_index=str(j),
+            feature_name=name,
+            predicted_label="1",
+            target_class="1",
+            true_label="0",
+            value=str(j),
+        )
+        for j, name in enumerate(("a", "b"))
+    ]
+    np.testing.assert_array_equal(
+        named_feature_matrix(rows[::-1], ids, ("a", "b"), predictions, labels, value_field="value"),
+        [[0, 1]],
+    )
+    for bad_rows in (
+        rows + [rows[0]],
+        rows[:1],
+        [dict(rows[0], feature_name="wrong"), rows[1]],
+        [dict(rows[0], target_class="0"), rows[1]],
+    ):
+        with pytest.raises(ValueError):
+            named_feature_matrix(
+                bad_rows, ids, ("a", "b"), predictions, labels, value_field="value"
+            )
+    with pytest.raises(ValueError, match="sample IDs"):
+        prediction_arrays([], ids, labels)
+
+
+def test_agreement_exclusions_and_bootstrap_are_explicit() -> None:
+    scores = np.tile(np.arange(12), (12, 1))
+    right = scores.copy()
+    right[1] = 0
+    lp = np.zeros(12, dtype=int)
+    rp = lp.copy()
+    rp[0] = 1
+    rows = paired_rank_rows(scores, right, lp, rp, lp, np.arange(12), comparison="a vs b")
+    assert rows[0]["exclusion_reason"] == "different_target"
+    assert rows[1]["spearman"] is None and rows[1]["top_5_overlap_fraction"] is None
+    assert rows[2]["top_5_overlap_fraction"] == 1
+    first = summarize_rank_rows(rows, resamples=20, seed=42)
+    assert first == summarize_rank_rows(rows, resamples=20, seed=42)
+    assert first[0]["eligible_samples"] == 10
+    assert first[0]["spearman"]["mean_95_percentile_interval"] == [1.0, 1.0]
+    ties = paired_rank_rows(scores, scores, lp, lp, lp, np.arange(12), comparison="ties")
+    assert not ties[0]["left_top_5_cutoff_tie"]
+
+
+def test_failure_bundle_is_retained_and_append_only(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr("css700.experiments.tree_shap._git_state", lambda: ("test", True))
+    root = Path(__file__).resolve().parents[1]
+    first = run_tree_shap_experiment(root / "configs/tree_shap_seed_42.yaml", tmp_path)
+    second = run_tree_shap_experiment(root / "configs/tree_shap_seed_42.yaml", tmp_path)
+    assert first["status"] == "quality_gate_failed"
+    assert first["output"] != second["output"]
+    assert (Path(first["output"]) / "manifest.json").is_file()
+    assert json.loads((Path(first["output"]) / "summary.json").read_text())["errors"]
+
+
+def test_tree_model_smoke_in_isolated_process(tmp_path: Path) -> None:
+    if any(importlib.util.find_spec(name) is None for name in ("shap", "xgboost", "matplotlib")):
+        pytest.skip("requires optional tree explanation dependencies")
+    root = Path(__file__).resolve().parents[1]
+    env = {
+        **os.environ,
+        "PYTHONPATH": str(root / "src"),
+        "MPLCONFIGDIR": str(tmp_path),
+        "XDG_CACHE_HOME": str(tmp_path),
+    }
+    result = subprocess.run(
+        [sys.executable, str(root / "tests/tree_shap_worker.py")],
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr

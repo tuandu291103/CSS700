@@ -41,3 +41,18 @@ jobs:
           tests/test_integrated_gradients.py tests/test_occlusion.py
           tests/test_feature_deletion.py tests/test_stability.py
           tests/test_mapping.py tests/test_som_diagnostic.py
+
+  tree-shap-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install isolated tree explanation dependencies
+        run: >-
+          python -m pip install -e ".[dev]" "shap==0.52.0" "xgboost==3.4.1"
+          "matplotlib>=3.9,<4"
+      - name: Run tree explanation and integrity tests
+        run: python -m pytest tests/test_tree_shap.py

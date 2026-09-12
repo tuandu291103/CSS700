@@ -11,6 +11,7 @@ __all__ = [
     "run_integrated_gradients_experiment",
     "run_occlusion_experiment",
     "run_tabular_baselines_experiment",
+    "run_tree_shap_experiment",
 ]
 
 _EXPORT_MODULES = {
@@ -21,6 +22,7 @@ _EXPORT_MODULES = {
     "run_integrated_gradients_experiment": "css700.experiments.integrated_gradients",
     "run_occlusion_experiment": "css700.experiments.occlusion",
     "run_tabular_baselines_experiment": "css700.experiments.tabular_baselines",
+    "run_tree_shap_experiment": "css700.experiments.tree_shap",
 }
 
 

@@ -132,9 +132,18 @@ metrics, serialized models, seed agreement, and model-native global importance. 
 impurity importance and XGBoost gain importance are explicitly labeled as global diagnostics;
 they are not treated as local class-targeted explanations or compared on a shared magnitude scale.
 
-The next local tree explanation step is drafted in `docs/SHAP_COMPARISON_PROTOCOL.md`.
-It proposes training-only probability-output TreeSHAP and explicitly separates cross-model
-agreement from explainer-only effects. It is not an implemented or frozen experiment yet.
+The provisional seed-42 local TreeSHAP protocol is in `docs/SHAP_COMPARISON_PROTOCOL.md`.
+Run it from a clean commit with:
+
+```bash
+make tree-shap PYTHON=.venv/bin/python
+```
+
+It explains the existing tree models' probabilities with full-training and fixed-subset
+backgrounds, independently checks reconstruction, and compares same-target feature ranks.
+The XGBoost adapter verifies numerical splits before using the unchanged fitted booster.
+Raw values and source hashes are retained; failures cannot be promoted to accepted results.
+Cross-model/output-scale differences remain explicit, and committee approval is not claimed.
 
 ## SOM2IMG readiness
 
