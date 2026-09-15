@@ -47,8 +47,17 @@ unchanged-model probability checks. See `docs/TREE_SHAP_NUMERICAL_REPAIR.md` and
 `docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`. These accepted settings were then
 extended to saved seeds 7 and 2026 without reselection. All 12 conditions passed; the separate
 seed-pair analysis and report are in `docs/TREE_SHAP_REPLICATION_PROTOCOL.md` and
-`docs/logs/2026-09-14-tree-shap-multiseed-stability.md`. LIME still requires a separate
-neighborhood, local-fit and stochastic-repeatability protocol before test explanations.
+`docs/logs/2026-09-14-tree-shap-multiseed-stability.md`.
+
+The separate LIME v1 design is frozen in `docs/LIME_COMPARISON_PROTOCOL.md`: predicted-class
+probability on the unchanged seed-42 tree models, training-quartile membership, all features,
+fixed neighborhood budgets and three explainer seeds. Coefficients describe the local
+surrogate's bin-membership effects, not SHAP contributions. Independent generated-neighborhood
+fit diagnostics and anchor error accompany all technically valid outputs; no poor-fit filter
+is applied. A 48-fit training-only preflight passed technical checks but showed weak local
+approximation, documented in `docs/logs/2026-09-15-lime-protocol-preflight.md`. Investigate
+locality on training anchors under a separate prospective plan before test-run expansion.
+No test LIME or LIME–SHAP comparison result is yet available.
 
 ## Controlled experiment matrix
 

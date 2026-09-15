@@ -34,7 +34,11 @@ These do not block the initial Grid pilot, but they should be resolved before th
    repair protocol. The subsequent seeds 7 and 2026 and separate stability analysis passed
    all 12 conditions; see `docs/logs/2026-09-14-tree-shap-multiseed-stability.md`.
    Committee review of scope/targets remains outstanding. CNN-logit versus tree-probability
-   output remains a comparison limitation, and LIME needs its own sampling/local-fit protocol.
+   output remains a comparison limitation. LIME's separate v1 protocol is now frozen;
+   its training preflight passed technical checks but often had weak approximation. See
+   `docs/LIME_COMPARISON_PROTOCOL.md` and `docs/logs/2026-09-15-lime-protocol-preflight.md`.
+   Committee review of representation/locality assumptions remains important; no test LIME
+   comparison is complete. A training-only diagnostic is the next bounded research task.
 8. What threshold defines adequate CNN performance beyond beating the majority-class baseline?
 9. Should sample-level uncertainty use bootstrap intervals, and does the program expect formal
    hypothesis tests or primarily estimation and effect sizes?

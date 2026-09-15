@@ -171,9 +171,24 @@ make tree-shap-stability PYTHON=.venv/bin/python RUN_DIRS="artifacts/<seed-7-run
 The analyzer revalidates accepted inputs, keeps each seed-pair estimate separate and saves
 new append-only outputs. It does not treat repeated sample/seed pairs as independent data.
 
-The next design milestone is a separately versioned LIME pilot protocol before any LIME test
-explanations. The second-dataset choice and authoritative SOM2IMG collision/allocation policy
-remain necessary for the full study. Generated run bundles are local and ignored by Git;
+## LIME protocol and training preflight
+
+The provisional protocol is frozen in `docs/LIME_COMPARISON_PROTOCOL.md`. Check its
+compatibility with the saved seed-42 tree models from a clean commit using:
+
+```bash
+make lime-preflight PYTHON=.venv/bin/python
+```
+
+**2026-09-15 checkpoint:** all 48 training-anchor fits and six same-seed repeats passed their
+technical checks; all 66 tests passed. Local approximation was often weak: median anchor
+probability error was 0.081 for RF and 0.302 for XGBoost. See
+`docs/logs/2026-09-15-lime-protocol-preflight.md`. No test LIME explanations or LIME–SHAP rank
+comparisons have been generated. The next step is a separately planned training-only
+locality/fit diagnostic before expanding to the full test runner; preserve the v1 settings.
+
+The second-dataset choice and authoritative SOM2IMG collision/allocation policy remain
+necessary for the full study. Generated run bundles are local and ignored by Git;
 committing or pushing source code does not back up the raw research artifacts.
 
 ## SOM2IMG readiness

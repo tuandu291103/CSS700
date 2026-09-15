@@ -45,6 +45,11 @@ equivalence certificate and the predictor's input conversion. Original models an
 background rows/weights are unchanged. The repair and accepted seed-42 pilot are documented
 in `docs/TREE_SHAP_NUMERICAL_REPAIR.md` and the walkthrough/repair experiment log.
 
+The provisional LIME protocol is in `docs/LIME_COMPARISON_PROTOCOL.md`. It explains the
+same frozen tree probabilities with training-quartile membership coefficients, a fixed
+weighted Ridge model and independently seeded fit/evaluation neighborhoods. Keep surrogate
+approximation diagnostics separate from technical validity and explanation agreement.
+
 ## 4. Experiments
 
 - Pilot validation and tracing unit tests.
@@ -108,6 +113,12 @@ The accepted v1.1 extension to seeds 7 and 2026 and separate seed-stability anal
 documented in `docs/logs/2026-09-14-tree-shap-multiseed-stability.md` (runs dated September 12).
 All 12 model/seed/background conditions passed. The analysis retains 1,032 sample-pair rows
 and 72 grouped summaries without treating repeated samples or seed pairs as independent.
+
+LIME training-preflight evidence is in `docs/logs/2026-09-15-lime-protocol-preflight.md`:
+eight training anchors x two frozen tree models x three explainer seeds produced 48 fits,
+with six same-seed repeats. All technical checks passed; no test LIME explanations or
+paired LIME–SHAP comparisons were generated. Weak surrogate approximation motivates a
+separate training-only locality diagnostic before expanding to the full test runner.
 
 ## 5. Results
 
@@ -184,6 +195,13 @@ tree–CNN means ranged from 0.138 to 0.380 across 18 comparisons with 79–82 e
 Lower cross-model/method agreement persisted descriptively, but the seed-42 ordering of
 CNN explainers was not universal (XGB seed-2026 mean agreement was 0.1416 for IG-zero and
 0.1444 for Grad-CAM). No method-superiority or formal cross-comparison claim follows.
+
+LIME compatibility observation (training only, not a test result): median anchor probability
+error across 24 repeated fits per model was 0.081 for RF and 0.302 for XGBoost. Median weighted
+R-squared on independently generated neighbors was 0.219 and 0.252. Anchor surrogate outputs
+fell outside [0, 1] in 3/24 RF and 18/24 XGB fits; these unconstrained predictions were
+retained, not clipped. Eight anchors do not establish general LIME performance. Passing
+implementation checks alone does not justify treating the coefficients as faithful rankings.
 
 ## 6. Discussion
 

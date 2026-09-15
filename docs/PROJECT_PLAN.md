@@ -56,7 +56,7 @@ Progress through 2026-09-06:
 **Winter gate:** expected-scope raw experiments are complete and reproducible before analysis
 choices are tuned to observed results.
 
-Pilot-dataset progress through 2026-09-14:
+Pilot-dataset progress through 2026-09-15:
 
 - [x] Complete fixed-split, three-seed Random Forest and XGBoost predictive baselines with
   validation-only model selection, untouched-test evaluation, and reproducible run artifacts.
@@ -76,16 +76,24 @@ Pilot-dataset progress through 2026-09-14:
   stability without treating repeated sample/seed pairs as independent observations.
   All 12 conditions passed; the September 12 runs were audited and reported in
   `docs/logs/2026-09-14-tree-shap-multiseed-stability.md`.
-- [ ] Complete LIME design separately.
+- [x] Freeze provisional LIME v1 separately, including neighborhood construction, local-fit
+  diagnostics and explainer-seed repeats; see `docs/LIME_COMPARISON_PROTOCOL.md`.
+- [x] Implement and report the training-only LIME preflight: 48 fits, six repeat checks,
+  no new test explanations. Technical checks pass, but local approximation is often weak;
+  see `docs/logs/2026-09-15-lime-protocol-preflight.md`.
+- [ ] Investigate LIME locality/fit on training anchors under a separate prospective design.
+- [ ] Implement and validate the full LIME test runner, named-feature exports and paired
+  LIME–SHAP comparisons before claiming completion of the LIME pilot.
 - [x] Review the local SOM2IMG manuscript and complete a reproducible, training-only native-BMU
   collision diagnostic. Document unresolved settings and reject ambiguous feature tracing;
   do not count this diagnostic as an implemented or evaluated SOM2IMG CNN.
 - [ ] Resolve the second dataset and authoritative SOM2IMG implementation before expanding the
   full controlled matrix.
 
-Next bounded milestone: draft and version a LIME seed-42 pilot protocol using the frozen tree
-models, with neighborhood/sampling choices, local-fit diagnostics and repeated-explainer-seed
-reporting specified before test explanations. No LIME experiment is complete or frozen yet.
+Next bounded milestone: specify a training-only locality/representation diagnostic in response
+to weak LIME preflight approximation. Preserve frozen v1 and retain all its poor-fit cases;
+declare any alternative settings prospectively without using test results or SHAP agreement
+to select them. The full LIME test/comparison pipeline is not yet implemented or executed.
 Second-dataset and authoritative SOM2IMG decisions remain the full-matrix dependencies;
 additional pilot comparisons do not replace them. Raw artifact backup also remains separate
 from Git source synchronization because generated run bundles are ignored.
