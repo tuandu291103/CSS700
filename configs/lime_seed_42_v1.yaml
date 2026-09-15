@@ -1,0 +1,31 @@
+# Provisional protocol; freeze before test explanations, not committee approval.
+protocol_version: lime-tabular-probability-v1
+source_config: configs/tree_shap_seed_42_v1_1.yaml
+source_config_sha256: 40a1ea7d1fd8c9594d74256391dfec635ca717798fe41c72a2a28e7376c3e71f
+accepted_shap_run: artifacts/20260912-171418-618975__breast-cancer__tree-shap__seed-42__pilot
+model_seed: 42
+data_split_seed: 42
+families: [random_forest, xgboost]
+lime_version: 0.2.0.1
+representation: training_quartile_membership
+feature_selection: none
+feature_count: 30
+kernel_width_multiplier: 0.75
+distance_metric: euclidean
+ridge_alpha: 1.0
+ridge_solver: cholesky
+fit_samples: 5000
+evaluation_samples: 2000
+explainer_seeds: [11, 29, 47]
+primary_explainer_seed: 11
+seed_derivation: numpy_SeedSequence_explainer_seed_sample_id_role_uint32
+preflight_training_rows: 8
+primary_target: predicted_class
+ranking: absolute_coefficient
+fit_quality_filter: none_report_all
+bootstrap_resamples: 1000
+bootstrap_seed: 2026
+minimum_interval_group: 10
+repeat_atol: 1.0e-10
+repeat_rtol: 1.0e-8
+r2_variance_floor: 1.0e-15

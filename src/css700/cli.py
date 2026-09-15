@@ -369,7 +369,23 @@ def build_parser() -> argparse.ArgumentParser:
     tree_stability.add_argument("--config", default="configs/tree_shap_stability.yaml")
     tree_stability.add_argument("--output-dir", default="artifacts")
     tree_stability.set_defaults(function=analyze_tree_stability)
+    lime_parser = subparsers.add_parser(
+        "lime-preflight", help="check LIME on training anchors only"
+    )
+    lime_parser.add_argument("--config", default="configs/lime_seed_42_v1.yaml")
+    lime_parser.add_argument("--output-dir", default="artifacts")
+    lime_parser.set_defaults(function=lime_preflight)
     return parser
+
+
+def lime_preflight(args: argparse.Namespace) -> int:
+    """Check the frozen LIME design on training anchors only."""
+    _configure_runtime_cache()
+    from css700.experiments.lime_preflight import run_lime_preflight
+
+    summary = run_lime_preflight(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
 
 
 def main() -> int:
