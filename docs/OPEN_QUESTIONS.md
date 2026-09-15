@@ -31,8 +31,10 @@ These do not block the initial Grid pilot, but they should be resolved before th
    The original v1 attempt failed RF numerical routing; its outputs remain diagnostic.
    A routing-equivalent copy in v1.1 passed all four seed-42 model/background conditions;
    see `docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md` and the separate numerical
-   repair protocol. TreeSHAP seed replication and committee review of scope/targets are
-   still outstanding. CNN-logit versus tree-probability output remains a comparison limitation.
+   repair protocol. The subsequent seeds 7 and 2026 and separate stability analysis passed
+   all 12 conditions; see `docs/logs/2026-09-14-tree-shap-multiseed-stability.md`.
+   Committee review of scope/targets remains outstanding. CNN-logit versus tree-probability
+   output remains a comparison limitation, and LIME needs its own sampling/local-fit protocol.
 8. What threshold defines adequate CNN performance beyond beating the majority-class baseline?
 9. Should sample-level uncertainty use bootstrap intervals, and does the program expect formal
    hypothesis tests or primarily estimation and effect sizes?

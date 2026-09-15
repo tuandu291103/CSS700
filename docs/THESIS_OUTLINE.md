@@ -104,6 +104,11 @@ The repaired seed-42 v1.1 pilot passed all four model/background conditions; see
 diagnostic. New signed attributions, background values, copied thresholds, routing certificates,
 source hashes and same-target comparison tables belong to a separate accepted bundle.
 
+The accepted v1.1 extension to seeds 7 and 2026 and separate seed-stability analysis are
+documented in `docs/logs/2026-09-14-tree-shap-multiseed-stability.md` (runs dated September 12).
+All 12 model/seed/background conditions passed. The analysis retains 1,032 sample-pair rows
+and 72 grouped summaries without treating repeated samples or seed pairs as independent.
+
 ## 5. Results
 
 - Predictive performance.
@@ -165,7 +170,20 @@ and median top-five overlap 0.60 among 84 same-target samples. Tree–CNN mean a
 ranged from 0.138 to 0.380 across the six comparisons, each with 79 eligible samples.
 This is one-seed, descriptive evidence on differing eligible sets, not a formal contrast or
 an isolated model/method effect. One background subset does not establish general robustness.
-Local TreeSHAP seed replication remains outstanding.
+
+The subsequent three-seed TreeSHAP replication had full-background seed-pair median
+Spearman 0.950–0.960 for RF and 0.956–0.969 for XGBoost. Median top-five overlap was 1.00
+for RF and 0.80–1.00 for XGBoost; all pairs had median top-ten overlap 0.90. Eligible counts
+were 85–86 for RF and 86 for XGBoost. These are descriptive ranges across separate pairs;
+pair-conditional sample intervals and the 100-row sensitivity are in the replication report.
+There were no constant-vector exclusions or exact cutoff ties. RF had three-seed class
+consensus for 85/86 samples, XGBoost for 86/86, but probabilities and local rankings varied.
+
+Within each seed, full-background RF–XGBoost mean Spearman ranged from 0.598 to 0.620;
+tree–CNN means ranged from 0.138 to 0.380 across 18 comparisons with 79–82 eligible samples.
+Lower cross-model/method agreement persisted descriptively, but the seed-42 ordering of
+CNN explainers was not universal (XGB seed-2026 mean agreement was 0.1416 for IG-zero and
+0.1444 for Grad-CAM). No method-superiority or formal cross-comparison claim follows.
 
 ## 6. Discussion
 
@@ -186,7 +204,8 @@ aggregate additivity residuals can coexist with inconsistent near-threshold rout
 Numerical checks must be tied to the actual predictor and background semantics, not just
 plausible-looking attribution sums. This local engineering observation is not a claim of
 novelty or a general failure of TreeSHAP. The v1.1 routing-equivalent repair passed the
-seed-42 technical gate; broader validation and replication remain necessary.
+technical gates for all three registered seeds and both backgrounds. Generalization beyond
+this dataset, fixed split and validated numerical setting remains untested.
 
 ## 8. Conclusion and future work
 

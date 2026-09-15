@@ -151,8 +151,14 @@ Forest model triggered numerical-routing checks. Its failure evidence is retaine
 in `docs/TREE_SHAP_NUMERICAL_REPAIR.md`: a copied forest with equivalent float32 branching,
 not a changed predictor. Scientific settings and tolerances are unchanged. The repaired
 seed-42 run passed all four conditions; see
-`docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`. Replication on seeds 7 and 2026
-is the next milestone, not a completed result.
+`docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`.
+
+**2026-09-14 checkpoint:** seed-7/2026 replication and the separate three-seed stability
+analysis are complete (runs dated 2026-09-12). All 12 model/seed/background conditions passed;
+full-background seed-pair median Spearman was 0.950–0.960 for RF and 0.956–0.969 for XGBoost.
+These are local ranking-stability results on one fixed split, not explainer-superiority claims.
+See the report in `docs/logs/2026-09-14-tree-shap-multiseed-stability.md` for pairwise intervals,
+sensitivity results, provenance and limitations. All 58 tests passed at this checkpoint.
 
 The frozen replication sequence is in `docs/TREE_SHAP_REPLICATION_PROTOCOL.md`. Explain the
 saved seed-7/2026 models and then compare those new runs with the accepted seed-42 reference:
@@ -164,6 +170,11 @@ make tree-shap-stability PYTHON=.venv/bin/python RUN_DIRS="artifacts/<seed-7-run
 
 The analyzer revalidates accepted inputs, keeps each seed-pair estimate separate and saves
 new append-only outputs. It does not treat repeated sample/seed pairs as independent data.
+
+The next design milestone is a separately versioned LIME pilot protocol before any LIME test
+explanations. The second-dataset choice and authoritative SOM2IMG collision/allocation policy
+remain necessary for the full study. Generated run bundles are local and ignored by Git;
+committing or pushing source code does not back up the raw research artifacts.
 
 ## SOM2IMG readiness
 

@@ -56,7 +56,7 @@ Progress through 2026-09-06:
 **Winter gate:** expected-scope raw experiments are complete and reproducible before analysis
 choices are tuned to observed results.
 
-Pilot-dataset progress through 2026-09-12:
+Pilot-dataset progress through 2026-09-14:
 
 - [x] Complete fixed-split, three-seed Random Forest and XGBoost predictive baselines with
   validation-only model selection, untouched-test evaluation, and reproducible run artifacts.
@@ -72,14 +72,23 @@ Pilot-dataset progress through 2026-09-12:
 - [x] Repair numerical routing, validate unchanged-model equivalence, and accept a new
   seed-42 TreeSHAP pilot; all four model/background conditions passed. See
   `docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`.
-- [ ] Extend accepted TreeSHAP v1.1 to saved seeds 7 and 2026 and report local training-seed
+- [x] Extend accepted TreeSHAP v1.1 to saved seeds 7 and 2026 and report local training-seed
   stability without treating repeated sample/seed pairs as independent observations.
+  All 12 conditions passed; the September 12 runs were audited and reported in
+  `docs/logs/2026-09-14-tree-shap-multiseed-stability.md`.
 - [ ] Complete LIME design separately.
 - [x] Review the local SOM2IMG manuscript and complete a reproducible, training-only native-BMU
   collision diagnostic. Document unresolved settings and reject ambiguous feature tracing;
   do not count this diagnostic as an implemented or evaluated SOM2IMG CNN.
 - [ ] Resolve the second dataset and authoritative SOM2IMG implementation before expanding the
   full controlled matrix.
+
+Next bounded milestone: draft and version a LIME seed-42 pilot protocol using the frozen tree
+models, with neighborhood/sampling choices, local-fit diagnostics and repeated-explainer-seed
+reporting specified before test explanations. No LIME experiment is complete or frozen yet.
+Second-dataset and authoritative SOM2IMG decisions remain the full-matrix dependencies;
+additional pilot comparisons do not replace them. Raw artifact backup also remains separate
+from Git source synchronization because generated run bundles are ignored.
 
 ## Spring 2027 - analysis, thesis, and defense (weeks 21-32)
 

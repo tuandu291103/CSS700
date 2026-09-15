@@ -44,8 +44,11 @@ reconstruction residual initially fell within tolerance. A training-only routing
 stops that native condition before explanation. The subsequent v1.1 routing-equivalent copy
 passed all four seed-42 conditions, including exhaustive synthetic contribution checks and
 unchanged-model probability checks. See `docs/TREE_SHAP_NUMERICAL_REPAIR.md` and
-`docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`. Extend these accepted settings to
-the saved seeds without reselection; LIME still requires a separate protocol.
+`docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`. These accepted settings were then
+extended to saved seeds 7 and 2026 without reselection. All 12 conditions passed; the separate
+seed-pair analysis and report are in `docs/TREE_SHAP_REPLICATION_PROTOCOL.md` and
+`docs/logs/2026-09-14-tree-shap-multiseed-stability.md`. LIME still requires a separate
+neighborhood, local-fit and stochastic-repeatability protocol before test explanations.
 
 ## Controlled experiment matrix
 
@@ -145,6 +148,12 @@ label different-target comparisons as exploratory. Summarize predictive metrics,
 prediction agreement, per-sample explanation rank/top-k stability, and deletion-faithfulness
 contrasts across seeds. Three seeds support descriptive stability estimates, not a population-level
 variance claim.
+
+The completed TreeSHAP replication likewise fixes the split and background while comparing
+each model-seed pair separately within family. Full-training and fixed-100-row backgrounds
+remain separate analyses. Report conditional paired sample intervals and descriptive ranges
+across seed pairs, not a pooled interval or an inflated independent sample count. Identical
+class predictions do not imply identical probabilities or explanation rankings.
 
 Use the original 128 integration steps and completeness rule for Integrated Gradients, but allow
 a 1,024-step retry for any replicate sample that fails initially. This multi-seed retry ceiling is

@@ -16,7 +16,10 @@ or the scientific question. See the execution record in section 4.
 **Subsequent v1.1 checkpoint:** the routing-equivalent copy passed the repaired seed-42
 pilot with all four conditions accepted. The original v1 outputs remain diagnostic;
 accepted evidence is in `docs/logs/2026-09-12-walkthrough-and-tree-shap-repair.md`.
-Committee review and three-seed TreeSHAP replication remain outstanding.
+The subsequent three-seed replication passed all 12 conditions; results and the separate
+stability analysis are recorded in `docs/logs/2026-09-14-tree-shap-multiseed-stability.md`.
+Committee review remains outstanding. These execution-status notes do not change the frozen
+scientific settings below.
 
 ## 1. Question and scope
 
@@ -251,6 +254,10 @@ Implementation sequence (committee review remains outstanding):
    numerical RF routing repair, v1.1 passed (see the separate repair log). No model was retrained.
 3. With the repaired pilot accepted, extend its settings to seeds 7 and 2026; retain the same
    background, split, feature universe and interpretation boundaries.
+
+Execution status, 2026-09-14: steps 1–3 are complete for the provisional pilot scope;
+replication followed `docs/TREE_SHAP_REPLICATION_PROTOCOL.md` in new September 12 bundles.
+No LIME or tree probability-deletion experiment is implied by this completion.
 
 Review decisions: confirm local TreeSHAP scope, probability output, full-training background,
 same-predicted-target primary comparisons and the bounded sensitivity. LIME, the second
