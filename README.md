@@ -184,8 +184,21 @@ make lime-preflight PYTHON=.venv/bin/python
 technical checks; all 66 tests passed. Local approximation was often weak: median anchor
 probability error was 0.081 for RF and 0.302 for XGBoost. See
 `docs/logs/2026-09-15-lime-protocol-preflight.md`. No test LIME explanations or LIME–SHAP rank
-comparisons have been generated. The next step is a separately planned training-only
-locality/fit diagnostic before expanding to the full test runner; preserve the v1 settings.
+comparisons have been generated.
+
+The subsequent bounded locality diagnostic is complete: 192 fits, 144 paired contrasts,
+all original references reproduced, and all 76 tests passing. Narrower weighting improved
+anchor fit without reliably improving common-neighborhood fit; no alternative was selected.
+See `docs/logs/2026-09-15-lime-locality-diagnostic.md` for results and the on-track check.
+Reproduce it from a clean commit with:
+
+```bash
+make lime-locality PYTHON=.venv/bin/python
+```
+
+The diagnostic protocol is in `docs/LIME_LOCALITY_DIAGNOSTIC_PROTOCOL.md`. This closes the
+bounded investigation; the next milestone is the full LIME v1 test runner and paired SHAP
+comparisons, retaining all approximation limitations rather than starting another tuning sweep.
 
 The second-dataset choice and authoritative SOM2IMG collision/allocation policy remain
 necessary for the full study. Generated run bundles are local and ignored by Git;

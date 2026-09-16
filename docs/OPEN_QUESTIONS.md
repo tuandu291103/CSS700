@@ -38,7 +38,9 @@ These do not block the initial Grid pilot, but they should be resolved before th
    its training preflight passed technical checks but often had weak approximation. See
    `docs/LIME_COMPARISON_PROTOCOL.md` and `docs/logs/2026-09-15-lime-protocol-preflight.md`.
    Committee review of representation/locality assumptions remains important; no test LIME
-   comparison is complete. A training-only diagnostic is the next bounded research task.
+   comparison is complete. The bounded locality diagnostic is now complete, with no
+   replacement setting selected; see `docs/logs/2026-09-15-lime-locality-diagnostic.md`.
+   Full LIME v1 test-run implementation is next, with fit limitations explicitly retained.
 8. What threshold defines adequate CNN performance beyond beating the majority-class baseline?
 9. Should sample-level uncertainty use bootstrap intervals, and does the program expect formal
    hypothesis tests or primarily estimation and effect sizes?

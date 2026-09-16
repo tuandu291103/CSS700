@@ -55,9 +55,12 @@ fixed neighborhood budgets and three explainer seeds. Coefficients describe the 
 surrogate's bin-membership effects, not SHAP contributions. Independent generated-neighborhood
 fit diagnostics and anchor error accompany all technically valid outputs; no poor-fit filter
 is applied. A 48-fit training-only preflight passed technical checks but showed weak local
-approximation, documented in `docs/logs/2026-09-15-lime-protocol-preflight.md`. Investigate
-locality on training anchors under a separate prospective plan before test-run expansion.
-No test LIME or LIME–SHAP comparison result is yet available.
+approximation, documented in `docs/logs/2026-09-15-lime-protocol-preflight.md`. The subsequent
+four-condition training-only diagnostic is specified in `docs/LIME_LOCALITY_DIAGNOSTIC_PROTOCOL.md`
+and reported in `docs/logs/2026-09-15-lime-locality-diagnostic.md`. It controls weight mass and
+uses common evaluation weights so improved anchor fit is not mistaken for general local fit.
+No alternative is promoted: the diagnostic is closed and the next implementation is the
+frozen LIME v1 test runner. No test LIME or LIME–SHAP comparison result is yet available.
 
 ## Controlled experiment matrix
 

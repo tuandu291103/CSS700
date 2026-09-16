@@ -120,6 +120,11 @@ with six same-seed repeats. All technical checks passed; no test LIME explanatio
 paired LIME–SHAP comparisons were generated. Weak surrogate approximation motivates a
 separate training-only locality diagnostic before expanding to the full test runner.
 
+That bounded diagnostic is complete; see `docs/logs/2026-09-15-lime-locality-diagnostic.md`.
+Four fixed surrogate conditions on the saved neighborhoods produced 192 fits and 144 paired
+contrasts, with common evaluation weights and a weight-mass control. Original preflight
+references reproduced and no new model inference was needed. No alternative was selected.
+
 ## 5. Results
 
 - Predictive performance.
@@ -202,6 +207,15 @@ R-squared on independently generated neighbors was 0.219 and 0.252. Anchor surro
 fell outside [0, 1] in 3/24 RF and 18/24 XGB fits; these unconstrained predictions were
 retained, not clipped. Eight anchors do not establish general LIME performance. Passing
 implementation checks alone does not justify treating the coefficients as faithful rankings.
+
+In the training-only locality diagnostic, narrower raw weighting reduced XGBoost median
+anchor error from 0.3017 to 0.0420, but increased common-evaluation RMSE in every one of the
+24 paired fits (median paired change +0.00513). Median anchor self-influence increased from
+0.0335 to 0.7810. The continuous same-neighbor diagnostic lowered neighborhood RMSE for both
+families, but improved both neighborhood and anchor errors in only 4/24 RF and 14/24 XGBoost
+pairs. It is not native continuous LIME; representation and penalty geometry differ. These
+eight-anchor descriptions do not select a replacement protocol or establish a general method
+ranking. Retain approximation diagnostics beside the future v1 test comparison.
 
 ## 6. Discussion
 

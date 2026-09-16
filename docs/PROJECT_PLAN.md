@@ -81,7 +81,9 @@ Pilot-dataset progress through 2026-09-15:
 - [x] Implement and report the training-only LIME preflight: 48 fits, six repeat checks,
   no new test explanations. Technical checks pass, but local approximation is often weak;
   see `docs/logs/2026-09-15-lime-protocol-preflight.md`.
-- [ ] Investigate LIME locality/fit on training anchors under a separate prospective design.
+- [x] Investigate LIME locality/fit under a separate prospective training-only design:
+  192 fits, 144 paired contrasts, no new model queries or test explanations. Close this
+  diagnostic without selecting a replacement; see `docs/logs/2026-09-15-lime-locality-diagnostic.md`.
 - [ ] Implement and validate the full LIME test runner, named-feature exports and paired
   LIME–SHAP comparisons before claiming completion of the LIME pilot.
 - [x] Review the local SOM2IMG manuscript and complete a reproducible, training-only native-BMU
@@ -90,13 +92,20 @@ Pilot-dataset progress through 2026-09-15:
 - [ ] Resolve the second dataset and authoritative SOM2IMG implementation before expanding the
   full controlled matrix.
 
-Next bounded milestone: specify a training-only locality/representation diagnostic in response
-to weak LIME preflight approximation. Preserve frozen v1 and retain all its poor-fit cases;
-declare any alternative settings prospectively without using test results or SHAP agreement
-to select them. The full LIME test/comparison pipeline is not yet implemented or executed.
+Next bounded milestone: implement and validate the full LIME v1 test/comparison pipeline,
+then run its frozen settings and report approximation diagnostics alongside agreement.
+The locality diagnostic is closed: improved anchor fit did not reliably improve prediction
+of the common generated neighbors. Preserve v1 and all poor-fit cases; do not select or
+substitute an alternative from eight training anchors. No additional tuning sweep is planned.
+The full LIME test/comparison pipeline is not yet implemented or executed.
 Second-dataset and authoritative SOM2IMG decisions remain the full-matrix dependencies;
 additional pilot comparisons do not replace them. Raw artifact backup also remains separate
 from Git source synchronization because generated run bundles are ignored.
+
+On-track check (2026-09-15): the pilot implementation sequence is progressing, but only three
+of the expected 12 CNN conditions are complete (one dataset x Grid x three seeds). This is
+not a percentage of thesis completion. The second-dataset and authoritative SOM2IMG decisions
+are the largest full-scope dependencies; the exact committee/defense calendar is unconfirmed.
 
 ## Spring 2027 - analysis, thesis, and defense (weeks 21-32)
 
