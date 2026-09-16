@@ -375,6 +375,12 @@ def build_parser() -> argparse.ArgumentParser:
     lime_parser.add_argument("--config", default="configs/lime_seed_42_v1.yaml")
     lime_parser.add_argument("--output-dir", default="artifacts")
     lime_parser.set_defaults(function=lime_preflight)
+    locality = subparsers.add_parser(
+        "lime-locality", help="run the fixed training-only LIME diagnostic"
+    )
+    locality.add_argument("--config", default="configs/lime_locality_diagnostic_v1.yaml")
+    locality.add_argument("--output-dir", default="artifacts")
+    locality.set_defaults(function=lime_locality)
     return parser
 
 
@@ -384,6 +390,16 @@ def lime_preflight(args: argparse.Namespace) -> int:
     from css700.experiments.lime_preflight import run_lime_preflight
 
     summary = run_lime_preflight(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def lime_locality(args: argparse.Namespace) -> int:
+    """Reweight/refit saved training neighbors without new model queries."""
+    _configure_runtime_cache()
+    from css700.experiments.lime_locality import run_lime_locality
+
+    summary = run_lime_locality(Path(args.config), Path(args.output_dir))
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 

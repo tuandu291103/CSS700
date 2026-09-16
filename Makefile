@@ -1,6 +1,6 @@
 .PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients occlusion faithfulness grid-stability train-tabular-baselines audit-som-mapping clean
 
-.PHONY: tree-shap tree-shap-replicas tree-shap-stability lime-preflight
+.PHONY: tree-shap tree-shap-replicas tree-shap-stability lime-preflight lime-locality
 
 PYTHON ?= python3
 
@@ -62,6 +62,9 @@ tree-shap-stability:
 
 lime-preflight:
 	PYTHONPATH=src $(PYTHON) -m css700.cli lime-preflight --config configs/lime_seed_42_v1.yaml
+
+lime-locality:
+	PYTHONPATH=src $(PYTHON) -m css700.cli lime-locality --config configs/lime_locality_diagnostic_v1.yaml
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +
