@@ -57,4 +57,4 @@ jobs:
       - name: Run tree explanation and integrity tests
         run: >-
           python -m pytest tests/test_tree_shap.py tests/test_tree_shap_stability.py
-          tests/test_lime.py tests/test_lime_locality.py
+          tests/test_lime.py tests/test_lime_locality.py tests/test_lime_test.py

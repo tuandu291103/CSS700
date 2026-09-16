@@ -381,6 +381,12 @@ def build_parser() -> argparse.ArgumentParser:
     locality.add_argument("--config", default="configs/lime_locality_diagnostic_v1.yaml")
     locality.add_argument("--output-dir", default="artifacts")
     locality.set_defaults(function=lime_locality)
+    lime_test_parser = subparsers.add_parser(
+        "lime-test", help="run the frozen LIME test pilot and fit-aware SHAP comparisons"
+    )
+    lime_test_parser.add_argument("--config", default="configs/lime_seed_42_v1.yaml")
+    lime_test_parser.add_argument("--output-dir", default="artifacts")
+    lime_test_parser.set_defaults(function=lime_test)
     return parser
 
 
@@ -400,6 +406,15 @@ def lime_locality(args: argparse.Namespace) -> int:
     from css700.experiments.lime_locality import run_lime_locality
 
     summary = run_lime_locality(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def lime_test(args: argparse.Namespace) -> int:
+    _configure_runtime_cache()
+    from css700.experiments.lime_test import run_lime_test
+
+    summary = run_lime_test(Path(args.config), Path(args.output_dir))
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 
