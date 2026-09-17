@@ -125,6 +125,12 @@ Four fixed surrogate conditions on the saved neighborhoods produced 192 fits and
 contrasts, with common evaluation weights and a weight-mass control. Original preflight
 references reproduced and no new model inference was needed. No alternative was selected.
 
+The original-v1 test pilot is now complete; see `docs/logs/2026-09-17-lime-test-pilot.md`
+(run September 16). Two seed-42 tree models x 86 cases x three explainer seeds produced
+516 verified fits, 15,480 named-feature rows, 1,290 paired rows, 90 agreement summaries
+and 30 fit-quality summaries. Accepted sources and all saved calculations were audited;
+no model retraining, fit-quality filter or test-driven setting changes were made.
+
 ## 5. Results
 
 - Predictive performance.
@@ -215,7 +221,18 @@ anchor error from 0.3017 to 0.0420, but increased common-evaluation RMSE in ever
 families, but improved both neighborhood and anchor errors in only 4/24 RF and 14/24 XGBoost
 pairs. It is not native continuous LIME; representation and penalty geometry differ. These
 eight-anchor descriptions do not select a replacement protocol or establish a general method
-ranking. Retain approximation diagnostics beside the future v1 test comparison.
+ranking. Approximation diagnostics accompany the completed v1 test comparison.
+
+LIME test-pilot result: primary seed 11 has same-model LIME–TreeSHAP mean Spearman 0.7601
+[95% paired-sample interval 0.7284, 0.7913] for RF and 0.7877 [0.7652, 0.8123] for XGBoost;
+medians are 0.7918 / 0.8049. All six family/seed comparisons have median top-5/top-10 overlap
+0.8. Yet primary median anchor errors are 0.1073 / 0.2170 and generated-evaluation R-squared
+0.2088 / 0.2393; 19/86 RF and 59/86 XGBoost anchor predictions are outside [0, 1]. Preserve
+these poor-fit cases. Sampling-seed-pair median Spearman ranges 0.8378–0.8610 (RF) and
+0.8914–0.8950 (XGBoost), with the model held fixed. Substantial agreement and repeatability
+can coexist with limited surrogate approximation; this is pilot evidence, not novelty or
+ground-truth validation. Full subgroup/seed summaries and interpretation limits are in the log.
+The recorded runtime and UTC timestamp span disagree, so this run is not efficiency evidence.
 
 ## 6. Discussion
 

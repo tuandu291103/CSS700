@@ -56,7 +56,7 @@ Progress through 2026-09-06:
 **Winter gate:** expected-scope raw experiments are complete and reproducible before analysis
 choices are tuned to observed results.
 
-Pilot-dataset progress through 2026-09-15:
+Pilot-dataset progress through 2026-09-17:
 
 - [x] Complete fixed-split, three-seed Random Forest and XGBoost predictive baselines with
   validation-only model selection, untouched-test evaluation, and reproducible run artifacts.
@@ -84,25 +84,28 @@ Pilot-dataset progress through 2026-09-15:
 - [x] Investigate LIME locality/fit under a separate prospective training-only design:
   192 fits, 144 paired contrasts, no new model queries or test explanations. Close this
   diagnostic without selecting a replacement; see `docs/logs/2026-09-15-lime-locality-diagnostic.md`.
-- [ ] Implement and validate the full LIME test runner, named-feature exports and paired
-  LIME–SHAP comparisons before claiming completion of the LIME pilot.
+- [x] Implement and validate the full frozen LIME v1 test runner, named-feature exports and
+  paired LIME–SHAP comparisons: 516 fits, 15 comparisons, 92 tests passing. The September 16
+  run is audited in `docs/logs/2026-09-17-lime-test-pilot.md`. Retain poor-fit cases; substantial
+  ranking agreement does not establish surrogate fidelity. Additional LIME model seeds and
+  tree–CNN LIME comparisons remain deferred.
 - [x] Review the local SOM2IMG manuscript and complete a reproducible, training-only native-BMU
   collision diagnostic. Document unresolved settings and reject ambiguous feature tracing;
   do not count this diagnostic as an implemented or evaluated SOM2IMG CNN.
 - [ ] Resolve the second dataset and authoritative SOM2IMG implementation before expanding the
   full controlled matrix.
 
-Next bounded milestone: implement and validate the full LIME v1 test/comparison pipeline,
-then run its frozen settings and report approximation diagnostics alongside agreement.
-The locality diagnostic is closed: improved anchor fit did not reliably improve prediction
-of the common generated neighbors. Preserve v1 and all poor-fit cases; do not select or
-substitute an alternative from eight training anchors. No additional tuning sweep is planned.
-The full LIME test/comparison pipeline is not yet implemented or executed.
-Second-dataset and authoritative SOM2IMG decisions remain the full-matrix dependencies;
-additional pilot comparisons do not replace them. Raw artifact backup also remains separate
-from Git source synchronization because generated run bundles are ignored.
+Next bounded milestone: resolve the second-dataset choice and authoritative SOM2IMG
+implementation/rendering/tracing settings with Yu/the committee, then freeze the matched
+encoder comparison before fitting a layout or CNN. Validate mapping and one matched training
+condition before expanding the matrix. The LIME test pilot and its earlier training diagnostic
+are closed: preserve v1 and all poor-fit cases; no additional tuning sweep is planned.
+Additional pilot comparisons do not replace these full-matrix decisions. Raw artifact backup
+also remains separate from Git source synchronization because generated run bundles are ignored.
+The LIME run's performance-counter/UTC timestamp discrepancy prevents an efficiency claim;
+cross-method timing still needs a dedicated verified protocol.
 
-On-track check (2026-09-15): the pilot implementation sequence is progressing, but only three
+On-track check (2026-09-17): the seed-42 LIME pilot milestone is complete, but only three
 of the expected 12 CNN conditions are complete (one dataset x Grid x three seeds). This is
 not a percentage of thesis completion. The second-dataset and authoritative SOM2IMG decisions
 are the largest full-scope dependencies; the exact committee/defense calendar is unconfirmed.

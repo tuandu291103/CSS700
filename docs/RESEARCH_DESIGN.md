@@ -59,8 +59,14 @@ approximation, documented in `docs/logs/2026-09-15-lime-protocol-preflight.md`. 
 four-condition training-only diagnostic is specified in `docs/LIME_LOCALITY_DIAGNOSTIC_PROTOCOL.md`
 and reported in `docs/logs/2026-09-15-lime-locality-diagnostic.md`. It controls weight mass and
 uses common evaluation weights so improved anchor fit is not mistaken for general local fit.
-No alternative is promoted: the diagnostic is closed and the next implementation is the
-frozen LIME v1 test runner. No test LIME or LIME–SHAP comparison result is yet available.
+No alternative was promoted. The original v1 test runner is now implemented and the full
+516-fit pilot is complete, with named exports and 15 separate comparisons. See
+`docs/LIME_TEST_EXECUTION.md` and `docs/logs/2026-09-17-lime-test-pilot.md`. Primary-seed
+same-model median Spearman is 0.792 (RF) / 0.805 (XGBoost), alongside median anchor errors
+0.107 / 0.217 and independent generated-evaluation R-squared 0.209 / 0.239. The empirical
+coexistence of ranking agreement and weak approximation is not method superiority. No
+post-test tuning is planned; additional LIME training seeds and tree–CNN comparisons remain
+deferred. Second-dataset and authoritative SOM2IMG decisions take priority for full-scope work.
 
 ## Controlled experiment matrix
 

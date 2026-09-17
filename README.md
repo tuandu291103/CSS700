@@ -171,7 +171,7 @@ make tree-shap-stability PYTHON=.venv/bin/python RUN_DIRS="artifacts/<seed-7-run
 The analyzer revalidates accepted inputs, keeps each seed-pair estimate separate and saves
 new append-only outputs. It does not treat repeated sample/seed pairs as independent data.
 
-## LIME protocol and training preflight
+## LIME protocol, preflight and test pilot
 
 The provisional protocol is frozen in `docs/LIME_COMPARISON_PROTOCOL.md`. Check its
 compatibility with the saved seed-42 tree models from a clean commit using:
@@ -184,7 +184,7 @@ make lime-preflight PYTHON=.venv/bin/python
 technical checks; all 66 tests passed. Local approximation was often weak: median anchor
 probability error was 0.081 for RF and 0.302 for XGBoost. See
 `docs/logs/2026-09-15-lime-protocol-preflight.md`. No test LIME explanations or LIME–SHAP rank
-comparisons have been generated.
+comparisons were generated at that training-only checkpoint.
 
 The subsequent bounded locality diagnostic is complete: 192 fits, 144 paired contrasts,
 all original references reproduced, and all 76 tests passing. Narrower weighting improved
@@ -196,9 +196,24 @@ Reproduce it from a clean commit with:
 make lime-locality PYTHON=.venv/bin/python
 ```
 
-The diagnostic protocol is in `docs/LIME_LOCALITY_DIAGNOSTIC_PROTOCOL.md`. This closes the
-bounded investigation; the next milestone is the full LIME v1 test runner and paired SHAP
-comparisons, retaining all approximation limitations rather than starting another tuning sweep.
+The diagnostic protocol is in `docs/LIME_LOCALITY_DIAGNOSTIC_PROTOCOL.md`. That bounded
+investigation is closed; the original v1 settings were retained for the test pilot.
+
+**2026-09-17 checkpoint (run September 16):** the full frozen LIME pilot is complete:
+516 verified fits, 15,480 named-feature rows, 15 paired comparisons and **92 passing tests**.
+Primary-seed same-model LIME–TreeSHAP median Spearman is 0.792 for RF and 0.805 for XGBoost,
+but median anchor probability errors are 0.107 and 0.217 and generated-evaluation R-squared
+medians are only 0.209 and 0.239. Ranking agreement is not approximation quality. See
+`docs/logs/2026-09-17-lime-test-pilot.md` for separate-seed estimates, fit limitations,
+verification and a recorded timing discrepancy. Execute the frozen contract from a clean
+commit with:
+
+```bash
+make lime-test PYTHON=.venv/bin/python
+```
+
+`docs/LIME_TEST_EXECUTION.md` documents acceptance and exports. No further LIME tuning is
+planned; next resolve the second dataset and authoritative SOM2IMG choices for matrix expansion.
 
 The second-dataset choice and authoritative SOM2IMG collision/allocation policy remain
 necessary for the full study. Generated run bundles are local and ignored by Git;

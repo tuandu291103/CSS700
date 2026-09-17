@@ -37,10 +37,13 @@ These do not block the initial Grid pilot, but they should be resolved before th
    output remains a comparison limitation. LIME's separate v1 protocol is now frozen;
    its training preflight passed technical checks but often had weak approximation. See
    `docs/LIME_COMPARISON_PROTOCOL.md` and `docs/logs/2026-09-15-lime-protocol-preflight.md`.
-   Committee review of representation/locality assumptions remains important; no test LIME
-   comparison is complete. The bounded locality diagnostic is now complete, with no
+   Committee review of representation/locality assumptions remains important. The bounded
+   locality diagnostic is complete, with no
    replacement setting selected; see `docs/logs/2026-09-15-lime-locality-diagnostic.md`.
-   Full LIME v1 test-run implementation is next, with fit limitations explicitly retained.
+   The full original-v1 LIME test pilot is now complete: 516 fits and 15 separate comparisons;
+   see `docs/logs/2026-09-17-lime-test-pilot.md`. Substantial ranking agreement coexists with
+   weak approximation; no poor-fit cases were removed and no further tuning is planned.
+   The second dataset and authoritative SOM2IMG settings remain the highest-priority decisions.
 8. What threshold defines adequate CNN performance beyond beating the majority-class baseline?
 9. Should sample-level uncertainty use bootstrap intervals, and does the program expect formal
    hypothesis tests or primarily estimation and effect sizes?
