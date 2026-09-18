@@ -78,3 +78,13 @@ Committee question (draft only; not sent): Could you share the exact SOM2IMG cod
 recommended settings, including how multiple feature BMUs sharing a pixel are handled? Should
 our controlled comparison retain the existing StandardScaler/SmallCNN, or use a matched
 MinMax/new-CNN condition? This decision must precede an accepted encoder comparison.
+
+## 2026-09-17 source follow-up
+
+The author publication page lists a BIBM 2025 comparative T2I paper; its institutional
+record confirms DOI `10.1109/BIBM66473.2025.11356899`. This is a publication lead, not a
+verified implementation or confirmation that it specifies our SOM2IMG manuscript. Direct
+OpenReview PDF/forum access returned browser verification, preventing full current-method
+inspection; no collision rule was inferred from search excerpts. The readiness gate is
+unchanged. See `docs/logs/2026-09-17-scope-readiness.md` for source links and limitations, and
+`docs/COMMITTEE_CHECKIN_2026-09-17.md` for the unsent decision request.

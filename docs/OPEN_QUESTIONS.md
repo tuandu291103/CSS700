@@ -11,6 +11,10 @@ These do not block the initial Grid pilot, but they should be resolved before th
 2. **Second dataset:** Should the second dataset test multiclass behavior, mixed feature types,
    or simply replicate the numerical binary setting? This choice changes preprocessing,
    attribution targets, and the strength of the conclusions.
+   **2026-09-17 recommendation:** audit Spambase first, pending Yu's authorization and
+   committee scope review; it is not selected or downloaded. See
+   `docs/SECOND_DATASET_DECISION.md` for alternatives, metadata discrepancies and pre-split
+   integrity gates. A review-ready, unsent request is in `docs/COMMITTEE_CHECKIN_2026-09-17.md`.
 3. **Compute:** Will experiments run on Apple Silicon, an NVIDIA GPU, a university server, or a
    cloud notebook? Determinism, package installation, and timing comparisons depend on this.
 4. **Explanation target:** Is predicted-class attribution the committee's intended primary

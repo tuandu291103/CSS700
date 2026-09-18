@@ -94,6 +94,9 @@ Pilot-dataset progress through 2026-09-17:
   do not count this diagnostic as an implemented or evaluated SOM2IMG CNN.
 - [ ] Resolve the second dataset and authoritative SOM2IMG implementation before expanding the
   full controlled matrix.
+- [x] Prepare a source-backed second-dataset recommendation, synthetic larger-grid checks
+  and an unsent committee decision note. See `docs/logs/2026-09-17-scope-readiness.md`.
+  Spambase is recommended for an audit only; selection/authorization and raw integrity remain open.
 
 Next bounded milestone: resolve the second-dataset choice and authoritative SOM2IMG
 implementation/rendering/tracing settings with Yu/the committee, then freeze the matched
@@ -104,6 +107,11 @@ Additional pilot comparisons do not replace these full-matrix decisions. Raw art
 also remains separate from Git source synchronization because generated run bundles are ignored.
 The LIME run's performance-counter/UTC timestamp discrepancy prevents an efficiency claim;
 cross-method timing still needs a dedicated verified protocol.
+
+Immediate proposal: authorize a pinned Spambase integrity audit without modeling, then review
+missingness/duplicate/group findings before freezing its split. A second-dataset Grid track
+can progress independently while the SOM2IMG source/collision request is resolved. Neither
+recommendation nor an unsent committee draft counts as approval.
 
 On-track check (2026-09-17): the seed-42 LIME pilot milestone is complete, but only three
 of the expected 12 CNN conditions are complete (one dataset x Grid x three seeds). This is

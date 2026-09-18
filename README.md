@@ -219,6 +219,12 @@ The second-dataset choice and authoritative SOM2IMG collision/allocation policy 
 necessary for the full study. Generated run bundles are local and ignored by Git;
 committing or pushing source code does not back up the raw research artifacts.
 
+The next-phase recommendation is in `docs/SECOND_DATASET_DECISION.md`: audit Spambase before
+selection or training, with explicit missingness, duplicate/group and explainer-semantic checks.
+`docs/COMMITTEE_CHECKIN_2026-09-17.md` is an unsent draft requesting the remaining scope and
+authoritative SOM2IMG decisions. See `docs/logs/2026-09-17-scope-readiness.md` for this session's
+review; no second dataset has been selected or evaluated.
+
 ## SOM2IMG readiness
 
 Before the first SOM2IMG CNN, audit native SOM feature assignments with:

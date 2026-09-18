@@ -131,6 +131,12 @@ The original-v1 test pilot is now complete; see `docs/logs/2026-09-17-lime-test-
 and 30 fit-quality summaries. Accepted sources and all saved calculations were audited;
 no model retraining, fit-quality filter or test-driven setting changes were made.
 
+Second-dataset readiness is documented in `docs/SECOND_DATASET_DECISION.md` and
+`docs/logs/2026-09-17-scope-readiness.md`: Spambase is recommended for a pre-split integrity
+audit, not selected or evaluated. Six synthetic larger-grid/CNN tests extend compatibility
+coverage; they add no empirical dataset result. Authoritative SOM2IMG collision and matched
+comparison choices remain pending in the unsent committee check-in draft.
+
 ## 5. Results
 
 - Predictive performance.
