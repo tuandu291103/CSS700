@@ -1,0 +1,8 @@
+dataset: spambase
+source_url: https://archive.ics.uci.edu/static/public/94/spambase.zip
+receipt_sha256: daf9ff330eb629d7574dd21dc85b76ea7533595d6ec6680015c1d732d850a0bd
+file_sha256:
+  spambase.zip: 813ac1df8effac70463c09c9c4b11e8803eefcab54771af66150852bcdcd1636
+  spambase.data: b1ef93de71f97714d3d7d4f58fc9f718da7bbc8ac8a150eff2778616a8097b12
+  spambase.names: df418fab7923f929237b81efa0987ddfaf2d68cf61291243625aadc684d5ab6a
+  spambase.DOCUMENTATION: 462e4ffba1241a5962d528364708d188dc75931d56a25a8e9b6c8bb25e094cfd
