@@ -14,6 +14,13 @@ no split, preprocessing or model was fitted. Next decision: inclusion and a pros
 group-aware split/label/evaluation policy. The original September 17 rationale and proposed
 sequence below are preserved as history; committee approval remains outstanding.
 
+**Subsequent continuation:** Spambase is now the working second dataset. A frozen v1
+grouped split kept every row/label and passed overlap/class-count gates, but assigned all
+183 repeated-feature groups to validation/test. Scientific review holds v1 as diagnostic-only;
+no preprocessing or modeling followed. See
+[`the split-policy report`](logs/2026-09-19-spambase-grouped-split.md). The immediate next
+step is a prospective allocation-policy correction, not dataset rejection or seed searching.
+
 ## Recommendation and comparison
 
 **Audit Spambase first**, subject to Yu's approval; do not yet freeze it as the second dataset.

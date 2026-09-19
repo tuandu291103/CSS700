@@ -226,9 +226,19 @@ involving six rows. All rows/labels were retained; no split or model was created
 See `docs/SPAMBASE_DATA_CARD.md`, `docs/SPAMBASE_AUDIT_PROTOCOL.md` and the session report
 `docs/logs/2026-09-19-spambase-readiness.md`.
 
-Next: confirm dataset inclusion and freeze group-aware splitting, conflict handling and
-training-only preprocessing before modeling. Integrity acceptance is not training readiness
-or committee approval. The matrix remains 3/12 expected CNN conditions.
+**Subsequent split-policy checkpoint:** Spambase is the working second dataset, with all
+rows/labels retained. The frozen v1 trial produced 3,221 / 690 / 690 rows and no feature-group
+overlap, but scientific review found every repeated-feature group was assigned to validation
+or test. **V1 is diagnostic-only, not an accepted training split**, despite passing its
+technical gates. See `docs/logs/2026-09-19-spambase-grouped-split.md` and the explicit hold in
+`configs/spambase_split_v1_review.yaml`. No preprocessing or model was fitted.
+The current suite has **131 passing tests**, including the post-run regression documenting
+the diagnosed policy defect; test success does not override the scientific hold.
+
+Next: prospectively revise and validate the allocation policy, including group-size balance,
+before accepting a split or running training-only preflight. Preserve v1; do not search seeds
+or silently override the hold. The matrix remains 3/12 expected CNN conditions. Committee
+scope approval and authoritative SOM2IMG guidance remain separate open decisions.
 `docs/SECOND_DATASET_DECISION.md` preserves the original recommendation and audit update;
 `docs/COMMITTEE_CHECKIN_2026-09-17.md` remains an unsent scope/SOM2IMG decision request.
 To repeat the offline audit from a clean code state using the retained pinned source:

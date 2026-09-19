@@ -22,3 +22,9 @@ duplicate/conflicting-label findings and the outstanding split-policy gate. Sour
 hashes are tracked in `configs/spambase_source_v1.yaml`; raw bytes and audit outputs remain
 ignored. A new download receipt is a different acquisition and must not silently replace
 that lock. Hashes and Git source synchronization are not an artifact backup.
+
+The later v1 grouped allocation is **diagnostic-only**, despite its automatic technical pass.
+All repeated-feature groups were assigned to validation/test. The scientific hold and exact
+run pins are in `configs/spambase_split_v1_review.yaml`; see
+`docs/logs/2026-09-19-spambase-grouped-split.md`. Do not use v1 for fitting. A future data loader
+must verify affirmative scientific acceptance of a revised split, not just a passing run status.

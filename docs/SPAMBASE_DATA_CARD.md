@@ -1,8 +1,10 @@
-# Spambase data card: audited candidate, not yet selected
+# Spambase data card: working second dataset, split not yet accepted
 
-Status: **2026-09-19 pre-split integrity audit passed; split-policy review required**.
-Yu authorized this audit by continuing the proposed readiness milestone. No committee
-approval, final dataset selection, split, preprocessing fit or model result is implied.
+Status: **2026-09-19 source integrity passed; v1 grouped split held as diagnostic-only**.
+Yu continued with Spambase as the working second dataset after the source audit. The first
+frozen allocation passed technical checks but put every repeated-feature group into
+validation/test. It is not scientifically accepted for preprocessing or modeling.
+No committee approval, preprocessing fit or model result is implied.
 
 ## Source, attribution and retained version
 
@@ -74,17 +76,20 @@ messages are outside this audit.
 
 All original rows, labels and feature values are retained unchanged. Whole-release values
 and labels were inspected for pre-split integrity/grouping only; a later test partition
-must not be described as never previously inspected. No partitions, learned scaler,
-feature selection, SOM, CNN, tree model or explanation were created.
+must not be described as never previously inspected. The source audit created no partitions.
+The subsequent v1 trial created diagnostic row assignments only; no learned scaler,
+feature selection, SOM, CNN, tree model or explanation was fitted.
 
-Recommendation, **not yet an executed or frozen policy**: retain all rows and original
-labels, keep each exact feature group wholly within one partition, and prospectively
-define a group-aware split targeting nominal 70/15/15 allocation. Specify class-balance
-tolerance, deterministic allocation, seeds and grouped evaluation/uncertainty rules before
-model outcomes. Actual row counts need not equal a stratified row split. The mixed-label
-groups need an explicit retain/exclude policy; retention avoids inventing corrected labels.
-Keeping duplicates together prevents that specific cross-partition overlap, not every
-possible source of leakage or dependence.
+The frozen v1 policy retains all original rows/labels, including conflicting pairs, and
+keeps exact feature groups together with a nominal 70/15/15 row allocation and seed 42.
+It also specifies class-balance tolerances, training-only preprocessing principles and
+row-primary/group-equal sensitivity evaluation. However, its first allocation of
+3,221 / 690 / 690 rows routed all 183 repeated groups into validation/test and left training
+with only singleton groups. The review in `configs/spambase_split_v1_review.yaml` explicitly
+withholds scientific acceptance. See `SPAMBASE_SPLIT_PROTOCOL.md` and the split session
+report for the diagnosis and proposed prospective v2 amendment. Keep the same source and
+original-label policy; do not silently relabel, discard rows, change seeds or overwrite v1.
+Group disjointness alone does not establish a suitable or independent benchmark split.
 
 Subsequent compatibility checks must use training-only references: constant columns,
 scaling, LIME binning and integer-count sampling semantics, SHAP background budgets and
@@ -106,7 +111,8 @@ Accepted run: `artifacts/20260919-090210-691352__spambase__readiness-audit/`.
 An independent NumPy parser/grouping calculation reproduced the counts and verified all
 4,601 row memberships, 57 profiles and six recorded input hashes.
 
-Decision: **go to split-policy review; not training-ready**. Final selection and the
-prospective split/preprocessing/evaluation contract remain open. Authoritative SOM2IMG
-collision/allocation guidance is a separate gate. Raw data and run outputs are local and
-Git-ignored; a source commit or push is not their backup.
+Split follow-up: [`logs/2026-09-19-spambase-grouped-split.md`](logs/2026-09-19-spambase-grouped-split.md).
+Decision: **hold v1; revise allocation prospectively before training-only preflight**.
+Committee scope review and authoritative SOM2IMG collision/allocation guidance remain
+separate gates. Raw data and run outputs are local and Git-ignored; a source commit or push
+is not their backup.

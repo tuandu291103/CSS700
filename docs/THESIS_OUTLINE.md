@@ -141,7 +141,18 @@ checks, but 183 repeated-feature groups (577 rows), including three conflicting 
 no partition, preprocessing fit or model was created. Explicitly disclose full-release
 pre-split integrity inspection, numerical-equality definitions and lack of message/source
 group IDs. Inclusion, split/conflict/evaluation policy and authoritative SOM2IMG collision
-and matched-comparison choices remain open; this audit is not a predictive or novelty result.
+and matched-comparison choices remained open at the audit checkpoint; this was not a
+predictive or novelty result.
+
+The subsequent v1 grouped split is documented in `docs/SPAMBASE_SPLIT_PROTOCOL.md` and
+`docs/logs/2026-09-19-spambase-grouped-split.md`. It retained all rows/labels and produced
+3,221 / 690 / 690 rows with zero cross-partition feature-group overlap. It is **not accepted
+for modeling**: the squared-relative-deficit heuristic with largest-first ordering routed
+all 183 repeated-feature groups into held-out partitions. Independent exact-arithmetic
+replay confirmed the protocol was executed correctly; the allocation objective/gates need
+a prospective v2 revision. Report this as split-design validation, not a model result or
+post-outcome partition selection. No preprocessing or training occurred. The source remains
+the working second dataset, subject to committee scope review; retain the diagnostic v1.
 
 ## 5. Results
 

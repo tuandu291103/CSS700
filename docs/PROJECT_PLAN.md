@@ -101,8 +101,12 @@ Pilot-dataset progress through 2026-09-17:
   independent count/membership verification. See `docs/logs/2026-09-19-spambase-readiness.md`:
   4,601 rows/57 features pass integrity checks; 183 duplicate groups and three conflicting
   groups require explicit policy. All original rows/labels are retained; 114 tests pass.
-- [ ] Confirm inclusion and freeze the prospective group-aware split, conflicting-label,
-  preprocessing and grouped evaluation contract before any Spambase modeling.
+- [x] Proceed with Spambase as the working second dataset; freeze and inspect one grouped
+  split with original labels, preprocessing principles and grouped evaluation policy.
+  V1 is **diagnostic-only**: technical gates passed, but all repeated groups were held out.
+  See `docs/logs/2026-09-19-spambase-grouped-split.md`; no fitting occurred.
+- [ ] Prospectively correct the allocation policy and accept a v2 structural audit before
+  training-only preprocessing/encoding/compute preflight. Committee scope review stays open.
 
 Next bounded milestone: resolve the second-dataset choice and authoritative SOM2IMG
 implementation/rendering/tracing settings with Yu/the committee, then freeze the matched
@@ -114,16 +118,16 @@ also remains separate from Git source synchronization because generated run bund
 The LIME run's performance-counter/UTC timestamp discrepancy prevents an efficiency claim;
 cross-method timing still needs a dedicated verified protocol.
 
-Immediate proposal: review the completed Spambase audit and confirm dataset inclusion plus
-a prospective group-aware split policy. Recommend retaining original rows/labels and keeping
-identical feature vectors together, with explicit handling of mixed-label groups and grouped
-evaluation. Freeze allocation, seeds and training-only preprocessing before fitting. A
+Immediate proposal: fix the diagnosed v1 allocation-policy bias under a separate prospective
+v2 contract. Retain all original rows/labels, fixed split seed and group disjointness; validate
+mixed group sizes and freeze additional structural gates before allocation. The v1 runner's
+automatic pass does not override its scientific hold. Accept a revised split before fitting. A
 second-dataset Grid track can progress independently while the SOM2IMG source/collision
 request is resolved. Neither audit success nor an unsent committee draft counts as approval.
 
-On-track check (2026-09-19): the LIME pilot and Spambase integrity milestones are complete,
-but only three of the expected 12 CNN conditions are complete (one dataset x Grid x three
-seeds). This is
+On-track check (2026-09-19): the LIME pilot, Spambase integrity and v1 split-review milestones
+are complete, but an accepted Spambase split is still outstanding. Only three of the expected
+12 CNN conditions are complete (one dataset x Grid x three seeds). This is
 not a percentage of thesis completion. The second-dataset and authoritative SOM2IMG decisions
 are the largest full-scope dependencies; the exact committee/defense calendar is unconfirmed.
 

@@ -1,5 +1,12 @@
 # Spambase grouped split v1: prospective partition-only contract
 
+**Post-execution review:** v1 is diagnostic-only and **not accepted for preprocessing or
+modeling**. Although technical gates passed, all repeated-feature groups went to held-out
+partitions. See `configs/spambase_split_v1_review.yaml` and
+[`the session report`](logs/2026-09-19-spambase-grouped-split.md).
+The frozen pre-execution protocol below is retained unchanged in substance; its original
+version is at commit `d9b17a82cbe30d02f05e01dc4a08dc62f89f12f0`.
+
 Date: **2026-09-19**, following the completed source-integrity audit. Yu's continuation
 authorizes proceeding with Spambase as the working second dataset and implementing the
 recommended grouped split with original labels retained. This is not committee approval

@@ -80,6 +80,21 @@ def test_exact_objective_against_independent_fraction_arithmetic():
         counts = candidates[chosen]
 
 
+def test_v1_diagnostic_early_small_partition_preference():
+    # Added AFTER v1's real allocation: documents the diagnosed policy defect.
+    # V1 is retained for reproduction, not accepted for training.
+    values = synthetic_values(1000)
+    values[:, 0] = np.arange(1000) / 100
+    values[:, -1] = 0
+    values[600:, -1] = 1
+    repeated = [0, 1, 2, 3, 4, 5, 600, 601, 602, 603]
+    values[repeated, :-1] = values[0, :-1]
+    _, allocations = allocate_groups(duplicate_groups(values)[2])
+    assert allocations[0]["row_ids"] == repeated
+    assert allocations[0]["class_counts"] == [6, 4]
+    assert allocations[0]["partition"] == "validation"
+
+
 @pytest.mark.parametrize("kind", ["duplicate", "omission", "fractional", "label"])
 def test_bad_membership_rejected(kind):
     members = memberships()
