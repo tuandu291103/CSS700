@@ -219,11 +219,28 @@ The second-dataset choice and authoritative SOM2IMG collision/allocation policy 
 necessary for the full study. Generated run bundles are local and ignored by Git;
 committing or pushing source code does not back up the raw research artifacts.
 
-The next-phase recommendation is in `docs/SECOND_DATASET_DECISION.md`: audit Spambase before
-selection or training, with explicit missingness, duplicate/group and explainer-semantic checks.
-`docs/COMMITTEE_CHECKIN_2026-09-17.md` is an unsent draft requesting the remaining scope and
-authoritative SOM2IMG decisions. See `docs/logs/2026-09-17-scope-readiness.md` for this session's
-review; no second dataset has been selected or evaluated.
+**2026-09-19 checkpoint:** the authorized Spambase integrity audit passed: 4,601 rows,
+57 features, no detected missing/invalid values, and **114 passing tests**. It found 183
+repeated-feature groups involving 577 rows, including three conflicting-label groups
+involving six rows. All rows/labels were retained; no split or model was created.
+See `docs/SPAMBASE_DATA_CARD.md`, `docs/SPAMBASE_AUDIT_PROTOCOL.md` and the session report
+`docs/logs/2026-09-19-spambase-readiness.md`.
+
+Next: confirm dataset inclusion and freeze group-aware splitting, conflict handling and
+training-only preprocessing before modeling. Integrity acceptance is not training readiness
+or committee approval. The matrix remains 3/12 expected CNN conditions.
+`docs/SECOND_DATASET_DECISION.md` preserves the original recommendation and audit update;
+`docs/COMMITTEE_CHECKIN_2026-09-17.md` remains an unsent scope/SOM2IMG decision request.
+To repeat the offline audit from a clean code state using the retained pinned source:
+
+```bash
+make audit-spambase PYTHON=.venv/bin/python \
+  SOURCE_DIR=data/raw/20260919-090143-663503__spambase__uci-94
+```
+
+`make fetch-spambase PYTHON=.venv/bin/python` acquires a new official source bundle, not
+an audit or training run. A fresh receipt must be explicitly reviewed/pinned; do not replace
+the original source lock or treat a fresh download as the same acquisition.
 
 ## SOM2IMG readiness
 

@@ -132,10 +132,16 @@ and 30 fit-quality summaries. Accepted sources and all saved calculations were a
 no model retraining, fit-quality filter or test-driven setting changes were made.
 
 Second-dataset readiness is documented in `docs/SECOND_DATASET_DECISION.md` and
-`docs/logs/2026-09-17-scope-readiness.md`: Spambase is recommended for a pre-split integrity
-audit, not selected or evaluated. Six synthetic larger-grid/CNN tests extend compatibility
-coverage; they add no empirical dataset result. Authoritative SOM2IMG collision and matched
-comparison choices remain pending in the unsent committee check-in draft.
+`docs/logs/2026-09-17-scope-readiness.md`. Six synthetic larger-grid/CNN tests extend
+compatibility coverage without adding a trained result. The subsequent authorized Spambase
+integrity audit is complete: see `docs/SPAMBASE_DATA_CARD.md` and
+`docs/logs/2026-09-19-spambase-readiness.md`. All 4,601 rows/57 features pass structural
+checks, but 183 repeated-feature groups (577 rows), including three conflicting groups
+(six rows), motivate prospective group-aware splitting. No rows/labels were changed and
+no partition, preprocessing fit or model was created. Explicitly disclose full-release
+pre-split integrity inspection, numerical-equality definitions and lack of message/source
+group IDs. Inclusion, split/conflict/evaluation policy and authoritative SOM2IMG collision
+and matched-comparison choices remain open; this audit is not a predictive or novelty result.
 
 ## 5. Results
 

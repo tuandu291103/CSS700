@@ -1,8 +1,18 @@
 # Second-dataset decision brief
 
-Status: **recommendation only, 2026-09-17**. No selection or committee approval recorded.
-No candidate raw data downloaded, split, fitted, or scored in this review. Sources were
-consulted as metadata/documentation, not as instructions or evidence of expected model quality.
+Original review: **recommendation only, 2026-09-17**. No selection or committee approval
+was recorded, and no candidate raw data were downloaded, split, fitted or scored in that
+review. Sources supplied metadata/documentation, not instructions or expected model quality.
+
+**2026-09-19 update:** Yu subsequently authorized the bounded Spambase readiness audit.
+The official source is now downloaded/pinned and passes structural checks: 4,601 rows,
+57 features, no detected missing/invalid values. There are 183 repeated-feature groups
+involving 577 rows, including three conflicting-label pairs. See
+[`SPAMBASE_DATA_CARD.md`](SPAMBASE_DATA_CARD.md) and
+[`the audit report`](logs/2026-09-19-spambase-readiness.md). All rows/labels are retained;
+no split, preprocessing or model was fitted. Next decision: inclusion and a prospective
+group-aware split/label/evaluation policy. The original September 17 rationale and proposed
+sequence below are preserved as history; committee approval remains outstanding.
 
 ## Recommendation and comparison
 
