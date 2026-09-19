@@ -387,6 +387,18 @@ def build_parser() -> argparse.ArgumentParser:
     lime_test_parser.add_argument("--config", default="configs/lime_seed_42_v1.yaml")
     lime_test_parser.add_argument("--output-dir", default="artifacts")
     lime_test_parser.set_defaults(function=lime_test)
+    fetch_parser = subparsers.add_parser(
+        "fetch-spambase", help="pin the official UCI source archive"
+    )
+    fetch_parser.add_argument("--output-dir", default="data/raw")
+    fetch_parser.set_defaults(function=fetch_spambase_source)
+    audit_parser = subparsers.add_parser(
+        "audit-spambase", help="audit pinned Spambase without splitting or training"
+    )
+    audit_parser.add_argument("--source-dir", required=True)
+    audit_parser.add_argument("--source-lock", default="configs/spambase_source_v1.yaml")
+    audit_parser.add_argument("--output-dir", default="artifacts")
+    audit_parser.set_defaults(function=audit_spambase_source)
     return parser
 
 
@@ -415,6 +427,24 @@ def lime_test(args: argparse.Namespace) -> int:
     from css700.experiments.lime_test import run_lime_test
 
     summary = run_lime_test(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def fetch_spambase_source(args: argparse.Namespace) -> int:
+    from css700.experiments.spambase_audit import fetch_spambase
+
+    summary = fetch_spambase(Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def audit_spambase_source(args: argparse.Namespace) -> int:
+    from css700.experiments.spambase_audit import run_spambase_audit
+
+    summary = run_spambase_audit(
+        Path(args.source_dir), Path(args.source_lock), Path(args.output_dir)
+    )
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 
