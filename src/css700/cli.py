@@ -399,6 +399,12 @@ def build_parser() -> argparse.ArgumentParser:
     audit_parser.add_argument("--source-lock", default="configs/spambase_source_v1.yaml")
     audit_parser.add_argument("--output-dir", default="artifacts")
     audit_parser.set_defaults(function=audit_spambase_source)
+    split_parser = subparsers.add_parser(
+        "split-spambase", help="freeze verified whole-feature-group partitions without training"
+    )
+    split_parser.add_argument("--config", default="configs/spambase_split_v1.yaml")
+    split_parser.add_argument("--output-dir", default="artifacts")
+    split_parser.set_defaults(function=split_spambase_source)
     return parser
 
 
@@ -445,6 +451,14 @@ def audit_spambase_source(args: argparse.Namespace) -> int:
     summary = run_spambase_audit(
         Path(args.source_dir), Path(args.source_lock), Path(args.output_dir)
     )
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def split_spambase_source(args: argparse.Namespace) -> int:
+    from css700.experiments.spambase_split import run_spambase_split
+
+    summary = run_spambase_split(Path(args.config), Path(args.output_dir))
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 
