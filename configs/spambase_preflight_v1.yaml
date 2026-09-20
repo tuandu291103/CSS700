@@ -1,0 +1,22 @@
+protocol: spambase_training_preflight_v1
+review_path: configs/spambase_split_v2_review.yaml
+review_sha256: 9bb30a55b1a0cb0ccea612d6c98f91f26cab12238090f96474692e444d29a7ff
+policy:
+  fit_scope: accepted_training_rows_only
+  heldout_transform: false
+  scaler: sklearn_standard_scaler_population_variance
+  feature_selection: none
+  grid:
+    rows: 8
+    columns: 8
+    padding_value: 0.0
+    order: source
+  statistics_rtol: 1.0e-10
+  statistics_atol: 1.0e-12
+  standardized_moment_atol: 1.0e-10
+  smoke:
+    device: cpu
+    batch_size: 32
+    seed: 42
+    threads: 1
+    optimizer_steps: 0
