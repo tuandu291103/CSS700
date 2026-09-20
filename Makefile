@@ -1,7 +1,7 @@
 .PHONY: install install-research test lint format doctor pilot train-grid grad-cam integrated-gradients occlusion faithfulness grid-stability train-tabular-baselines audit-som-mapping clean
 
 .PHONY: tree-shap tree-shap-replicas tree-shap-stability lime-preflight lime-locality lime-test
-.PHONY: fetch-spambase audit-spambase split-spambase
+.PHONY: fetch-spambase audit-spambase split-spambase split-spambase-v2
 
 PYTHON ?= python3
 
@@ -78,6 +78,9 @@ audit-spambase:
 
 split-spambase:
 	PYTHONPATH=src $(PYTHON) -m css700.cli split-spambase --config configs/spambase_split_v1.yaml
+
+split-spambase-v2:
+	PYTHONPATH=src $(PYTHON) -m css700.cli split-spambase-v2 --config configs/spambase_split_v2.yaml
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +

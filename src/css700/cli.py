@@ -405,6 +405,12 @@ def build_parser() -> argparse.ArgumentParser:
     split_parser.add_argument("--config", default="configs/spambase_split_v1.yaml")
     split_parser.add_argument("--output-dir", default="artifacts")
     split_parser.set_defaults(function=split_spambase_source)
+    split_v2_parser = subparsers.add_parser(
+        "split-spambase-v2", help="run the corrected grouped allocation before scientific review"
+    )
+    split_v2_parser.add_argument("--config", default="configs/spambase_split_v2.yaml")
+    split_v2_parser.add_argument("--output-dir", default="artifacts")
+    split_v2_parser.set_defaults(function=split_spambase_source_v2)
     return parser
 
 
@@ -459,6 +465,14 @@ def split_spambase_source(args: argparse.Namespace) -> int:
     from css700.experiments.spambase_split import run_spambase_split
 
     summary = run_spambase_split(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def split_spambase_source_v2(args: argparse.Namespace) -> int:
+    from css700.experiments.spambase_split_v2 import run_spambase_split_v2
+
+    summary = run_spambase_split_v2(Path(args.config), Path(args.output_dir))
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 
