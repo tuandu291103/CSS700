@@ -164,6 +164,15 @@ hashes were checked. The review pins the accepted split; v1 is not retrospective
 Report remaining rare group-size differences and dependence limitations. This is pre-model
 methodology correction, not outcome-driven splitting, novelty or a new predictive result.
 
+The training-only preflight is now complete on those exact v2 IDs: StandardScaler fitted
+3,220 rows, all 57 named features retained, and row-major 8×8 images with seven zero-padding
+pixels. A separate NumPy calculation reproduced saved standardization exactly. Synthetic
+tracing probes excluded padding; a 32-row CPU forward/backward compatibility check changed
+no model weights. No held-out preprocessing or predictive/explanation evaluation occurred.
+See `docs/SPAMBASE_PREFLIGHT_PROTOCOL.md` and
+`docs/logs/2026-09-20-spambase-training-preflight.md`. Treat this as methods validation;
+the next step is a frozen first Spambase Grid CNN training/validation protocol.
+
 ## 5. Results
 
 - Predictive performance.

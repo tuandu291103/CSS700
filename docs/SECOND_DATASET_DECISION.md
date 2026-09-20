@@ -28,7 +28,14 @@ See [`the v2 report`](logs/2026-09-19-spambase-grouped-split-v2.md) and
 `configs/spambase_split_v2_review.yaml`. V2 is accepted for training-only preflight; v1's
 hold remains. No preprocessing/model fitting or committee scope approval is implied.
 
-## Recommendation and comparison
+**2026-09-20 preflight completed:** Yu confirmed continuing with Spambase as an aligned
+second dataset. The reviewed v2 training rows now pass scaling, all-57-feature Grid and
+CPU compatibility checks, with no held-out transformation or optimizer updates. See
+[`the preflight report`](logs/2026-09-20-spambase-training-preflight.md). This fills the
+proposal's open second-public-dataset slot; it does not mean Spambase was named there or
+has committee approval. Next freeze the first Grid CNN training/validation protocol.
+
+## Original recommendation and comparison (September 17)
 
 **Audit Spambase first**, subject to Yu's approval; do not yet freeze it as the second dataset.
 My reasoning is to extend the study outside medicine while retaining a binary numeric setting,

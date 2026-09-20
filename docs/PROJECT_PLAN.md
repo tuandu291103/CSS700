@@ -108,11 +108,16 @@ Pilot-dataset progress through 2026-09-17:
 - [x] Prospectively correct the allocation policy and accept a v2 structural audit:
   3,220 / 691 / 690 rows, about 12.5% repeated-group rows per partition, zero group overlap.
   See `docs/logs/2026-09-19-spambase-grouped-split-v2.md`; 150 tests pass and v1 remains held.
-- [ ] Implement a reviewed-split-aware Spambase loader and training-only preprocessing,
-  Grid mapping/padding and compute preflight before the first Spambase model run.
+- [x] Implement a reviewed-split-aware Spambase loader and complete training-only scaling,
+  Grid mapping/padding/tracing probes and bounded CPU compatibility preflight. All 57
+  features are retained; no held-out transformation or optimizer steps. See
+  `docs/logs/2026-09-20-spambase-training-preflight.md`; 172 tests pass.
+- [ ] Freeze the first Spambase Grid CNN training/validation protocol and compute budget,
+  then run one bounded condition before explanation/multiseed expansion.
 
-Next bounded milestone: training-only Spambase data/encoding/compute preflight on the exact
-accepted v2 split. Resolve committee dataset scope and authoritative SOM2IMG implementation,
+Next bounded milestone: first Spambase Grid CNN training/validation condition, after freezing
+its protocol and budgets on the accepted v2 split/preflight. Resolve committee dataset scope
+and authoritative SOM2IMG implementation,
 rendering/tracing settings separately; freeze the matched encoder comparison before SOM
 fitting or comparative CNN experiments. Validate mapping and one matched training condition
 before expanding the matrix. The LIME test pilot and its earlier training diagnostic
@@ -122,15 +127,16 @@ also remains separate from Git source synchronization because generated run bund
 The LIME run's performance-counter/UTC timestamp discrepancy prevents an efficiency claim;
 cross-method timing still needs a dedicated verified protocol.
 
-Immediate proposal: consume `configs/spambase_split_v2_review.yaml` with strict identity and
-affirmative-review checks, fit preprocessing only on its training rows, and verify all
-57 feature identities, Grid padding and dataset-specific class names. Freeze feasibility
-budgets and model/explainer settings before test evaluation. V1 remains diagnostic-only. A
+Immediate proposal: consume `configs/spambase_preflight_v1_review.yaml` and its exact split,
+scaler and Grid identities. Freeze model seeds, architecture/optimizer/epoch budget,
+validation-only checkpoint selection and test-use policy before training; freeze explainer
+settings/budgets before explanation/test evaluation. V1 remains diagnostic-only. A
 second-dataset Grid track can progress independently while the SOM2IMG source/collision
 request is resolved. Neither audit success nor an unsent committee draft counts as approval.
 
-On-track check (2026-09-19): the LIME pilot, Spambase integrity and v2 split-correction
-milestones are complete. An accepted split is now available; no Spambase fitting occurred.
+On-track check (2026-09-20): the LIME pilot, Spambase integrity, v2 split correction and
+training-only preprocessing/Grid/CPU preflight milestones are complete. One Spambase scaler
+has been fitted on training rows only; no Spambase model has been trained or evaluated.
 Only three of the expected 12 CNN conditions are complete (one dataset x Grid x three seeds).
 This is not a percentage of thesis completion. The new dataset pipeline and authoritative
 SOM2IMG decisions remain major full-scope dependencies; the exact committee/defense calendar

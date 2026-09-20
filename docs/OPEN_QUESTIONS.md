@@ -16,11 +16,16 @@ These do not block the initial Grid pilot, but they should be resolved before th
    held-out partitions. Yu then authorized a prospective v2 correction; that split is now
    independently verified and accepted for training-only preflight: 3,220 / 691 / 690 rows,
    about 12.5% repeated-group rows per partition and unchanged original labels/seed.
-   No preprocessing or model was fitted. See `docs/SPAMBASE_DATA_CARD.md`,
+   No preprocessing or model was fitted at that split checkpoint. See `docs/SPAMBASE_DATA_CARD.md`,
    `docs/logs/2026-09-19-spambase-grouped-split-v2.md` and
    `configs/spambase_split_v2_review.yaml`. Committee scope review is still pending.
    `docs/SECOND_DATASET_DECISION.md` preserves alternatives and scope rationale. The
    committee request in `docs/COMMITTEE_CHECKIN_2026-09-17.md` remains unsent.
+   **2026-09-20:** Yu confirmed continuing with Spambase if aligned with the proposal.
+   Training-only scaling, all-57-feature Grid mapping and CPU compatibility now pass;
+   no held-out transformation, model updates or predictions were evaluated. See
+   `docs/logs/2026-09-20-spambase-training-preflight.md`. Next freeze the first Grid CNN
+   training protocol; committee approval is still not implied.
 3. **Compute:** Will experiments run on Apple Silicon, an NVIDIA GPU, a university server, or a
    cloud notebook? Determinism, package installation, and timing comparisons depend on this.
 4. **Explanation target:** Is predicted-class attribution the committee's intended primary

@@ -242,10 +242,22 @@ and exact-arithmetic replay support the affirmative review in
 `configs/spambase_split_v2_review.yaml`. V1 remains diagnostic-only. See
 `docs/SPAMBASE_SPLIT_V2_PROTOCOL.md` and `docs/logs/2026-09-19-spambase-grouped-split-v2.md`.
 
-Next: use that exact accepted split for training-only data/preprocessing/encoding/compute
-preflight, with a loader that checks the review and pins. No preprocessing or model has
-yet been fitted on Spambase. The matrix remains 3/12 expected CNN conditions. Committee
-scope approval and authoritative SOM2IMG guidance remain separate open decisions.
+**2026-09-20 preflight accepted:** the reviewed-split-aware loader, training-only scaling,
+57-feature 8×8 Grid (seven padding pixels), synthetic tracing probes and bounded CPU
+forward/backward check passed. The scaler used only the 3,220 training rows; no held-out
+rows were transformed and no model weights were updated. Independent NumPy calculations
+reproduced the saved standardization exactly. The suite now has **172 passing tests**.
+See `docs/SPAMBASE_PREFLIGHT_PROTOCOL.md`, `configs/spambase_preflight_v1_review.yaml`
+and `docs/logs/2026-09-20-spambase-training-preflight.md`.
+
+Next: freeze the first Spambase Grid CNN training/validation protocol and budgets on this
+exact split and mapping. No Spambase classifier has been trained or evaluated yet. The
+matrix remains 3/12 expected CNN conditions. Committee scope approval and authoritative
+SOM2IMG guidance remain separate open decisions. To replay the bounded preflight:
+
+```bash
+make preflight-spambase PYTHON=.venv/bin/python
+```
 
 To reproduce the frozen v2 allocation (a replay is not automatically a new accepted source):
 

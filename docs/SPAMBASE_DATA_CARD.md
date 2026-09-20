@@ -1,10 +1,10 @@
-# Spambase data card: working second dataset, v2 split accepted for preflight
+# Spambase data card: working second dataset, training-only preflight accepted
 
-Status: **2026-09-19 source integrity and corrected v2 split accepted for training-only
-preflight; v1 remains diagnostic-only**. Yu authorized the prospective correction after
+Status: **2026-09-20 training-only preprocessing/Grid/CPU preflight accepted on the reviewed
+v2 split; v1 remains diagnostic-only**. Yu authorized the prospective correction after
 the first frozen allocation concentrated every repeated-feature group in validation/test.
 V2 balances group structure under unchanged source, inclusion, labels and seed. No committee
-approval, preprocessing fit or model result is implied.
+approval or model result is implied. One scaler has now been fitted on training rows only.
 
 ## Source, attribution and retained version
 
@@ -98,12 +98,21 @@ messages or population representativeness.
 
 The affirmative review `configs/spambase_split_v2_review.yaml` pins the accepted artifacts
 and fingerprint `6d0b7926d502366e3f4dff8e905d1ffaa513f44d086bdf37d4509b314aabd39d`.
-Only this reviewed split may feed the next training-only preflight; do not silently use a
+Only this reviewed split may feed preprocessing/modeling; do not silently use a
 fresh replay, change seeds or promote v1. Original run summaries and all v1 pins are unchanged.
 
-Subsequent compatibility checks must use training-only references: constant columns,
-scaling, LIME binning and integer-count sampling semantics, SHAP background budgets and
-compute feasibility. The previous Breast Cancer protocol and artifacts stay unchanged.
+The subsequent preflight fitted StandardScaler on the 3,220 training rows only; all 57
+columns varied and none required a numerical scale safeguard. Training images use a
+fixed row-major 8×8 Grid with seven zero-padding pixels and explicit float32 conversion.
+One CPU forward/backward compatibility pass left weights unchanged; no classifier was
+trained, no held-out rows were transformed and no explanations were generated. See
+`SPAMBASE_PREFLIGHT_PROTOCOL.md`, `logs/2026-09-20-spambase-training-preflight.md` and the
+artifact pins in `configs/spambase_preflight_v1_review.yaml`. Separate NumPy calculations
+reproduced the saved scaling exactly. This is not evidence of predictive quality.
+
+Future checks still require training-only references for LIME binning and integer-count
+sampling semantics, SHAP background budgets and bounded model/explainer compute settings.
+The previous Breast Cancer protocol and artifacts stay unchanged.
 Numeric compatibility does not establish meaningful synthetic explanation neighborhoods.
 
 The source documentation describes a 1999 collection with work/personal vocabulary that
@@ -123,7 +132,9 @@ An independent NumPy parser/grouping calculation reproduced the counts and verif
 
 Split follow-ups: the [v1 diagnostic](logs/2026-09-19-spambase-grouped-split.md) and
 [accepted v2 correction](logs/2026-09-19-spambase-grouped-split-v2.md).
-Decision: **v2 accepted for training-only data/encoding/compute preflight; v1 still held**.
+Preflight follow-up: [training-only compatibility report](logs/2026-09-20-spambase-training-preflight.md).
+Decision: **preflight accepted; freeze the first Grid CNN training/validation protocol;
+v1 still held and test evaluation not enabled**.
 Committee scope review and authoritative SOM2IMG collision/allocation guidance remain
 separate gates. Raw data and run outputs are local and Git-ignored; a source commit or push
 is not their backup.

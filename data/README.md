@@ -33,5 +33,9 @@ That separate v2 correction is now accepted **for training-only preflight**, wit
 691 / 690 rows, intact feature groups and balanced repeated-row shares. The authoritative
 review/pins are in `configs/spambase_split_v2_review.yaml`; the report is
 `docs/logs/2026-09-19-spambase-grouped-split-v2.md`. Preserve the exact accepted IDs and
-require this affirmative review when implementing the new loader. No Spambase preprocessing
-or model has been fitted yet, and v1 remains diagnostic-only.
+require this affirmative review in the new loader. The subsequent training-only preflight
+fitted one scaler on the 3,220 training rows and verified all 57 features in an 8×8 Grid.
+No held-out rows were transformed and no model parameters were updated. See
+`configs/spambase_preflight_v1_review.yaml` and
+`docs/logs/2026-09-20-spambase-training-preflight.md` for accepted artifact pins and evidence.
+Next freeze the first Grid CNN training/validation protocol; v1 remains diagnostic-only.
