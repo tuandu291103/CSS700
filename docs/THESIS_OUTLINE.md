@@ -170,8 +170,10 @@ pixels. A separate NumPy calculation reproduced saved standardization exactly. S
 tracing probes excluded padding; a 32-row CPU forward/backward compatibility check changed
 no model weights. No held-out preprocessing or predictive/explanation evaluation occurred.
 See `docs/SPAMBASE_PREFLIGHT_PROTOCOL.md` and
-`docs/logs/2026-09-20-spambase-training-preflight.md`. Treat this as methods validation;
-the next step is a frozen first Spambase Grid CNN training/validation protocol.
+`docs/logs/2026-09-20-spambase-training-preflight.md`. Treat this as methods validation.
+The subsequent first-CNN protocol reuses that scaler, trains seed 42 and selects on
+validation macro F1 only; see `docs/SPAMBASE_GRID_TRAINING_PROTOCOL.md`. Test tensors
+and scoring remain excluded from this new runner.
 
 ## 5. Results
 
@@ -182,7 +184,16 @@ the next step is a frozen first Spambase Grid CNN training/validation protocol.
 - Encoding effects.
 - Group analysis and computational cost.
 
-Pilot result to develop in the draft: the validation-selected Grid CNN achieved 0.9070 test
+**Spambase training/validation checkpoint (not a test result):** the first frozen seed-42
+Grid CNN selected epoch 64 and stopped at 76 with row-primary validation accuracy 0.9088
+and macro F1 0.9032. Training-majority validation scores were 0.6064 / 0.3775; group-equal
+CNN sensitivity was 0.9086 / 0.9038. An independent PyTorch replica reproduced all saved
+validation logits exactly. Validation selected the checkpoint, so these are optimistic
+selection-set diagnostics, not a new completed full-matrix result. No Spambase explanations
+or test predictions exist yet. See `docs/logs/2026-09-20-spambase-grid-first-training.md`.
+Next validate named-feature Grad-CAM tracing under a frozen validation-only protocol.
+
+Breast Cancer pilot result to develop in the draft: the validation-selected Grid CNN achieved 0.9070 test
 accuracy and 0.9017 macro F1, compared with 0.6279 accuracy and 0.3857 macro F1 for the
 majority-class baseline. Predicted-class Grad-CAM produced finite 5 x 6 maps for all 86 test
 samples and traced all 30 named features. The subsequent results below evaluate cross-method

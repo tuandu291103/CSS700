@@ -1,10 +1,12 @@
-# Spambase data card: working second dataset, training-only preflight accepted
+# Spambase data card: first Grid CNN training/validation accepted, test gate closed
 
-Status: **2026-09-20 training-only preprocessing/Grid/CPU preflight accepted on the reviewed
-v2 split; v1 remains diagnostic-only**. Yu authorized the prospective correction after
+Status: **2026-09-20 seed-42 Grid training/validation accepted on the reviewed v2 split
+and frozen preflight scaler; test evaluation closed; v1 remains diagnostic-only**.
+Yu authorized the prospective correction after
 the first frozen allocation concentrated every repeated-feature group in validation/test.
 V2 balances group structure under unchanged source, inclusion, labels and seed. No committee
-approval or model result is implied. One scaler has now been fitted on training rows only.
+approval or final test result is implied. One scaler was fitted on training rows only and
+reused without refitting for the first CNN.
 
 ## Source, attribution and retained version
 
@@ -110,6 +112,14 @@ trained, no held-out rows were transformed and no explanations were generated. S
 artifact pins in `configs/spambase_preflight_v1_review.yaml`. Separate NumPy calculations
 reproduced the saved scaling exactly. This is not evidence of predictive quality.
 
+The subsequent frozen seed-42 CNN trained on 3,220 rows and selected epoch 64 using only
+691 validation rows (stopping after epoch 76). Validation accuracy 90.88% and macro F1
+0.9032 exceed the training-derived majority baseline's 60.64% / 0.3775; group-equal
+sensitivity is 90.86% / 0.9038. These are selection-set results, not unbiased test estimates.
+The 690 test rows were not transformed or scored; no explanations were generated. See
+`SPAMBASE_GRID_TRAINING_PROTOCOL.md`, `logs/2026-09-20-spambase-grid-first-training.md`
+and `configs/spambase_grid_seed_42_v1_review.yaml`. Next freeze validation-only Grad-CAM.
+
 Future checks still require training-only references for LIME binning and integer-count
 sampling semantics, SHAP background budgets and bounded model/explainer compute settings.
 The previous Breast Cancer protocol and artifacts stay unchanged.
@@ -133,7 +143,8 @@ An independent NumPy parser/grouping calculation reproduced the counts and verif
 Split follow-ups: the [v1 diagnostic](logs/2026-09-19-spambase-grouped-split.md) and
 [accepted v2 correction](logs/2026-09-19-spambase-grouped-split-v2.md).
 Preflight follow-up: [training-only compatibility report](logs/2026-09-20-spambase-training-preflight.md).
-Decision: **preflight accepted; freeze the first Grid CNN training/validation protocol;
+Training follow-up: [first CNN validation report](logs/2026-09-20-spambase-grid-first-training.md).
+Decision: **seed-42 training/validation checkpoint accepted; freeze validation-only Grad-CAM;
 v1 still held and test evaluation not enabled**.
 Committee scope review and authoritative SOM2IMG collision/allocation guidance remain
 separate gates. Raw data and run outputs are local and Git-ignored; a source commit or push

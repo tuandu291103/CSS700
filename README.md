@@ -250,10 +250,26 @@ reproduced the saved standardization exactly. The suite now has **172 passing te
 See `docs/SPAMBASE_PREFLIGHT_PROTOCOL.md`, `configs/spambase_preflight_v1_review.yaml`
 and `docs/logs/2026-09-20-spambase-training-preflight.md`.
 
-Next: freeze the first Spambase Grid CNN training/validation protocol and budgets on this
-exact split and mapping. No Spambase classifier has been trained or evaluated yet. The
-matrix remains 3/12 expected CNN conditions. Committee scope approval and authoritative
-SOM2IMG guidance remain separate open decisions. To replay the bounded preflight:
+**First Spambase model accepted (September 20):** the fixed seed-42 Grid CNN selected
+epoch 64 and stopped at epoch 76. Validation accuracy is **90.88%**, macro F1 **0.9032**;
+the training-majority baseline gives 60.64% and 0.3775. Group-equal sensitivity is similar
+(90.86%, 0.9038). These are checkpoint-selection validation results, **not final test
+performance**. All 690 test rows remain untransformed/unscored. The suite has **190 passing
+tests**; an independent model replica reproduces the saved validation logits exactly.
+See `docs/SPAMBASE_GRID_TRAINING_PROTOCOL.md`, `configs/spambase_grid_seed_42_v1_review.yaml`
+and `docs/logs/2026-09-20-spambase-grid-first-training.md`.
+
+Next: freeze validation-only Grad-CAM feature tracing for this checkpoint, then the remaining
+explanation/faithfulness and seed plan before test use. The matrix remains 3/12 completed
+conditions plus one training/validation-only Spambase condition. Committee scope approval
+and authoritative SOM2IMG guidance remain separate open decisions. Training replay (new
+outputs are not automatically a new accepted source):
+
+```bash
+make train-spambase-grid PYTHON=.venv/bin/python
+```
+
+To replay the earlier bounded preflight:
 
 ```bash
 make preflight-spambase PYTHON=.venv/bin/python

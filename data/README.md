@@ -38,4 +38,9 @@ fitted one scaler on the 3,220 training rows and verified all 57 features in an 
 No held-out rows were transformed and no model parameters were updated. See
 `configs/spambase_preflight_v1_review.yaml` and
 `docs/logs/2026-09-20-spambase-training-preflight.md` for accepted artifact pins and evidence.
-Next freeze the first Grid CNN training/validation protocol; v1 remains diagnostic-only.
+The next milestone is also complete: the first seed-42 CNN reused the scaler and training
+images, transformed validation only, and selected a checkpoint using validation macro F1.
+All 690 test rows remain untransformed/unscored. Accepted model/input pins are in
+`configs/spambase_grid_seed_42_v1_review.yaml`; see
+`docs/logs/2026-09-20-spambase-grid-first-training.md`. Next freeze validation-only
+Grad-CAM tracing. V1 remains diagnostic-only and model/data bundles remain local/ignored.

@@ -35,6 +35,13 @@ CPU compatibility checks, with no held-out transformation or optimizer updates. 
 proposal's open second-public-dataset slot; it does not mean Spambase was named there or
 has committee approval. Next freeze the first Grid CNN training/validation protocol.
 
+**First model completed (September 20):** the frozen seed-42 Grid CNN achieved 90.88%
+validation accuracy and 0.9032 macro F1; group-equal sensitivity was similar. This is
+selection-set evidence of learnable signal, not final test performance or interpretability
+novelty. No test rows were transformed/scored and no model settings were changed after
+the run. See [`the first-training report`](logs/2026-09-20-spambase-grid-first-training.md).
+Next freeze validation-only Grad-CAM on this checkpoint; committee scope remains separate.
+
 ## Original recommendation and comparison (September 17)
 
 **Audit Spambase first**, subject to Yu's approval; do not yet freeze it as the second dataset.

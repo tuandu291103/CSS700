@@ -112,11 +112,15 @@ Pilot-dataset progress through 2026-09-17:
   Grid mapping/padding/tracing probes and bounded CPU compatibility preflight. All 57
   features are retained; no held-out transformation or optimizer steps. See
   `docs/logs/2026-09-20-spambase-training-preflight.md`; 172 tests pass.
-- [ ] Freeze the first Spambase Grid CNN training/validation protocol and compute budget,
-  then run one bounded condition before explanation/multiseed expansion.
+- [x] Freeze the first Spambase Grid CNN training/validation protocol and run seed 42:
+  epoch 64 selected, stopping at 76; validation accuracy 90.88%, macro F1 0.9032.
+  Independent inputs/metrics/checkpoint verification passed; 190 tests pass. See
+  `docs/logs/2026-09-20-spambase-grid-first-training.md`. No test scores or explanations yet.
+- [ ] Freeze and execute validation-only Grad-CAM tracing for that accepted checkpoint,
+  then the remaining explanation/faithfulness and seed plan before test evaluation.
 
-Next bounded milestone: first Spambase Grid CNN training/validation condition, after freezing
-its protocol and budgets on the accepted v2 split/preflight. Resolve committee dataset scope
+Next bounded milestone: validation-only predicted-class Grad-CAM on the accepted seed-42
+Spambase checkpoint, with a prospective mapping/padding/target protocol. Resolve committee dataset scope
 and authoritative SOM2IMG implementation,
 rendering/tracing settings separately; freeze the matched encoder comparison before SOM
 fitting or comparative CNN experiments. Validate mapping and one matched training condition
@@ -127,17 +131,19 @@ also remains separate from Git source synchronization because generated run bund
 The LIME run's performance-counter/UTC timestamp discrepancy prevents an efficiency claim;
 cross-method timing still needs a dedicated verified protocol.
 
-Immediate proposal: consume `configs/spambase_preflight_v1_review.yaml` and its exact split,
-scaler and Grid identities. Freeze model seeds, architecture/optimizer/epoch budget,
-validation-only checkpoint selection and test-use policy before training; freeze explainer
-settings/budgets before explanation/test evaluation. V1 remains diagnostic-only. A
+Immediate proposal: consume `configs/spambase_grid_seed_42_v1_review.yaml` and its exact
+checkpoint, validation rows, scaler and Grid identities. Freeze Grad-CAM target/layer/sign
+and mapping checks, then remaining explainer/faithfulness/uncertainty settings before test
+evaluation. Keep the frozen model settings and planned seeds; no validation tuning sweep.
+V1 remains diagnostic-only. A
 second-dataset Grid track can progress independently while the SOM2IMG source/collision
 request is resolved. Neither audit success nor an unsent committee draft counts as approval.
 
 On-track check (2026-09-20): the LIME pilot, Spambase integrity, v2 split correction and
-training-only preprocessing/Grid/CPU preflight milestones are complete. One Spambase scaler
-has been fitted on training rows only; no Spambase model has been trained or evaluated.
-Only three of the expected 12 CNN conditions are complete (one dataset x Grid x three seeds).
+training-only preprocessing/Grid/CPU preflight and first seed-42 training/validation are
+complete. One frozen scaler was reused; no Spambase test data were transformed or scored.
+Only three of the expected 12 CNN conditions are fully complete (one dataset x Grid x three seeds),
+plus one Spambase training/validation checkpoint awaiting explanations and final evaluation.
 This is not a percentage of thesis completion. The new dataset pipeline and authoritative
 SOM2IMG decisions remain major full-scope dependencies; the exact committee/defense calendar
 is unconfirmed.

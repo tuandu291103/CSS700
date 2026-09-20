@@ -24,8 +24,11 @@ These do not block the initial Grid pilot, but they should be resolved before th
    **2026-09-20:** Yu confirmed continuing with Spambase if aligned with the proposal.
    Training-only scaling, all-57-feature Grid mapping and CPU compatibility now pass;
    no held-out transformation, model updates or predictions were evaluated. See
-   `docs/logs/2026-09-20-spambase-training-preflight.md`. Next freeze the first Grid CNN
-   training protocol; committee approval is still not implied.
+   `docs/logs/2026-09-20-spambase-training-preflight.md`.
+   **Subsequent first-model checkpoint:** seed-42 Grid training/validation now passes:
+   90.88% validation accuracy, 0.9032 macro F1, epoch 64 selected. Test rows remain
+   untransformed/unscored. See `docs/logs/2026-09-20-spambase-grid-first-training.md`.
+   Next freeze validation-only Grad-CAM tracing; committee approval is still not implied.
 3. **Compute:** Will experiments run on Apple Silicon, an NVIDIA GPU, a university server, or a
    cloud notebook? Determinism, package installation, and timing comparisons depend on this.
 4. **Explanation target:** Is predicted-class attribution the committee's intended primary

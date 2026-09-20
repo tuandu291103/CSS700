@@ -1,0 +1,50 @@
+review_version: spambase_grid_train_validation_v1_review_1
+dataset: spambase
+training_config: configs/spambase_grid_seed_42_v1.yaml
+training_config_sha256: f9012cf1875353259014cdeb59b04426945112c6d3116be4afca7f9ff9e2f3c1
+execution_commit: 565b39f846911627ef1d83af386c8f38d68d3539
+run_dir: artifacts/20260920-172934-706220__spambase__grid__model-seed-42__train-validation-v1
+file_sha256:
+  best_checkpoint.pt: 0a39fd8e2a26bccb94039d0a946cdb412a69f537c7d45a674752e513ebe0d031
+  config.yaml: f9012cf1875353259014cdeb59b04426945112c6d3116be4afca7f9ff9e2f3c1
+  feature_map.json: 50206be13e69d4fbf72bb33bf2892e96e7223088c511316f48911e06616b2630
+  history.json: 7ef9c4e5d35b4d6b0edc224c81bbac207959afb59dc1fb0911c38222c5ae2f97
+  inputs.npz: da21ab939a9292c7efceb748e76fa0cd58e841f8c93a7ed26314961bf250a108
+  manifest.json: 3955c9c216da24aa19b9b400694ec0972e62db0be247114567123e10927f25a0
+  summary.json: 7579728ddf0992c7c43895940557c6ea7165aa8818aeb4cdd681d39fd6c37baa
+  validation_predictions.npz: d5ff9662dccaafd2072a74897be3bd89ed779317b2e73757e9b094b320e32b6c
+preflight_review: configs/spambase_preflight_v1_review.yaml
+preflight_review_sha256: 45c4eca0228f3af17bc872a316729626f410f0c4fa3610c104d2aac27c4e2362
+split_fingerprint: 6d0b7926d502366e3f4dff8e905d1ffaa513f44d086bdf37d4509b314aabd39d
+technical_status: ok
+acceptance: true
+acceptance_scope: seed_42_training_and_validation_checkpoint_only
+decision: go_to_validation_grad_cam_protocol
+test_evaluation_ready: false
+complete_cnn_matrix_condition: false
+committee_approval_claimed: false
+model_seed: 42
+epochs_completed: 76
+best_epoch: 64
+optimizer_steps: 7676
+stop_reason: early_stopping_patience
+validation_accuracy: 0.9088277858176556
+validation_macro_f1: 0.9032438739789965
+validation_selection_bias_disclosed: true
+independent_calculation:
+  status: passed
+  method: numpy_confusion_metrics_and_fresh_pytorch_replica_no_project_imports
+  input_hashes_verified: 31
+  manifest_listed_output_hashes_verified: 7
+  training_rows_verified: 3220
+  validation_rows_verified: 691
+  validation_feature_groups_verified: 629
+  epochs_selection_and_patience_verified: 76
+  replica_max_logit_difference: 0.0
+  float64_cross_entropy_absolute_difference: 6.544158104304643e-09
+  preserved_preflight_files_verified: 7
+  preserved_v1_files_verified: 6
+test_rows_transformed_or_scored: 0
+explanations_generated: 0
+scalers_refitted: 0
+report: docs/logs/2026-09-20-spambase-grid-first-training.md
