@@ -149,10 +149,20 @@ The subsequent v1 grouped split is documented in `docs/SPAMBASE_SPLIT_PROTOCOL.m
 3,221 / 690 / 690 rows with zero cross-partition feature-group overlap. It is **not accepted
 for modeling**: the squared-relative-deficit heuristic with largest-first ordering routed
 all 183 repeated-feature groups into held-out partitions. Independent exact-arithmetic
-replay confirmed the protocol was executed correctly; the allocation objective/gates need
+replay confirmed the protocol was executed correctly; the allocation objective/gates required
 a prospective v2 revision. Report this as split-design validation, not a model result or
 post-outcome partition selection. No preprocessing or training occurred. The source remains
 the working second dataset, subject to committee scope review; retain the diagnostic v1.
+
+The separately frozen v2 correction is now accepted for training-only preflight. See
+`docs/SPAMBASE_SPLIT_V2_PROTOCOL.md` and `docs/logs/2026-09-19-spambase-grouped-split-v2.md`.
+Target-weighted count deficits plus group-count/repeated-row components produced 3,220 /
+691 / 690 rows, zero numerical group overlap and repeated-row shares of 12.55% / 12.59% /
+12.46%. Source, labels, inclusion, seed and ordering are unchanged. Independent exact
+arithmetic replay verified all 4,207 choices; all 4,601 rows/labels/weights and input/output
+hashes were checked. The review pins the accepted split; v1 is not retrospectively accepted.
+Report remaining rare group-size differences and dependence limitations. This is pre-model
+methodology correction, not outcome-driven splitting, novelty or a new predictive result.
 
 ## 5. Results
 

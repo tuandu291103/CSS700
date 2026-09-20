@@ -12,12 +12,13 @@ These do not block the initial Grid pilot, but they should be resolved before th
    or simply replicate the numerical binary setting? This choice changes preprocessing,
    attribution targets, and the strength of the conclusions.
    **2026-09-19 update:** Yu continued with Spambase as the working second dataset after
-   its source audit. A prospectively frozen grouped split retained all original rows/labels,
-   but v1 assigned all repeated-feature groups to validation/test. It is diagnostic-only;
-   no preprocessing or model was fitted. The next decision is a prospective corrected v2
-   allocation policy with group-size diagnostics, not a different random seed. See
-   `docs/SPAMBASE_DATA_CARD.md`, `docs/logs/2026-09-19-spambase-readiness.md` and
-   `docs/logs/2026-09-19-spambase-grouped-split.md`. Committee scope review is still pending.
+   its source audit. V1 remains diagnostic-only because it concentrated repeated groups in
+   held-out partitions. Yu then authorized a prospective v2 correction; that split is now
+   independently verified and accepted for training-only preflight: 3,220 / 691 / 690 rows,
+   about 12.5% repeated-group rows per partition and unchanged original labels/seed.
+   No preprocessing or model was fitted. See `docs/SPAMBASE_DATA_CARD.md`,
+   `docs/logs/2026-09-19-spambase-grouped-split-v2.md` and
+   `configs/spambase_split_v2_review.yaml`. Committee scope review is still pending.
    `docs/SECOND_DATASET_DECISION.md` preserves alternatives and scope rationale. The
    committee request in `docs/COMMITTEE_CHECKIN_2026-09-17.md` remains unsent.
 3. **Compute:** Will experiments run on Apple Silicon, an NVIDIA GPU, a university server, or a

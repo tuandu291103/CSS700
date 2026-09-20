@@ -1,0 +1,30 @@
+review_version: spambase_split_v2_scientific_review_1
+dataset: spambase
+split_config: configs/spambase_split_v2.yaml
+split_config_sha256: ce53115aa248b8632308f0fe8802f0c107e6237b499739270ab432d8e5c15e34
+execution_commit: 9723173cf978ee9b9e2e5e21b4dd430b3538239a
+run_dir: artifacts/20260920-062733-688767__spambase__grouped-split-v2
+file_sha256:
+  config.yaml: ce53115aa248b8632308f0fe8802f0c107e6237b499739270ab432d8e5c15e34
+  manifest.json: 8e8c93a6c4949af37bd2f75c85cbcf59c125ad1cd9cd563d81653bc0d7020371
+  summary.json: b7bee4da58cca71280581a0e8fbb9db79c3a5727d09a775a099fd98a8f7daf15
+  split_row_ids.json: 03f9934d3d4af301fb786dc8572feee8fd955d8a3978befced6a51d8b5fb99e8
+  group_allocations.json: 92585bc204d66b64b63684210288e0510af595b16e9be8f43bb8fbd32567e328
+  row_assignments.json: 8ace1990c1627cdb2c689fca290e1613e3f9083f8ea7eb57def908d976043ce4
+split_fingerprint: 6d0b7926d502366e3f4dff8e905d1ffaa513f44d086bdf37d4509b314aabd39d
+technical_status: ok
+scientific_acceptance: true
+acceptance_scope: split_structure_for_training_only_preflight
+training_ready: false
+committee_approval_claimed: false
+decision: go_to_training_only_preflight
+independent_verification:
+  status: passed
+  parser_and_grouping: numpy_loadtxt_and_unique_no_project_imports
+  objective_replay: exact_Fraction_arithmetic_all_4207_choices
+  row_memberships_labels_weights_verified: 4601
+  input_hashes_verified: 14
+  manifest_listed_output_hashes_verified: 5
+  preserved_v1_file_hashes_verified: 6
+v1_remains_diagnostic_only: true
+report: docs/logs/2026-09-19-spambase-grouped-split-v2.md

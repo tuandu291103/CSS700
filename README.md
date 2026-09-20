@@ -232,13 +232,27 @@ overlap, but scientific review found every repeated-feature group was assigned t
 or test. **V1 is diagnostic-only, not an accepted training split**, despite passing its
 technical gates. See `docs/logs/2026-09-19-spambase-grouped-split.md` and the explicit hold in
 `configs/spambase_split_v1_review.yaml`. No preprocessing or model was fitted.
-The current suite has **131 passing tests**, including the post-run regression documenting
-the diagnosed policy defect; test success does not override the scientific hold.
+The v1 checkpoint had 131 passing tests; test success did not override its scientific hold.
 
-Next: prospectively revise and validate the allocation policy, including group-size balance,
-before accepting a split or running training-only preflight. Preserve v1; do not search seeds
-or silently override the hold. The matrix remains 3/12 expected CNN conditions. Committee
+**V2 correction accepted (September 19 local time):** the separately frozen allocation
+produced **3,220 / 691 / 690 rows**, with repeated-group row shares of **12.55% / 12.59% /
+12.46%** and zero feature-group overlap. All original rows/labels and split seed 42 are
+unchanged. The full suite now has **150 passing tests**. Independent raw-data verification
+and exact-arithmetic replay support the affirmative review in
+`configs/spambase_split_v2_review.yaml`. V1 remains diagnostic-only. See
+`docs/SPAMBASE_SPLIT_V2_PROTOCOL.md` and `docs/logs/2026-09-19-spambase-grouped-split-v2.md`.
+
+Next: use that exact accepted split for training-only data/preprocessing/encoding/compute
+preflight, with a loader that checks the review and pins. No preprocessing or model has
+yet been fitted on Spambase. The matrix remains 3/12 expected CNN conditions. Committee
 scope approval and authoritative SOM2IMG guidance remain separate open decisions.
+
+To reproduce the frozen v2 allocation (a replay is not automatically a new accepted source):
+
+```bash
+make split-spambase-v2 PYTHON=.venv/bin/python
+```
+
 `docs/SECOND_DATASET_DECISION.md` preserves the original recommendation and audit update;
 `docs/COMMITTEE_CHECKIN_2026-09-17.md` remains an unsent scope/SOM2IMG decision request.
 To repeat the offline audit from a clean code state using the retained pinned source:

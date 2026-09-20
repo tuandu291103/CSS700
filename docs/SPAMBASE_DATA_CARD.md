@@ -1,10 +1,10 @@
-# Spambase data card: working second dataset, split not yet accepted
+# Spambase data card: working second dataset, v2 split accepted for preflight
 
-Status: **2026-09-19 source integrity passed; v1 grouped split held as diagnostic-only**.
-Yu continued with Spambase as the working second dataset after the source audit. The first
-frozen allocation passed technical checks but put every repeated-feature group into
-validation/test. It is not scientifically accepted for preprocessing or modeling.
-No committee approval, preprocessing fit or model result is implied.
+Status: **2026-09-19 source integrity and corrected v2 split accepted for training-only
+preflight; v1 remains diagnostic-only**. Yu authorized the prospective correction after
+the first frozen allocation concentrated every repeated-feature group in validation/test.
+V2 balances group structure under unchanged source, inclusion, labels and seed. No committee
+approval, preprocessing fit or model result is implied.
 
 ## Source, attribution and retained version
 
@@ -87,9 +87,19 @@ row-primary/group-equal sensitivity evaluation. However, its first allocation of
 3,221 / 690 / 690 rows routed all 183 repeated groups into validation/test and left training
 with only singleton groups. The review in `configs/spambase_split_v1_review.yaml` explicitly
 withholds scientific acceptance. See `SPAMBASE_SPLIT_PROTOCOL.md` and the split session
-report for the diagnosis and proposed prospective v2 amendment. Keep the same source and
-original-label policy; do not silently relabel, discard rows, change seeds or overwrite v1.
-Group disjointness alone does not establish a suitable or independent benchmark split.
+report for the diagnosis. The subsequent prospective v2 correction is documented in
+`SPAMBASE_SPLIT_V2_PROTOCOL.md` and `logs/2026-09-19-spambase-grouped-split-v2.md`.
+It keeps the original-label policy and seed 42, with 3,220 / 691 / 690 rows and 2,946 / 629 /
+632 feature groups. Repeated-group row shares are 12.55% / 12.59% / 12.46%, versus 12.54%
+in the source. Every group stays intact; one unchanged conflicting pair happens to occur
+in each partition. Group-size bin differences remain visible in the report, including
+no size-6-to-10 group in validation. Group disjointness/balance do not establish independent
+messages or population representativeness.
+
+The affirmative review `configs/spambase_split_v2_review.yaml` pins the accepted artifacts
+and fingerprint `6d0b7926d502366e3f4dff8e905d1ffaa513f44d086bdf37d4509b314aabd39d`.
+Only this reviewed split may feed the next training-only preflight; do not silently use a
+fresh replay, change seeds or promote v1. Original run summaries and all v1 pins are unchanged.
 
 Subsequent compatibility checks must use training-only references: constant columns,
 scaling, LIME binning and integer-count sampling semantics, SHAP background budgets and
@@ -111,8 +121,9 @@ Accepted run: `artifacts/20260919-090210-691352__spambase__readiness-audit/`.
 An independent NumPy parser/grouping calculation reproduced the counts and verified all
 4,601 row memberships, 57 profiles and six recorded input hashes.
 
-Split follow-up: [`logs/2026-09-19-spambase-grouped-split.md`](logs/2026-09-19-spambase-grouped-split.md).
-Decision: **hold v1; revise allocation prospectively before training-only preflight**.
+Split follow-ups: the [v1 diagnostic](logs/2026-09-19-spambase-grouped-split.md) and
+[accepted v2 correction](logs/2026-09-19-spambase-grouped-split-v2.md).
+Decision: **v2 accepted for training-only data/encoding/compute preflight; v1 still held**.
 Committee scope review and authoritative SOM2IMG collision/allocation guidance remain
 separate gates. Raw data and run outputs are local and Git-ignored; a source commit or push
 is not their backup.

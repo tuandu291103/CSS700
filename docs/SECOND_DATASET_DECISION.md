@@ -21,6 +21,13 @@ no preprocessing or modeling followed. See
 [`the split-policy report`](logs/2026-09-19-spambase-grouped-split.md). The immediate next
 step is a prospective allocation-policy correction, not dataset rejection or seed searching.
 
+**V2 correction completed (September 19 local time):** Yu authorized the prospective
+amendment. The first frozen v2 allocation passed all structural gates and independent replay;
+3,220 / 691 / 690 rows retain the source's repeated-row share at about 12.5% per partition.
+See [`the v2 report`](logs/2026-09-19-spambase-grouped-split-v2.md) and
+`configs/spambase_split_v2_review.yaml`. V2 is accepted for training-only preflight; v1's
+hold remains. No preprocessing/model fitting or committee scope approval is implied.
+
 ## Recommendation and comparison
 
 **Audit Spambase first**, subject to Yu's approval; do not yet freeze it as the second dataset.

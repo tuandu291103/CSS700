@@ -105,31 +105,36 @@ Pilot-dataset progress through 2026-09-17:
   split with original labels, preprocessing principles and grouped evaluation policy.
   V1 is **diagnostic-only**: technical gates passed, but all repeated groups were held out.
   See `docs/logs/2026-09-19-spambase-grouped-split.md`; no fitting occurred.
-- [ ] Prospectively correct the allocation policy and accept a v2 structural audit before
-  training-only preprocessing/encoding/compute preflight. Committee scope review stays open.
+- [x] Prospectively correct the allocation policy and accept a v2 structural audit:
+  3,220 / 691 / 690 rows, about 12.5% repeated-group rows per partition, zero group overlap.
+  See `docs/logs/2026-09-19-spambase-grouped-split-v2.md`; 150 tests pass and v1 remains held.
+- [ ] Implement a reviewed-split-aware Spambase loader and training-only preprocessing,
+  Grid mapping/padding and compute preflight before the first Spambase model run.
 
-Next bounded milestone: resolve the second-dataset choice and authoritative SOM2IMG
-implementation/rendering/tracing settings with Yu/the committee, then freeze the matched
-encoder comparison before fitting a layout or CNN. Validate mapping and one matched training
-condition before expanding the matrix. The LIME test pilot and its earlier training diagnostic
+Next bounded milestone: training-only Spambase data/encoding/compute preflight on the exact
+accepted v2 split. Resolve committee dataset scope and authoritative SOM2IMG implementation,
+rendering/tracing settings separately; freeze the matched encoder comparison before SOM
+fitting or comparative CNN experiments. Validate mapping and one matched training condition
+before expanding the matrix. The LIME test pilot and its earlier training diagnostic
 are closed: preserve v1 and all poor-fit cases; no additional tuning sweep is planned.
 Additional pilot comparisons do not replace these full-matrix decisions. Raw artifact backup
 also remains separate from Git source synchronization because generated run bundles are ignored.
 The LIME run's performance-counter/UTC timestamp discrepancy prevents an efficiency claim;
 cross-method timing still needs a dedicated verified protocol.
 
-Immediate proposal: fix the diagnosed v1 allocation-policy bias under a separate prospective
-v2 contract. Retain all original rows/labels, fixed split seed and group disjointness; validate
-mixed group sizes and freeze additional structural gates before allocation. The v1 runner's
-automatic pass does not override its scientific hold. Accept a revised split before fitting. A
+Immediate proposal: consume `configs/spambase_split_v2_review.yaml` with strict identity and
+affirmative-review checks, fit preprocessing only on its training rows, and verify all
+57 feature identities, Grid padding and dataset-specific class names. Freeze feasibility
+budgets and model/explainer settings before test evaluation. V1 remains diagnostic-only. A
 second-dataset Grid track can progress independently while the SOM2IMG source/collision
 request is resolved. Neither audit success nor an unsent committee draft counts as approval.
 
-On-track check (2026-09-19): the LIME pilot, Spambase integrity and v1 split-review milestones
-are complete, but an accepted Spambase split is still outstanding. Only three of the expected
-12 CNN conditions are complete (one dataset x Grid x three seeds). This is
-not a percentage of thesis completion. The second-dataset and authoritative SOM2IMG decisions
-are the largest full-scope dependencies; the exact committee/defense calendar is unconfirmed.
+On-track check (2026-09-19): the LIME pilot, Spambase integrity and v2 split-correction
+milestones are complete. An accepted split is now available; no Spambase fitting occurred.
+Only three of the expected 12 CNN conditions are complete (one dataset x Grid x three seeds).
+This is not a percentage of thesis completion. The new dataset pipeline and authoritative
+SOM2IMG decisions remain major full-scope dependencies; the exact committee/defense calendar
+is unconfirmed.
 
 ## Spring 2027 - analysis, thesis, and defense (weeks 21-32)
 
