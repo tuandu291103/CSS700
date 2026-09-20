@@ -1,0 +1,23 @@
+protocol: spambase_grid_train_validation_v1
+preflight_review: configs/spambase_preflight_v1_review.yaml
+preflight_review_sha256: 45c4eca0228f3af17bc872a316729626f410f0c4fa3610c104d2aac27c4e2362
+training:
+  model_seed: 42
+  planned_model_seeds: [7, 42, 2026]
+  architecture: SmallTabularImageCNN
+  device: cpu
+  threads: 1
+  epochs: 100
+  batch_size: 32
+  optimizer: Adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  patience: 12
+  max_seconds: 600.0
+  selection: validation_row_macro_f1
+  tie_policy: earliest_with_1e-12_tolerance
+  training_weights: one_per_original_row
+  refit_scaler: false
+  test_evaluation: false
+  validation_sensitivity: one_over_feature_group_size
+  explanations: false

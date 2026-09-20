@@ -3,6 +3,7 @@
 .PHONY: tree-shap tree-shap-replicas tree-shap-stability lime-preflight lime-locality lime-test
 .PHONY: fetch-spambase audit-spambase split-spambase split-spambase-v2
 .PHONY: preflight-spambase
+.PHONY: train-spambase-grid
 
 PYTHON ?= python3
 
@@ -85,6 +86,9 @@ split-spambase-v2:
 
 preflight-spambase:
 	PYTHONPATH=src $(PYTHON) -m css700.cli preflight-spambase --config configs/spambase_preflight_v1.yaml
+
+train-spambase-grid:
+	PYTHONPATH=src $(PYTHON) -m css700.cli train-spambase-grid --config configs/spambase_grid_seed_42_v1.yaml
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +

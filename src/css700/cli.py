@@ -417,6 +417,13 @@ def build_parser() -> argparse.ArgumentParser:
     preflight_parser.add_argument("--config", default="configs/spambase_preflight_v1.yaml")
     preflight_parser.add_argument("--output-dir", default="artifacts")
     preflight_parser.set_defaults(function=preflight_spambase)
+    spambase_train = subparsers.add_parser(
+        "train-spambase-grid",
+        help="train the fixed first Spambase Grid CNN; test gate stays closed",
+    )
+    spambase_train.add_argument("--config", default="configs/spambase_grid_seed_42_v1.yaml")
+    spambase_train.add_argument("--output-dir", default="artifacts")
+    spambase_train.set_defaults(function=train_spambase_grid)
     return parser
 
 
@@ -487,6 +494,14 @@ def preflight_spambase(args: argparse.Namespace) -> int:
     from css700.experiments.spambase_preflight import run_spambase_preflight
 
     summary = run_spambase_preflight(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def train_spambase_grid(args: argparse.Namespace) -> int:
+    from css700.experiments.spambase_grid import run_spambase_grid
+
+    summary = run_spambase_grid(Path(args.config), Path(args.output_dir))
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 

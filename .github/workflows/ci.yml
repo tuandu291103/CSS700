@@ -41,6 +41,7 @@ jobs:
           tests/test_integrated_gradients.py tests/test_occlusion.py
           tests/test_feature_deletion.py tests/test_stability.py
           tests/test_mapping.py tests/test_som_diagnostic.py
+          tests/test_spambase_preflight.py tests/test_spambase_grid.py
 
   tree-shap-tests:
     runs-on: ubuntu-latest
