@@ -28,7 +28,11 @@ These do not block the initial Grid pilot, but they should be resolved before th
    **Subsequent first-model checkpoint:** seed-42 Grid training/validation now passes:
    90.88% validation accuracy, 0.9032 macro F1, epoch 64 selected. Test rows remain
    untransformed/unscored. See `docs/logs/2026-09-20-spambase-grid-first-training.md`.
-   Next freeze validation-only Grad-CAM tracing; committee approval is still not implied.
+   **2026-10-01:** validation-only Grad-CAM is implemented and independently checked, but
+   its first real run is held: gradient/inference logits exceed the frozen tolerance on
+   74 rows, with unchanged classes. Next a versioned numerical-equivalence diagnostic/repair,
+   before accepted explanations or faithfulness. Test rows remain unscored; committee
+   approval is still not implied. See `docs/logs/2026-10-01-spambase-grad-cam-diagnostic.md`.
 3. **Compute:** Will experiments run on Apple Silicon, an NVIDIA GPU, a university server, or a
    cloud notebook? Determinism, package installation, and timing comparisons depend on this.
 4. **Explanation target:** Is predicted-class attribution the committee's intended primary

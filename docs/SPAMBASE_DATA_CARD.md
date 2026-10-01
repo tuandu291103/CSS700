@@ -1,7 +1,8 @@
-# Spambase data card: first Grid CNN training/validation accepted, test gate closed
+# Spambase data card: training accepted, Grad-CAM held, test gate closed
 
-Status: **2026-09-20 seed-42 Grid training/validation accepted on the reviewed v2 split
-and frozen preflight scaler; test evaluation closed; v1 remains diagnostic-only**.
+Status: **2026-10-01 seed-42 Grid training/validation accepted on the reviewed v2 split
+and frozen preflight scaler; first Grad-CAM run held for numerical equivalence;
+test evaluation closed; split v1 remains diagnostic-only**.
 Yu authorized the prospective correction after
 the first frozen allocation concentrated every repeated-feature group in validation/test.
 V2 balances group structure under unchanged source, inclusion, labels and seed. No committee
@@ -118,7 +119,16 @@ The subsequent frozen seed-42 CNN trained on 3,220 rows and selected epoch 64 us
 sensitivity is 90.86% / 0.9038. These are selection-set results, not unbiased test estimates.
 The 690 test rows were not transformed or scored; no explanations were generated. See
 `SPAMBASE_GRID_TRAINING_PROTOCOL.md`, `logs/2026-09-20-spambase-grid-first-training.md`
-and `configs/spambase_grid_seed_42_v1_review.yaml`. Next freeze validation-only Grad-CAM.
+and `configs/spambase_grid_seed_42_v1_review.yaml`.
+
+The first validation-only Grad-CAM run (October 1) reused those saved inputs and traced all
+57 features on 691 rows, excluding seven padding cells. Independent analytic-map and
+record checks passed, but gradient-enabled logits failed the frozen numerical tolerance
+on 74 rows (max 4.28e-5); exact no-gradient replay and all predicted classes matched.
+This run remains **diagnostic-only**, with no post-run tolerance adjustment or retry.
+See `logs/2026-10-01-spambase-grad-cam-diagnostic.md` and
+`configs/spambase_grad_cam_validation_v1_review.yaml`. Next isolate and resolve numerical
+equivalence under a versioned protocol, not immediate faithfulness or test evaluation.
 
 Future checks still require training-only references for LIME binning and integer-count
 sampling semantics, SHAP background budgets and bounded model/explainer compute settings.
@@ -144,8 +154,9 @@ Split follow-ups: the [v1 diagnostic](logs/2026-09-19-spambase-grouped-split.md)
 [accepted v2 correction](logs/2026-09-19-spambase-grouped-split-v2.md).
 Preflight follow-up: [training-only compatibility report](logs/2026-09-20-spambase-training-preflight.md).
 Training follow-up: [first CNN validation report](logs/2026-09-20-spambase-grid-first-training.md).
-Decision: **seed-42 training/validation checkpoint accepted; freeze validation-only Grad-CAM;
-v1 still held and test evaluation not enabled**.
+Explanation follow-up: [Grad-CAM diagnostic hold](logs/2026-10-01-spambase-grad-cam-diagnostic.md).
+Decision: **seed-42 training/validation checkpoint accepted; Grad-CAM v1 numerical hold;
+split v1 still held and test evaluation not enabled**.
 Committee scope review and authoritative SOM2IMG collision/allocation guidance remain
 separate gates. Raw data and run outputs are local and Git-ignored; a source commit or push
 is not their backup.

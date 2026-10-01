@@ -40,7 +40,13 @@ validation accuracy and 0.9032 macro F1; group-equal sensitivity was similar. Th
 selection-set evidence of learnable signal, not final test performance or interpretability
 novelty. No test rows were transformed/scored and no model settings were changed after
 the run. See [`the first-training report`](logs/2026-09-20-spambase-grid-first-training.md).
-Next freeze validation-only Grad-CAM on this checkpoint; committee scope remains separate.
+
+**Grad-CAM update (October 1):** validation-only feature tracing and independent analytic
+checks now run on all 691 saved rows, but the first explanation run is **held**, not accepted:
+gradient/inference logits exceeded the frozen tolerance on 74 rows despite unchanged
+classes. Preserve this diagnostic and resolve numerical equivalence under a versioned
+protocol before faithfulness. See [the diagnostic report](logs/2026-10-01-spambase-grad-cam-diagnostic.md).
+Test evaluation remains closed; committee scope remains separate.
 
 ## Original recommendation and comparison (September 17)
 

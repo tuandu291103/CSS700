@@ -42,5 +42,10 @@ The next milestone is also complete: the first seed-42 CNN reused the scaler and
 images, transformed validation only, and selected a checkpoint using validation macro F1.
 All 690 test rows remain untransformed/unscored. Accepted model/input pins are in
 `configs/spambase_grid_seed_42_v1_review.yaml`; see
-`docs/logs/2026-09-20-spambase-grid-first-training.md`. Next freeze validation-only
-Grad-CAM tracing. V1 remains diagnostic-only and model/data bundles remain local/ignored.
+`docs/logs/2026-09-20-spambase-grid-first-training.md`.
+The first validation-only Grad-CAM run reused those saved inputs without new encoding or
+scaling. All 57 feature identities and analytic maps were verified, but a gradient/inference
+logit-equivalence failure keeps this run diagnostic-only. See
+`configs/spambase_grad_cam_validation_v1_review.yaml` and
+`docs/logs/2026-10-01-spambase-grad-cam-diagnostic.md`. Next a versioned numerical repair,
+not test use. Both split v1 and Grad-CAM v1 remain held; model/data bundles are local/ignored.

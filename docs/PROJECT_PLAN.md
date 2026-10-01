@@ -115,12 +115,18 @@ Pilot-dataset progress through 2026-09-17:
 - [x] Freeze the first Spambase Grid CNN training/validation protocol and run seed 42:
   epoch 64 selected, stopping at 76; validation accuracy 90.88%, macro F1 0.9032.
   Independent inputs/metrics/checkpoint verification passed; 190 tests pass. See
-  `docs/logs/2026-09-20-spambase-grid-first-training.md`. No test scores or explanations yet.
-- [ ] Freeze and execute validation-only Grad-CAM tracing for that accepted checkpoint,
-  then the remaining explanation/faithfulness and seed plan before test evaluation.
+  `docs/logs/2026-09-20-spambase-grid-first-training.md`. No test scores or explanations
+  were produced in that training milestone.
+- [x] Freeze and execute the first validation-only Grad-CAM tracing diagnostic: all 691
+  rows and 57 features traced; independent analytic maps and records verified. **Held**:
+  gradient-logit equivalence failed on 74 rows despite unchanged classes. No post-run
+  threshold changes. See `docs/logs/2026-10-01-spambase-grad-cam-diagnostic.md`; 210 tests pass.
+- [ ] Resolve numerical equivalence under a new versioned protocol and accept validation
+  explanations, then the remaining faithfulness and seed plan before test evaluation.
 
-Next bounded milestone: validation-only predicted-class Grad-CAM on the accepted seed-42
-Spambase checkpoint, with a prospective mapping/padding/target protocol. Resolve committee dataset scope
+Next bounded milestone: a versioned numerical-equivalence diagnostic/repair for the accepted
+seed-42 Spambase checkpoint. Preserve the held Grad-CAM v1 run and its original tolerance;
+do not proceed to accepted rankings or faithfulness yet. Resolve committee dataset scope
 and authoritative SOM2IMG implementation,
 rendering/tracing settings separately; freeze the matched encoder comparison before SOM
 fitting or comparative CNN experiments. Validate mapping and one matched training condition
@@ -131,19 +137,21 @@ also remains separate from Git source synchronization because generated run bund
 The LIME run's performance-counter/UTC timestamp discrepancy prevents an efficiency claim;
 cross-method timing still needs a dedicated verified protocol.
 
-Immediate proposal: consume `configs/spambase_grid_seed_42_v1_review.yaml` and its exact
-checkpoint, validation rows, scaler and Grid identities. Freeze Grad-CAM target/layer/sign
-and mapping checks, then remaining explainer/faithfulness/uncertainty settings before test
-evaluation. Keep the frozen model settings and planned seeds; no validation tuning sweep.
-V1 remains diagnostic-only. A
+Immediate proposal: isolate the observed CPU gradient/no-gradient forward discrepancy using
+the exact accepted checkpoint and saved validation inputs, then prospectively validate a
+consistent computation path. Do not widen the frozen tolerance to fit observed residuals.
+Keep model settings and planned seeds unchanged; no validation tuning sweep. The split v1
+and separate Grad-CAM v1 both remain diagnostic-only. A
 second-dataset Grid track can progress independently while the SOM2IMG source/collision
 request is resolved. Neither audit success nor an unsent committee draft counts as approval.
 
-On-track check (2026-09-20): the LIME pilot, Spambase integrity, v2 split correction and
+On-track check (2026-10-01): the LIME pilot, Spambase integrity, v2 split correction and
 training-only preprocessing/Grid/CPU preflight and first seed-42 training/validation are
 complete. One frozen scaler was reused; no Spambase test data were transformed or scored.
+Grad-CAM implementation and analytic tracing checks are complete, but real-run numerical
+acceptance is held. This is progress toward reliable tracing, not an accepted explanation result.
 Only three of the expected 12 CNN conditions are fully complete (one dataset x Grid x three seeds),
-plus one Spambase training/validation checkpoint awaiting explanations and final evaluation.
+plus one Spambase training/validation checkpoint awaiting accepted explanations and final evaluation.
 This is not a percentage of thesis completion. The new dataset pipeline and authoritative
 SOM2IMG decisions remain major full-scope dependencies; the exact committee/defense calendar
 is unconfirmed.

@@ -189,9 +189,18 @@ Grid CNN selected epoch 64 and stopped at 76 with row-primary validation accurac
 and macro F1 0.9032. Training-majority validation scores were 0.6064 / 0.3775; group-equal
 CNN sensitivity was 0.9086 / 0.9038. An independent PyTorch replica reproduced all saved
 validation logits exactly. Validation selected the checkpoint, so these are optimistic
-selection-set diagnostics, not a new completed full-matrix result. No Spambase explanations
-or test predictions exist yet. See `docs/logs/2026-09-20-spambase-grid-first-training.md`.
-Next validate named-feature Grad-CAM tracing under a frozen validation-only protocol.
+selection-set diagnostics, not a new completed full-matrix result. No explanations were
+generated in that milestone. See `docs/logs/2026-09-20-spambase-grid-first-training.md`.
+
+**Spambase Grad-CAM diagnostic, held (October 1):** one prospective validation-only run
+traced 691 maps to all 57 features. Independent analytic maps and every score/record/rank
+were verified, but the gradient-mode logit tolerance failed on 74 rows (max 4.28e-5).
+Exact inference replay and all predicted classes passed. These outputs are **diagnostic-only**,
+not accepted feature rankings or evidence of faithfulness. Positive padding signal occurred
+in 685 maps (mean mass fraction 10.75%), reinforcing the need to exclude non-feature pixels;
+this is not a causal-importance result. No threshold changes or production retries followed.
+See `docs/logs/2026-10-01-spambase-grad-cam-diagnostic.md`. Next isolate and prospectively
+resolve numerical equivalence before faithfulness work. All 690 test rows remain unscored.
 
 Breast Cancer pilot result to develop in the draft: the validation-selected Grid CNN achieved 0.9070 test
 accuracy and 0.9017 macro F1, compared with 0.6279 accuracy and 0.3857 macro F1 for the

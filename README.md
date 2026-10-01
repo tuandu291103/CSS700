@@ -259,10 +259,20 @@ tests**; an independent model replica reproduces the saved validation logits exa
 See `docs/SPAMBASE_GRID_TRAINING_PROTOCOL.md`, `configs/spambase_grid_seed_42_v1_review.yaml`
 and `docs/logs/2026-09-20-spambase-grid-first-training.md`.
 
-Next: freeze validation-only Grad-CAM feature tracing for this checkpoint, then the remaining
-explanation/faithfulness and seed plan before test use. The matrix remains 3/12 completed
-conditions plus one training/validation-only Spambase condition. Committee scope approval
-and authoritative SOM2IMG guidance remain separate open decisions. Training replay (new
+**Grad-CAM diagnostic hold (October 1):** the validation-only implementation traces all
+57 features on all 691 saved validation rows, with explicit padding exclusion and independent
+analytic map verification. The first real run is **not accepted**: gradient-enabled logits
+exceeded the frozen numerical tolerance on 74 rows (maximum difference 4.28e-5), despite
+exact no-gradient replay and unchanged predicted classes. No tolerance was relaxed or run
+retried. The suite has **210 passing tests**. See `docs/SPAMBASE_GRAD_CAM_PROTOCOL.md`,
+`configs/spambase_grad_cam_validation_v1_review.yaml` and
+[`the session report`](docs/logs/2026-10-01-spambase-grad-cam-diagnostic.md).
+
+Next: freeze a versioned numerical-equivalence diagnostic/repair plan before accepting
+Grad-CAM or proceeding to faithfulness. The remaining explanation and seed plan must precede
+test use. The matrix remains 3/12 completed conditions plus one training/validation-only
+Spambase condition with held explanation diagnostics. Committee scope approval and
+authoritative SOM2IMG guidance remain separate open decisions. Training replay (new
 outputs are not automatically a new accepted source):
 
 ```bash
