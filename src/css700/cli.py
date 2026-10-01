@@ -424,6 +424,12 @@ def build_parser() -> argparse.ArgumentParser:
     spambase_train.add_argument("--config", default="configs/spambase_grid_seed_42_v1.yaml")
     spambase_train.add_argument("--output-dir", default="artifacts")
     spambase_train.set_defaults(function=train_spambase_grid)
+    spambase_cam = subparsers.add_parser(
+        "spambase-grad-cam", help="trace validation-only Grad-CAM for the accepted Spambase CNN"
+    )
+    spambase_cam.add_argument("--config", default="configs/spambase_grad_cam_validation_v1.yaml")
+    spambase_cam.add_argument("--output-dir", default="artifacts")
+    spambase_cam.set_defaults(function=spambase_grad_cam)
     return parser
 
 
@@ -502,6 +508,15 @@ def train_spambase_grid(args: argparse.Namespace) -> int:
     from css700.experiments.spambase_grid import run_spambase_grid
 
     summary = run_spambase_grid(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def spambase_grad_cam(args: argparse.Namespace) -> int:
+    _configure_runtime_cache()
+    from css700.experiments.spambase_grad_cam import run_spambase_grad_cam
+
+    summary = run_spambase_grad_cam(Path(args.config), Path(args.output_dir))
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 

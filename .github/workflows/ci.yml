@@ -42,6 +42,7 @@ jobs:
           tests/test_feature_deletion.py tests/test_stability.py
           tests/test_mapping.py tests/test_som_diagnostic.py
           tests/test_spambase_preflight.py tests/test_spambase_grid.py
+          tests/test_spambase_grad_cam.py
 
   tree-shap-tests:
     runs-on: ubuntu-latest
