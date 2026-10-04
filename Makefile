@@ -4,7 +4,7 @@
 .PHONY: fetch-spambase audit-spambase split-spambase split-spambase-v2
 .PHONY: preflight-spambase
 .PHONY: train-spambase-grid
-.PHONY: spambase-grad-cam
+.PHONY: spambase-grad-cam spambase-grad-cam-v2
 
 PYTHON ?= python3
 
@@ -93,6 +93,9 @@ train-spambase-grid:
 
 spambase-grad-cam:
 	PYTHONPATH=src $(PYTHON) -m css700.cli spambase-grad-cam --config configs/spambase_grad_cam_validation_v1.yaml
+
+spambase-grad-cam-v2:
+	PYTHONPATH=src $(PYTHON) -m css700.cli spambase-grad-cam-v2 --config configs/spambase_grad_cam_validation_v2.yaml
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +

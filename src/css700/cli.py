@@ -430,6 +430,13 @@ def build_parser() -> argparse.ArgumentParser:
     spambase_cam.add_argument("--config", default="configs/spambase_grad_cam_validation_v1.yaml")
     spambase_cam.add_argument("--output-dir", default="artifacts")
     spambase_cam.set_defaults(function=spambase_grad_cam)
+    spambase_cam_v2 = subparsers.add_parser(
+        "spambase-grad-cam-v2",
+        help="audit numerical paths and run the fixed activation-boundary candidate",
+    )
+    spambase_cam_v2.add_argument("--config", default="configs/spambase_grad_cam_validation_v2.yaml")
+    spambase_cam_v2.add_argument("--output-dir", default="artifacts")
+    spambase_cam_v2.set_defaults(function=spambase_grad_cam_v2)
     return parser
 
 
@@ -517,6 +524,15 @@ def spambase_grad_cam(args: argparse.Namespace) -> int:
     from css700.experiments.spambase_grad_cam import run_spambase_grad_cam
 
     summary = run_spambase_grad_cam(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def spambase_grad_cam_v2(args: argparse.Namespace) -> int:
+    _configure_runtime_cache()
+    from css700.experiments.spambase_grad_cam_v2 import run_spambase_grad_cam_v2
+
+    summary = run_spambase_grad_cam_v2(Path(args.config), Path(args.output_dir))
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 
