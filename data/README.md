@@ -49,3 +49,9 @@ logit-equivalence failure keeps this run diagnostic-only. See
 `configs/spambase_grad_cam_validation_v1_review.yaml` and
 `docs/logs/2026-10-01-spambase-grad-cam-diagnostic.md`. Next a versioned numerical repair,
 not test use. Both split v1 and Grad-CAM v1 remain held; model/data bundles are local/ignored.
+
+The separate Grad-CAM v2 execution amendment is now accepted for validation tracing:
+the inference-path activation boundary yields bitwise-identical saved logits and independently
+verified maps/scores. Inputs, scaler, checkpoint and test gate are unchanged. Authoritative
+pins are in `configs/spambase_grad_cam_validation_v2_review.yaml`; see
+`docs/logs/2026-10-04-spambase-grad-cam-v2.md`. Next validation-only faithfulness, not test use.

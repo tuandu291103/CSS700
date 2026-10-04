@@ -1,8 +1,8 @@
-# Spambase data card: training accepted, Grad-CAM held, test gate closed
+# Spambase data card: training and validation Grad-CAM v2 accepted, test gate closed
 
-Status: **2026-10-01 seed-42 Grid training/validation accepted on the reviewed v2 split
-and frozen preflight scaler; first Grad-CAM run held for numerical equivalence;
-test evaluation closed; split v1 remains diagnostic-only**.
+Status: **2026-10-04 seed-42 Grid training/validation and Grad-CAM v2 tracing accepted;
+reviewed v2 split and frozen scaler unchanged; test evaluation closed;
+split v1 and Grad-CAM v1 remain diagnostic-only**.
 Yu authorized the prospective correction after
 the first frozen allocation concentrated every repeated-feature group in validation/test.
 V2 balances group structure under unchanged source, inclusion, labels and seed. No committee
@@ -130,6 +130,14 @@ See `logs/2026-10-01-spambase-grad-cam-diagnostic.md` and
 `configs/spambase_grad_cam_validation_v1_review.yaml`. Next isolate and resolve numerical
 equivalence under a versioned protocol, not immediate faithfulness or test evaluation.
 
+The subsequent prospective Grad-CAM v2 run (October 4) preserves the inference stem and
+starts autograd at its pre-ReLU target activation. All logits match original inference
+bit-for-bit, and all 691 maps/57 features pass independent analytic/tracing checks. The
+candidate retains the original NNPACK-enabled backend; no retraining or tolerance changes.
+V2 is accepted **for validation tracing**, not faithfulness. See
+`logs/2026-10-04-spambase-grad-cam-v2.md` and `configs/spambase_grad_cam_validation_v2_review.yaml`.
+Next freeze validation-only feature deletion and input-level comparisons; keep test closed.
+
 Future checks still require training-only references for LIME binning and integer-count
 sampling semantics, SHAP background budgets and bounded model/explainer compute settings.
 The previous Breast Cancer protocol and artifacts stay unchanged.
@@ -155,8 +163,9 @@ Split follow-ups: the [v1 diagnostic](logs/2026-09-19-spambase-grouped-split.md)
 Preflight follow-up: [training-only compatibility report](logs/2026-09-20-spambase-training-preflight.md).
 Training follow-up: [first CNN validation report](logs/2026-09-20-spambase-grid-first-training.md).
 Explanation follow-up: [Grad-CAM diagnostic hold](logs/2026-10-01-spambase-grad-cam-diagnostic.md).
-Decision: **seed-42 training/validation checkpoint accepted; Grad-CAM v1 numerical hold;
-split v1 still held and test evaluation not enabled**.
+Numerical repair: [accepted Grad-CAM v2 tracing](logs/2026-10-04-spambase-grad-cam-v2.md).
+Decision: **seed-42 training/validation and Grad-CAM v2 tracing accepted;
+Grad-CAM v1 and split v1 still held; faithfulness pending and test evaluation not enabled**.
 Committee scope review and authoritative SOM2IMG collision/allocation guidance remain
 separate gates. Raw data and run outputs are local and Git-ignored; a source commit or push
 is not their backup.

@@ -268,10 +268,18 @@ retried. The suite has **210 passing tests**. See `docs/SPAMBASE_GRAD_CAM_PROTOC
 `configs/spambase_grad_cam_validation_v1_review.yaml` and
 [`the session report`](docs/logs/2026-10-01-spambase-grad-cam-diagnostic.md).
 
-Next: freeze a versioned numerical-equivalence diagnostic/repair plan before accepting
-Grad-CAM or proceeding to faithfulness. The remaining explanation and seed plan must precede
-test use. The matrix remains 3/12 completed conditions plus one training/validation-only
-Spambase condition with held explanation diagnostics. Committee scope approval and
+**Grad-CAM v2 accepted (October 4):** starting autograd at the original inference-path
+activation resolves the numerical hold for validation tracing. All 1,382 logits now match
+saved inference bit-for-bit; 691 maps and 39,387 named-feature scores passed an independent
+analytic audit. No retraining or tolerance relaxation; v1 remains held. **235 tests pass**.
+See `docs/SPAMBASE_GRAD_CAM_V2_PROTOCOL.md`, `configs/spambase_grad_cam_validation_v2_review.yaml`
+and [the v2 session report](docs/logs/2026-10-04-spambase-grad-cam-v2.md). This establishes
+numerical correctness/tracing, not explanation faithfulness or causal importance.
+
+Next: freeze validation-only feature-deletion faithfulness for this exact checkpoint and
+v2 map bundle, followed by the input-level explanation comparison and remaining seed/test
+plan. The matrix remains 3/12 completed conditions plus one Spambase training/validation
+condition with accepted validation tracing, not final test results. Committee scope approval and
 authoritative SOM2IMG guidance remain separate open decisions. Training replay (new
 outputs are not automatically a new accepted source):
 

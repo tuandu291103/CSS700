@@ -33,6 +33,10 @@ These do not block the initial Grid pilot, but they should be resolved before th
    74 rows, with unchanged classes. Next a versioned numerical-equivalence diagnostic/repair,
    before accepted explanations or faithfulness. Test rows remain unscored; committee
    approval is still not implied. See `docs/logs/2026-10-01-spambase-grad-cam-diagnostic.md`.
+   **2026-10-04:** the versioned activation-boundary repair now matches inference logits
+   bit-for-bit and passes independent map/tracing checks. Grad-CAM v2 is accepted for
+   validation tracing only; v1 remains held. Next freeze validation feature-deletion
+   faithfulness, with the test set closed. See `docs/logs/2026-10-04-spambase-grad-cam-v2.md`.
 3. **Compute:** Will experiments run on Apple Silicon, an NVIDIA GPU, a university server, or a
    cloud notebook? Determinism, package installation, and timing comparisons depend on this.
 4. **Explanation target:** Is predicted-class attribution the committee's intended primary

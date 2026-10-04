@@ -202,6 +202,17 @@ this is not a causal-importance result. No threshold changes or production retri
 See `docs/logs/2026-10-01-spambase-grad-cam-diagnostic.md`. Next isolate and prospectively
 resolve numerical equivalence before faithfulness work. All 690 test rows remain unscored.
 
+**Spambase Grad-CAM v2 accepted (October 4):** a prospective execution amendment keeps the
+no-gradient inference stem and begins autograd at the same pre-ReLU target activation.
+All 1,382 logits match saved inference bit-for-bit; all 691 maps and 39,387 traced scores
+pass independent verification. The model, targets, attribution formula and tolerances
+are unchanged. Disabling NNPACK reduces but does not eliminate mode-dependent differences;
+it was not adopted as the repair. The v1 hold is preserved. V2 retains the padding pattern
+(685 positive-padding maps, mean fraction 10.75%) and all per-row top-five memberships.
+This is numerical/tracing evidence, **not faithfulness or causal importance**. See
+`docs/logs/2026-10-04-spambase-grad-cam-v2.md`. Next a frozen validation feature-deletion
+protocol; the test set remains closed and no full-matrix condition is added.
+
 Breast Cancer pilot result to develop in the draft: the validation-selected Grid CNN achieved 0.9070 test
 accuracy and 0.9017 macro F1, compared with 0.6279 accuracy and 0.3857 macro F1 for the
 majority-class baseline. Predicted-class Grad-CAM produced finite 5 x 6 maps for all 86 test

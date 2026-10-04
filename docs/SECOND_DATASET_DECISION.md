@@ -48,6 +48,12 @@ classes. Preserve this diagnostic and resolve numerical equivalence under a vers
 protocol before faithfulness. See [the diagnostic report](logs/2026-10-01-spambase-grad-cam-diagnostic.md).
 Test evaluation remains closed; committee scope remains separate.
 
+**V2 repair accepted (October 4):** the fixed activation-boundary Grad-CAM candidate now
+matches original inference logits bit-for-bit and passes independent map/feature checks.
+The held v1 output stays unchanged; no retraining or tolerance relaxation. This accepts
+validation tracing, not faithfulness or a full-matrix condition. Next a frozen validation
+feature-deletion protocol. See [the v2 report](logs/2026-10-04-spambase-grad-cam-v2.md).
+
 ## Original recommendation and comparison (September 17)
 
 **Audit Spambase first**, subject to Yu's approval; do not yet freeze it as the second dataset.
