@@ -1,6 +1,7 @@
-# Spambase data card: training and validation Grad-CAM v2 accepted, test gate closed
+# Spambase data card: validation tracing and conditional deletion, test gate closed
 
-Status: **2026-10-04 seed-42 Grid training/validation and Grad-CAM v2 tracing accepted;
+Status: **2026-10-04 seed-42 Grid training/validation, Grad-CAM v2 tracing and
+replacement-dependent deletion evidence accepted;
 reviewed v2 split and frozen scaler unchanged; test evaluation closed;
 split v1 and Grad-CAM v1 remain diagnostic-only**.
 Yu authorized the prospective correction after
@@ -138,6 +139,14 @@ V2 is accepted **for validation tracing**, not faithfulness. See
 `logs/2026-10-04-spambase-grad-cam-v2.md` and `configs/spambase_grad_cam_validation_v2_review.yaml`.
 Next freeze validation-only feature deletion and input-level comparisons; keep test closed.
 
+The subsequent frozen deletion study (October 4) reuses all saved validation rows and reads
+saved training images only for the median reference. Top-minus-random logit AOPC is −0.1163
+with zero/training mean, versus +0.0730 with training median. Equal-group and probability
+summaries retain this sign reversal; all logits/statistics pass independent replay. Accept
+conditional evidence, not replacement-robust faithfulness. See
+`logs/2026-10-04-spambase-faithfulness.md` and `configs/spambase_faithfulness_v1_review.yaml`.
+Next freeze the input-level validation comparison. No test transformations or scoring.
+
 Future checks still require training-only references for LIME binning and integer-count
 sampling semantics, SHAP background budgets and bounded model/explainer compute settings.
 The previous Breast Cancer protocol and artifacts stay unchanged.
@@ -164,8 +173,10 @@ Preflight follow-up: [training-only compatibility report](logs/2026-09-20-spamba
 Training follow-up: [first CNN validation report](logs/2026-09-20-spambase-grid-first-training.md).
 Explanation follow-up: [Grad-CAM diagnostic hold](logs/2026-10-01-spambase-grad-cam-diagnostic.md).
 Numerical repair: [accepted Grad-CAM v2 tracing](logs/2026-10-04-spambase-grad-cam-v2.md).
-Decision: **seed-42 training/validation and Grad-CAM v2 tracing accepted;
-Grad-CAM v1 and split v1 still held; faithfulness pending and test evaluation not enabled**.
+Deletion study: [replacement-dependent validation evidence](logs/2026-10-04-spambase-faithfulness.md).
+Decision: **seed-42 training/validation, Grad-CAM v2 tracing and conditional deletion
+evidence accepted; Grad-CAM v1 and split v1 still held; input-level comparison pending
+and test evaluation not enabled**.
 Committee scope review and authoritative SOM2IMG collision/allocation guidance remain
 separate gates. Raw data and run outputs are local and Git-ignored; a source commit or push
 is not their backup.

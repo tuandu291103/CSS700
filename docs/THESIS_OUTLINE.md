@@ -213,6 +213,19 @@ This is numerical/tracing evidence, **not faithfulness or causal importance**. S
 `docs/logs/2026-10-04-spambase-grad-cam-v2.md`. Next a frozen validation feature-deletion
 protocol; the test set remains closed and no full-matrix condition is added.
 
+**Spambase validation deletion (October 4):** the frozen Grad-CAM v2 rankings were evaluated
+on all 691 validation rows/629 feature groups, with 100 group-shared random orders, 12
+deletion budgets and two training-derived replacements. Row-primary top-minus-random logit
+AOPC is **−0.1163 [95% paired-group interval −0.1624, −0.0714]** with standardized zero,
+versus **+0.0730 [+0.0247, +0.1149]** with training median. Top-minus-bottom, probability
+drop and equal-group sensitivity retain the aggregate sign reversal. Subgroup evidence is
+not uniform. These conditional intervals exclude model-seed and random-control Monte Carlo
+uncertainty. Every perturbed logit and all grouped metrics passed independent replay.
+This is development evidence of replacement sensitivity, not replacement-robust faithfulness,
+causality, novelty or a final-test result. Retain the negative primary result; do not select
+the favorable sensitivity. See `docs/logs/2026-10-04-spambase-faithfulness.md`.
+Next freeze input-level IG/Occlusion numerical checks and validation comparisons; test stays closed.
+
 Breast Cancer pilot result to develop in the draft: the validation-selected Grid CNN achieved 0.9070 test
 accuracy and 0.9017 macro F1, compared with 0.6279 accuracy and 0.3857 macro F1 for the
 majority-class baseline. Predicted-class Grad-CAM produced finite 5 x 6 maps for all 86 test

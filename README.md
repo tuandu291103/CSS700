@@ -276,10 +276,19 @@ See `docs/SPAMBASE_GRAD_CAM_V2_PROTOCOL.md`, `configs/spambase_grad_cam_validati
 and [the v2 session report](docs/logs/2026-10-04-spambase-grad-cam-v2.md). This establishes
 numerical correctness/tracing, not explanation faithfulness or causal importance.
 
-Next: freeze validation-only feature-deletion faithfulness for this exact checkpoint and
-v2 map bundle, followed by the input-level explanation comparison and remaining seed/test
-plan. The matrix remains 3/12 completed conditions plus one Spambase training/validation
-condition with accepted validation tracing, not final test results. Committee scope approval and
+**Validation deletion completed (October 4):** a frozen Grad-CAM study covered all 691
+rows/629 feature groups and passed independent full-logit/statistics replay.
+The result is replacement-dependent: top-minus-random logit AOPC is **−0.1163** with
+zero/training-mean replacement (primary), versus **+0.0730** with training median. Retain
+both; numerical correctness does not imply replacement-robust explanation faithfulness.
+**259 tests pass**; all 690 test rows remain closed. See
+`docs/SPAMBASE_FAITHFULNESS_PROTOCOL.md`, `configs/spambase_faithfulness_v1_review.yaml`
+and [the faithfulness report](docs/logs/2026-10-04-spambase-faithfulness.md).
+
+Next: freeze the Spambase input-level IG/Occlusion validation comparison, followed by the
+remaining seed/test plan. The matrix remains 3/12 completed conditions plus one Spambase
+training/validation condition with accepted tracing and conditional deletion evidence,
+not final test results. Committee scope approval and
 authoritative SOM2IMG guidance remain separate open decisions. Training replay (new
 outputs are not automatically a new accepted source):
 

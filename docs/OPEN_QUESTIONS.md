@@ -48,6 +48,14 @@ These do not block the initial Grid pilot, but they should be resolved before th
 
 6. What exact feature replacement should faithfulness and occlusion use in standardized space:
    zero/training mean, a conditional value, or more than one sensitivity setting?
+
+   **2026-10-04 validation evidence:** the frozen Spambase Grad-CAM deletion experiment
+   gives top-minus-random logit AOPC −0.1163 for zero/training mean and +0.0730 for training
+   median. Both were declared before execution; retain zero as primary and both results.
+   Equal-group/probability summaries retain the reversal. This advances the second-dataset
+   work beyond tracing but does not establish replacement-robust faithfulness or select a
+   favorable reference. See `docs/logs/2026-10-04-spambase-faithfulness.md`. Next freeze the
+   input-level validation comparison; test remains closed, committee scope remains pending.
 7. Should Random Forest and XGBoost comparisons use built-in global importance only, or TreeSHAP
    for like-for-like local explanations as well?
 

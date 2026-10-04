@@ -1,0 +1,89 @@
+review_version: spambase_validation_grad_cam_deletion_v1_review_1
+dataset: spambase
+faithfulness_config: configs/spambase_faithfulness_v1.yaml
+faithfulness_config_sha256: 21faf0bd4cc2c24be0646ffbd7356272fce9b8bf764a08181404ffa94568ea95
+execution_commit: 523ba026a4395cae6029c4302e18a6e7318ff657
+run_dir: artifacts/20261004-234846-380780__spambase__grid__seed-42__validation-faithfulness-v1
+file_sha256:
+  aopc_summaries.json: 492b2f8dc136c304a37866d122de6db6a6c0360542453c9dbbf611184982b43f
+  config.yaml: 21faf0bd4cc2c24be0646ffbd7356272fce9b8bf764a08181404ffa94568ea95
+  curves.json: 5ce7a67ba16d80f73bc1c407382ca4cf1195d69dbda4b4752565e492525419c2
+  deletion_curves.png: 1c4ca5ec22bf691237a4e3cbaa000e8554e8373a5b25705f6ce43fe6bd37a637
+  design.npz: 619517a75bae0d97eb9f16a77ee9c7b4bed6e5a8b89cf6202bc97f4aaff657cb
+  manifest.json: b2b1492b3f85c03fef6b27216818bd3fe74e8e76627353adb4b7a2ed34da2eb9
+  per_row_aopc.npz: 92ee58554df738b85e278dbe9985e111f66069a6deed59c3bd966e2d6667aaa3
+  perturbed_logits.npy: d3722c37c78439daa9ce964a891b25ca4fd592f4ce59bead5ac0e0e9fb016c56
+  summary.json: a46c7571b0d6186477db3fafcbdc7ff5b818abd5efe281c13d890ab00a1aa7a7
+grad_cam_review: configs/spambase_grad_cam_validation_v2_review.yaml
+grad_cam_review_sha256: a6ae042744a2394257acf263a6ecff21254df6ecaa24bde037d708df01a54295
+technical_status: ok
+acceptance: true
+acceptance_scope: seed_42_validation_grad_cam_conditional_deletion_evidence_only
+decision: go_to_prospective_input_level_explanation_protocol
+scientific_result: replacement_dependent_sign_reversal
+effect_direction_is_acceptance_gate: false
+primary_zero_replacement_supports_top_over_random: false
+replacement_robust_faithfulness_established: false
+causal_importance_claimed: false
+novelty_established: false
+evaluated_rows: 691
+feature_groups: 629
+feature_count: 57
+model_seed: 42
+checkpoint_epoch: 64
+random_repeats: 100
+random_seed: 20261004
+bootstrap_resamples: 1000
+bootstrap_seed: 20261005
+bootstrap_unit: complete_exact_feature_group
+interval_scope: conditional_on_fixed_model_split_references_and_random_controls
+primary_all_rows_logit_aopc:
+  zero:
+    top: 1.342685983912526
+    random: 1.4589562013240602
+    bottom: 1.6188089101453351
+    top_minus_random: -0.11627021741153432
+    top_minus_random_ci95: [-0.16243844864226664, -0.07141006537164438]
+    top_minus_bottom: -0.27612292623280915
+    top_minus_bottom_ci95: [-0.3566864028642081, -0.1935968731110497]
+  training_median:
+    top: 0.9379405509662363
+    random: 0.8649187185873994
+    bottom: 0.7367882857409469
+    top_minus_random: 0.07302183237883675
+    top_minus_random_ci95: [0.024735021037466193, 0.11494786960735079]
+    top_minus_bottom: 0.20115226522528928
+    top_minus_bottom_ci95: [0.13264886083355684, 0.2695929034046345]
+group_equal_and_probability_summaries_retain_aggregate_sign_reversal: true
+rows_with_at_least_one_zero_feature_score: 691
+positive_top5_boundary_ties: 0
+positive_top10_boundary_ties: 0
+padding_masked: false
+independent_calculation:
+  status: passed
+  script: scripts/verify_spambase_faithfulness.py
+  script_sha256: 133aee9295ede853930fc30297da683c973dfd2c5d8fe6c8e7e9fe206bdee48d
+  replica_dependency: scripts/verify_spambase_grad_cam_v2.py
+  replica_dependency_sha256: 115ee354e625c70e6f674479671a64dd7679dde52c67ba278f013ca9f09594d5
+  project_model_deletion_or_statistics_imports_used: false
+  input_hashes_verified: 63
+  manifest_listed_output_hashes_verified: 8
+  run_files_pinned_including_manifest: 9
+  forward_calls_replayed: 49390
+  all_perturbation_logits_bitwise_exact: true
+  aopc_summaries_and_intervals_verified: 280
+  curves_verified: 1008
+  metric_rtol: 1.0e-12
+  metric_atol: 1.0e-12
+  figure_visually_reviewed: true
+production_runs: 1
+models_trained: 0
+scalers_refitted: 0
+optimizer_steps: 0
+new_explanations_generated: 0
+post_run_policy_changes: 0
+test_evaluation_ready: false
+test_rows_transformed_or_scored: 0
+complete_cnn_matrix_condition: false
+committee_approval_claimed: false
+report: docs/logs/2026-10-04-spambase-faithfulness.md

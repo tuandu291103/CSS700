@@ -55,3 +55,10 @@ the inference-path activation boundary yields bitwise-identical saved logits and
 verified maps/scores. Inputs, scaler, checkpoint and test gate are unchanged. Authoritative
 pins are in `configs/spambase_grad_cam_validation_v2_review.yaml`; see
 `docs/logs/2026-10-04-spambase-grad-cam-v2.md`. Next validation-only faithfulness, not test use.
+
+The frozen validation deletion study is now independently verified: all 691 rows/629 groups,
+two training-derived references, no refit or new explanations. The primary zero-replacement
+top-minus-random logit AOPC is negative (−0.1163), median sensitivity positive (+0.0730).
+Retain both as conditional evidence; no test row was transformed or scored. Pins are in
+`configs/spambase_faithfulness_v1_review.yaml`; see
+`docs/logs/2026-10-04-spambase-faithfulness.md`. Next freeze input-level validation comparisons.

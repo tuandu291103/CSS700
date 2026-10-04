@@ -54,6 +54,13 @@ The held v1 output stays unchanged; no retraining or tolerance relaxation. This 
 validation tracing, not faithfulness or a full-matrix condition. Next a frozen validation
 feature-deletion protocol. See [the v2 report](logs/2026-10-04-spambase-grad-cam-v2.md).
 
+**Validation deletion completed (October 4):** the frozen, independently replayed study
+finds replacement-dependent Grad-CAM evidence: top-minus-random logit AOPC −0.1163 for
+zero/training mean (primary), +0.0730 for training median. Preserve both without changing
+dataset, model or primary setting. See [the deletion report](logs/2026-10-04-spambase-faithfulness.md).
+Next the input-level validation comparison, not test opening. This remains aligned second-
+dataset development work, not committee approval, established novelty or a completed CNN condition.
+
 ## Original recommendation and comparison (September 17)
 
 **Audit Spambase first**, subject to Yu's approval; do not yet freeze it as the second dataset.
