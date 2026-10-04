@@ -437,6 +437,12 @@ def build_parser() -> argparse.ArgumentParser:
     spambase_cam_v2.add_argument("--config", default="configs/spambase_grad_cam_validation_v2.yaml")
     spambase_cam_v2.add_argument("--output-dir", default="artifacts")
     spambase_cam_v2.set_defaults(function=spambase_grad_cam_v2)
+    spambase_deletion = subparsers.add_parser(
+        "spambase-faithfulness", help="evaluate validation-only Grad-CAM feature deletion"
+    )
+    spambase_deletion.add_argument("--config", default="configs/spambase_faithfulness_v1.yaml")
+    spambase_deletion.add_argument("--output-dir", default="artifacts")
+    spambase_deletion.set_defaults(function=spambase_faithfulness)
     return parser
 
 
@@ -533,6 +539,15 @@ def spambase_grad_cam_v2(args: argparse.Namespace) -> int:
     from css700.experiments.spambase_grad_cam_v2 import run_spambase_grad_cam_v2
 
     summary = run_spambase_grad_cam_v2(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def spambase_faithfulness(args: argparse.Namespace) -> int:
+    _configure_runtime_cache()
+    from css700.experiments.spambase_faithfulness import run_spambase_faithfulness
+
+    summary = run_spambase_faithfulness(Path(args.config), Path(args.output_dir))
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 
