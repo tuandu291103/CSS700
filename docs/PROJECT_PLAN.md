@@ -130,12 +130,18 @@ Pilot-dataset progress through 2026-09-17:
   paired group uncertainty. The primary top-minus-random logit AOPC is negative (−0.1163),
   median sensitivity positive (+0.0730); preserve both. See
   `docs/logs/2026-10-04-spambase-faithfulness.md`; 259 tests pass, test remains closed.
-- [ ] Freeze the input-level validation comparison and remaining explanation/seed protocol
-  before test evaluation.
+- [x] Freeze and independently verify the Occlusion part of the input-level validation
+  comparison: 691 rows, 57 features, mean and median replacements, three rank comparisons.
+  Mean Spearman with Grad-CAM is −0.0777 / +0.0071; replacement also changes Occlusion
+  rankings (mean–median rho 0.3192). All k=1 deletion identities match; 284 tests pass.
+  See `docs/logs/2026-10-05-spambase-occlusion.md`. No IG or test evaluation.
+- [ ] Freeze IG input-gradient numerical preflight, then the remaining explanation/seed
+  protocol before test evaluation.
 
-Next bounded milestone: the Spambase input-level IG/Occlusion validation protocol using the
-accepted seed-42 checkpoint. Freeze numerical identity, training-only references, completeness,
-ranking conventions, compute limits and paired comparisons before generating explanations.
+Next bounded milestone: the Spambase IG input-gradient numerical preflight using the accepted
+seed-42 checkpoint. The retained full-gradient discrepancy is unresolved for IG; do not reuse
+the Grad-CAM activation-boundary repair as an input gradient. Freeze predictor identity,
+gradient checks, training-only references, completeness and compute limits before explanations.
 Do not select the median reference merely because the deletion sensitivity is favorable.
 Resolve committee dataset scope and authoritative SOM2IMG implementation/rendering/tracing
 settings separately; freeze the matched encoder comparison before SOM
@@ -147,23 +153,24 @@ also remains separate from Git source synchronization because generated run bund
 The LIME run's performance-counter/UTC timestamp discrepancy prevents an efficiency claim;
 cross-method timing still needs a dedicated verified protocol.
 
-Immediate proposal: retain `configs/spambase_faithfulness_v1_review.yaml` and its exact
-checkpoint/map/run identities. Compare planned input-level explanations without conflating
-tracing or replacement-dependent deletion with causal importance. Keep model settings and
+Immediate proposal: retain the faithfulness and `configs/spambase_occlusion_v1_review.yaml`
+reviews and their exact checkpoint/map/run identities. Continue planned input-level work
+without conflating tracing or replacement-dependent deletion with causal importance. Keep model settings and
 planned seeds unchanged; no validation tuning sweep. The split v1 and separate Grad-CAM v1
-both remain diagnostic-only. A
-second-dataset Grid track can progress independently while the SOM2IMG source/collision
+both remain diagnostic-only. A second-dataset Grid track can progress independently while the SOM2IMG source/collision
 request is resolved. Neither audit success nor an unsent committee draft counts as approval.
 
-On-track check (2026-10-04): the LIME pilot, Spambase integrity, v2 split correction and
+On-track check (2026-10-05): the LIME pilot, Spambase integrity, v2 split correction and
 training-only preprocessing/Grid/CPU preflight and first seed-42 training/validation are
 complete. One frozen scaler was reused; no Spambase test data were transformed or scored.
 Grad-CAM v2 now has exact inference-logit identity and independently accepted validation
 tracing. A frozen deletion study now supplies conditional faithfulness evidence, with a
 negative primary result and positive median sensitivity, not replacement-robust reliability.
+Occlusion now provides independently verified single-feature effects and low agreement with
+Grad-CAM under both replacements; its median top-ten ranks include zero ties on 162 rows.
 Only three of the expected 12 CNN conditions are fully complete (one dataset x Grid x three seeds),
-plus one Spambase training/validation checkpoint with accepted tracing and conditional
-deletion evidence, awaiting remaining explanations and final evaluation.
+plus one Spambase training/validation checkpoint with accepted tracing, conditional deletion
+and Occlusion comparison, awaiting IG, remaining explanations/seeds and final evaluation.
 This is not a percentage of thesis completion. The new dataset pipeline and authoritative
 SOM2IMG decisions remain major full-scope dependencies; the exact committee/defense calendar
 is unconfirmed.

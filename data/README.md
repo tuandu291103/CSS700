@@ -62,3 +62,10 @@ top-minus-random logit AOPC is negative (−0.1163), median sensitivity positive
 Retain both as conditional evidence; no test row was transformed or scored. Pins are in
 `configs/spambase_faithfulness_v1_review.yaml`; see
 `docs/logs/2026-10-04-spambase-faithfulness.md`. Next freeze input-level validation comparisons.
+
+The October 5 Occlusion milestone reuses the same saved images/references and verifies all
+57 single-feature effects for all 691 validation rows under both replacements. All prior
+k=1 deletion logits match exactly. Median replacement leaves 74.48% of sample–feature values
+unchanged, with zero-valued top-ten boundary ties on 162 rows; retain them. No new scaling,
+encoding, training or test evaluation. See `configs/spambase_occlusion_v1_review.yaml` and
+`docs/logs/2026-10-05-spambase-occlusion.md`. Next IG input-gradient numerical preflight.

@@ -226,6 +226,19 @@ causality, novelty or a final-test result. Retain the negative primary result; d
 the favorable sensitivity. See `docs/logs/2026-10-04-spambase-faithfulness.md`.
 Next freeze input-level IG/Occlusion numerical checks and validation comparisons; test stays closed.
 
+**Spambase Occlusion comparison (October 5):** single-feature signed logit/probability effects
+now pass independent exact inference replay on all 691 rows. Using absolute logit-effect
+ranks, mean Spearman with Grad-CAM is −0.0777 [95% paired-group interval −0.0889, −0.0667]
+for mean replacement and +0.0071 [−0.0050, +0.0184] for median, with mean top-five overlap
+6.34% / 8.63%. Mean–median Occlusion rho is 0.3192 [0.3040, 0.3355], top-five overlap 55.14%.
+Equal-group estimates retain the pattern. Median replacement changes none of 29,336/39,387
+sample–feature values (74.48%); 162 rows have fewer than ten nonzero effects and a zero
+top-ten boundary tie. No rows were excluded. This is low cross-method agreement and
+replacement-sensitive finite effects, not evidence that either method is ground truth.
+Absolute Occlusion magnitude differs semantically from positive Grad-CAM support. See
+`docs/logs/2026-10-05-spambase-occlusion.md`. Next IG-specific numerical preflight; the
+Grad-CAM activation-boundary repair cannot be used to obtain input gradients. Test stays closed.
+
 Breast Cancer pilot result to develop in the draft: the validation-selected Grid CNN achieved 0.9070 test
 accuracy and 0.9017 macro F1, compared with 0.6279 accuracy and 0.3857 macro F1 for the
 majority-class baseline. Predicted-class Grad-CAM produced finite 5 x 6 maps for all 86 test

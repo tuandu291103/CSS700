@@ -56,6 +56,13 @@ These do not block the initial Grid pilot, but they should be resolved before th
    work beyond tracing but does not establish replacement-robust faithfulness or select a
    favorable reference. See `docs/logs/2026-10-04-spambase-faithfulness.md`. Next freeze the
    input-level validation comparison; test remains closed, committee scope remains pending.
+
+   **2026-10-05:** Occlusion now has independently verified single-feature effects and
+   mean/median comparisons. Mean Spearman with Grad-CAM is −0.0777 / +0.0071, while mean–
+   median Occlusion rho is 0.3192. Median replacement leaves 74.48% of sample–feature values
+   unchanged and creates zero-valued top-ten cutoff ties on 162 rows. Keep both references;
+   do not interpret agreement as truth. See `docs/logs/2026-10-05-spambase-occlusion.md`.
+   IG still needs its own input-gradient numerical preflight; test remains closed.
 7. Should Random Forest and XGBoost comparisons use built-in global importance only, or TreeSHAP
    for like-for-like local explanations as well?
 

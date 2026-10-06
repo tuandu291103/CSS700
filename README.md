@@ -285,11 +285,21 @@ both; numerical correctness does not imply replacement-robust explanation faithf
 `docs/SPAMBASE_FAITHFULNESS_PROTOCOL.md`, `configs/spambase_faithfulness_v1_review.yaml`
 and [the faithfulness report](docs/logs/2026-10-04-spambase-faithfulness.md).
 
-Next: freeze the Spambase input-level IG/Occlusion validation comparison, followed by the
-remaining seed/test plan. The matrix remains 3/12 completed conditions plus one Spambase
-training/validation condition with accepted tracing and conditional deletion evidence,
-not final test results. Committee scope approval and
-authoritative SOM2IMG guidance remain separate open decisions. Training replay (new
+**Occlusion comparison completed (October 5 local time):** all 691 rows now have signed
+single-feature effects for mean and median replacements, with independent full replay and
+exact consistency against prior k=1 deletion queries. Mean Spearman with Grad-CAM is
+**−0.0777 / +0.0071**; mean top-five overlap **6.34% / 8.63%**. Occlusion mean–median
+Spearman is 0.3192. Median replacement leaves 74.48% of sample–feature values unchanged;
+162 rows have a zero-valued top-ten cutoff tie. **284 tests pass**. These are conditional
+ranking results, not ground-truth importance or new faithfulness evidence. See
+`docs/SPAMBASE_OCCLUSION_PROTOCOL.md`, `configs/spambase_occlusion_v1_review.yaml` and
+[the Occlusion report](docs/logs/2026-10-05-spambase-occlusion.md).
+
+Next: freeze the Spambase IG input-gradient numerical preflight, then the remaining
+explanation/seed/test plan. The Grad-CAM repair is not an input-gradient repair. The matrix
+remains 3/12 completed conditions plus one Spambase validation condition with accepted
+tracing, conditional deletion and Occlusion comparison, not final test results. Committee
+scope approval and authoritative SOM2IMG guidance remain separate open decisions. Training replay (new
 outputs are not automatically a new accepted source):
 
 ```bash

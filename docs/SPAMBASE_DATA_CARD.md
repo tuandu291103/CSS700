@@ -1,7 +1,7 @@
-# Spambase data card: validation tracing and conditional deletion, test gate closed
+# Spambase data card: validation explanation comparisons, test gate closed
 
-Status: **2026-10-04 seed-42 Grid training/validation, Grad-CAM v2 tracing and
-replacement-dependent deletion evidence accepted;
+Status: **2026-10-05 seed-42 Grid training/validation, Grad-CAM v2 tracing,
+replacement-dependent deletion and Occlusion rank-comparison evidence accepted;
 reviewed v2 split and frozen scaler unchanged; test evaluation closed;
 split v1 and Grad-CAM v1 remain diagnostic-only**.
 Yu authorized the prospective correction after
@@ -147,6 +147,14 @@ conditional evidence, not replacement-robust faithfulness. See
 `logs/2026-10-04-spambase-faithfulness.md` and `configs/spambase_faithfulness_v1_review.yaml`.
 Next freeze the input-level validation comparison. No test transformations or scoring.
 
+The October 5 Occlusion comparison adds signed single-feature effects under both references,
+with exact replay of all original/perturbed logits and prior k=1 deletion identities.
+Mean Spearman with Grad-CAM is −0.0777 / +0.0071; mean–median Occlusion rho is 0.3192.
+Median replacement equals the existing value in 74.48% of sample–feature pairs, causing
+zero effects; 162 rows have zero-valued top-ten boundary ties. Preserve these cases and
+both replacements. See `logs/2026-10-05-spambase-occlusion.md` and
+`configs/spambase_occlusion_v1_review.yaml`. IG numerical preflight is next; test stays closed.
+
 Future checks still require training-only references for LIME binning and integer-count
 sampling semantics, SHAP background budgets and bounded model/explainer compute settings.
 The previous Breast Cancer protocol and artifacts stay unchanged.
@@ -174,8 +182,9 @@ Training follow-up: [first CNN validation report](logs/2026-09-20-spambase-grid-
 Explanation follow-up: [Grad-CAM diagnostic hold](logs/2026-10-01-spambase-grad-cam-diagnostic.md).
 Numerical repair: [accepted Grad-CAM v2 tracing](logs/2026-10-04-spambase-grad-cam-v2.md).
 Deletion study: [replacement-dependent validation evidence](logs/2026-10-04-spambase-faithfulness.md).
-Decision: **seed-42 training/validation, Grad-CAM v2 tracing and conditional deletion
-evidence accepted; Grad-CAM v1 and split v1 still held; input-level comparison pending
+Input-level comparison: [Occlusion and Grad-CAM rankings](logs/2026-10-05-spambase-occlusion.md).
+Decision: **seed-42 training/validation, Grad-CAM v2 tracing, conditional deletion
+and Occlusion comparison accepted; Grad-CAM v1 and split v1 still held; IG work pending
 and test evaluation not enabled**.
 Committee scope review and authoritative SOM2IMG collision/allocation guidance remain
 separate gates. Raw data and run outputs are local and Git-ignored; a source commit or push

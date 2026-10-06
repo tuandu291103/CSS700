@@ -61,6 +61,13 @@ dataset, model or primary setting. See [the deletion report](logs/2026-10-04-spa
 Next the input-level validation comparison, not test opening. This remains aligned second-
 dataset development work, not committee approval, established novelty or a completed CNN condition.
 
+**October 5 continuation:** the working second-dataset track now includes verified
+single-feature Occlusion and three ranking comparisons. Low mean/median agreement with
+Grad-CAM (mean rho −0.0777 / +0.0071) and median unchanged-value/tie diagnostics are retained,
+not reasons for dataset or baseline reselection. See
+[the Occlusion report](logs/2026-10-05-spambase-occlusion.md). IG numerical preflight is next;
+committee/SOM2IMG decisions and the closed test gate remain unchanged.
+
 ## Original recommendation and comparison (September 17)
 
 **Audit Spambase first**, subject to Yu's approval; do not yet freeze it as the second dataset.
