@@ -5,7 +5,7 @@
 .PHONY: preflight-spambase
 .PHONY: train-spambase-grid
 .PHONY: spambase-grad-cam spambase-grad-cam-v2
-.PHONY: spambase-faithfulness
+.PHONY: spambase-faithfulness spambase-occlusion
 
 PYTHON ?= python3
 
@@ -100,6 +100,9 @@ spambase-grad-cam-v2:
 
 spambase-faithfulness:
 	PYTHONPATH=src $(PYTHON) -m css700.cli spambase-faithfulness --config configs/spambase_faithfulness_v1.yaml
+
+spambase-occlusion:
+	PYTHONPATH=src $(PYTHON) -m css700.cli spambase-occlusion --config configs/spambase_occlusion_v1.yaml
 
 clean:
 	find src tests -type d -name __pycache__ -prune -exec rm -rf {} +

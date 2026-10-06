@@ -443,6 +443,12 @@ def build_parser() -> argparse.ArgumentParser:
     spambase_deletion.add_argument("--config", default="configs/spambase_faithfulness_v1.yaml")
     spambase_deletion.add_argument("--output-dir", default="artifacts")
     spambase_deletion.set_defaults(function=spambase_faithfulness)
+    spambase_occ = subparsers.add_parser(
+        "spambase-occlusion", help="evaluate validation-only single-feature Occlusion and ranks"
+    )
+    spambase_occ.add_argument("--config", default="configs/spambase_occlusion_v1.yaml")
+    spambase_occ.add_argument("--output-dir", default="artifacts")
+    spambase_occ.set_defaults(function=spambase_occlusion)
     return parser
 
 
@@ -548,6 +554,15 @@ def spambase_faithfulness(args: argparse.Namespace) -> int:
     from css700.experiments.spambase_faithfulness import run_spambase_faithfulness
 
     summary = run_spambase_faithfulness(Path(args.config), Path(args.output_dir))
+    print(json.dumps(summary, indent=2))
+    return 0 if summary["status"] == "ok" else 1
+
+
+def spambase_occlusion(args: argparse.Namespace) -> int:
+    _configure_runtime_cache()
+    from css700.experiments.spambase_occlusion import run_spambase_occlusion
+
+    summary = run_spambase_occlusion(Path(args.config), Path(args.output_dir))
     print(json.dumps(summary, indent=2))
     return 0 if summary["status"] == "ok" else 1
 
