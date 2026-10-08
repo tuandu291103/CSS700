@@ -1,5 +1,11 @@
 # Three-quarter project plan
 
+**Historical plan:** the professor's October meeting notes expand the minimum scope to three
+datasets and require explicit comparative algorithms and quantitative interpretation metrics.
+Use [the revised 2026–2027 plan](PROJECT_PLAN_2026_2027_REVISED.md) for prospective planning.
+The original schedule and progress record below are preserved; specific new choices remain
+subject to advisor review and do not retroactively change accepted experiment protocols.
+
 The proposal estimates approximately 32 working weeks from Autumn 2026 through Spring 2027.
 This plan keeps that sequence while adding explicit decision gates and a writing cadence.
 

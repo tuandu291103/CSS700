@@ -12,13 +12,22 @@ points.
 ## Study at a glance
 
 - **Pilot dataset:** Breast Cancer Wisconsin from scikit-learn.
-- **Expected study:** at least two public classification datasets, Grid Encoding and SOM2IMG,
-  and at least three random seeds.
+- **Revised proposed study (2026-10-07):** three public datasets (Breast Cancer Wisconsin,
+  Spambase and Dry Bean), Grid/SOM2IMG/IGTD encodings, and three training seeds, with a
+  random-layout control and separate layout-seed sensitivity. Specific choices await advisor
+  review; see the [revised Autumn–Winter–Spring plan](docs/PROJECT_PLAN_2026_2027_REVISED.md).
 - **CNN explanation methods:** Grad-CAM, Integrated Gradients, and feature-wise Occlusion
   Sensitivity.
 - **Evaluation:** predictive quality, faithfulness, Spearman rank correlation, top-k overlap,
   stability, computational cost, and prediction-group analysis.
 - **Principle:** no explanation method is ground truth; reproducible disagreement is a result.
+
+**Professor meeting response (2026-10-07):** the revised plan separates mapping correctness,
+explanation faithfulness and human understanding, and adds directly relevant prior work
+(including PermGrad). The minimum three-dataset requirement expands the earlier two-dataset
+plan. No new experiments or test-set access occurred in this planning session. Read the
+[session summary](docs/logs/2026-10-07-professor-meeting-plan.md) or the
+[shareable Word plan](docs/deliverables/CSS700_Project_Plan_2026_2027.docx).
 
 ## Repository map
 

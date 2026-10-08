@@ -1,5 +1,12 @@
 # Research design
 
+**2026-10-07 planning update:** the professor's meeting notes establish a minimum three-dataset
+study. The [revised plan](PROJECT_PLAN_2026_2027_REVISED.md) proposes Dry Bean as dataset three,
+IGTD as a third encoder, random-layout controls, mapping identifiability checks and explicit
+prior-framework comparisons. The design below records the earlier pilot contract; a new
+experiment protocol must be frozen before executing the expanded matrix. Inverse feature
+lookup alone is not a new attribution algorithm, nor does it establish faithfulness.
+
 ## Research questions
 
 1. Can image-space explanations for tabular-to-image CNNs be traced back to original named

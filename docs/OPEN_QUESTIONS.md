@@ -1,5 +1,29 @@
 # Open questions for Yu and the committee
 
+## October meeting decisions to confirm
+
+The minimum study scope is now three datasets, three comparative algorithms and three
+quantitative evaluation metrics. See the [revised project plan](PROJECT_PLAN_2026_2027_REVISED.md).
+These specific proposals are not yet committee approvals:
+
+- Confirm Breast Cancer Wisconsin, Spambase and Dry Bean as the three datasets; verify the
+  final SOM2IMG dataset list and reconcile Dry Bean's 13,611 UCI rows versus 13,612 in the
+  local manuscript.
+- Supply the final IEEE SOM2IMG PDF and author code/version, especially collision handling.
+  The author bibliography verifies the professor's IEEE link identifies SOM2IMG; full-text
+  identity with the local six-page manuscript is not established.
+- Confirm Grid/SOM2IMG/IGTD plus random placement, three training seeds, and the proposed
+  54-CNN-fit budget including layout-seed sensitivity. Timing preflight remains required.
+- Confirm the contribution as mapping-aware, controlled evaluation rather than a claim to
+  invent feature back-mapping. PermGrad is direct prior work and has public author code.
+- Decide whether a full hybrid PermGrad reproduction is required beyond the controlled
+  mapping-stage baseline and literature comparison; its architecture and global aggregation
+  are not interchangeable with local CNN explanations.
+- Freeze ranking signs, same-model SHAP targets/backgrounds, and the revised held-out
+  evaluation contract. Human-comprehension claims require a separate study and approval.
+
+The earlier questions and chronological updates below are retained as the historical record.
+
 These do not block the initial Grid pilot, but they should be resolved before the related gate.
 
 ## Highest priority
