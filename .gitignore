@@ -1,24 +1,30 @@
+# Local settings and secrets
 .DS_Store
 .env
+.env.*
+!.env.example
+
+# Future local environments and caches
 .venv/
+venv/
 __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
 .ruff_cache/
 .cache/
+.ipynb_checkpoints/
 .coverage
 htmlcov/
-.ipynb_checkpoints/
 
-# Research data and generated artifacts are reproducible, not source code.
+# Keep full backups and generated research data outside version control
+*.zip
+*.tar
+*.tar.gz
 data/raw/
 data/interim/
 data/processed/
 artifacts/
 checkpoints/
 /models/
-reports/figures/generated/
-
-# Keep directory documentation and small, curated examples.
-!data/README.md
+/outputs/
