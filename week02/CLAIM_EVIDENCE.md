@@ -61,5 +61,9 @@ DeepFeature's Materials and methods states 6,280 downloaded files, 64 removed, a
 - Defensible draft wording: provided in [PROPOSAL_WORDING.md](PROPOSAL_WORDING.md).
 - Dataset candidates, identifiers, access routes, and risks: documented.
 - Evidence that our future method improves interpretation: **not yet available**.
-- Dataset-level leakage audit and annotation mapping: **not yet performed**.
+- Dataset-level acceptance audit: **partial MILE metadata/annotation and two-profile checks completed on 19 October; full-cohort integrity, independence, processing, and final gene mapping remain unresolved**. See the [feasibility report](GSE13159_FEASIBILITY.md).
 - Claims of a first-ever tracing method, guaranteed CNN inferiority, or proven noise robustness: **not adopted**.
+
+## 19 October addition: SOM2IMG
+
+The [focused review](SOM2IMG_REVIEW.md) now covers all six pages of the supplied anonymous manuscript, separately from the final IEEE bibliographic record. Its qualitative feature-grouping discussion supports a reason to inspect spatial layouts, not a demonstrated improvement in biological interpretation. None of its nine reported benchmarks is identified as a gene-expression study. Collision handling and fold-local layout fitting require implementation verification before reuse. These limits concern the reviewed copy, not an uninspected final publication; they neither prove a code defect nor establish our thesis's novelty.

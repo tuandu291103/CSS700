@@ -1,6 +1,6 @@
 # Week 2 reference library
 
-Initial review 15 October 2026; MILE audit references added 19 October. Stable citation keys are in [references.bib](references.bib). Locators identify the material used; “reviewed” does not imply a reproduction or exhaustive review of every supplement.
+Initial review 15 October 2026; MILE and SOM2IMG references added 19 October. Stable citation keys are in [references.bib](references.bib). Locators identify the material used; “reviewed” does not imply a reproduction or exhaustive review of every supplement.
 
 ## R1
 
@@ -92,6 +92,15 @@ W.-M. Liu et al. **PQN and DQN: algorithms for expression microarrays.** Journal
 - Key: `liu2006pqn`. Abstract reviewed via indexed primary record; full methods not obtained.
 - Use: empirical versus theoretical quantile targets. Combine with the GEO VALUE/DQN3 field description; this limited review does not certify the entire deposited preprocessing pipeline as leakage-free.
 
+## R12 — SOM2IMG: publication metadata and separate reading copy
+
+W. Selke and W. Kim. **SOM2IMG: Self-Organizing Map Based Tabular-to-Image Transformation for Deep Learning.** IEEE International Conference on Information Reuse and Integration for Data Science (IRI), 2026, pp. 171–176. DOI: `10.1109/IRI69576.2026.00042`.
+
+- [IEEE record](https://ieeexplore.ieee.org/abstract/document/11676815); bibliographic metadata verified through the [author's publication list](https://faculty.washington.edu/kimw6/publication.html). Published citation key: `selke2026som2img`. Final IEEE full text was not retrieved.
+- **Text reviewed:** the supplied [local six-page anonymous manuscript](/Users/dudinh/Desktop/SOM2IMG.pdf), separately keyed as `som2imgSuppliedManuscript2026`. All pages read and visually inspected, including Tables I–II, Figures 1–3, and the BMU/grid equations. Size: 1,467,643 bytes; SHA-256: `b80c6d67ef05ea7ec806848c102b0b17bd3d0535f90fdcc673e4268031da18f9`.
+- Its anonymous heading and PDF creation metadata do not prove identity with the final publication. The existing archive preserves it; it has not been republished in this repository. An OpenReview version was located but not reviewed.
+- Use: candidate feature-layout method, benchmark inventory, and qualitative interpretation motivation. See the [focused review](../week02/SOM2IMG_REVIEW.md) for source-version boundaries, dataset discrepancies, collision/fold questions, and the difference between reported predictive metrics and unmeasured explanation quality. No reproduction or novelty claim.
+
 ## Additional primary technical record — not a peer-reviewed paper
 
 W.-M. Liu. **Algorithms for classification of disease subtypes and for prognosis with gene expression profiling.** US patent application publication US20100130372A1, published 27 May 2010.
@@ -115,3 +124,18 @@ W.-M. Liu. **Algorithms for classification of disease subtypes and for prognosis
 | Reserve / `geoGSE2034` | [GSE2034](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2034) | Summary, sample count, platform, outcome description |
 
 For the initial review, GEO series records were available through indexed primary-page content where direct access intermittently returned a browser check. On 19 October, complete GSE13159 sample attributes, GPL570 annotation, and subsequently two individual sample tables were downloaded and audited; see the [report](../week02/GSE13159_FEASIBILITY.md). No full-cohort expression matrix or complete clinical patient-linkage audit has been performed. Repository metadata alone is not a full methodological review.
+
+### SOM2IMG benchmark records checked on 19 October
+
+These support record-level cross-checks, not an assertion that the author's exact input files have been identified. Heart and Soul has no verified release link in this review. None of these records is an acceptance decision for our genomic study.
+
+| BibTeX key | Official record | Material checked |
+|---|---|---|
+| `uciWisconsinDiagnostic` | [Wisconsin Diagnostic](https://archive.ics.uci.edu/dataset/17/breast-cancer-wisconsin-diagnostic) | Dimensions and cell-nucleus morphology definitions |
+| `uciHeartDisease` | [Heart Disease](https://archive.ics.uci.edu/dataset/45/heart+disease) | Instance/predictor counts and database/subset description |
+| `uciLungCancer` | [Lung Cancer](https://archive.ics.uci.edu/dataset/62/lung+cancer) | Counts, missing values, and lack of individual variable definitions |
+| `uciMyocardialComplications` | [Myocardial infarction complications](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications) | Counts and prediction-time/target description |
+| `uciObesityLevels` | [Obesity Levels](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition) | Counts and synthetic-data disclosure |
+| `uciDryBean` | [Dry Bean](https://archive.ics.uci.edu/dataset/602/dry+bean+dataset) | Counts and image-derived morphology features |
+| `uciSpambase` | [Spambase](https://archive.ics.uci.edu/dataset/94/spambase) | Counts, email target, word/character and capital-run definitions |
+| `tabosa2021dengue` | [Dengue and Chikungunya, version 1](https://data.mendeley.com/datasets/bv26kznkjs/1) | Counts, geographic sources, attributes and undersampling description |

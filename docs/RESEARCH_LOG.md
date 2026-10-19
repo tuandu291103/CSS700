@@ -1,5 +1,27 @@
 # Research log
 
+## 19 October 2026 — focused SOM2IMG initial study
+
+**Completed**
+
+- Read and visually checked all six pages of the supplied SOM2IMG manuscript; recorded its checksum and distinguished it from the final IEEE bibliographic record and an unread OpenReview version.
+- Added a [focused review and Wednesday discussion notes](../week02/SOM2IMG_REVIEW.md), covering the mapping mechanism, all nine benchmarks, reported evaluation, interpretation limits, and candidate comparison roles.
+- Cross-checked seven UCI records and the Mendeley record, without acquiring benchmark data; added source links and separate bibliography keys.
+- Updated the README, dataset notes, reading log, and the evidence review's stale audit-status statement. No archived material or research code was changed.
+
+**Findings and limits**
+
+The supplied manuscript does not report a gene-expression benchmark; its feature-neighborhood interpretation is qualitative. A biological interpretation benefit remains a hypothesis. BMU assignments alone do not enforce one-to-one feature placement, and the manuscript does not establish fold-local preprocessing/layout fitting. These are reproduction questions, not observed failures in author code. Dataset dimension discrepancies also require exact release/encoding verification. All locators and primary-record links are in the focused review.
+
+**Next**
+
+Clarify which benchmark and paper version the advisor intends; request the author implementation or missing specification, particularly collision handling and fold boundaries. Consider Wisconsin Diagnostic only as a separate technical check, not a gene-expression cohort. Continue the existing dataset acceptance work; no acceptance, advisor approval, new model training, or biological discovery is claimed.
+
+**Verification**
+
+- Source manuscript left unchanged; relevant tables and equations checked visually rather than inferred solely from extracted text.
+- Document links, bibliography keys, Git whitespace, and the existing audit tests checked before publication. This is a documentation-only change; test success does not reproduce SOM2IMG.
+
 ## 19 October 2026 — follow-up: acceptance protocol and sample-table checks
 
 **Completed**
@@ -81,7 +103,7 @@ The [dataset notes](../week02/DATASET_CANDIDATES.md) identify unresolved preproc
 
 ## Next milestone
 
-1. Review the revised question and evidence with the advisor.
+1. Review the revised question and evidence with the advisor, including the SOM2IMG benchmark/version clarification and reproduction questions.
 2. Review the drafted MILE acceptance protocol and unresolved linkage/processing limits; do not start confirmatory training without an explicit acceptance decision.
 3. Check full-release size/provenance before acquiring a full matrix for file checks, and audit the other candidates before committing to three datasets.
 4. Agree on comparison methods and evaluation metrics before implementing models.

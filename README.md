@@ -18,6 +18,7 @@ This is a question to investigate, not a demonstrated result. The study will com
 |---|---|
 | [Claim evidence](week02/CLAIM_EVIDENCE.md) | Assess the main research claims against published work |
 | [Proposal wording](week02/PROPOSAL_WORDING.md) | Read the citation-backed draft motivation |
+| [SOM2IMG review](week02/SOM2IMG_REVIEW.md) | Check the reference method, nine benchmarks, interpretation claims, and reproduction questions |
 | [Dataset candidates](week02/DATASET_CANDIDATES.md) | Review three candidates, a reserve, and acceptance checks |
 | [MILE feasibility audit](week02/GSE13159_FEASIBILITY.md) | See verified counts, specimen-type imbalance, mapping ambiguity, and remaining gates |
 | [MILE acceptance protocol](week02/GSE13159_ACCEPTANCE_PROTOCOL.md) | Review proposed acceptance gates, split rules, specimen controls, and preprocessing policy |
@@ -27,9 +28,9 @@ This is a question to investigate, not a demonstrated result. The study will com
 
 ## Status and next milestone
 
-- **Completed:** initial evidence review, revised motivation, dataset shortlist, MILE metadata/annotation audit, two sample-table checks, and a draft acceptance protocol.
-- **Latest finding (19 October):** both checked profiles contain 54,630 finite DQN3 values and 45 missing control values. The original article/appendix adds context but has not supplied a complete patient/center linkage map. These are audit findings, not model results.
-- **Next:** review the proposed scope and controls with the advisor; check the full processed release's size/provenance before a full-cohort file audit. Continue auditing the other candidates.
+- **Completed:** initial evidence review, revised motivation, dataset shortlist, MILE metadata/annotation and two-profile checks, a draft acceptance protocol, and the focused SOM2IMG review.
+- **Latest finding (19 October):** the supplied SOM2IMG manuscript reports nine benchmarks, none identified as gene-expression data, and qualitative feature-grouping interpretation. It does not establish a gene-expression interpretation benefit. Its identity against the final IEEE text, collision handling, and fold-local fitting remain to be verified; see the [source-backed review](week02/SOM2IMG_REVIEW.md).
+- **Next:** clarify which SOM2IMG benchmark/version the advisor intends and obtain the implementation details; review the proposed scope and dataset controls. Continue dataset acceptance checks, including full-release size/provenance before any MILE full-cohort file audit.
 - **Pending:** address specimen-type confounding, verify expression data and current gene mapping, and audit the remaining candidates before accepting datasets.
 - **Later:** agree on comparison methods and evaluation metrics, then implement the new study.
 

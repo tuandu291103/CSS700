@@ -8,6 +8,8 @@ Our proposed selection criteria are: a clear prediction target; recoverable gene
 
 The shortlist spans breast-tumor subtypes, hematological diagnoses, and multi-tumor RNA-seq classification. This is domain breadth within transcriptomics, not evidence for all genomic modalities or all noisy tabular problems.
 
+**SOM2IMG clarification (19 October):** the supplied reference evaluates a method on nine benchmarks, none described as gene-expression data. The [focused review](SOM2IMG_REVIEW.md#2-which-datasets-were-used) records their identities and source-count discrepancies. Wisconsin Diagnostic is a possible separate technical check, not a substitute for a gene-expression cohort. None of the three candidates below was established as a SOM2IMG benchmark by that review. Confirm what the advisor means by reusing its dataset before changing the shortlist.
+
 ## Shortlist at a glance
 
 | Candidate | Source-reported size | Proposed target | Feature identity | Current decision |
