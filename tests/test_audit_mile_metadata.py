@@ -3,7 +3,7 @@
 import unittest
 
 from scripts.audit_mile_metadata import (
-    audit_annotation, audit_samples, gene_ids, parse_samples, single,
+    audit_annotation, audit_profile, audit_samples, gene_ids, parse_samples, single,
 )
 
 
@@ -31,6 +31,43 @@ def synthetic_samples():
 
 
 class MetadataAuditTests(unittest.TestCase):
+    def profile_fixture(self):
+        text = "\n".join([
+            "^SAMPLE = GSM1", "!Sample_geo_accession = GSM1",
+            "!Sample_title = synthetic", "!Sample_platform_id = GPL570",
+            "!Sample_characteristics_ch1 = leukemia class: synthetic",
+            "!Sample_data_row_count = 2", "#VALUE = DQN3 synthetic description",
+            "!sample_table_begin", "ID_REF\tVALUE_DS\tVALUE",
+            "AFFX-control\t100\t", "probe1\t500\t0.25", "!sample_table_end",
+        ])
+        return text, parse_samples(text), {"AFFX-control", "probe1"}
+
+    def test_profile_missing_values_are_not_zero_imputed(self):
+        result = audit_profile(*self.profile_fixture())
+        stats = result["column_statistics"]["VALUE"]
+        self.assertEqual((stats["finite_count"], stats["missing_count"]), (1, 1))
+        self.assertEqual(stats["minimum"], 0.25)
+        self.assertEqual(stats["missing_non_AFFX_count"], 0)
+        self.assertTrue(result["annotation_probe_set_exact_match"])
+
+    def test_profile_rejects_nonfinite_and_malformed_data(self):
+        text, expected, ids = self.profile_fixture()
+        for changed in (text.replace("0.25", "nan"), text.replace("0.25", "inf"),
+                        text.replace("probe1\t500", "AFFX-control\t500"),
+                        text.replace("!sample_table_end", ""),
+                        text.replace("probe1\t500\t0.25", "probe1\t500")):
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                audit_profile(changed, expected, ids)
+
+    def test_profile_rejects_wrong_identity_and_annotation(self):
+        text, expected, ids = self.profile_fixture()
+        with self.assertRaises(ValueError):
+            audit_profile(text.replace("GSM1", "GSM2"), expected, ids)
+        with self.assertRaises(ValueError):
+            audit_profile(text.replace("!Sample_title = synthetic", "!Sample_title = changed"), expected, ids)
+        with self.assertRaises(ValueError):
+            audit_profile(text, expected, {"AFFX-control", "different_probe"})
+
     def test_gene_ids_preserve_ambiguity_and_deduplicate(self):
         self.assertEqual(gene_ids(" 780 /// 780 /// 100616237 "), {"780", "100616237"})
         self.assertEqual(gene_ids("---"), set())

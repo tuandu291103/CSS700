@@ -1,6 +1,6 @@
 # Week 2: transcriptomic dataset candidates
 
-Started 15 October; updated 19 October 2026 | MILE metadata/annotation audited; expression matrices not downloaded or audited
+Started 15 October; updated 19 October 2026 | MILE metadata/annotation and two profiles audited; full-cohort expression matrices not downloaded or audited
 
 ## Selection principle
 
@@ -42,11 +42,13 @@ An inspected sample record reports 29,873 processed probe rows. Its processing d
 
 **Target and dimensions not yet frozen.** The deposited label dictionary and counts are now documented, but inclusion criteria and the final analysis target remain undecided. Record actual retained probe count and unique gene count separately; metadata-reported rows are not a verified expression matrix. The combined non-leukemia/healthy label must not be simplified to healthy controls.
 
+**Follow-up.** Reviewed original-study methods and the embedded appendix; no complete patient/center linkage map was recovered. Two preselected profiles have exact GPL570 ID coverage, each with 54,630 finite DQN3 values and 45 missing control values. This does not establish full-cohort integrity. The [draft acceptance protocol](GSE13159_ACCEPTANCE_PROTOCOL.md) now defines specimen-type controls and explicit limits on acceptable claims.
+
 **Acceptance gates.** Audit independent patient IDs, duplicate specimens, class imbalance, collection-center/batch metadata, and preprocessing. Determine whether a center-aware evaluation is feasible from the available metadata; do not assume it is. Confirm that training and evaluation data can be processed without outcome-informed transformations or fitting new preprocessing on held-out samples. Map probes with a documented many-to-one/one-to-many policy.
 
 **Access and independence.** Start with metadata and processed-data provenance, not the large raw archive. The parent accession and this subseries are not two independent studies. Freeze a sample manifest before adding any other MILE-derived dataset.
 
-**Decision:** **conditional candidate after the bounded metadata/annotation audit**, not accepted for confirmatory experiments. Next resolve patient/center linkage and processing provenance, and declare specimen-type controls and mapping policy. Metadata and annotation have been downloaded; no expression matrix, raw CEL archive, or model training has been started.
+**Decision:** **conditional candidate after bounded metadata/annotation and two-profile checks**, not accepted for confirmatory experiments. Proposed controls and mapping policy are documented for review; patient linkage and full processing verification remain unresolved. No full-cohort expression matrix, raw CEL archive, or model training has been started.
 
 ## D3. UCI gene expression cancer RNA-Seq
 

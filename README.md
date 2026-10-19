@@ -20,19 +20,20 @@ This is a question to investigate, not a demonstrated result. The study will com
 | [Proposal wording](week02/PROPOSAL_WORDING.md) | Read the citation-backed draft motivation |
 | [Dataset candidates](week02/DATASET_CANDIDATES.md) | Review three candidates, a reserve, and acceptance checks |
 | [MILE feasibility audit](week02/GSE13159_FEASIBILITY.md) | See verified counts, specimen-type imbalance, mapping ambiguity, and remaining gates |
+| [MILE acceptance protocol](week02/GSE13159_ACCEPTANCE_PROTOCOL.md) | Review proposed acceptance gates, split rules, specimen controls, and preprocessing policy |
 | [Reference library](references/REFERENCES.md) | Find research references and their reading notes |
 | [BibTeX bibliography](references/references.bib) | Reuse citation entries in thesis writing |
 | [Research log](docs/RESEARCH_LOG.md) | Follow completed work and the next milestone |
 
 ## Status and next milestone
 
-- **Completed:** initial evidence review, revised motivation, dataset shortlist, and MILE metadata/platform-annotation audit.
-- **Latest finding (19 October):** 2,096 sample records and 18 labels verified; strong specimen-type/diagnosis association and ambiguous probe-to-gene mappings identified. These are audit findings, not model results.
-- **Next:** resolve MILE patient/center metadata and processing provenance, then draft its acceptance protocol for advisor review.
+- **Completed:** initial evidence review, revised motivation, dataset shortlist, MILE metadata/annotation audit, two sample-table checks, and a draft acceptance protocol.
+- **Latest finding (19 October):** both checked profiles contain 54,630 finite DQN3 values and 45 missing control values. The original article/appendix adds context but has not supplied a complete patient/center linkage map. These are audit findings, not model results.
+- **Next:** review the proposed scope and controls with the advisor; check the full processed release's size/provenance before a full-cohort file audit. Continue auditing the other candidates.
 - **Pending:** address specimen-type confounding, verify expression data and current gene mapping, and audit the remaining candidates before accepting datasets.
 - **Later:** agree on comparison methods and evaluation metrics, then implement the new study.
 
-No expression matrices have been acquired for the restart, and no models or predictive experiments have been run. The only code is a standard-library metadata audit with 10 synthetic tests, not a training pipeline. Local metadata/annotation downloads are ignored by Git; a small [checksummed audit summary](week02/GSE13159_AUDIT.json) is tracked. See the [audit report](week02/GSE13159_FEASIBILITY.md#reproduce-this-audit) for reproduction and test commands.
+No full-cohort expression matrix has been acquired, and no models or predictive experiments have been run. Two individual expression tables were inspected for format, probe identity, and missing values only. The audit uses the standard library and has 13 synthetic tests; it is not a training pipeline. Local source downloads are ignored by Git; a small [checksummed audit summary](week02/GSE13159_AUDIT.json) is tracked. See the [audit report](week02/GSE13159_FEASIBILITY.md#reproduce-this-audit) for reproduction and test commands. The protocol is a draft, not recorded advisor approval.
 
 ## Repository layout
 

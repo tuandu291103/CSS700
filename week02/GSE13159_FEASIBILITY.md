@@ -1,12 +1,12 @@
 # GSE13159 / MILE: metadata and annotation feasibility audit
 
-19 October 2026 | Week 2 | **Conditional candidate; not accepted for confirmatory experiments**
+19 October 2026, including same-day follow-up | Week 2 | **Conditional candidate; not accepted for confirmatory experiments**
 
 ## Outcome
 
 We verified the complete deposited sample inventory and a usable platform-annotation route. However, specimen type is strongly associated with diagnosis, patient/center linkage is not explicit in the downloaded metadata, and probe-to-gene mapping is not one-to-one. These are reasons to finish the data protocol before training—not evidence that an image representation solves the interpretation problem.
 
-This is an original **data-quality audit**, not a novel biological finding or a model comparison. No expression matrix, raw CEL archive, model, split, or enrichment analysis was produced. The [machine-readable audit](GSE13159_AUDIT.json) contains computed counts, source URLs, retrieval date, byte sizes, and SHA-256 hashes.
+This is an original **data-quality audit**, not a novel biological finding or a model comparison. The follow-up inspected two individual expression tables; no full-cohort expression matrix, raw CEL archive, model, split, or enrichment analysis was produced. The [machine-readable audit](GSE13159_AUDIT.json) contains computed counts, source URLs, retrieval date, byte sizes, and SHA-256 hashes. The [acceptance protocol](GSE13159_ACCEPTANCE_PROTOCOL.md) is a draft for advisor review.
 
 ## 1. What we checked
 
@@ -63,7 +63,7 @@ Source and calculation: [sample export](https://www.ncbi.nlm.nih.gov/geo/query/a
 
 **Observed:** the sample-characteristic fields contain only diagnostic class and specimen type. The downloaded records do not expose an explicit donor-linkage or collection-center/batch field. `N1_####` titles identify assays; no donor-linkage guarantee is supplied by this export. GEO contact details identify a submitter, not each sample's collection center. All records belong to both GSE13159 and GSE13204. [Complete sample export](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13159&targ=gsm&form=text&view=brief).
 
-**Needed:** inspect original-study supplements and linked metadata for patient/specimen relationships and center assignments. If unavailable, state the limitation explicitly and agree on an appropriate exploratory scope with the advisor. Do not label a random assay split “patient-independent” or claim external-center generalization. Numerical duplicate-profile checks also await an expression matrix and would not, by themselves, establish patient identity.
+**Needed:** recover authoritative patient/specimen relationships and sample-level center assignments. The follow-up reviewed the original article and its embedded appendix, without recovering a complete linkage map (details below). If unavailable, state the limitation explicitly and agree on an appropriate exploratory scope with the advisor. Do not label a random assay split “patient-independent” or claim external-center generalization. Full-cohort numerical duplicate-profile checks also await an expression matrix and would not, by themselves, establish patient identity.
 
 All sample records cite Liu et al.'s summarization/quantile-normalization method. A separately inspected [GSM330048 record, data-table descriptions](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM330048) distinguishes `VALUE_DS` from `VALUE`; the latter is DQN3 with theoretical beta quantiles (p=1.2, q=3). The [Liu et al., 2006 abstract](https://pubmed.ncbi.nlm.nih.gov/16889801/) distinguishes empirical and theoretical quantile targets. We therefore **cannot infer cohort-fitted normalization merely from the term “quantile normalization.”** Conversely, this does not certify the entire deposited pipeline as leakage-free. Full processing specification, value scale, selected matrix column, and sample-independent applicability remain to be verified. No log transform or new normalization has been applied.
 
@@ -93,31 +93,58 @@ For example, `1007_s_at` maps to both `100616237` / MIR4640 and `780` / DDR1 in 
 | Independent-patient and center grouping | Unresolved |
 | Specimen-source confounding addressed by a declared protocol | Unresolved; strong association identified |
 | Processed-value provenance, scale, and inductive applicability | Partially documented; not approved |
-| Expression IDs, missing values, and duplicate profiles | Not audited |
+| Expression IDs, missing values, and duplicate profiles | Two selected profiles checked; full-cohort checks remain open |
 | Final gene mapping and enrichment background | Not frozen |
 | Reuse terms and original-study requirements | Public download verified; no blanket CC BY assumption or complete terms review |
 
-**Recommendation:** retain MILE as a conditional candidate, not a confirmed thesis benchmark. Next, resolve metadata/provenance gaps and draft a short dataset-acceptance protocol covering specimen-type controls, patient grouping, and mapping policy. If those constraints cannot support the intended claims, narrow the claims or replace the candidate before model development. The other two candidate datasets remain unaudited; three independent datasets have not yet been accepted.
+**Recommendation:** retain MILE as a conditional candidate, not a confirmed thesis benchmark. A [draft acceptance protocol](GSE13159_ACCEPTANCE_PROTOCOL.md) now specifies specimen-type controls, patient grouping, and mapping policy; it is not advisor approval. If remaining constraints cannot support the intended claims, narrow the claims or replace the candidate before model development. The other two candidate datasets remain unaudited; three independent datasets have not yet been accepted.
+
+## Follow-up: original study and two-profile check
+
+**Original study.** The full primary HTML and embedded appendix were retrieved during the follow-up. Table 1 contains center-by-class counts; its center-10 column contains 199 CLL cases and no other class. The appendix describes patient-origin profiles, assay preparation, quality control, and Dn3's beta target. Tables A1–A3 cover marker summaries, Stage II diagnostic discrepancies, and selected misclassified cases; A3 lists six Stage I `N1_` identifiers, not a full patient/center map. No complete map was recovered from these reviewed materials. [Haferlach et al., Methods, Table 1, and Appendix](https://pmc.ncbi.nlm.nih.gov/articles/PMC5569671/).
+
+The local reading copy is ignored at `data/raw/gse13159/PMC5569671.html`: 349,405 bytes; SHA-256 `97f8fd3c0143ec0060057d9c78599dd3900b1410c43b999900807a32745a66ec`. It was retrieved from the article URL on 19 October. Table 1's row totals sum to 2,096. Aggregate counts must not be used to invent an accession-to-center map.
+
+**Normalization evidence.** The author's [technical disclosure US20100130372A1, Description, steps 335 and 380](https://patents.google.com/patent/US20100130372A1/en) describes normalization to fixed theoretical beta quantiles or a fixed external reference, rather than quantiles fitted anew to the study cohort. It gives p=1.2, q=3 for a Dn3 variant and discusses different probe subsets and preprocessing variants. This supports the *possibility* of sample-independent normalization; it does not identify every upstream setting used for this release. This is a patent publication, not peer-reviewed validation or advice about legal rights. The complete Liu 2006 paper remains unread.
+
+**Linked metadata.** [GSE122511](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE122511) is a third-party meta-analysis including GSE13159 and a new RMA processing route. It is not an independent MILE validation cohort or evidence that the original DQN3 release used RMA. Its large matrix was not downloaded; no patient linkage was recovered from the reviewed series description.
+
+**Bounded profile inspection.** Before inspecting values, selected the first deposited CLL accession and first MDS accession from the existing inventory: [GSM330929](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM330929) (blood, N1_1293) and [GSM331453](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM331453) (marrow, N1_1817). These are purposive schema checks, not representative samples or a disease comparison.
+
+| Check | GSM330929 | GSM331453 |
+|---|---:|---:|
+| Table rows / unique IDs | 54,675 | 54,675 |
+| Exact match to GPL570 probe-ID set | Yes | Yes |
+| Finite DQN3 (`VALUE`) entries | 54,630 | 54,630 |
+| Missing DQN3 entries, all `AFFX-` | 45 | 45 |
+| DQN3 minimum / maximum | 0 / 1 | 0 / 1 |
+| Missing non-`AFFX-` DQN3 entries | 0 | 0 |
+| Finite DS (`VALUE_DS`) entries | 54,675 | 54,675 |
+| DS minimum / maximum | 6.81111 / 103,204 | 3.2326 / 50,535 |
+
+These are computed file statistics, reproducible with the script below. Input bytes/hashes are recorded under `selected_sample_profiles` in [audit JSON schema v2](GSE13159_AUDIT.json). Both files have the same 45 missing DQN3 probe IDs. That is distinct from the 62 total `AFFX-` annotation rows. Do not replace missing DQN3 entries with zero, equate DS with DQN3, or automatically log-transform values that include zero. No transformation was applied. The whole-cohort audit flags remain false because two-profile checks do not certify all 2,096 expression profiles.
 
 ## Reproduce this audit
 
-Python 3.9+ with the standard library is sufficient. From the repository root, the following commands retrieve only metadata/annotation (about 14.8 MB total), not the large raw CEL archive. Existing raw copies are kept locally under ignored `data/raw/`; they are not pushed to GitHub. GEO exports can change: compare byte hashes in the JSON before treating a later run as an exact reproduction. A new retrieval date should be supplied for a new download.
+Python 3.9+ with the standard library is sufficient. From the repository root, these commands retrieve metadata/annotation (about 14.8 MB) plus two sample tables (about 5.4 MB), not the raw CEL archive or full-cohort matrix. Existing raw copies are kept locally under ignored `data/raw/`; they are not pushed to GitHub. GEO exports can change: compare byte hashes in the JSON before treating a later run as an exact reproduction. A new retrieval date should be supplied for a new download.
 
 ```sh
 mkdir -p data/raw/gse13159
 curl --fail --location --max-time 240 --max-filesize 1000000 --output data/raw/gse13159/GSE13159_series.soft 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13159&targ=self&form=text&view=brief'
 curl --fail --location --max-time 240 --max-filesize 25000000 --output data/raw/gse13159/GSE13159_samples.soft 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13159&targ=gsm&form=text&view=brief'
 curl --fail --location --max-time 240 --max-filesize 35000000 --output data/raw/gse13159/GPL570.annot.gz 'https://ftp.ncbi.nlm.nih.gov/geo/platforms/GPLnnn/GPL570/annot/GPL570.annot.gz'
+curl --fail --location --max-time 180 --max-filesize 5000000 --output data/raw/gse13159/GSM330929.soft 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM330929&targ=self&form=text&view=full'
+curl --fail --location --max-time 180 --max-filesize 5000000 --output data/raw/gse13159/GSM331453.soft 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM331453&targ=self&form=text&view=full'
 ```
 
 For the locally preserved 19 October snapshot:
 
 ```sh
-python3 scripts/audit_mile_metadata.py --series data/raw/gse13159/GSE13159_series.soft --samples data/raw/gse13159/GSE13159_samples.soft --annotation data/raw/gse13159/GPL570.annot.gz --retrieved-on 2026-10-19 --output /tmp/GSE13159_AUDIT_reproduced.json
+python3 scripts/audit_mile_metadata.py --series data/raw/gse13159/GSE13159_series.soft --samples data/raw/gse13159/GSE13159_samples.soft --annotation data/raw/gse13159/GPL570.annot.gz --profile data/raw/gse13159/GSM330929.soft --profile data/raw/gse13159/GSM331453.soft --retrieved-on 2026-10-19 --output /tmp/GSE13159_AUDIT_reproduced.json
 diff -u week02/GSE13159_AUDIT.json /tmp/GSE13159_AUDIT_reproduced.json
 python3 -m unittest discover -s tests -v
 ```
 
-The script rejects missing/duplicate sample accessions, inventory mismatches, missing/repeated required fields, malformed or incomplete annotation tables, wrong row counts, invalid gene identifiers, and corrupt gzip input. Ten synthetic tests cover key parser/counting and rejection cases. Successful checks verify the audit software and metadata consistency—not biological validity or leakage-free modeling.
+The script rejects missing/duplicate sample accessions, inventory mismatches, missing/repeated required fields, malformed or incomplete annotation/sample tables, wrong row counts, invalid gene identifiers, nonfinite profile values, and corrupt gzip input. Thirteen synthetic tests cover key parser/counting and rejection cases, including missing values, profile identity, and annotation joins. Omitting `--profile` preserves the original metadata-only output mode. Successful checks verify the audit software and data consistency—not biological validity or leakage-free modeling.
 
-**Access note:** direct article pages intermittently returned browser checks; indexed primary-paper excerpts were available. The Europe PMC full-text endpoint returned HTTP 500. The first 60-second bulk metadata transfer timed out; its partial file was not used. A complete retry passed the exact accession-inventory check. The full original-study supplements and full PQN/DQN paper have not been reviewed.
+**Access note:** the original audit used indexed article excerpts when browser retrieval failed. The follow-up retrieved primary HTML directly and reviewed its embedded appendix; the Europe PMC endpoint still returned HTTP 500. No separate supplementary linkage file was found in the reviewed HTML, which does not prove that none exists elsewhere. The complete PQN/DQN paper remains unread. The initial timed-out bulk metadata transfer was not used; its completed retry passed the exact accession-inventory check.

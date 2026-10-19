@@ -229,6 +229,188 @@
     },
     "unique_titles": 2096
   },
-  "schema_version": 1,
-  "scope": "Metadata and platform annotation only; no expression matrix or patient-linkage audit"
+  "schema_version": 2,
+  "scope": "Complete metadata/platform annotation and selected sample tables; not a full-cohort expression or patient-linkage audit",
+  "selected_sample_profiles": {
+    "GSM330929": {
+      "accession": "GSM330929",
+      "annotation_probe_set_exact_match": true,
+      "characteristics": [
+        "sample type: peripheral blood",
+        "leukemia class: CLL"
+      ],
+      "column_statistics": {
+        "VALUE": {
+          "finite_count": 54630,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "missing_count": 45,
+          "missing_non_AFFX_count": 0,
+          "missing_probe_ids": [
+            "AFFX-BioB-3_at",
+            "AFFX-BioB-5_at",
+            "AFFX-BioB-M_at",
+            "AFFX-BioC-3_at",
+            "AFFX-BioC-5_at",
+            "AFFX-BioDn-3_at",
+            "AFFX-BioDn-5_at",
+            "AFFX-CreX-3_at",
+            "AFFX-CreX-5_at",
+            "AFFX-DapX-3_at",
+            "AFFX-DapX-5_at",
+            "AFFX-DapX-M_at",
+            "AFFX-LysX-3_at",
+            "AFFX-LysX-5_at",
+            "AFFX-LysX-M_at",
+            "AFFX-PheX-3_at",
+            "AFFX-PheX-5_at",
+            "AFFX-PheX-M_at",
+            "AFFX-ThrX-3_at",
+            "AFFX-ThrX-5_at",
+            "AFFX-ThrX-M_at",
+            "AFFX-TrpnX-3_at",
+            "AFFX-TrpnX-5_at",
+            "AFFX-TrpnX-M_at",
+            "AFFX-r2-Bs-dap-3_at",
+            "AFFX-r2-Bs-dap-5_at",
+            "AFFX-r2-Bs-dap-M_at",
+            "AFFX-r2-Bs-lys-3_at",
+            "AFFX-r2-Bs-lys-5_at",
+            "AFFX-r2-Bs-lys-M_at",
+            "AFFX-r2-Bs-phe-3_at",
+            "AFFX-r2-Bs-phe-5_at",
+            "AFFX-r2-Bs-phe-M_at",
+            "AFFX-r2-Bs-thr-3_s_at",
+            "AFFX-r2-Bs-thr-5_s_at",
+            "AFFX-r2-Bs-thr-M_s_at",
+            "AFFX-r2-Ec-bioB-3_at",
+            "AFFX-r2-Ec-bioB-5_at",
+            "AFFX-r2-Ec-bioB-M_at",
+            "AFFX-r2-Ec-bioC-3_at",
+            "AFFX-r2-Ec-bioC-5_at",
+            "AFFX-r2-Ec-bioD-3_at",
+            "AFFX-r2-Ec-bioD-5_at",
+            "AFFX-r2-P1-cre-3_at",
+            "AFFX-r2-P1-cre-5_at"
+          ],
+          "outside_unit_interval_count": 0
+        },
+        "VALUE_DS": {
+          "finite_count": 54675,
+          "maximum": 103204.0,
+          "minimum": 6.81111,
+          "missing_count": 0,
+          "missing_non_AFFX_count": 0,
+          "missing_probe_ids": [],
+          "outside_unit_interval_count": 54675
+        }
+      },
+      "columns": [
+        "ID_REF",
+        "VALUE_DS",
+        "ABS_CALL",
+        "DETECTION P-VALUE",
+        "VALUE"
+      ],
+      "input": {
+        "bytes": 2709589,
+        "filename": "GSM330929.soft",
+        "sha256": "a6aaea169f72264c04ea4dd8878df2acf464cc0d3cdd0976b1b23e8c3ad6b41f",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM330929&targ=self&form=text&view=full"
+      },
+      "patient_independence_verified": false,
+      "row_count": 54675,
+      "title": "MILES stage 1 data N1_1293"
+    },
+    "GSM331453": {
+      "accession": "GSM331453",
+      "annotation_probe_set_exact_match": true,
+      "characteristics": [
+        "sample type: bone marrow",
+        "leukemia class: MDS"
+      ],
+      "column_statistics": {
+        "VALUE": {
+          "finite_count": 54630,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "missing_count": 45,
+          "missing_non_AFFX_count": 0,
+          "missing_probe_ids": [
+            "AFFX-BioB-3_at",
+            "AFFX-BioB-5_at",
+            "AFFX-BioB-M_at",
+            "AFFX-BioC-3_at",
+            "AFFX-BioC-5_at",
+            "AFFX-BioDn-3_at",
+            "AFFX-BioDn-5_at",
+            "AFFX-CreX-3_at",
+            "AFFX-CreX-5_at",
+            "AFFX-DapX-3_at",
+            "AFFX-DapX-5_at",
+            "AFFX-DapX-M_at",
+            "AFFX-LysX-3_at",
+            "AFFX-LysX-5_at",
+            "AFFX-LysX-M_at",
+            "AFFX-PheX-3_at",
+            "AFFX-PheX-5_at",
+            "AFFX-PheX-M_at",
+            "AFFX-ThrX-3_at",
+            "AFFX-ThrX-5_at",
+            "AFFX-ThrX-M_at",
+            "AFFX-TrpnX-3_at",
+            "AFFX-TrpnX-5_at",
+            "AFFX-TrpnX-M_at",
+            "AFFX-r2-Bs-dap-3_at",
+            "AFFX-r2-Bs-dap-5_at",
+            "AFFX-r2-Bs-dap-M_at",
+            "AFFX-r2-Bs-lys-3_at",
+            "AFFX-r2-Bs-lys-5_at",
+            "AFFX-r2-Bs-lys-M_at",
+            "AFFX-r2-Bs-phe-3_at",
+            "AFFX-r2-Bs-phe-5_at",
+            "AFFX-r2-Bs-phe-M_at",
+            "AFFX-r2-Bs-thr-3_s_at",
+            "AFFX-r2-Bs-thr-5_s_at",
+            "AFFX-r2-Bs-thr-M_s_at",
+            "AFFX-r2-Ec-bioB-3_at",
+            "AFFX-r2-Ec-bioB-5_at",
+            "AFFX-r2-Ec-bioB-M_at",
+            "AFFX-r2-Ec-bioC-3_at",
+            "AFFX-r2-Ec-bioC-5_at",
+            "AFFX-r2-Ec-bioD-3_at",
+            "AFFX-r2-Ec-bioD-5_at",
+            "AFFX-r2-P1-cre-3_at",
+            "AFFX-r2-P1-cre-5_at"
+          ],
+          "outside_unit_interval_count": 0
+        },
+        "VALUE_DS": {
+          "finite_count": 54675,
+          "maximum": 50535.0,
+          "minimum": 3.2326,
+          "missing_count": 0,
+          "missing_non_AFFX_count": 0,
+          "missing_probe_ids": [],
+          "outside_unit_interval_count": 54675
+        }
+      },
+      "columns": [
+        "ID_REF",
+        "VALUE_DS",
+        "ABS_CALL",
+        "DETECTION P-VALUE",
+        "VALUE"
+      ],
+      "input": {
+        "bytes": 2719918,
+        "filename": "GSM331453.soft",
+        "sha256": "6822cc6770bd17fcb0fe31ef7c7c145ea9613b5f7d9a34f84ddb5e9523794036",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM331453&targ=self&form=text&view=full"
+      },
+      "patient_independence_verified": false,
+      "row_count": 54675,
+      "title": "MILES stage 1 data N1_1817"
+    }
+  }
 }

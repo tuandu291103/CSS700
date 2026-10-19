@@ -1,5 +1,26 @@
 # Research log
 
+## 19 October 2026 — follow-up: acceptance protocol and sample-table checks
+
+**Completed**
+
+- Reviewed the original MILE article's methods, center-count table, and embedded appendix; documented what they do and do not resolve about patient/center linkage.
+- Added a clearly labeled primary technical disclosure for fixed-target normalization; did not substitute it for verification of the exact deposited pipeline or the unread full Liu 2006 paper.
+- Inspected two preselected profiles (first CLL and first MDS accessions), verified their exact platform probe-ID sets, and recorded numeric/missing-value statistics and input hashes.
+- Drafted the [acceptance protocol](../week02/GSE13159_ACCEPTANCE_PROTOCOL.md): separate exploratory/confirmatory claims, patient grouping, specimen-only controls, stratified reporting, and mapping/preprocessing rules.
+
+**Findings and limits**
+
+Each checked profile has 54,675 rows, 54,630 finite DQN3 values in [0, 1], and the same 45 missing `AFFX-` values. This guards against confusing DS with DQN3, zero-filling missing controls, or automatically applying log2. Two purpose-selected profiles do not certify the full cohort. No full-cohort matrix, model training, new predictive score, or biological discovery was produced.
+
+Patient-origin information is better documented, but no complete patient/center linkage map has been recovered. MILE remains conditional; no advisor acceptance is assumed. Source details and reproducible calculations are in the updated [feasibility report](../week02/GSE13159_FEASIBILITY.md) and [audit JSON](../week02/GSE13159_AUDIT.json).
+
+**Verification**
+
+- Thirteen synthetic tests passed, including new profile identity, missingness, truncation, nonfinite-value, and probe-join checks.
+- Checked exact rerun reproducibility, unchanged metadata-only output, bibliography/local links, and Git whitespace before publication.
+- Raw inputs and the article reading copy remain ignored; archived work was not changed.
+
 ## 19 October 2026 — MILE metadata and annotation feasibility
 
 **Completed**
@@ -61,6 +82,6 @@ The [dataset notes](../week02/DATASET_CANDIDATES.md) identify unresolved preproc
 ## Next milestone
 
 1. Review the revised question and evidence with the advisor.
-2. Follow up MILE patient/center linkage and preprocessing provenance; its bounded metadata/annotation audit is complete.
-3. Draft the acceptance protocol with specimen-type controls, mapping policy, and unresolved limitations; audit the other candidates before committing to three datasets.
+2. Review the drafted MILE acceptance protocol and unresolved linkage/processing limits; do not start confirmatory training without an explicit acceptance decision.
+3. Check full-release size/provenance before acquiring a full matrix for file checks, and audit the other candidates before committing to three datasets.
 4. Agree on comparison methods and evaluation metrics before implementing models.

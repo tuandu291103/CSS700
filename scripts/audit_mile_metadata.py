@@ -10,6 +10,7 @@ from datetime import date
 import gzip
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 
@@ -163,12 +164,74 @@ def audit_annotation(text):
     }
 
 
+def audit_profile(text, expected_samples, annotation_ids):
+    """Inspect one full sample table without fitting or imputing any values."""
+    records = parse_samples(text)
+    require(len(records) == 1, "Expected exactly one sample table per input")
+    accession, record = next(iter(records.items()))
+    require(accession in expected_samples, "Profile not in the audited series")
+    expected = expected_samples[accession]
+    for field in ("geo_accession", "title", "platform_id", "data_row_count", "characteristics_ch1"):
+        require(record.get(field) == expected.get(field), f"Profile metadata mismatch: {field}")
+    lines = text.splitlines()
+    require(lines.count("!sample_table_begin") == lines.count("!sample_table_end") == 1,
+            "Missing/duplicate sample table markers")
+    start, end = lines.index("!sample_table_begin"), lines.index("!sample_table_end")
+    require(end > start + 1, "Empty/reversed sample table")
+    header = lines[start + 1].split("\t")
+    require(len(header) == len(set(header)), "Duplicate sample columns")
+    require({"ID_REF", "VALUE", "VALUE_DS"} <= set(header), "Missing sample columns")
+    description = next((s for s in lines if s.startswith("#VALUE = ")), "")
+    require("DQN3" in description, "Unexpected VALUE description")
+    numeric = {key: [] for key in ("VALUE", "VALUE_DS")}
+    missing = {key: [] for key in numeric}
+    seen = set()
+    for line in lines[start + 2:end]:
+        fields = line.split("\t")
+        require(len(fields) == len(header), "Malformed sample table row")
+        row = dict(zip(header, fields))
+        probe = row["ID_REF"]
+        require(probe and probe not in seen, "Empty/duplicate sample probe ID")
+        seen.add(probe)
+        for column in numeric:
+            value = row[column].strip()
+            if value.lower() in {"", "null", "na"}:
+                missing[column].append(probe)
+            else:
+                number = float(value)
+                require(math.isfinite(number), "Nonfinite sample value")
+                numeric[column].append(number)
+    require(len(seen) == int(single(record, "data_row_count")), "Profile row-count mismatch")
+    require(seen == annotation_ids, "Sample/annotation probe ID sets differ")
+    return {
+        "accession": accession,
+        "title": single(record, "title"),
+        "characteristics": record["characteristics_ch1"],
+        "columns": header,
+        "row_count": len(seen),
+        "annotation_probe_set_exact_match": True,
+        "column_statistics": {
+            key: {
+                "finite_count": len(values), "missing_count": len(missing[key]),
+                "minimum": min(values) if values else None,
+                "maximum": max(values) if values else None,
+                "missing_probe_ids": sorted(missing[key]),
+                "missing_non_AFFX_count": sum(not p.startswith("AFFX-") for p in missing[key]),
+                "outside_unit_interval_count": sum(not 0 <= v <= 1 for v in values),
+            } for key, values in numeric.items()
+        },
+        "patient_independence_verified": False,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for key in SOURCES:
         parser.add_argument(f"--{key}", type=Path, required=True)
     parser.add_argument("--retrieved-on", type=date.fromisoformat, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--profile", type=Path, action="append", default=[],
+                        help="Optional full single-sample SOFT export; repeat for bounded checks")
     args = parser.parse_args()
     inputs = {}
     texts = {}
@@ -188,9 +251,32 @@ def main():
         "samples": audit_samples(texts["series"], texts["samples"]),
         "annotation": audit_annotation(texts["annotation"]),
     }
+    if args.profile:
+        expected = parse_samples(texts["samples"])
+        annotation_lines = texts["annotation"].splitlines()
+        begin = annotation_lines.index("!platform_table_begin")
+        end = annotation_lines.index("!platform_table_end")
+        probe_column = annotation_lines[begin + 1].split("\t").index("ID")
+        annotation_ids = {line.split("\t")[probe_column] for line in annotation_lines[begin + 2:end]}
+        profiles = {}
+        for path in args.profile:
+            payload = path.read_bytes()
+            summary = audit_profile(payload.decode("utf-8"), expected, annotation_ids)
+            accession = summary["accession"]
+            require(accession not in profiles, "Duplicate profile input")
+            summary["input"] = {
+                "filename": path.name, "bytes": len(payload),
+                "sha256": hashlib.sha256(payload).hexdigest(),
+                "url": f"https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={accession}&targ=self&form=text&view=full",
+            }
+            profiles[accession] = summary
+        report["schema_version"] = 2
+        report["scope"] = "Complete metadata/platform annotation and selected sample tables; not a full-cohort expression or patient-linkage audit"
+        report["selected_sample_profiles"] = profiles
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(f"Validated {report['samples']['record_count']} sample records and "
-          f"{report['annotation']['row_count']} annotation rows; wrote {args.output}")
+    print(f"Validated {report['samples']['record_count']} sample records, "
+          f"{report['annotation']['row_count']} annotation rows, and "
+          f"{len(args.profile)} selected sample tables; wrote {args.output}")
 
 
 if __name__ == "__main__":

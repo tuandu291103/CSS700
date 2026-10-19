@@ -81,7 +81,7 @@ A. Subramanian et al. **Gene set enrichment analysis: A knowledge-based approach
 T. Haferlach et al. **Clinical utility of microarray-based gene expression profiling in the diagnosis and subclassification of leukemia: report from the International Microarray Innovations in Leukemia Study Group.** Journal of Clinical Oncology 28(15), 2529–2537, 2010. DOI: `10.1200/JCO.2009.23.4732`.
 
 - [Primary article](https://pmc.ncbi.nlm.nih.gov/articles/PMC5569671/); [PubMed](https://pubmed.ncbi.nlm.nih.gov/20406941/).
-- Key: `haferlach2010mile`. Reviewed the abstract and indexed primary-text excerpts for preprocessing, custom-chip design, and classifier training; direct article access was intermittent. Supplements not reviewed.
+- Key: `haferlach2010mile`. Initially screened indexed excerpts; the 19 October follow-up retrieved full primary HTML and reviewed Methods, Table 1, relevant Results, and the embedded Appendix including Tables A1–A3. This does not establish access to every possible external supplement.
 - Use: study design and platform differences between retrospective Stage I and prospective Stage II. Published diagnostic results are not results of our thesis or proof that our proposed split is patient-independent.
 
 ## R11 — added for the MILE audit
@@ -92,6 +92,13 @@ W.-M. Liu et al. **PQN and DQN: algorithms for expression microarrays.** Journal
 - Key: `liu2006pqn`. Abstract reviewed via indexed primary record; full methods not obtained.
 - Use: empirical versus theoretical quantile targets. Combine with the GEO VALUE/DQN3 field description; this limited review does not certify the entire deposited preprocessing pipeline as leakage-free.
 
+## Additional primary technical record — not a peer-reviewed paper
+
+W.-M. Liu. **Algorithms for classification of disease subtypes and for prognosis with gene expression profiling.** US patent application publication US20100130372A1, published 27 May 2010.
+
+- [Primary disclosure](https://patents.google.com/patent/US20100130372A1/en). Key: `liu2010expressionDisclosure`.
+- Read the Description's signal-generation and normalization steps, particularly steps 335–380 and Dn3 variants. Used only as technical context; not a reproduction of the GEO pipeline, peer-reviewed validation, or advice about legal rights.
+
 ## Dataset records
 
 | ID / BibTeX key | Primary record | Locators used |
@@ -100,8 +107,11 @@ W.-M. Liu et al. **PQN and DQN: algorithms for expression microarrays.** Journal
 | D1 processing / `geoGSM1116110` | [GSM1116110](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1116110) | Characteristics, Data processing, Data table row count |
 | D2 / `geoGSE13159` | [GSE13159](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13159) | Study description, Samples, Platforms, Relations, download routes |
 | D2 processing / `geoGSM330048` | [GSM330048](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM330048) | Data processing and VALUE versus VALUE_DS descriptions; read 19 October |
+| D2 blood profile / `geoGSM330929` | [GSM330929](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM330929) | Full single-sample table audited 19 October; selected before reading values |
+| D2 marrow profile / `geoGSM331453` | [GSM331453](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM331453) | Full single-sample table audited 19 October; selected before reading values |
 | D2 annotation / `geoGPL570annotation` | [GPL570 annotation](https://ftp.ncbi.nlm.nih.gov/geo/platforms/GPLnnn/GPL570/annot/GPL570.annot.gz) | Complete annotation downloaded 19 October; internally dated 9 August 2016 |
+| Linked reanalysis / `geoGSE122511` | [GSE122511](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE122511) | Indexed primary series description only; contains reused MILE data, not an independent validation cohort |
 | D3 / `fiorini2016rnaseq` | [UCI dataset 401](https://doi.org/10.24432/C5R88H) | Instances, Features, Variable Information, citation, license |
 | Reserve / `geoGSE2034` | [GSE2034](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2034) | Summary, sample count, platform, outcome description |
 
-For the initial review, GEO series records were available through indexed primary-page content where direct access intermittently returned a browser check. On 19 October, complete GSE13159 sample attributes and GPL570 annotation were downloaded and audited; see the [report](../week02/GSE13159_FEASIBILITY.md). No expression matrix or complete clinical patient-linkage audit has been performed. Original associated studies should also be read and cited when a dataset is accepted; repository metadata alone is not a full methodological review.
+For the initial review, GEO series records were available through indexed primary-page content where direct access intermittently returned a browser check. On 19 October, complete GSE13159 sample attributes, GPL570 annotation, and subsequently two individual sample tables were downloaded and audited; see the [report](../week02/GSE13159_FEASIBILITY.md). No full-cohort expression matrix or complete clinical patient-linkage audit has been performed. Repository metadata alone is not a full methodological review.
