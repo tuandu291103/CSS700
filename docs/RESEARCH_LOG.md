@@ -1,5 +1,27 @@
 # Research log
 
+## 19 October 2026 — MILE metadata and annotation feasibility
+
+**Completed**
+
+- Retrieved complete GSE13159 series/sample attributes and GPL570 annotation; stored local inputs outside Git tracking, with URLs, date, sizes, and hashes in a compact audit summary.
+- Verified the exact 2,096-accession inventory, 18 complete diagnostic labels, and specimen-type counts.
+- Quantified missing and ambiguous probe-to-gene mappings in the annotation dated August 2016.
+- Added one offline audit script, 10 synthetic tests, a [feasibility report](../week02/GSE13159_FEASIBILITY.md), and the original MILE/PQN-DQN citations with reading-depth limits.
+
+**Findings and decision**
+
+All 448 CLL samples are peripheral blood; all 206 MDS samples are marrow. This creates a potential specimen-source confound that requires explicit controls. Unique sample titles do not establish patient independence, and the exported metadata lacks explicit patient/collection-center linkage. Of 54,675 annotation rows, 2,214 map to multiple Entrez identifiers and 9,557 to none. Counts and primary-source provenance are in the [audit JSON](../week02/GSE13159_AUDIT.json).
+
+MILE remains conditional, not accepted. No expression matrix, new model, prediction result, or biological discovery was produced. Full preprocessing provenance, current identifier reconciliation, expression-level checks, and an appropriate interpretation of confounding remain open. This work stays within Week 2 dataset selection; the other candidates still need their own audits.
+
+**Verification**
+
+- Successful bulk retry matched all accessions in the independent series inventory; the initial timed-out partial transfer was not used.
+- Annotation gzip integrity, table boundaries, unique probe IDs, and row counts checked.
+- All 10 synthetic tests passed; exact-input rerun and document consistency checked before publication.
+- New metadata/annotation inputs are ignored by Git. No archived research was changed or restored.
+
 ## 17 October 2026 — repository restart
 
 **Completed**
@@ -39,6 +61,6 @@ The [dataset notes](../week02/DATASET_CANDIDATES.md) identify unresolved preproc
 ## Next milestone
 
 1. Review the revised question and evidence with the advisor.
-2. Start a bounded metadata and annotation audit of GSE13159 / MILE.
-3. Resolve sample independence, label definitions, preprocessing, and gene mapping before accepting a dataset.
+2. Follow up MILE patient/center linkage and preprocessing provenance; its bounded metadata/annotation audit is complete.
+3. Draft the acceptance protocol with specimen-type controls, mapping policy, and unresolved limitations; audit the other candidates before committing to three datasets.
 4. Agree on comparison methods and evaluation metrics before implementing models.

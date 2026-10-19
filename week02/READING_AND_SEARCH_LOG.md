@@ -1,6 +1,6 @@
 # Week 2 review method and unresolved questions
 
-Date: 15 October 2026. This is a targeted evidence review, not a preregistered systematic review or a claim to have found every relevant publication.
+Initial review: 15 October 2026; dataset-audit follow-up: 19 October. This is a targeted evidence review, not a preregistered systematic review or a claim to have found every relevant publication.
 
 ## Search approach
 
@@ -31,10 +31,20 @@ The review favored original papers, authors' code, and official accession record
 
 1. **Scope:** Confirm that the intended contribution is an evaluation of biological group information, rather than claiming the first image-to-gene tracing method.
 2. **D1 preprocessing:** Clarify the deposited sample-type-aware corrections; decide whether a valid raw-data route is affordable.
-3. **D2 feasibility:** Inspect independent sample IDs, labels, annotation, center/batch metadata, and preprocessing before accepting MILE.
+3. **D2 feasibility:** The 19 October audit verifies sample-accession completeness, labels, and platform mapping ambiguity. Patient/center linkage, specimen-type confounding controls, full processing provenance, and expression-level validation remain open; see the [audit](GSE13159_FEASIBILITY.md).
 4. **D3 identifiers:** Recover and verify the exact UCI-to-source gene mapping, or replace the candidate for biological evaluation.
 5. **Fair biological comparison:** Choose a knowledgebase release and a matched group-analysis pipeline for both model families. Separate annotation used to construct a method from annotation used to evaluate it.
 6. **Noise claim:** Decide whether a controlled noise study is in scope at all. If so, define the noise process prospectively.
 7. **DeepFeature reproduction:** Reconcile its cohort-count discrepancy against a release manifest if its cohort or full method is used later.
 
 These are next-milestone decisions. They do not block delivery of the present evidence-and-candidate report, and they have not been silently resolved by assumption.
+
+## 19 October follow-up: MILE feasibility
+
+Followed the GSE13159 record to the original MILE study (PMID 20406941), its cited PQN/DQN normalization method (PMID 16889801), a sample-column description (GSM330048), and the GPL570 annotation. Queries included `PMC5569671 normalization`, `GSE13159 18 classes`, and `GPL570 Gene Symbol Gene ID`; third-party tables were not used to establish our counts.
+
+Downloaded the complete official series/sample attribute exports and compressed platform annotation. Exact-input hashes and computed results are in [GSE13159_AUDIT.json](GSE13159_AUDIT.json). A timed-out partial sample transfer was discarded from the analysis; a completed retry matched the series inventory. Expression tables were not downloaded. No full raw archive was requested.
+
+Direct article pages intermittently returned browser checks; the Europe PMC full-text service returned HTTP 500. Read the indexed primary MILE abstract and selected method sections, and the PQN/DQN abstract. Full supplements and normalization specifications remain to be reviewed. These access limits constrain the preprocessing and independence conclusions; they do not invalidate the directly downloaded metadata counts.
+
+The audit revealed a strong specimen-type/label association and an annotation snapshot dated 2016 with substantial unmapped/multi-gene probe content. These are feasibility findings, not evidence of a new biological mechanism or proof that T2I explains data better.

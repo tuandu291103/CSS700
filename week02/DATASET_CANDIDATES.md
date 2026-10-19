@@ -1,6 +1,6 @@
 # Week 2: transcriptomic dataset candidates
 
-15 October 2026 | Repository metadata reviewed; expression matrices not downloaded or audited
+Started 15 October; updated 19 October 2026 | MILE metadata/annotation audited; expression matrices not downloaded or audited
 
 ## Selection principle
 
@@ -13,7 +13,7 @@ The shortlist spans breast-tumor subtypes, hematological diagnoses, and multi-tu
 | Candidate | Source-reported size | Proposed target | Feature identity | Current decision |
 |---|---|---|---|---|
 | D1: GEO GSE45827 | 155 deposited samples; proposed tumor-only subset of 130 | Four breast-tumor subtype groups | GPL570 probe IDs; gene mapping needed | Conditional: investigate preprocessing before accepting processed values |
-| D2: GEO GSE13159, MILE Stage 1 | 2,096 specimens | Leukemia/related diagnostic categories; exact label taxonomy pending audit | GPL570 probe IDs; gene mapping needed | First feasibility-audit recommendation, not accepted yet |
+| D2: GEO GSE13159, MILE Stage 1 | 2,096 sample records verified | 18 deposited diagnostic labels verified | GPL570 mapping ambiguity quantified; final gene mapping pending | Conditional after metadata audit; specimen-type confounding and independence/provenance gaps remain |
 | D3: UCI gene expression cancer RNA-Seq | 801 samples, 20,531 feature columns | Five tumor types | Anonymous `gene_XX`; verified mapping required | Conditional: no biological claims until identifiers are resolved |
 
 Sources: [D1 official GEO series](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45827), [D2 official GEO series](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13159), [D3 official UCI record](https://archive.ics.uci.edu/dataset/401/gene+expression+cancer+rna+seq).
@@ -38,13 +38,15 @@ An inspected sample record reports 29,873 processed probe rows. Its processing d
 
 **Why it could fit (our rationale).** It offers a larger starting cohort than D1, multiple related diagnostic groups, and probe identifiers with an annotation route. That makes it the first candidate to investigate for an end-to-end, gene-aware comparison. Larger sample count alone does not establish suitability or remove confounding.
 
-**Target and dimensions not yet frozen.** Use the deposited diagnostic labels after inspecting their definitions and class counts. Do not adopt a secondary source's class count or multiply platform probe counts into a claimed final matrix size. Record actual retained probe count and unique gene count separately.
+**19 October audit update.** All 2,096 sample accessions match the official series inventory; all have labels across 18 classes (13–448 samples per class). There are 1,556 marrow and 540 blood specimens. All 448 CLL samples are blood, while all 206 MDS samples are marrow. This association is a potential confounding concern, not proof of a model shortcut. Explicit patient linkage and collection-center fields were not found in the downloaded metadata. The 2016 platform-annotation snapshot has 42,904 single-gene, 2,214 multi-gene, and 9,557 unmapped probe rows. See the [feasibility report](GSE13159_FEASIBILITY.md) and [computed audit/source manifest](GSE13159_AUDIT.json).
+
+**Target and dimensions not yet frozen.** The deposited label dictionary and counts are now documented, but inclusion criteria and the final analysis target remain undecided. Record actual retained probe count and unique gene count separately; metadata-reported rows are not a verified expression matrix. The combined non-leukemia/healthy label must not be simplified to healthy controls.
 
 **Acceptance gates.** Audit independent patient IDs, duplicate specimens, class imbalance, collection-center/batch metadata, and preprocessing. Determine whether a center-aware evaluation is feasible from the available metadata; do not assume it is. Confirm that training and evaluation data can be processed without outcome-informed transformations or fitting new preprocessing on held-out samples. Map probes with a documented many-to-one/one-to-many policy.
 
 **Access and independence.** Start with metadata and processed-data provenance, not the large raw archive. The parent accession and this subseries are not two independent studies. Freeze a sample manifest before adding any other MILE-derived dataset.
 
-**Decision:** recommended **first metadata/annotation feasibility audit**, subject to all gates. No raw download or model training has been started.
+**Decision:** **conditional candidate after the bounded metadata/annotation audit**, not accepted for confirmatory experiments. Next resolve patient/center linkage and processing provenance, and declare specimen-type controls and mapping policy. Metadata and annotation have been downloaded; no expression matrix, raw CEL archive, or model training has been started.
 
 ## D3. UCI gene expression cancer RNA-Seq
 
@@ -66,7 +68,7 @@ Our rationale for retaining it as a reserve is its within-disease outcome and id
 
 ## Common acquisition checklist for the next milestone
 
-The following are proposed acceptance requirements, not completed checks:
+The following are full-dataset acceptance requirements. Partial MILE checks are recorded separately in its audit; no candidate has passed the whole checklist:
 
 - [ ] Save the official accession, exact file URLs, retrieval date, byte sizes, and SHA-256 checksums.
 - [ ] Record repository terms and original-study citation; do not assume that every GEO deposit has UCI's CC BY license.

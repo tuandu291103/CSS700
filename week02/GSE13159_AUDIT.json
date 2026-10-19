@@ -1,0 +1,234 @@
+{
+  "annotation": {
+    "AFFX_control_mapping_counts": {
+      "multiple_genes": 0,
+      "single_gene": 10,
+      "unmapped": 52
+    },
+    "current_gene_ID_validity_verified": false,
+    "expression_probe_ID_join_verified": false,
+    "genes_with_multiple_single_gene_probes": 10924,
+    "illustrative_probe_mappings": {
+      "1007_s_at": {
+        "gene_ids": [
+          "100616237",
+          "780"
+        ],
+        "symbol_field": "MIR4640///DDR1"
+      },
+      "1053_at": {
+        "gene_ids": [
+          "5982"
+        ],
+        "symbol_field": "RFC2"
+      },
+      "1294_at": {
+        "gene_ids": [
+          "100847079",
+          "7318"
+        ],
+        "symbol_field": "MIR5193///UBA7"
+      }
+    },
+    "mapping_counts_by_unique_Entrez_IDs_per_probe": {
+      "multiple_genes": 2214,
+      "single_gene": 42904,
+      "unmapped": 9557
+    },
+    "metadata": {
+      "date": "Aug 09 2016",
+      "platform": "GPL570",
+      "platform_organism": "Homo sapiens",
+      "platform_title": "[HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array"
+    },
+    "row_count": 54675,
+    "unique_Entrez_IDs_from_single_gene_probes": 20848,
+    "unique_Entrez_IDs_including_ambiguous_probes": 22836
+  },
+  "inputs": {
+    "annotation": {
+      "bytes": 8471521,
+      "filename": "GPL570.annot.gz",
+      "sha256": "d7cd44352127b1e34f3a720ebea86093ef255a38f1612a85a2962b71bde8f394",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/platforms/GPLnnn/GPL570/annot/GPL570.annot.gz"
+    },
+    "samples": {
+      "bytes": 6291616,
+      "filename": "GSE13159_samples.soft",
+      "sha256": "065c4e4a919948ac4aa1086e8ab190f7b500c5d5a83b5d492bf56618c11ef077",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13159&targ=gsm&form=text&view=brief"
+    },
+    "series": {
+      "bytes": 66951,
+      "filename": "GSE13159_series.soft",
+      "sha256": "8e22230218a0c354c7c6d94fac38b9baec59d18a15ff3e8d34aefb6ad8a04f1c",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13159&targ=self&form=text&view=brief"
+    }
+  },
+  "retrieved_on": "2026-10-19",
+  "samples": {
+    "characteristic_fields": {
+      "leukemia class": 2096,
+      "sample type": 2096
+    },
+    "expression_values_audited": false,
+    "label_by_specimen_type": {
+      "ALL with hyperdiploid karyotype": {
+        "bone marrow": 39,
+        "peripheral blood": 1
+      },
+      "ALL with t(12;21)": {
+        "bone marrow": 58
+      },
+      "ALL with t(1;19)": {
+        "bone marrow": 33,
+        "peripheral blood": 3
+      },
+      "AML complex aberrant karyotype": {
+        "bone marrow": 46,
+        "peripheral blood": 2
+      },
+      "AML with inv(16)/t(16;16)": {
+        "bone marrow": 27,
+        "peripheral blood": 1
+      },
+      "AML with normal karyotype + other abnormalities": {
+        "bone marrow": 330,
+        "peripheral blood": 21
+      },
+      "AML with t(11q23)/MLL": {
+        "bone marrow": 29,
+        "peripheral blood": 9
+      },
+      "AML with t(15;17)": {
+        "bone marrow": 34,
+        "peripheral blood": 3
+      },
+      "AML with t(8;21)": {
+        "bone marrow": 35,
+        "peripheral blood": 5
+      },
+      "CLL": {
+        "peripheral blood": 448
+      },
+      "CML": {
+        "bone marrow": 66,
+        "peripheral blood": 10
+      },
+      "MDS": {
+        "bone marrow": 206
+      },
+      "Non-leukemia and healthy bone marrow": {
+        "bone marrow": 73,
+        "peripheral blood": 1
+      },
+      "Pro-B-ALL with t(11q23)/MLL": {
+        "bone marrow": 55,
+        "peripheral blood": 15
+      },
+      "T-ALL": {
+        "bone marrow": 170,
+        "peripheral blood": 4
+      },
+      "c-ALL/Pre-B-ALL with t(9;22)": {
+        "bone marrow": 111,
+        "peripheral blood": 11
+      },
+      "c-ALL/Pre-B-ALL without t(9;22)": {
+        "bone marrow": 232,
+        "peripheral blood": 5
+      },
+      "mature B-ALL with t(8;14)": {
+        "bone marrow": 12,
+        "peripheral blood": 1
+      }
+    },
+    "labels": {
+      "ALL with hyperdiploid karyotype": 40,
+      "ALL with t(12;21)": 58,
+      "ALL with t(1;19)": 36,
+      "AML complex aberrant karyotype": 48,
+      "AML with inv(16)/t(16;16)": 28,
+      "AML with normal karyotype + other abnormalities": 351,
+      "AML with t(11q23)/MLL": 38,
+      "AML with t(15;17)": 37,
+      "AML with t(8;21)": 40,
+      "CLL": 448,
+      "CML": 76,
+      "MDS": 206,
+      "Non-leukemia and healthy bone marrow": 74,
+      "Pro-B-ALL with t(11q23)/MLL": 70,
+      "T-ALL": 174,
+      "c-ALL/Pre-B-ALL with t(9;22)": 122,
+      "c-ALL/Pre-B-ALL without t(9;22)": 237,
+      "mature B-ALL with t(8;14)": 13
+    },
+    "largest_to_smallest_class_ratio": 34.46153846153846,
+    "metadata_fields": {
+      "channel_count": 2096,
+      "characteristics_ch1": 2096,
+      "contact_address": 2096,
+      "contact_city": 2096,
+      "contact_country": 2096,
+      "contact_email": 2096,
+      "contact_institute": 2096,
+      "contact_name": 2096,
+      "contact_phone": 2096,
+      "contact_state": 2096,
+      "contact_zip/postal_code": 2096,
+      "data_processing": 2096,
+      "data_row_count": 2096,
+      "extract_protocol_ch1": 2096,
+      "geo_accession": 2096,
+      "growth_protocol_ch1": 2096,
+      "hyb_protocol": 2096,
+      "label_ch1": 2096,
+      "label_protocol_ch1": 2096,
+      "last_update_date": 2096,
+      "molecule_ch1": 2096,
+      "organism_ch1": 2096,
+      "platform_id": 2096,
+      "relation": 1864,
+      "scan_protocol": 2096,
+      "series_id": 2096,
+      "source_name_ch1": 2096,
+      "status": 2096,
+      "submission_date": 2096,
+      "supplementary_file": 2096,
+      "taxid_ch1": 2096,
+      "title": 2096,
+      "treatment_protocol_ch1": 2096,
+      "type": 2096
+    },
+    "patient_independence_verified": false,
+    "platforms": {
+      "GPL570": 2096
+    },
+    "processing_descriptions": {
+      "Data pre-processing included a summarization and quantile normalization step to generate probe set level signal intensities for each microarray experiment and was performed as previously published by Liu WM et al. PQN and DQN: algorithms for expression microarrays. J.Theor.Biol. 2006;243:273-278.": 2096
+    },
+    "record_count": 2096,
+    "reported_probe_rows": {
+      "54675": 2096
+    },
+    "series_inventory_exact_match": true,
+    "series_memberships": {
+      "GSE13159": 2096,
+      "GSE13204": 2096
+    },
+    "source_names": {
+      "Leukemia patient sample": 2096
+    },
+    "specimen_types": {
+      "bone marrow": 1556,
+      "peripheral blood": 540
+    },
+    "titles_match_N1_0001_through_N1_2096": true,
+    "treatment_descriptions": {
+      "Samples are from untreated patients.": 2096
+    },
+    "unique_titles": 2096
+  },
+  "schema_version": 1,
+  "scope": "Metadata and platform annotation only; no expression matrix or patient-linkage audit"
+}
