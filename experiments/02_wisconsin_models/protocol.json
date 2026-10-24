@@ -1,0 +1,32 @@
+{
+  "experiment": "02_wisconsin_models",
+  "recorded_date": "2026-10-23",
+  "scope": "Exploratory learning comparison; fixed before the first training run, not a preregistered thesis experiment",
+  "input_audit": "experiments/01_wisconsin/results.json",
+  "input_audit_sha256": "247f99d87f80abb8a12091c4505424efd63d95056c993aca50deba92bcbd5dce",
+  "label_encoding": {"B": 0, "M": 1},
+  "preprocessing": "Reuse saved split and 5x6 mapping; fit MinMaxScaler on train only, verify saved extrema; no clipping; float32 input for every model",
+  "model_seeds": [20261023, 20261024, 20261025],
+  "dummy": {"strategy": "prior"},
+  "logistic_regression": {"C": 1.0, "solver": "lbfgs", "max_iter": 2000},
+  "random_forest": {"n_estimators": 300, "max_depth": null, "min_samples_leaf": 2, "max_features": "sqrt", "n_jobs": 1},
+  "cnn": {
+    "architecture": "Conv2d(1,8,3,padding=1)-ReLU-Conv2d(8,16,3,padding=1)-ReLU-AdaptiveAvgPool2d(1)-Flatten-Linear(16,2)",
+    "device": "cpu",
+    "threads": 1,
+    "optimizer": "Adam",
+    "learning_rate": 0.003,
+    "weight_decay": 0.0001,
+    "batch_size": 32,
+    "max_epochs": 200,
+    "patience": 30,
+    "selection": "Lowest validation cross-entropy; earliest epoch on exact ties; restore selected weights",
+    "loss": "Unweighted cross-entropy on logits",
+    "augmentation": "None; feature identity makes natural-image flips/crops inappropriate here"
+  },
+  "decision_rule": "M when P(M)>0.5, otherwise B; threshold fixed, not tuned",
+  "metrics": ["accuracy", "balanced_accuracy", "macro_f1", "roc_auc", "log_loss", "confusion_matrix"],
+  "evaluation_policy": "Fit all models and select CNN checkpoints using training/validation only before reporting learning-test predictions. No hyperparameter search, best-seed selection, or retuning after test inspection.",
+  "seed_summary": "Report every run and mean/sample SD for stochastic models. These repeats share one split and are not independent datasets or confidence intervals.",
+  "limits": ["One small dataset and one reused learning split", "Different model inductive biases and no matched tuning budget", "Accuracy is not explanation quality", "Not SOM2IMG and not a clinical evaluation"]
+}

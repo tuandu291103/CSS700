@@ -2,7 +2,7 @@
 
 Yu Dinh's thesis research on tabular-to-image representations and interpretable machine learning.
 
-**Current stage: separate learning experiments — Wisconsin data and fixed-grid encoding.**
+**Current stage: separate learning experiments — first tabular/CNN comparison completed.**
 
 This repository contains the revised study started on 15 October 2026. Following the professor's updated guidance, we are learning the data, conversion, CNN, and explanation steps separately before confirmatory thesis experiments. Genomic literature and MILE feasibility work are preserved for later; their acceptance questions remain unresolved.
 
@@ -16,6 +16,7 @@ This is a question to investigate, not a demonstrated result. The study will com
 
 | Document | Purpose |
 |---|---|
+| [Experiment 02: model comparison](experiments/02_wisconsin_models/README.md) | Latest results, CNN layer walkthrough, training diagnostics, and limitations |
 | [Experiment 01: Wisconsin](experiments/01_wisconsin/README.md) | Start with the dataset card, feature dictionary, protocol, results, and next learning step |
 | [Executed walkthrough](experiments/01_wisconsin/walkthrough.ipynb) | Follow one sample from tabular values to pixels and back |
 | [Claim evidence](week02/CLAIM_EVIDENCE.md) | Assess the main research claims against published work |
@@ -30,13 +31,13 @@ This is a question to investigate, not a demonstrated result. The study will com
 
 ## Status and next milestone
 
-- **Completed, 23 October:** acquired and checksummed the official Wisconsin files; audited 569 rows and 30 predictors; made a 397/86/86 learning split; built a reversible 5×6 fixed grid with training-only scaling; added an executed notebook, two figures, and ten synthetic tests. See [results and limitations](experiments/01_wisconsin/README.md#results-and-session-summary).
-- **Learning observation:** radius, perimeter, and area are strongly correlated in the training data before image conversion. Displaying this relationship alone would not establish added interpretability. This is an exploratory observation, not a new biological discovery.
-- **Next:** walk through the data and encoding, then compare simple tabular baselines with a small fixed-grid CNN. Study explanation methods and controlled shortcuts afterward. Spambase is the proposed second learning dataset, not yet acquired.
+- **Completed, 23 October:** audited Wisconsin and verified reversible encoding, then trained logistic regression, random forest, and a 1,282-parameter CNN on the saved split, with a majority/prior control. Forest and CNN each use three fixed seeds. Settings were recorded before training; all CNN checkpoints were selected by validation loss before test scoring.
+- **Latest learning result:** logistic regression achieved 83/86 correct learning-test predictions; CNN runs achieved 83, 83, and 82; forest runs 80, 79, and 79. CNN accuracy was close to logistic regression but its mean log loss was higher. These are exploratory results from one split, not a general model ranking or an interpretability benefit. See [the full report](experiments/02_wisconsin_models/README.md).
+- **Next:** use the frozen models to learn explanation methods and trace them to original features, then test faithfulness and shortcuts. Do not tune these models against the observed test scores. Spambase remains the proposed second dataset, not acquired yet.
 - **SOM2IMG reproduction gate:** obtain the intended paper/code version, dataset files, preprocessing, splits, and collision rule. This fixed-grid exercise does not reproduce SOM2IMG.
 - **Deferred, preserved:** genomic dataset acceptance, including MILE patient/specimen confounding and preprocessing provenance; comparison/metric selection for the eventual thesis study.
 
-No new classifier, predictive score, learned SOM layout, or attribution result has been produced in the restarted study. The 13 existing MILE audit tests remain; ten Wisconsin tests bring the suite to 23. Raw data and `.venv` are ignored by Git. Reproduction commands and the exact learning environment snapshot are linked from [Experiment 01](experiments/01_wisconsin/README.md#reproduce).
+No learned SOM layout, attribution result, or genomic predictive experiment has been produced in the restarted study. The suite now has 33 tests (13 MILE audit, ten encoding, ten model/results checks). Raw data, `.venv`, and model checkpoints are ignored by Git; protocols, small results, and figures are tracked. Reproduction commands are in [Experiment 02](experiments/02_wisconsin_models/README.md#reproduce-and-verify).
 
 ## Repository layout
 
@@ -46,8 +47,8 @@ CSS700/
 ├── experiments/            # Separate learning exercises; start with 01_wisconsin
 ├── week02/                 # Evidence review, motivation, datasets, search notes
 ├── references/             # Reference library, BibTeX, open-access reading copy
-├── scripts/                # MILE audit and Wisconsin learning pipeline
-├── tests/                  # Synthetic audit, mapping, and split checks
+├── scripts/                # MILE audit, Wisconsin encoding, model comparison
+├── tests/                  # Audit, mapping, training, and saved-result checks
 ├── requirements-learning.txt # Exact local learning-environment snapshot
 └── docs/                   # Research log and recovery information
 ```

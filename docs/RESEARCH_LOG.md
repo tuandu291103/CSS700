@@ -1,5 +1,32 @@
 # Research log
 
+## 23 October 2026 — learning experiment 02: tabular baselines and small CNN
+
+**Completed**
+
+- Recorded a fixed local protocol before training: unchanged Wisconsin split/map, training-only scaling, identical float32 values, no tuning search, three stochastic-model seeds, and validation-only CNN checkpoint selection.
+- Trained logistic regression, three random forests, and three 1,282-parameter CNNs, plus a majority/prior control. Saved every run rather than choosing the best seed. Local checkpoints remain ignored; predictions, histories, metrics, and settings are tracked.
+- Added a [brief report and CNN layer walkthrough](../experiments/02_wisconsin_models/README.md), learning curves, and all eight confusion matrices. No SOM2IMG implementation or attribution method was added.
+- Installed PyTorch in the isolated environment, updated exact dependency versions, and removed an inadvertently captured pip warning from the prior requirements file. Added a requirements-parser regression test and verified an offline install dry-run.
+
+**Results and interpretation**
+
+On the same 86 learning-test records, logistic regression achieved 83 correct; CNN runs achieved 83/83/82; forest runs achieved 80/79/79. CNN mean accuracy was 96.12%, macro-F1 0.9578, and log loss 0.2480; logistic regression was 96.51%, 0.9619, and 0.1561. Thus similar accuracy did not imply equal probability quality. Forest had the highest mean ROC-AUC (0.9826) despite lower thresholded accuracy. These are measured learning results from [the saved outputs](../experiments/02_wisconsin_models/results.json), not general superiority claims or interpretation findings.
+
+CNN checkpoints were selected at epochs 199, 197, and 142. Two runs reached the 200-epoch cap; the third stopped at 172 and restored its best validation checkpoint. Seed variation is not sampling uncertainty: all runs share the same small, reused split. No post-test retuning was performed. A second full run was only a reproducibility check.
+
+**Verification**
+
+- Full training rerun in a separate temporary directory produced byte-identical `results.json`.
+- All 16 saved validation/test metric sets recomputed from stored probabilities; all three CNN checkpoints reloaded to exactly matching saved test predictions.
+- Visually inspected both figures. Existing Experiment 01 results and all earlier genomic files remain unchanged.
+- Added ten tests for model shapes/gradients, label/metric conventions, deterministic training, checkpoint restoration, dependency syntax, saved-score integrity, and seed coverage, bringing the total to 33.
+- All 33 tests and new-code Ruff checks passed. Verified protocol/code/input-audit hashes, installed dependency pins, local links, bibliography keys, and Git whitespace before publication.
+
+**Next**
+
+Freeze the fitted models. Walk through CNN prediction mechanics, then explain a small deterministic validation set, beginning with the first listed CNN seed rather than selecting by test performance. Compare explanation behavior and run perturbation/randomization controls before claiming faithful interpretation. Keep the second dataset, learned layout, and genomic extension as separate later steps.
+
 ## 23 October 2026 — learning experiment 01: Wisconsin and fixed-grid encoding
 
 **Direction**
@@ -134,7 +161,7 @@ The [dataset notes](../week02/DATASET_CANDIDATES.md) identify unresolved preproc
 
 ## Next milestone
 
-1. Explain the Wisconsin fields, training-only preprocessing, and fixed-grid round trip from the executed notebook.
-2. Run a separate learning comparison of simple tabular baselines and a small fixed-grid CNN; then study CNN explanation and shortcut controls.
+1. Review the completed model comparison and CNN layer walkthrough; separate predictive metrics from explanation quality.
+2. Explain frozen-model predictions on deterministic validation examples, then test explanation faithfulness and shortcut behavior. Avoid retuning against the observed learning-test scores.
 3. Obtain the intended SOM2IMG implementation/version and exact benchmark/preprocessing details before reproduction. Consider Spambase after the first pipeline is understood.
 4. Return to the preserved genomic acceptance work and agree on the final thesis protocol before confirmatory experiments.
