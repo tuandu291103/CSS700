@@ -1,5 +1,36 @@
 # Research log
 
+## 23 October 2026 — learning experiment 01: Wisconsin and fixed-grid encoding
+
+**Direction**
+
+The user relayed the professor's request to understand each stage separately, using one or two SOM2IMG benchmarks before thesis experiments. Started with Wisconsin Diagnostic; Spambase remains a proposed follow-up. Preserved all previous genomic research and archives. This is a learning milestone, not a scope claim that the final thesis is no longer genomic.
+
+**Completed**
+
+- Retrieved official UCI `wdbc.data` and `wdbc.names`, recorded SHA-256 hashes, and kept raw downloads ignored by Git.
+- Added a [dataset card and brief report](../experiments/01_wisconsin/README.md), an executed walkthrough notebook, training-correlation and encoding figures, and machine-readable results.
+- Verified 569 records, 30 predictors, 357 benign / 212 malignant labels, no missing/nonfinite measurements, and no duplicate IDs or exact predictor rows.
+- Stored a stratified 397/86/86 learning split, seed 20261023. IDs and labels are excluded from the encoded predictors. Descriptive statistics/correlations and scaler fitting use training rows only.
+- Implemented one-to-one row-major placement into a 5×6 float64 grid. All 30 scaled values recover exactly; inverse scaling has maximum absolute error 4.55e-13. No clipping, 8-bit conversion, or image resizing is used.
+- Added an isolated Python 3.12.14 learning environment snapshot and ten synthetic mapping/parser/split/scaling tests alongside the 13 existing MILE audit tests.
+
+**What we learned**
+
+Mean radius versus mean area has training Spearman rho 0.9996; radius versus perimeter is 0.9977. Relationships can therefore be visible in the table before conversion. Later spatial explanations must demonstrate an additional benefit under defined checks. Brightness here is a feature value, not model importance. Exact round-trip recovery validates this encoder, not interpretability. Sources and calculated evidence are linked in the experiment report.
+
+**Limits and next step**
+
+No classifier, SOM layout, attribution method, second dataset, or biological discovery was produced. Unique IDs do not establish patient independence. The learning split is not a new sealed thesis holdout, especially given prior archived Wisconsin work. Obtain author implementation/version/splits/collision details before a SOM2IMG reproduction. Next: walk through the notebook, then train simple tabular baselines and a small fixed-grid CNN as a separate experiment.
+
+**Verification**
+
+- All 23 tests passed, including the unchanged MILE audit suite; new-code Ruff checks passed.
+- Executed all five code cells in the notebook using the isolated environment and validated notebook structure and outputs; no error outputs remained.
+- Recomputed the audit in a separate temporary directory and confirmed byte-identical `results.json` output.
+- Visually inspected both generated figures and checked source links, bibliography-key uniqueness, and Git whitespace.
+- Raw data, the environment, and archives stay outside Git tracking. No older research file was deleted or archived result presented as newly computed.
+
 ## 19 October 2026 — focused SOM2IMG initial study
 
 **Completed**
@@ -103,7 +134,7 @@ The [dataset notes](../week02/DATASET_CANDIDATES.md) identify unresolved preproc
 
 ## Next milestone
 
-1. Review the revised question and evidence with the advisor, including the SOM2IMG benchmark/version clarification and reproduction questions.
-2. Review the drafted MILE acceptance protocol and unresolved linkage/processing limits; do not start confirmatory training without an explicit acceptance decision.
-3. Check full-release size/provenance before acquiring a full matrix for file checks, and audit the other candidates before committing to three datasets.
-4. Agree on comparison methods and evaluation metrics before implementing models.
+1. Explain the Wisconsin fields, training-only preprocessing, and fixed-grid round trip from the executed notebook.
+2. Run a separate learning comparison of simple tabular baselines and a small fixed-grid CNN; then study CNN explanation and shortcut controls.
+3. Obtain the intended SOM2IMG implementation/version and exact benchmark/preprocessing details before reproduction. Consider Spambase after the first pipeline is understood.
+4. Return to the preserved genomic acceptance work and agree on the final thesis protocol before confirmatory experiments.

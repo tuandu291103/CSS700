@@ -1,12 +1,12 @@
-# CSS700: Interpreting Gene-Expression Models
+# CSS700: Tabular-to-Image Interpretability Research
 
-Yu Dinh's thesis research on tabular-to-image representations and biological interpretation.
+Yu Dinh's thesis research on tabular-to-image representations and interpretable machine learning.
 
-**Current stage: Week 2 — literature evidence and dataset selection.**
+**Current stage: separate learning experiments — Wisconsin data and fixed-grid encoding.**
 
-This repository contains the revised study started on 15 October 2026. It is the active home for the restart. Current deliverables include research documents, references, and a small reproducible metadata audit; dataset acceptance and model implementation are still ahead.
+This repository contains the revised study started on 15 October 2026. Following the professor's updated guidance, we are learning the data, conversion, CNN, and explanation steps separately before confirmatory thesis experiments. Genomic literature and MILE feasibility work are preserved for later; their acceptance questions remain unresolved.
 
-## Research question
+## Longer-term research question
 
 Can spatially organized explanations provide stable, biologically meaningful gene-group information beyond well-explained tabular baselines, and what are the predictive-performance tradeoffs?
 
@@ -16,6 +16,8 @@ This is a question to investigate, not a demonstrated result. The study will com
 
 | Document | Purpose |
 |---|---|
+| [Experiment 01: Wisconsin](experiments/01_wisconsin/README.md) | Start with the dataset card, feature dictionary, protocol, results, and next learning step |
+| [Executed walkthrough](experiments/01_wisconsin/walkthrough.ipynb) | Follow one sample from tabular values to pixels and back |
 | [Claim evidence](week02/CLAIM_EVIDENCE.md) | Assess the main research claims against published work |
 | [Proposal wording](week02/PROPOSAL_WORDING.md) | Read the citation-backed draft motivation |
 | [SOM2IMG review](week02/SOM2IMG_REVIEW.md) | Check the reference method, nine benchmarks, interpretation claims, and reproduction questions |
@@ -28,23 +30,25 @@ This is a question to investigate, not a demonstrated result. The study will com
 
 ## Status and next milestone
 
-- **Completed:** initial evidence review, revised motivation, dataset shortlist, MILE metadata/annotation and two-profile checks, a draft acceptance protocol, and the focused SOM2IMG review.
-- **Latest finding (19 October):** the supplied SOM2IMG manuscript reports nine benchmarks, none identified as gene-expression data, and qualitative feature-grouping interpretation. It does not establish a gene-expression interpretation benefit. Its identity against the final IEEE text, collision handling, and fold-local fitting remain to be verified; see the [source-backed review](week02/SOM2IMG_REVIEW.md).
-- **Next:** clarify which SOM2IMG benchmark/version the advisor intends and obtain the implementation details; review the proposed scope and dataset controls. Continue dataset acceptance checks, including full-release size/provenance before any MILE full-cohort file audit.
-- **Pending:** address specimen-type confounding, verify expression data and current gene mapping, and audit the remaining candidates before accepting datasets.
-- **Later:** agree on comparison methods and evaluation metrics, then implement the new study.
+- **Completed, 23 October:** acquired and checksummed the official Wisconsin files; audited 569 rows and 30 predictors; made a 397/86/86 learning split; built a reversible 5×6 fixed grid with training-only scaling; added an executed notebook, two figures, and ten synthetic tests. See [results and limitations](experiments/01_wisconsin/README.md#results-and-session-summary).
+- **Learning observation:** radius, perimeter, and area are strongly correlated in the training data before image conversion. Displaying this relationship alone would not establish added interpretability. This is an exploratory observation, not a new biological discovery.
+- **Next:** walk through the data and encoding, then compare simple tabular baselines with a small fixed-grid CNN. Study explanation methods and controlled shortcuts afterward. Spambase is the proposed second learning dataset, not yet acquired.
+- **SOM2IMG reproduction gate:** obtain the intended paper/code version, dataset files, preprocessing, splits, and collision rule. This fixed-grid exercise does not reproduce SOM2IMG.
+- **Deferred, preserved:** genomic dataset acceptance, including MILE patient/specimen confounding and preprocessing provenance; comparison/metric selection for the eventual thesis study.
 
-No full-cohort expression matrix has been acquired, and no models or predictive experiments have been run. Two individual expression tables were inspected for format, probe identity, and missing values only. The audit uses the standard library and has 13 synthetic tests; it is not a training pipeline. Local source downloads are ignored by Git; a small [checksummed audit summary](week02/GSE13159_AUDIT.json) is tracked. See the [audit report](week02/GSE13159_FEASIBILITY.md#reproduce-this-audit) for reproduction and test commands. The protocol is a draft, not recorded advisor approval.
+No new classifier, predictive score, learned SOM layout, or attribution result has been produced in the restarted study. The 13 existing MILE audit tests remain; ten Wisconsin tests bring the suite to 23. Raw data and `.venv` are ignored by Git. Reproduction commands and the exact learning environment snapshot are linked from [Experiment 01](experiments/01_wisconsin/README.md#reproduce).
 
 ## Repository layout
 
 ```text
 CSS700/
 ├── README.md
+├── experiments/            # Separate learning exercises; start with 01_wisconsin
 ├── week02/                 # Evidence review, motivation, datasets, search notes
 ├── references/             # Reference library, BibTeX, open-access reading copy
-├── scripts/                # Bounded metadata audit only
-├── tests/                  # Synthetic audit checks only
+├── scripts/                # MILE audit and Wisconsin learning pipeline
+├── tests/                  # Synthetic audit, mapping, and split checks
+├── requirements-learning.txt # Exact local learning-environment snapshot
 └── docs/                   # Research log and recovery information
 ```
 

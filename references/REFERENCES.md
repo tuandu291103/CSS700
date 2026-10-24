@@ -139,3 +139,9 @@ These support record-level cross-checks, not an assertion that the author's exac
 | `uciDryBean` | [Dry Bean](https://archive.ics.uci.edu/dataset/602/dry+bean+dataset) | Counts and image-derived morphology features |
 | `uciSpambase` | [Spambase](https://archive.ics.uci.edu/dataset/94/spambase) | Counts, email target, word/character and capital-run definitions |
 | `tabosa2021dengue` | [Dengue and Chikungunya, version 1](https://data.mendeley.com/datasets/bv26kznkjs/1) | Counts, geographic sources, attributes and undersampling description |
+
+### Learning experiment 01 sources — 23 October
+
+- Rechecked the [Wisconsin official record](https://doi.org/10.24432/C5DW2B) and read the complete [original `wdbc.names` documentation](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.names), including field order, mean/SE/worst definitions, and provenance. Keys: `uciWisconsinDiagnostic`, `uciWisconsinNames`. Acquired and checksummed both source files; [experiment report](../experiments/01_wisconsin/README.md). The historical feature-extraction paper named by UCI was not independently read in this milestone.
+- Read the [official scikit-learn data-leakage guidance](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage). Key: `sklearnLeakage`. Used to keep scaler fitting and exploratory feature analysis on training data. This engineering check does not establish independent patients or a clinically valid test cohort.
+- Reused the already reviewed supplied SOM2IMG manuscript through its [source-specific notes](../week02/SOM2IMG_REVIEW.md); no newly retrieved final paper or author implementation is claimed.
