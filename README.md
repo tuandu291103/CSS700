@@ -2,7 +2,7 @@
 
 Yu Dinh's thesis research on tabular-to-image representations and interpretable machine learning.
 
-**Current stage: separate learning experiments — first tabular/CNN comparison completed.**
+**Current stage: this week's one-dataset learning cycle completed — explanations and shortcut checks included.**
 
 This repository contains the revised study started on 15 October 2026. Following the professor's updated guidance, we are learning the data, conversion, CNN, and explanation steps separately before confirmatory thesis experiments. Genomic literature and MILE feasibility work are preserved for later; their acceptance questions remain unresolved.
 
@@ -16,7 +16,10 @@ This is a question to investigate, not a demonstrated result. The study will com
 
 | Document | Purpose |
 |---|---|
-| [Experiment 02: model comparison](experiments/02_wisconsin_models/README.md) | Latest results, CNN layer walkthrough, training diagnostics, and limitations |
+| [Weekly summary and meeting notes](docs/WEEKLY_COMPLETION_2026-10-23.md) | Deliverables, lessons, professor questions and a short self-check |
+| [Experiment 04: shape or background?](experiments/04_shortcut_sandbox/README.md) | Controlled shortcut demonstration and explanation-reference pitfalls |
+| [Experiment 03: frozen-model explanations](experiments/03_wisconsin_explanations/README.md) | Grad-CAM, IG, SHAP/LIME, feature tracing and diagnostic checks |
+| [Experiment 02: model comparison](experiments/02_wisconsin_models/README.md) | Prediction results, CNN layer walkthrough, training diagnostics, and limitations |
 | [Experiment 01: Wisconsin](experiments/01_wisconsin/README.md) | Start with the dataset card, feature dictionary, protocol, results, and next learning step |
 | [Executed walkthrough](experiments/01_wisconsin/walkthrough.ipynb) | Follow one sample from tabular values to pixels and back |
 | [Claim evidence](week02/CLAIM_EVIDENCE.md) | Assess the main research claims against published work |
@@ -33,11 +36,13 @@ This is a question to investigate, not a demonstrated result. The study will com
 
 - **Completed, 23 October:** audited Wisconsin and verified reversible encoding, then trained logistic regression, random forest, and a 1,282-parameter CNN on the saved split, with a majority/prior control. Forest and CNN each use three fixed seeds. Settings were recorded before training; all CNN checkpoints were selected by validation loss before test scoring.
 - **Latest learning result:** logistic regression achieved 83/86 correct learning-test predictions; CNN runs achieved 83, 83, and 82; forest runs 80, 79, and 79. CNN accuracy was close to logistic regression but its mean log loss was higher. These are exploratory results from one split, not a general model ranking or an interpretability benefit. See [the full report](experiments/02_wisconsin_models/README.md).
-- **Next:** use the frozen models to learn explanation methods and trace them to original features, then test faithfulness and shortcuts. Do not tune these models against the observed test scores. Spambase remains the proposed second dataset, not acquired yet.
+- **Newly completed:** explained the first frozen CNN on 12 preselected validation cases plus one illustrative error, including named-feature tracing, same-model SHAP/LIME comparisons, feature-replacement, reference and parameter-reset checks. IG/SHAP magnitude rankings agreed strongly; the Grad-CAM coordinate proxy performed poorly in our feature-replacement diagnostic. These are bounded learning results, not a universal method ranking. [Explanation evidence](experiments/03_wisconsin_explanations/README.md).
+- **Controlled lesson:** synthetic shape classifiers trained on label-correlated backgrounds dropped from 100% to 0% accuracy when backgrounds were reversed; independent-background controls stayed at 100% across all three seeds. A foreground-only attribution map can still result from the reference choice. [Shortcut evidence and limits](experiments/04_shortcut_sandbox/README.md).
+- **Next:** review the [weekly walkthrough and professor questions](docs/WEEKLY_COMPLETION_2026-10-23.md), then specify the next isolated layout comparison. Do not tune these models against the observed test scores. Spambase remains a proposed second real dataset, not acquired yet; the synthetic sandbox does not count as one.
 - **SOM2IMG reproduction gate:** obtain the intended paper/code version, dataset files, preprocessing, splits, and collision rule. This fixed-grid exercise does not reproduce SOM2IMG.
 - **Deferred, preserved:** genomic dataset acceptance, including MILE patient/specimen confounding and preprocessing provenance; comparison/metric selection for the eventual thesis study.
 
-No learned SOM layout, attribution result, or genomic predictive experiment has been produced in the restarted study. The suite now has 33 tests (13 MILE audit, ten encoding, ten model/results checks). Raw data, `.venv`, and model checkpoints are ignored by Git; protocols, small results, and figures are tracked. Reproduction commands are in [Experiment 02](experiments/02_wisconsin_models/README.md#reproduce-and-verify).
+No learned SOM layout or genomic predictive experiment has been produced in the restarted study. The suite now has 50 passing tests (13 MILE audit, ten encoding, ten model/results, nine attribution and eight shortcut checks). Both new experiments reproduced byte-for-byte on the recorded environment. Raw data, `.venv`, and model checkpoints are ignored by Git; protocols, small results, and figures are tracked. Reproduction commands are in each experiment report. The environment snapshot is specific to Python 3.12/macOS ARM, not a universal platform lock.
 
 ## Repository layout
 
@@ -47,8 +52,8 @@ CSS700/
 ├── experiments/            # Separate learning exercises; start with 01_wisconsin
 ├── week02/                 # Evidence review, motivation, datasets, search notes
 ├── references/             # Reference library, BibTeX, open-access reading copy
-├── scripts/                # MILE audit, Wisconsin encoding, model comparison
-├── tests/                  # Audit, mapping, training, and saved-result checks
+├── scripts/                # Data audit, encoding, training, attribution and shortcut controls
+├── tests/                  # Analytic checks, data controls, training and saved-result integrity
 ├── requirements-learning.txt # Exact local learning-environment snapshot
 └── docs/                   # Research log and recovery information
 ```

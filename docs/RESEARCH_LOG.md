@@ -1,5 +1,37 @@
 # Research log
 
+## 23 October 2026 — completed the week's separate learning cycle
+
+**Scope and work completed**
+
+The user asked to continue until the week's stated work was finished. Recorded a bounded [completion checklist and meeting summary](WEEKLY_COMPLETION_2026-10-23.md): one benchmark learning pipeline, explanations and controlled shortcut behavior. A second real dataset, actual SOM2IMG reproduction and the genomic thesis study remain later milestones; unavailable author details were not invented.
+
+- Recorded Experiment 03/04 settings before their runs. Preserved the fitted Wisconsin classifiers, earlier outputs, MILE work and archives.
+- Added [frozen-model explanation comparisons](../experiments/03_wisconsin_explanations/README.md): Grad-CAM, IG, Kernel SHAP and a clearly labeled LIME baseline-relative local effect, using the same fixed CNN score and feature mapping. Checked 12 deterministic validation cases plus one extra incorrect case, without test-set explanations or retraining.
+- Added feature replacement against matched random controls, reference sensitivity, two SHAP/LIME sampling seeds, head/full model resets, numerical completeness, and an exact linear-model attribution control. Kept raw vectors and diagnostics, including negative results.
+- Added a [synthetic shape-versus-background experiment](../experiments/04_shortcut_sandbox/README.md), with two training regimes, three initialization seeds and paired test backgrounds. Explained eight fixed examples per regime with two IG references.
+- Added source-backed reports, five figures, 17 new tests, exact dependency additions, a short student self-check and questions for the professor. Original paper reading is labeled abstract-level; detailed implementation settings were checked against official APIs.
+
+**Findings and limits**
+
+On 12 learning cases, IG/SHAP absolute-magnitude Spearman averaged 0.985. Five-feature replacement exceeded the matched random mean in all 12 cases for IG, SHAP and LIME local effects, but only five for the Grad-CAM coordinate proxy. This questions our naive use of a regional map as input-feature ranks; it is not a general comparison or rejection of Grad-CAM. Correlated features and unrealistic replacement combinations limit this diagnostic. [Exact explanation results](../experiments/03_wisconsin_explanations/results.json).
+
+All three correlated-background synthetic models achieved 100% / 50% / 0% accuracy on correlated / independent / reversed backgrounds; all three independent-background controls achieved 100% on all views. The background-only IG reference nevertheless gave 100% foreground absolute mass in all 16 explained model/example pairs. Its unchanged-background reference mathematically excludes those pixels' contributions; this is a different contrast, not an IG software failure. Absolute mass also discards sign. [Exact synthetic results](../experiments/04_shortcut_sandbox/results.json).
+
+These are useful local lessons, not newly established research contributions or evidence of biological interpretability. No “CNNs always lose” or “tabular rankings are useless” claim is made. The professor still needs to guide the final interpretation target and provide/clarify SOM2IMG reproduction materials.
+
+**Verification**
+
+- All 50 tests passed. Analytic controls check IG/SHAP linear effects, LIME coefficient scaling, Grad-CAM layer behavior, fixed targets, paired data identity and exact saved metrics.
+- Full independent reruns produced byte-identical Experiment 03 and 04 JSON results. Frozen Experiment 01/02 outputs and model hashes were checked; no Wisconsin model was retrained.
+- All five new figures visually inspected. Documentation links, bibliography-key uniqueness, code/protocol hashes, dependency pins, package consistency, offline installation dry-run and Git whitespace checked before publication.
+- New-code Ruff checks pass. A broader check found five pre-existing style findings in `audit_mile_metadata.py` and its tests; those files were left unchanged. This is not a claim of repository-wide lint cleanliness.
+- Raw data, checkpoints and the environment remain ignored. Only code, protocols, compact results, figures and documentation are published.
+
+**Next boundary**
+
+Review the weekly learning guide with the professor. Define the next fixed/random/SOM layout comparison only after clarifying the intended author implementation and mapping/collision details. Spambase and accepted genomic experiments follow as separate milestones. Completed exercises do not certify the student's personal mastery or replace a complete literature review.
+
 ## 23 October 2026 — learning experiment 02: tabular baselines and small CNN
 
 **Completed**
@@ -161,7 +193,7 @@ The [dataset notes](../week02/DATASET_CANDIDATES.md) identify unresolved preproc
 
 ## Next milestone
 
-1. Review the completed model comparison and CNN layer walkthrough; separate predictive metrics from explanation quality.
-2. Explain frozen-model predictions on deterministic validation examples, then test explanation faithfulness and shortcut behavior. Avoid retuning against the observed learning-test scores.
-3. Obtain the intended SOM2IMG implementation/version and exact benchmark/preprocessing details before reproduction. Consider Spambase after the first pipeline is understood.
+1. Review the completed one-dataset cycle and shortcut demonstration using the [weekly summary](WEEKLY_COMPLETION_2026-10-23.md); explain the results in the student's own words.
+2. Obtain the intended SOM2IMG implementation/version and exact benchmark/preprocessing/collision details before reproduction. Specify an isolated layout experiment without tuning against the observed learning-test scores.
+3. Consider Spambase after the first pipeline and explanation limits are understood; do not count synthetic bars as a second real dataset.
 4. Return to the preserved genomic acceptance work and agree on the final thesis protocol before confirmatory experiments.

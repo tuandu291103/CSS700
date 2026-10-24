@@ -1,0 +1,20 @@
+{
+  "experiment": "03_wisconsin_explanations",
+  "recorded_date": "2026-10-23",
+  "scope": "Learning attribution and diagnostic checks, not confirmatory thesis evidence",
+  "model_results_sha256": "df82885b0e720e63fd102661739bc1e79ba483a37256fed89b0cb40b0305e278",
+  "model_seed": 20261023,
+  "model_state_sha256": "55eab908c49dfc897c984968a104a9d9d4845d3eb5e1f80a74241ce0eb66222d",
+  "selection": "First six validation records of each true class in saved source order, sorted by validation position; first misclassified validation record added as an illustrative case only if absent. Only the balanced twelve contribute to headline means.",
+  "target": "Original predicted-class logit margin: sign*(logit_M-logit_B), sign=+1 for original M prediction and -1 for original B. Keep target sign fixed for perturbation, alternate models, and randomization.",
+  "baseline": "Coordinatewise median of training-scaled features; no held-out baseline fitting",
+  "gradcam": {"layer": "conv2 output before ReLU", "relu_attributions": true, "interpretation": "5x6 localization map indexed through feature coordinates; spatial proxy, not exact per-input attribution"},
+  "integrated_gradients": {"steps": 512, "method": "gausslegendre", "internal_batch_size": 64, "alternate_baseline": "all zero scaled features (training minima)", "extra_steps_if_relative_residual_above": 0.001, "maximum_steps": 2048},
+  "kernel_shap": {"nsamples": 512, "l1_reg": 0.0, "background_rows": 1, "seeds": [3101, 3102]},
+  "lime": {"num_samples": 2048, "kernel_width": 4.107919181288746, "discretize_continuous": false, "sample_around_instance": true, "feature_selection": "none", "seeds": [4101, 4102], "comparison_values": "standardized local coefficient times (x-training_median)/training_std; retain raw coefficients and fit diagnostics, not exact additive attributions"},
+  "perturbation": {"k": [1, 3, 5], "random_repeats": 100, "seed": 5101, "ranking": "descending signed support, ties by original feature index; fixed k; report zero-map methods as ineligible", "replacement": "training median in original feature coordinates, then encode; equivalent replacement in scaled coordinates", "score": "drop in original predicted-class logit margin, not probability", "limits": "Independent replacement can violate correlated feature structure; not causal evidence"},
+  "agreement": "Spearman on absolute magnitudes and top-5 Jaccard; constant maps yield null, not invented correlation",
+  "randomization": {"seed": 6101, "conditions": ["trained reference", "classifier reset only", "all layers reset"], "methods": ["gradcam", "integrated_gradients"], "target": "keep original target sign, never switch to randomized model class"},
+  "tabular_comparison": "Explain the frozen logistic-regression log-odds with Kernel SHAP and LIME using the same baseline/neighborhood settings; compare to its exact linear baseline-relative effects. Cross-model agreement is descriptive, never CNN ground truth.",
+  "test_policy": "No test-set explanations, new classifier training, threshold changes, or post-result setting search. Numerical IG quadrature refinement follows the predefined residual rule only."
+}

@@ -1,0 +1,21 @@
+{
+  "experiment": "04_shortcut_sandbox",
+  "recorded_date": "2026-10-23",
+  "scope": "Controlled synthetic learning demonstration, not an additional real thesis dataset or claim about Wisconsin",
+  "task": "Classify horizontal versus vertical bars in 12x12 grayscale images",
+  "data_seed": 7101,
+  "model_seeds": [7201, 7202, 7203],
+  "training_rows": 512,
+  "validation_rows": 128,
+  "test_rows": 256,
+  "foreground": "Centered 2x6 horizontal or 6x2 vertical bar, random shifts of -1,0,1 pixels and bounded intensity jitter; foreground overwrites background",
+  "background": "Uniform intensity 0.15 or 0.65; correlated training assigns low to horizontal and high to vertical; clean control assigns balanced independent colors",
+  "conditions": ["label-correlated-background training", "independent-background training control"],
+  "test_views": ["correlated", "independent", "reversed"],
+  "paired_control": "Identical labels, foreground values, masks, and positions across test views; only background changes",
+  "cnn": {"architecture": "Same 1->8->16 conv/ReLU/global-pool/2-logit architecture as Experiment 02; 1282 parameters", "max_epochs": 60, "patience": 15, "batch_size": 32, "learning_rate": 0.003, "weight_decay": 0.0001},
+  "selection": "Validation minimum cross-entropy in each training regime; no test feedback",
+  "explanation": {"method": "Integrated Gradients", "reference_seed": 7201, "examples": "first eight correlated test records; targets fixed to true shape labels", "baseline": "paired background-only image preserving each input background; deliberately isolates added foreground", "additional_baseline": "all-black image, sensitivity comparison", "steps": 512, "completeness": "record residuals; quadrature refinement to 2048 if relative residual exceeds 0.001"},
+  "outcomes": ["accuracy and macro-F1 per paired view", "prediction flip rate correlated-to-reversed", "mean true-class probability change correlated-to-reversed", "absolute IG mass inside versus outside the known foreground mask under both baselines"],
+  "interpretation": "Paired input changes directly test model sensitivity to controlled backgrounds. Attribution mass depends on reference and mask size; it is not a universal quality score. No architecture/hyperparameter retuning after viewing outcomes."
+}

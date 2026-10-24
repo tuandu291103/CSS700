@@ -4,6 +4,8 @@ Initial review: 15 October 2026; dataset-audit and focused SOM2IMG follow-ups: 1
 
 ## Search approach
 
+**23 October explanation-learning follow-up:** opened the original arXiv records for Grad-CAM (`1610.02391`), IG (`1703.01365`), SHAP (`1705.07874`), LIME (`1602.04938`) and sanity checks (`1810.03292`). Reading depth is abstract-level. Inspected the official Captum IG/LayerGradCam, SHAP KernelExplainer and LIME tabular API documentation to select explicit settings and interpret baselines, numerical residuals and local coefficients. This supports separate learning exercises, not an exhaustive explanation literature review or a novelty claim. Links and reading limits are in the [reference library](../references/REFERENCES.md#explanation-learning-additions--23-october-2026).
+
 Searches followed three threads: predictive comparisons; the gap between feature importance and biological interpretation; and T2I image-to-gene decoding. Named-method searches included DeepInsight, DeepFeature, DeepInsight-3D, and IGTD. Counterevidence searches covered useful tabular gene importance, conditional random-forest importance, and saliency sanity checks. Dataset discovery used the official GEO and UCI records for the shortlisted accessions.
 
 Representative queries used in this session included:

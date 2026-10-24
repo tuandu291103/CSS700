@@ -1,6 +1,19 @@
-# Week 2 reference library
+# Research reference library
 
 Initial review 15 October 2026; MILE and SOM2IMG references added 19 October. Stable citation keys are in [references.bib](references.bib). Locators identify the material used; “reviewed” does not imply a reproduction or exhaustive review of every supplement.
+
+## Explanation-learning additions — 23 October 2026
+
+The four paper records below were read at **abstract level**, with official software documentation used for the implemented settings. Do not cite these notes as a full reading or replication of their benchmarks. Our measured outcomes are in [Experiment 03](../experiments/03_wisconsin_explanations/README.md) and [Experiment 04](../experiments/04_shortcut_sandbox/README.md).
+
+| Key / original work | Use and limits | Implementation source inspected |
+|---|---|---|
+| `selvaraju2016gradcam` — [Selvaraju et al., Grad-CAM](https://arxiv.org/abs/1610.02391) | Gradient-based coarse localization; not exact single-input-feature attribution. Initial preprint 2016; record notes conference 2017 and journal 2019 versions. | [Captum LayerGradCam](https://captum.ai/api/layer.html#gradcam): layer choice, channel aggregation and explicit positive-only option |
+| `sundararajan2017ig` — [Sundararajan et al., Axiomatic Attribution](https://arxiv.org/abs/1703.01365) | Input attribution and axiomatic motivation; numerical completeness is not semantic validation. | [Captum IG](https://captum.ai/api/integrated_gradients.html): baselines, input difference factor, quadrature and convergence delta |
+| `lundberg2017shap` — [Lundberg and Lee, SHAP](https://arxiv.org/abs/1705.07874) | Additive prediction explanations; our single-reference masking does not account for conditional correlations. | [KernelExplainer](https://shap.readthedocs.io/en/latest/generated/shap.KernelExplainer.html): background replacement, identity link, sample count and feature selection |
+| `ribeiro2016lime` — [Ribeiro et al., LIME](https://arxiv.org/abs/1602.04938) | Local surrogate explanation; our baseline-relative local-effect transformation is explicitly identified as our comparison convention. | [LIME tabular API](https://lime-ml.readthedocs.io/en/latest/lime.html#module-lime.lime_tabular): regression mode, Gaussian sampling, standardization, kernel and local fit |
+
+The previously listed `adebayo2018sanity` supplies the motivation for model-dependence checks. One classifier reset and one full reset are limited diagnostics, not a complete implementation of that paper's test suite. No conclusion about every attribution method's behavior is drawn from its abstract.
 
 ## R1
 
