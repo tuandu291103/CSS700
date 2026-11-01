@@ -4,6 +4,8 @@ Started 15 October; updated 19 October 2026 | MILE metadata/annotation and two p
 
 ## Selection principle
 
+**26 October follow-up:** the professor supplied the NCI TCGA and UCSC Xena resources (guidance dated 21 October). An [initial source check](../docs/TCGA_XENA_FEASIBILITY.md) was followed by a [full TCGA-BRCA acquisition audit](../experiments/05_tcga_brca_audit/README.md): 60,660 expression identifiers × 1,226 samples, complete clinical/map joins, 1,095 participants. The conservative 1,170-sample cohort is now used in an [exploratory prediction pilot](../experiments/06_tcga_brca_pilot/README.md), including a BH-site holdout. Final biological/eligibility/site-confounding questions remain. This has not replaced or finally accepted any candidate below. Xena and TCGA are not independent datasets, and potential overlap with D3 must be checked.
+
 Our proposed selection criteria are: a clear prediction target; recoverable gene or probe identities; enough independent samples for the intended evaluation; inspectable preprocessing; and an annotation route for group-level interpretation. We will not select datasets because they already favor a CNN. A repository sample count is not a verified count of independent patients, and a probe count is not a count of unique genes.
 
 The shortlist spans breast-tumor subtypes, hematological diagnoses, and multi-tumor RNA-seq classification. This is domain breadth within transcriptomics, not evidence for all genomic modalities or all noisy tabular problems.

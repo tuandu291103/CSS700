@@ -1,0 +1,518 @@
+{
+  "audit_script_sha256": "c58836a82dce7b45a47e15db0a6b34445ef1078b7e280fd690c594c55db52aec",
+  "candidate": {
+    "annotated_participants_requiring_review": 29,
+    "annotated_samples_requiring_review": 31,
+    "class_counts": {
+      "Primary Tumor": 1095,
+      "Solid Tissue Normal": 113
+    },
+    "metadata_by_sample_type": {
+      "annotation_category": {
+        "<blank>": {
+          "01": 1066,
+          "11": 111
+        },
+        "History of unacceptable prior treatment related to a prior/other malignancy": {
+          "01": 6
+        },
+        "Item does not meet study protocol": {
+          "01": 1,
+          "11": 1
+        },
+        "Neoadjuvant therapy": {
+          "01": 6,
+          "11": 1
+        },
+        "Prior malignancy": {
+          "01": 10
+        },
+        "['History of unacceptable prior treatment related to a prior/other malignancy', 'Prior malignancy']": {
+          "01": 3
+        },
+        "['Neoadjuvant therapy', 'Prior malignancy']": {
+          "01": 1
+        },
+        "['Prior malignancy', 'History of unacceptable prior treatment related to a prior/other malignancy']": {
+          "01": 2
+        }
+      },
+      "ffpe": {
+        "False": {
+          "01": 1094,
+          "11": 113
+        },
+        "True": {
+          "01": 1
+        }
+      },
+      "preservation": {
+        "FFPE": {
+          "01": 5
+        },
+        "OCT": {
+          "01": 679,
+          "11": 67
+        },
+        "Unknown": {
+          "01": 411,
+          "11": 46
+        }
+      },
+      "prior_treatment": {
+        "<blank>": {
+          "01": 1
+        },
+        "No": {
+          "01": 1079,
+          "11": 112
+        },
+        "Not Reported": {
+          "01": 2
+        },
+        "Yes": {
+          "01": 13,
+          "11": 1
+        }
+      },
+      "sample_annotations": {
+        "<blank>": {
+          "01": 1095,
+          "11": 113
+        }
+      },
+      "source_site": {
+        "3C": {
+          "01": 4
+        },
+        "4H": {
+          "01": 1
+        },
+        "5L": {
+          "01": 2
+        },
+        "5T": {
+          "01": 1
+        },
+        "A1": {
+          "01": 14
+        },
+        "A2": {
+          "01": 102
+        },
+        "A7": {
+          "01": 42,
+          "11": 8
+        },
+        "A8": {
+          "01": 84
+        },
+        "AC": {
+          "01": 47,
+          "11": 4
+        },
+        "AN": {
+          "01": 39
+        },
+        "AO": {
+          "01": 47
+        },
+        "AQ": {
+          "01": 9
+        },
+        "AR": {
+          "01": 69
+        },
+        "B6": {
+          "01": 58
+        },
+        "BH": {
+          "01": 151,
+          "11": 73
+        },
+        "C8": {
+          "01": 48
+        },
+        "D8": {
+          "01": 78
+        },
+        "E2": {
+          "01": 90,
+          "11": 11
+        },
+        "E9": {
+          "01": 62,
+          "11": 15
+        },
+        "EW": {
+          "01": 43
+        },
+        "GI": {
+          "01": 2,
+          "11": 2
+        },
+        "GM": {
+          "01": 21
+        },
+        "HN": {
+          "01": 2
+        },
+        "JL": {
+          "01": 2
+        },
+        "LD": {
+          "01": 5
+        },
+        "LL": {
+          "01": 19
+        },
+        "LQ": {
+          "01": 1
+        },
+        "MS": {
+          "01": 1
+        },
+        "OK": {
+          "01": 1
+        },
+        "OL": {
+          "01": 23
+        },
+        "PE": {
+          "01": 3
+        },
+        "PL": {
+          "01": 4
+        },
+        "S3": {
+          "01": 10
+        },
+        "UL": {
+          "01": 1
+        },
+        "UU": {
+          "01": 1
+        },
+        "V7": {
+          "01": 1
+        },
+        "W8": {
+          "01": 1
+        },
+        "WT": {
+          "01": 2
+        },
+        "XX": {
+          "01": 2
+        },
+        "Z7": {
+          "01": 2
+        }
+      }
+    },
+    "non_target_samples_excluded": 7,
+    "participant_count": 1095,
+    "participant_type_patterns": {
+      "01": 982,
+      "01+11": 113
+    },
+    "repeated_participant_type_vials_excluded": 11,
+    "sample_count": 1208
+  },
+  "clinical": {
+    "file_columns_including_sample_key": 85,
+    "pam50_named_fields": [],
+    "participants": 1098,
+    "sample_type_counts": {
+      "Metastatic": 7,
+      "Primary Tumor": 1111,
+      "Solid Tissue Normal": 137
+    },
+    "samples": 1255
+  },
+  "conservative_cohort_option": {
+    "class_counts": {
+      "Primary Tumor": 1059,
+      "Solid Tissue Normal": 111
+    },
+    "exclusion_reason_counts_overlapping": {
+      "FFPE_in_either_source_field": 16,
+      "case_annotation": 32,
+      "prior_treatment_not_documented_No": 17
+    },
+    "initial_candidate_diagnostics": {
+      "clinical_sample_annotation_records": 1,
+      "preservation_FFPE_but_ffpe_flag_False": 4,
+      "sample_annotated_records_present_in_expression": 0,
+      "sites_with_both_classes": 6,
+      "source_sites": 40,
+      "tumor_samples_at_sites_without_normal_samples": 701
+    },
+    "metadata_by_sample_type": {
+      "ffpe": {
+        "False": {
+          "01": 1059,
+          "11": 111
+        }
+      },
+      "preservation": {
+        "OCT": {
+          "01": 667,
+          "11": 67
+        },
+        "Unknown": {
+          "01": 392,
+          "11": 44
+        }
+      },
+      "prior_treatment": {
+        "No": {
+          "01": 1059,
+          "11": 111
+        }
+      },
+      "source_site": {
+        "3C": {
+          "01": 4
+        },
+        "4H": {
+          "01": 1
+        },
+        "5L": {
+          "01": 1
+        },
+        "5T": {
+          "01": 1
+        },
+        "A1": {
+          "01": 13
+        },
+        "A2": {
+          "01": 101
+        },
+        "A7": {
+          "01": 40,
+          "11": 7
+        },
+        "A8": {
+          "01": 72
+        },
+        "AC": {
+          "01": 46,
+          "11": 4
+        },
+        "AN": {
+          "01": 39
+        },
+        "AO": {
+          "01": 45
+        },
+        "AQ": {
+          "01": 8
+        },
+        "AR": {
+          "01": 67
+        },
+        "B6": {
+          "01": 58
+        },
+        "BH": {
+          "01": 148,
+          "11": 73
+        },
+        "C8": {
+          "01": 46
+        },
+        "D8": {
+          "01": 77
+        },
+        "E2": {
+          "01": 90,
+          "11": 11
+        },
+        "E9": {
+          "01": 62,
+          "11": 15
+        },
+        "EW": {
+          "01": 42
+        },
+        "GI": {
+          "01": 1,
+          "11": 1
+        },
+        "GM": {
+          "01": 21
+        },
+        "HN": {
+          "01": 2
+        },
+        "JL": {
+          "01": 2
+        },
+        "LD": {
+          "01": 5
+        },
+        "LL": {
+          "01": 18
+        },
+        "LQ": {
+          "01": 1
+        },
+        "MS": {
+          "01": 1
+        },
+        "OK": {
+          "01": 1
+        },
+        "OL": {
+          "01": 23
+        },
+        "PE": {
+          "01": 3
+        },
+        "S3": {
+          "01": 10
+        },
+        "UL": {
+          "01": 1
+        },
+        "UU": {
+          "01": 1
+        },
+        "V7": {
+          "01": 1
+        },
+        "W8": {
+          "01": 1
+        },
+        "WT": {
+          "01": 2
+        },
+        "XX": {
+          "01": 2
+        },
+        "Z7": {
+          "01": 2
+        }
+      }
+    },
+    "metadata_excluded_expression_samples_before_vial_selection": 49,
+    "participant_count": 1059,
+    "participant_type_patterns": {
+      "01": 948,
+      "01+11": 111
+    },
+    "repeated_vials_excluded_after_metadata_filter": 0,
+    "rule": "Exclude case-annotated participants and participants without consistently documented No prior treatment across the clinical source; exclude sample-annotated or FFPE-flagged samples; then choose one vial per participant/type. Unknown preservation is retained as unknown, not certified fresh tissue.",
+    "sample_count": 1170,
+    "status": "Metadata-only conservative option; not yet adopted for a model experiment"
+  },
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.14"
+  },
+  "experiment": "05_tcga_brca_audit",
+  "expression": {
+    "all_cohort_constant_features_diagnostic_only": 2612,
+    "all_zero_features": 2612,
+    "cross_participant_duplicate_profile_groups": 0,
+    "duplicate_feature_value_extra_rows": 2611,
+    "duplicate_feature_value_groups": 1,
+    "exact_duplicate_profile_groups": 0,
+    "features": 60660,
+    "finite_maximum": 18.78925718376024,
+    "finite_minimum": 0.0,
+    "infinite_values": 0,
+    "missing_values": 0,
+    "negative_values": 0,
+    "samples": 1226,
+    "samples_with_nonfinite_values": 0,
+    "values_checked": 74369160,
+    "zero_values": 34269989
+  },
+  "gates": {
+    "all_expression_samples_have_consistent_clinical_identity": true,
+    "both_learning_classes_present": true,
+    "every_expression_id_has_exact_mapping": true,
+    "expression_complete_finite_nonnegative": true,
+    "no_cross_participant_exact_duplicate_profiles": true,
+    "no_unreviewed_annotations_in_candidate": false,
+    "source_dimensions_reconciled": true
+  },
+  "join": {
+    "case_ids_with_multiple_participants": 0,
+    "clinical_only": 29,
+    "expression_only": 0,
+    "identity_conflicts": 0,
+    "matched": 1226,
+    "matched_participants": 1095,
+    "matched_sample_type_counts": {
+      "Metastatic": 7,
+      "Primary Tumor": 1106,
+      "Solid Tissue Normal": 113
+    },
+    "participants_with_multiple_case_ids": 0
+  },
+  "mapping": {
+    "blank_symbols": 0,
+    "distinct_symbols": 59427,
+    "exact_mapped_expression_ids": 60660,
+    "extra_expression_ids_sharing_symbols": 1233,
+    "fields": [
+      "id",
+      "gene",
+      "chrom",
+      "chromStart",
+      "chromEnd",
+      "strand"
+    ],
+    "most_repeated_symbols": {
+      "5S_rRNA": 9,
+      "Metazoa_SRP": 170,
+      "SNORA63": 7,
+      "SNORA70": 27,
+      "SNORA72": 8,
+      "U2": 19,
+      "U3": 50,
+      "U6": 33,
+      "U8": 22,
+      "Y_RNA": 756
+    },
+    "rows": 60660,
+    "symbol_collapse_performed": false,
+    "symbols_shared_by_multiple_expression_ids": 110,
+    "unmapped_expression_ids": [],
+    "unused_map_ids": 0
+  },
+  "models_trained": false,
+  "protocol_sha256": "85e570dacb6685296eb1568eb1a32d49e8e8fc2f6f224889e5956e855ebfd448",
+  "retrieval_date_local": "2026-10-26",
+  "source_count_reconciliation": {
+    "downloaded_sorted_ids_sha256": "eed79a6e4ab83f04b1dcfcd2dbf14364cd5137942aee6f89d5ecc7bced03f993",
+    "listed_non_expression_identifiers": [
+      "sampleID"
+    ],
+    "matches_full_browser_inventory": true,
+    "unadjusted_dimensions_match_initial_listing": false
+  },
+  "source_count_review_sha256": "67c6a55cc7d30cbff1547a04a071bb1e14eb5645669de8d699fb2440866d46ee",
+  "sources": {
+    "TCGA-BRCA.clinical.tsv.gz": {
+      "bytes": 280146,
+      "sha256": "a510e8013897ac75dde1e16f6fa400bf39629377c7b50c6766bfa347ca888783",
+      "url": "https://gdc-hub.s3.us-east-1.amazonaws.com/download/TCGA-BRCA.clinical.tsv.gz"
+    },
+    "TCGA-BRCA.star_tpm.tsv.gz": {
+      "bytes": 342300776,
+      "sha256": "d14b127a98e71e4aef15196bdee0f6b0c4d5a236a61fbc7b99ae7e825ed052cc",
+      "url": "https://gdc-hub.s3.us-east-1.amazonaws.com/download/TCGA-BRCA.star_tpm.tsv.gz"
+    },
+    "gencode.v36.annotation.gtf.gene.probemap": {
+      "bytes": 3206945,
+      "sha256": "f027752d663b1da74f4113998bf008e6ebecfa3732607513e027bb6eb1f635b5",
+      "url": "https://gdc-hub.s3.us-east-1.amazonaws.com/download/gencode.v36.annotation.gtf.gene.probemap"
+    }
+  },
+  "training_ready_without_further_review": false
+}

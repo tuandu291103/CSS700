@@ -2,6 +2,15 @@
 % See REFERENCES.md for reading depth and technical-record distinctions.
 % "and others" denotes an intentionally abbreviated author list, not missing identity.
 
+@misc{kerbash2026tab2imgCode,
+  author = {{Kerbash}},
+  title = {tab2img-bench: Tabular-to-image methods and benchmark software},
+  year = {2026},
+  howpublished = {GitHub repository, MIT license},
+  url = {https://github.com/Kerbash/tab2img-bench/tree/dc0ef691db733ebcba4d13b53ca58e258f76ef0a},
+  note = {Accessed 2026-10-31; commit dc0ef691db733ebcba4d13b53ca58e258f76ef0a. README describes a 51-dataset study; separate from the supplied nine-dataset manuscript and unverified final IEEE version. Actual SOM layout used in CSS700 Experiment 07 with documented protocol adaptations}
+}
+
 @misc{cs231nConvolution,
   author = {{Stanford CS231n}},
   title = {Convolutional Neural Networks: course notes},
@@ -391,10 +400,48 @@
   note = {Abstract reviewed 2026-10-23; tabular regression/neighborhood settings checked against official LIME docs; no published benchmark reproduced}
 }
 
+@article{goldman2020xena,
+  author = {Goldman, Mary J. and Craft, Brian and Hastie, Mim and others},
+  title = {Visualizing and interpreting cancer genomics data via the {Xena} platform},
+  journal = {Nature Biotechnology},
+  volume = {38},
+  pages = {675--678},
+  year = {2020},
+  doi = {10.1038/s41587-020-0546-8},
+  url = {https://www.nature.com/articles/s41587-020-0546-8},
+  note = {Publisher preview and bibliographic record reviewed 2026-10-26; not a full-paper review or T2I performance result}
+}
+
+@article{tcga2012breast,
+  author = {{The Cancer Genome Atlas Network}},
+  title = {Comprehensive molecular portraits of human breast tumours},
+  journal = {Nature},
+  volume = {490},
+  pages = {61--70},
+  year = {2012},
+  doi = {10.1038/nature11412},
+  url = {https://www.nature.com/articles/nature11412},
+  note = {Relevant gene-expression/PAM50 section and bibliographic record reviewed 2026-10-26; original publication cohort is not the current Xena release}
+}
+
 @misc{geoGSE2034,
   author = {{NCBI Gene Expression Omnibus}},
   title = {Breast cancer relapse free survival ({GSE2034})},
   year = {2005},
   url = {https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2034},
   note = {Accessed 2026-10-15; reserve candidate only; follow-up and censoring not audited}
+}
+
+@misc{gdcAnnotations,
+  author = {{NCI Genomic Data Commons}},
+  title = {Annotations: GDC Documentation},
+  url = {https://docs.gdc.cancer.gov/Encyclopedia/pages/Annotations/},
+  note = {Accessed 2026-10-26; current guidance on reviewing file/case annotations, not a mandatory blanket exclusion policy}
+}
+
+@misc{pytorchWeightedCrossEntropy,
+  author = {{PyTorch Contributors}},
+  title = {CrossEntropyLoss: PyTorch 2.14 Documentation},
+  url = {https://docs.pytorch.org/docs/2.14/generated/torch.nn.CrossEntropyLoss.html},
+  note = {Accessed 2026-10-26; class weights, logits and weighted reduction checked for the genomic learning pilot}
 }

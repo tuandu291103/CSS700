@@ -1,0 +1,43 @@
+{
+  "experiment": "06_tcga_brca_pilot",
+  "recorded_date": "2026-10-26",
+  "scope": "Exploratory learning pilot specified before genomic model fitting, not a preregistered confirmatory thesis experiment",
+  "input_audit": "experiments/05_tcga_brca_audit/results.json",
+  "input_audit_sha256": "b564664845eee740d77d17c8f85a35419393328b4ba91fd5a8355d7393fe4c98",
+  "cohort_implementation_sha256": "c58836a82dce7b45a47e15db0a6b34445ef1078b7e280fd690c594c55db52aec",
+  "cohort": "Adopt Experiment 05 conservative_cohort_option for this learning experiment only: exclude participants with any clinical case annotation/note or prior treatment not consistently No; exclude sample annotations or FFPE in either source field; then lexicographically first vial per participant/type 01 or 11. Unknown preservation remains unknown. No raw data deleted.",
+  "expected_cohort": {"samples": 1170, "participants": 1059, "tumors": 1059, "normals": 111},
+  "labels": {"0": "Solid Tissue Normal", "1": "Primary Tumor"},
+  "split_seed": 20261026,
+  "splits": {
+    "patient_grouped": "Sort participant IDs, stratify by availability of both tumor and normal versus tumor only; NumPy default_rng(seed), permute sorted IDs separately in sorted strata. First ceil(0.15*n) to test, next ceil(0.15*n) to validation, remainder train. No retry/search.",
+    "site_BH_holdout": "All BH participants to test. Among non-BH participants, same stratification and RNG seed, first ceil(0.15*n) in each stratum to validation, remainder train. BH chosen before any model results from prior audit showing most normal samples; not an independent external cohort.",
+    "independence": "Require disjoint participants and case UUIDs; one source-site code per participant matching the barcode. Sample IDs/clinical metadata are never expression predictors.",
+    "comparison_limit": "The two scenarios reuse participants in different roles and are dependent sensitivity analyses. Fit every model in both scenarios before inspecting either test set."
+  },
+  "preprocessing": {
+    "gene_budget": 256,
+    "feature_selection": "Top population variance among nonconstant expression rows on training samples only, before scaling. Descending variance, ties by versioned Ensembl ID. Each scenario selects independently. Keep exact IDs; do not collapse symbols.",
+    "scaling": "Training mean and population standard deviation (ddof=0); no second log, imputation or clipping. Cast identical standardized values to float32 for all models.",
+    "layout": "Selected IDs sorted lexicographically into row-major 16x16 grid; fixed arbitrary layout, not genomic order, learned similarity or SOM2IMG. No padding/collisions; exact float32 round trip.",
+    "image_shape": [16, 16]
+  },
+  "model_seeds": [20261026, 20261027, 20261028],
+  "dummy": {"strategy": "prior"},
+  "logistic_regression": {"C": 1.0, "solver": "lbfgs", "max_iter": 2000, "class_weight": "balanced"},
+  "random_forest": {"n_estimators": 300, "max_depth": null, "min_samples_leaf": 2, "max_features": "sqrt", "class_weight": "balanced", "n_jobs": 1},
+  "cnn": {
+    "architecture": "Reuse SmallGridCNN: Conv2d(1,8,3,padding=1)-ReLU-Conv2d(8,16,3,padding=1)-ReLU-AdaptiveAvgPool2d(1)-Flatten-Linear(16,2); 1282 parameters",
+    "device": "cpu", "threads": 1, "optimizer": "Adam",
+    "learning_rate": 0.003, "weight_decay": 0.0001,
+    "batch_size": 32, "max_epochs": 150, "patience": 25,
+    "loss": "Class-weighted cross-entropy, weights N_train/(2*n_class) from training only; no oversampling. Same weights for validation selection.",
+    "selection": "Lowest full-validation weighted cross-entropy; earliest exact tie; restore selected weights. No test data accepted by training function.",
+    "augmentation": "None; no image flips/crops/resizing"
+  },
+  "decision_rule": "Primary Tumor when probability_tumor > 0.5, otherwise Solid Tissue Normal; fixed threshold, no tuning/calibration",
+  "metrics": ["accuracy", "balanced_accuracy", "macro_f1", "roc_auc", "log_loss", "recall_normal", "recall_tumor", "confusion_matrix"],
+  "model_selection": "No hyperparameter search, best-seed selection or post-test retuning. Save all runs, train/validation histories, selected checkpoints and local predictions. Report three-seed mean and sample SD, not confidence intervals.",
+  "privacy": "Keep raw tables, sample IDs, partitions, processed arrays, per-sample predictions and checkpoints ignored. Publish aggregate metrics, stable gene mapping, protocols and figures only.",
+  "limits": ["Small normal class and paired sampling", "Two dependent splits, not external validation", "Site holdout changes class prevalence and patient population", "Weighted training outputs are not calibrated clinical risks", "256-variable variance filter may omit relevant genes", "Fixed layout does not encode biological similarity", "No interpretation benefit or novel biological mechanism tested"]
+}

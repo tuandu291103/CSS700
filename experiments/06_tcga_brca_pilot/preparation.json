@@ -1,0 +1,5380 @@
+{
+  "cohort_implementation_sha256": "c58836a82dce7b45a47e15db0a6b34445ef1078b7e280fd690c594c55db52aec",
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.14"
+  },
+  "experiment": "06_tcga_brca_pilot",
+  "input_audit_sha256": "b564664845eee740d77d17c8f85a35419393328b4ba91fd5a8355d7393fe4c98",
+  "preparation_code_sha256": "542f5d7ced0b3eabc1e70c438fef40c9f04c96a7628ba3785455a50ec7a0c142",
+  "private_partitions_sha256": "24f0512e40a8ddd0ebcbbc881419e096dc454dca8cf3c7d4d5d4eb4ad7588bc8",
+  "protocol_sha256": "e5f33050f978d7746f206c652c8751509f1f35e62757eeb0b1fffbaca33f6c49",
+  "scenarios": {
+    "patient_grouped": {
+      "case_overlap": 0,
+      "float32_input_digest": "5c41563a40894daa9f7e02f26d46179efb1d683a6125918637805f8efb2b9777",
+      "gene_count": 256,
+      "grid_shape": [
+        16,
+        16
+      ],
+      "mapping": [
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000003989.18",
+          "feature_index": 0,
+          "row": 0,
+          "symbol": "SLC7A2",
+          "train_mean": 5.1769667710318625,
+          "train_std": 2.4990087992782613,
+          "train_variance": 6.245044978870176
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000007062.12",
+          "feature_index": 1,
+          "row": 0,
+          "symbol": "PROM1",
+          "train_mean": 3.436446170548047,
+          "train_std": 2.3934547310865124,
+          "train_variance": 5.728625549760409
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000008196.13",
+          "feature_index": 2,
+          "row": 0,
+          "symbol": "TFAP2B",
+          "train_mean": 3.669286559853976,
+          "train_std": 2.6820201734971327,
+          "train_variance": 7.19323221104559
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000012223.13",
+          "feature_index": 3,
+          "row": 0,
+          "symbol": "LTF",
+          "train_mean": 6.888152273223091,
+          "train_std": 3.229151298359696,
+          "train_variance": 10.427418107698111
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000019505.8",
+          "feature_index": 4,
+          "row": 0,
+          "symbol": "SYT13",
+          "train_mean": 3.0587789874611833,
+          "train_std": 2.569825849920376,
+          "train_variance": 6.6040048989189835
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000047457.14",
+          "feature_index": 5,
+          "row": 0,
+          "symbol": "CP",
+          "train_mean": 3.1466754134639734,
+          "train_std": 2.342929490069465,
+          "train_variance": 5.489318595437162
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000060718.22",
+          "feature_index": 6,
+          "row": 0,
+          "symbol": "COL11A1",
+          "train_mean": 4.8349588850727345,
+          "train_std": 2.3778349093025737,
+          "train_variance": 5.6540988558979794
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000065618.21",
+          "feature_index": 7,
+          "row": 0,
+          "symbol": "COL17A1",
+          "train_mean": 3.360759249968122,
+          "train_std": 2.293249027882163,
+          "train_variance": 5.258991103882487
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000069535.14",
+          "feature_index": 8,
+          "row": 0,
+          "symbol": "MAOB",
+          "train_mean": 5.795624226748494,
+          "train_std": 2.231309529848035,
+          "train_variance": 4.97874221799066
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000074410.14",
+          "feature_index": 9,
+          "row": 0,
+          "symbol": "CA12",
+          "train_mean": 6.774929750995746,
+          "train_std": 2.276527466547375,
+          "train_variance": 5.182577305944611
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000078898.7",
+          "feature_index": 10,
+          "row": 0,
+          "symbol": "BPIFB2",
+          "train_mean": 2.378403415207223,
+          "train_std": 2.3025878650599654,
+          "train_variance": 5.30191087632141
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000081479.15",
+          "feature_index": 11,
+          "row": 0,
+          "symbol": "LRP2",
+          "train_mean": 3.211376293533221,
+          "train_std": 2.2405871403856956,
+          "train_variance": 5.020230733661749
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000082175.15",
+          "feature_index": 12,
+          "row": 0,
+          "symbol": "PGR",
+          "train_mean": 3.4496956101709113,
+          "train_std": 2.483612798671146,
+          "train_variance": 6.168332533723122
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000084628.10",
+          "feature_index": 13,
+          "row": 0,
+          "symbol": "NKAIN1",
+          "train_mean": 3.965220169137416,
+          "train_std": 2.4640702936178958,
+          "train_variance": 6.071642411890183
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000086548.9",
+          "feature_index": 14,
+          "row": 0,
+          "symbol": "CEACAM6",
+          "train_mean": 4.798540061556601,
+          "train_std": 2.9549296051775005,
+          "train_variance": 8.73160897155446
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000091831.24",
+          "feature_index": 15,
+          "row": 0,
+          "symbol": "ESR1",
+          "train_mean": 5.640223657524614,
+          "train_std": 2.618456893965674,
+          "train_variance": 6.856316505556366
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000094755.17",
+          "feature_index": 16,
+          "row": 1,
+          "symbol": "GABRP",
+          "train_mean": 4.091424869900536,
+          "train_std": 3.025738892446973,
+          "train_variance": 9.155095845266235
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000096006.12",
+          "feature_index": 17,
+          "row": 1,
+          "symbol": "CRISP3",
+          "train_mean": 2.022480369666483,
+          "train_std": 2.4477493341398775,
+          "train_variance": 5.991476802782213
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000099953.10",
+          "feature_index": 18,
+          "row": 1,
+          "symbol": "MMP11",
+          "train_mean": 6.979098440557002,
+          "train_std": 2.317324508166977,
+          "train_variance": 5.369992876151323
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000100146.18",
+          "feature_index": 19,
+          "row": 1,
+          "symbol": "SOX10",
+          "train_mean": 2.8369621652048305,
+          "train_std": 2.6279299285183995,
+          "train_variance": 6.90601570920272
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000100362.13",
+          "feature_index": 20,
+          "row": 1,
+          "symbol": "PVALB",
+          "train_mean": 2.2359746095387467,
+          "train_std": 2.589134526541337,
+          "train_variance": 6.7036175965284315
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000100867.15",
+          "feature_index": 21,
+          "row": 1,
+          "symbol": "DHRS2",
+          "train_mean": 2.9157419108515668,
+          "train_std": 2.799951831296856,
+          "train_variance": 7.839730257582616
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000101210.13",
+          "feature_index": 22,
+          "row": 1,
+          "symbol": "EEF1A2",
+          "train_mean": 4.423246012891644,
+          "train_std": 2.5477269431962517,
+          "train_variance": 6.490912577088117
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000101443.18",
+          "feature_index": 23,
+          "row": 1,
+          "symbol": "WFDC2",
+          "train_mean": 6.283173721865321,
+          "train_std": 2.5734947423256798,
+          "train_variance": 6.6228751887779165
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000101938.15",
+          "feature_index": 24,
+          "row": 1,
+          "symbol": "CHRDL1",
+          "train_mean": 3.368146371267732,
+          "train_std": 2.217130059023662,
+          "train_variance": 4.915665698626268
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000102243.13",
+          "feature_index": 25,
+          "row": 1,
+          "symbol": "VGLL1",
+          "train_mean": 1.9926056066519966,
+          "train_std": 2.233322879730236,
+          "train_variance": 4.987731085126555
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000102837.7",
+          "feature_index": 26,
+          "row": 1,
+          "symbol": "OLFM4",
+          "train_mean": 2.3777480338687424,
+          "train_std": 2.498448956822258,
+          "train_variance": 6.24224718984623
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000102854.16",
+          "feature_index": 27,
+          "row": 1,
+          "symbol": "MSLN",
+          "train_mean": 1.6343149803686081,
+          "train_std": 2.2616398181721147,
+          "train_variance": 5.115014667141597
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000104332.12",
+          "feature_index": 28,
+          "row": 1,
+          "symbol": "SFRP1",
+          "train_mean": 5.354406619362675,
+          "train_std": 2.88812057761197,
+          "train_variance": 8.3412404708257
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000105048.17",
+          "feature_index": 29,
+          "row": 1,
+          "symbol": "TNNT1",
+          "train_mean": 3.8872567188743505,
+          "train_std": 2.5019630953657024,
+          "train_variance": 6.2598193305719265
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000105141.6",
+          "feature_index": 30,
+          "row": 1,
+          "symbol": "CASP14",
+          "train_mean": 1.4989765040575216,
+          "train_std": 2.2708979793131054,
+          "train_variance": 5.156977632448346
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000105388.16",
+          "feature_index": 31,
+          "row": 1,
+          "symbol": "CEACAM5",
+          "train_mean": 2.7692367151724433,
+          "train_std": 2.5400603325193267,
+          "train_variance": 6.451906492838192
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000105664.11",
+          "feature_index": 32,
+          "row": 2,
+          "symbol": "COMP",
+          "train_mean": 5.956297925271638,
+          "train_std": 2.221949670075028,
+          "train_variance": 4.9370603363465255
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000106541.12",
+          "feature_index": 33,
+          "row": 2,
+          "symbol": "AGR2",
+          "train_mean": 7.83469136054983,
+          "train_std": 3.047752349426328,
+          "train_variance": 9.288794383433702
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000108244.17",
+          "feature_index": 34,
+          "row": 2,
+          "symbol": "KRT23",
+          "train_mean": 4.312875499172468,
+          "train_std": 2.2619753520449675,
+          "train_variance": 5.116532493258954
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000109321.11",
+          "feature_index": 35,
+          "row": 2,
+          "symbol": "AREG",
+          "train_mean": 4.972930618060967,
+          "train_std": 2.4246664123542843,
+          "train_variance": 5.879007211198996
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000110195.14",
+          "feature_index": 36,
+          "row": 2,
+          "symbol": "FOLR1",
+          "train_mean": 2.789319582868084,
+          "train_std": 2.2632982547436247,
+          "train_variance": 5.122518989925538
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000110484.7",
+          "feature_index": 37,
+          "row": 2,
+          "symbol": "SCGB2A2",
+          "train_mean": 7.04639700189384,
+          "train_std": 4.36082472860972,
+          "train_variance": 19.01679231365404
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000113739.10",
+          "feature_index": 38,
+          "row": 2,
+          "symbol": "STC2",
+          "train_mean": 6.666403518660182,
+          "train_std": 2.3700341211801614,
+          "train_variance": 5.61706173555822
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000117472.10",
+          "feature_index": 39,
+          "row": 2,
+          "symbol": "TSPAN1",
+          "train_mean": 5.845025199200445,
+          "train_std": 2.2696434960826934,
+          "train_variance": 5.151281599310471
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000123500.10",
+          "feature_index": 40,
+          "row": 2,
+          "symbol": "COL10A1",
+          "train_mean": 5.782154655236771,
+          "train_std": 2.4422299755441226,
+          "train_variance": 5.964487253446246
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000124102.5",
+          "feature_index": 41,
+          "row": 2,
+          "symbol": "PI3",
+          "train_mean": 2.2428880793777086,
+          "train_std": 2.3170973762158216,
+          "train_variance": 5.3689402508662445
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000124107.5",
+          "feature_index": 42,
+          "row": 2,
+          "symbol": "SLPI",
+          "train_mean": 6.672637689798396,
+          "train_std": 2.486876401163948,
+          "train_variance": 6.18455423466615
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000124143.10",
+          "feature_index": 43,
+          "row": 2,
+          "symbol": "ARHGAP40",
+          "train_mean": 2.428212624651965,
+          "train_std": 2.2341364485280533,
+          "train_variance": 4.991365670641542
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000124664.11",
+          "feature_index": 44,
+          "row": 2,
+          "symbol": "SPDEF",
+          "train_mean": 7.611456669025612,
+          "train_std": 2.2617054151484863,
+          "train_variance": 5.115311384911986
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000124935.4",
+          "feature_index": 45,
+          "row": 2,
+          "symbol": "SCGB1D2",
+          "train_mean": 6.484776553315392,
+          "train_std": 4.031241396234677,
+          "train_variance": 16.250907194716103
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000124939.6",
+          "feature_index": 46,
+          "row": 2,
+          "symbol": "SCGB2A1",
+          "train_mean": 4.188063549493038,
+          "train_std": 2.7547117890389248,
+          "train_variance": 7.5884370406700326
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000125740.14",
+          "feature_index": 47,
+          "row": 2,
+          "symbol": "FOSB",
+          "train_mean": 4.2524762311167,
+          "train_std": 2.2895076757999937,
+          "train_variance": 5.24184539754709
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000125999.11",
+          "feature_index": 48,
+          "row": 3,
+          "symbol": "BPIFB1",
+          "train_mean": 3.0877974306664466,
+          "train_std": 2.371188677422582,
+          "train_variance": 5.622535743937053
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000128422.17",
+          "feature_index": 49,
+          "row": 3,
+          "symbol": "KRT17",
+          "train_mean": 5.787830469558961,
+          "train_std": 2.850143211300397,
+          "train_variance": 8.123316324921738
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000129514.8",
+          "feature_index": 50,
+          "row": 3,
+          "symbol": "FOXA1",
+          "train_mean": 6.973706556683916,
+          "train_std": 2.443616426680655,
+          "train_variance": 5.971261240743531
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000131771.14",
+          "feature_index": 51,
+          "row": 3,
+          "symbol": "PPP1R1B",
+          "train_mean": 4.662455925402877,
+          "train_std": 2.6096931016254152,
+          "train_variance": 6.810498084671281
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000132465.12",
+          "feature_index": 52,
+          "row": 3,
+          "symbol": "JCHAIN",
+          "train_mean": 7.056242412244542,
+          "train_std": 2.6079460649520927,
+          "train_variance": 6.801382677699105
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000133169.6",
+          "feature_index": 53,
+          "row": 3,
+          "symbol": "BEX1",
+          "train_mean": 2.3507225961254874,
+          "train_std": 2.6911946628658194,
+          "train_variance": 7.242528713437472
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000134184.13",
+          "feature_index": 54,
+          "row": 3,
+          "symbol": "GSTM1",
+          "train_mean": 2.463138902235299,
+          "train_std": 2.711523018055788,
+          "train_variance": 7.352357077446371
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000134240.12",
+          "feature_index": 55,
+          "row": 3,
+          "symbol": "HMGCS2",
+          "train_mean": 3.4231493417380667,
+          "train_std": 2.9746728730957557,
+          "train_variance": 8.848678701931759
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000134258.17",
+          "feature_index": 56,
+          "row": 3,
+          "symbol": "VTCN1",
+          "train_mean": 6.17288779901111,
+          "train_std": 2.482570674405024,
+          "train_variance": 6.163157153415816
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000134827.8",
+          "feature_index": 57,
+          "row": 3,
+          "symbol": "TCN1",
+          "train_mean": 2.8860989760174944,
+          "train_std": 2.577995192086184,
+          "train_variance": 6.646059210419481
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000135374.11",
+          "feature_index": 58,
+          "row": 3,
+          "symbol": "ELF5",
+          "train_mean": 2.991807718734706,
+          "train_std": 2.386688318892364,
+          "train_variance": 5.696281131537258
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000136457.10",
+          "feature_index": 59,
+          "row": 3,
+          "symbol": "CHAD",
+          "train_mean": 3.812887671880526,
+          "train_std": 2.376244174210364,
+          "train_variance": 5.6465363754686955
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000137077.8",
+          "feature_index": 60,
+          "row": 3,
+          "symbol": "CCL21",
+          "train_mean": 4.32101792271019,
+          "train_std": 2.452832165310108,
+          "train_variance": 6.016385631179873
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000137558.9",
+          "feature_index": 61,
+          "row": 3,
+          "symbol": "PI15",
+          "train_mean": 2.815473556498443,
+          "train_std": 2.29430929590244,
+          "train_variance": 5.26385514526435
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000137673.9",
+          "feature_index": 62,
+          "row": 3,
+          "symbol": "MMP7",
+          "train_mean": 5.306551097688846,
+          "train_std": 2.288910514254836,
+          "train_variance": 5.239111342266338
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000137745.12",
+          "feature_index": 63,
+          "row": 3,
+          "symbol": "MMP13",
+          "train_mean": 3.542859943259073,
+          "train_std": 2.2557984900628756,
+          "train_variance": 5.08862682776995
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000137975.8",
+          "feature_index": 64,
+          "row": 4,
+          "symbol": "CLCA2",
+          "train_mean": 2.1868488942674515,
+          "train_std": 2.274844928440803,
+          "train_variance": 5.174919448452844
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000138207.14",
+          "feature_index": 65,
+          "row": 4,
+          "symbol": "RBP4",
+          "train_mean": 3.3734364481989476,
+          "train_std": 2.40552373361441,
+          "train_variance": 5.786544432982211
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000138696.11",
+          "feature_index": 66,
+          "row": 4,
+          "symbol": "BMPR1B",
+          "train_mean": 3.91315273792769,
+          "train_std": 3.00308368316533,
+          "train_variance": 9.018511608093842
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000138755.6",
+          "feature_index": 67,
+          "row": 4,
+          "symbol": "CXCL9",
+          "train_mean": 5.43346692574494,
+          "train_std": 2.281775663691081,
+          "train_variance": 5.206500179412872
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000139219.19",
+          "feature_index": 68,
+          "row": 4,
+          "symbol": "COL2A1",
+          "train_mean": 1.8632598311227202,
+          "train_std": 2.349252942004213,
+          "train_variance": 5.518989385515451
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000141750.7",
+          "feature_index": 69,
+          "row": 4,
+          "symbol": "STAC2",
+          "train_mean": 3.4371250603176,
+          "train_std": 2.795830571248992,
+          "train_variance": 7.816668583130466
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000143546.10",
+          "feature_index": 70,
+          "row": 4,
+          "symbol": "S100A8",
+          "train_mean": 4.2953225073895345,
+          "train_std": 2.605481801488041,
+          "train_variance": 6.788535417885368
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000143556.9",
+          "feature_index": 71,
+          "row": 4,
+          "symbol": "S100A7",
+          "train_mean": 2.9069694947050935,
+          "train_std": 3.5238684531628084,
+          "train_variance": 12.417648875196045
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000144891.18",
+          "feature_index": 72,
+          "row": 4,
+          "symbol": "AGTR1",
+          "train_mean": 2.784270231586854,
+          "train_std": 2.217004112642359,
+          "train_variance": 4.915107235473135
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000145824.13",
+          "feature_index": 73,
+          "row": 4,
+          "symbol": "CXCL14",
+          "train_mean": 7.37382782666226,
+          "train_std": 2.4761991096399276,
+          "train_variance": 6.131562030581571
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000148346.12",
+          "feature_index": 74,
+          "row": 4,
+          "symbol": "LCN2",
+          "train_mean": 3.498220283214762,
+          "train_std": 2.2583664279835483,
+          "train_variance": 5.100218923043171
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000148513.18",
+          "feature_index": 75,
+          "row": 4,
+          "symbol": "ANKRD30A",
+          "train_mean": 3.5826327023121562,
+          "train_std": 2.53721939892008,
+          "train_variance": 6.437482278256372
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000151365.2",
+          "feature_index": 76,
+          "row": 4,
+          "symbol": "THRSP",
+          "train_mean": 4.034314253243959,
+          "train_std": 2.364287258995318,
+          "train_variance": 5.589854243047594
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000151892.15",
+          "feature_index": 77,
+          "row": 4,
+          "symbol": "GFRA1",
+          "train_mean": 5.468029635181754,
+          "train_std": 2.7539318795297856,
+          "train_variance": 7.584140797090457
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000153002.12",
+          "feature_index": 78,
+          "row": 4,
+          "symbol": "CPB1",
+          "train_mean": 3.048292337451526,
+          "train_std": 3.6671526703359514,
+          "train_variance": 13.448008707552098
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000156234.7",
+          "feature_index": 79,
+          "row": 4,
+          "symbol": "CXCL13",
+          "train_mean": 4.097618744861522,
+          "train_std": 2.630575586397951,
+          "train_variance": 6.919927915752924
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000156689.7",
+          "feature_index": 80,
+          "row": 5,
+          "symbol": "GLYATL2",
+          "train_mean": 3.484436551344238,
+          "train_std": 2.3272169876345106,
+          "train_variance": 5.415938907534646
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000157303.11",
+          "feature_index": 81,
+          "row": 5,
+          "symbol": "SUSD3",
+          "train_mean": 6.155193465888116,
+          "train_std": 2.221205283544097,
+          "train_variance": 4.933752911644213
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000157765.13",
+          "feature_index": 82,
+          "row": 5,
+          "symbol": "SLC34A2",
+          "train_mean": 3.0534563847591274,
+          "train_std": 2.4006278272475954,
+          "train_variance": 5.763013964955511
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000159212.13",
+          "feature_index": 83,
+          "row": 5,
+          "symbol": "CLIC6",
+          "train_mean": 3.7870947254178016,
+          "train_std": 2.658181217765663,
+          "train_variance": 7.065927386482145
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000159763.4",
+          "feature_index": 84,
+          "row": 5,
+          "symbol": "PIP",
+          "train_mean": 7.165601197452771,
+          "train_std": 3.9243917378728264,
+          "train_variance": 15.400850512284501
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000160180.15",
+          "feature_index": 85,
+          "row": 5,
+          "symbol": "TFF3",
+          "train_mean": 7.361219456642589,
+          "train_std": 3.1889104778900186,
+          "train_variance": 10.169150035996745
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000160182.3",
+          "feature_index": 86,
+          "row": 5,
+          "symbol": "TFF1",
+          "train_mean": 7.150951852249337,
+          "train_std": 4.030859026829175,
+          "train_variance": 16.247824494170242
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000161055.4",
+          "feature_index": 87,
+          "row": 5,
+          "symbol": "SCGB3A1",
+          "train_mean": 3.022360170664309,
+          "train_std": 2.54716130337703,
+          "train_variance": 6.488030705421372
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000161634.12",
+          "feature_index": 88,
+          "row": 5,
+          "symbol": "DCD",
+          "train_mean": 1.3196605594645998,
+          "train_std": 2.4567682758583715,
+          "train_variance": 6.035710361264115
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000161798.7",
+          "feature_index": 89,
+          "row": 5,
+          "symbol": "AQP5",
+          "train_mean": 2.3752934490763242,
+          "train_std": 2.4173686285170453,
+          "train_variance": 5.8436710861383805
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000162482.5",
+          "feature_index": 90,
+          "row": 5,
+          "symbol": "AKR7A3",
+          "train_mean": 4.690343561444483,
+          "train_std": 2.316469186873327,
+          "train_variance": 5.366029493733574
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000162896.6",
+          "feature_index": 91,
+          "row": 5,
+          "symbol": "PIGR",
+          "train_mean": 3.433575843613548,
+          "train_std": 2.696141025926636,
+          "train_variance": 7.269176431684731
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000162989.5",
+          "feature_index": 92,
+          "row": 5,
+          "symbol": "KCNJ3",
+          "train_mean": 2.3217316941138746,
+          "train_std": 2.790022055952775,
+          "train_variance": 7.7842230727029476
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000163017.14",
+          "feature_index": 93,
+          "row": 5,
+          "symbol": "ACTG2",
+          "train_mean": 4.22331458294988,
+          "train_std": 2.2594505928688653,
+          "train_variance": 5.105116981615468
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000163220.11",
+          "feature_index": 94,
+          "row": 5,
+          "symbol": "S100A9",
+          "train_mean": 6.796602128328945,
+          "train_std": 2.6788952325467728,
+          "train_variance": 7.176479666961828
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000163993.7",
+          "feature_index": 95,
+          "row": 5,
+          "symbol": "S100P",
+          "train_mean": 6.345241105009874,
+          "train_std": 2.931757799174376,
+          "train_variance": 8.595203793019781
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000164128.7",
+          "feature_index": 96,
+          "row": 6,
+          "symbol": "NPY1R",
+          "train_mean": 4.598168134224571,
+          "train_std": 2.8978877389355238,
+          "train_variance": 8.397753347472843
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000164326.5",
+          "feature_index": 97,
+          "row": 6,
+          "symbol": "CARTPT",
+          "train_mean": 0.799197289726082,
+          "train_std": 2.456596488515477,
+          "train_variance": 6.034866307386574
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000164434.12",
+          "feature_index": 98,
+          "row": 6,
+          "symbol": "FABP7",
+          "train_mean": 1.743040831031441,
+          "train_std": 2.3150915442734425,
+          "train_variance": 5.359648858366392
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000164530.15",
+          "feature_index": 99,
+          "row": 6,
+          "symbol": "PI16",
+          "train_mean": 2.753760633952634,
+          "train_std": 2.2814795203570126,
+          "train_variance": 5.205148801808464
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000164756.12",
+          "feature_index": 100,
+          "row": 6,
+          "symbol": "SLC30A8",
+          "train_mean": 1.5846951715190847,
+          "train_std": 2.3753531648124238,
+          "train_variance": 5.642302657584398
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000164825.4",
+          "feature_index": 101,
+          "row": 6,
+          "symbol": "DEFB1",
+          "train_mean": 3.483085890853429,
+          "train_std": 2.2459770375662265,
+          "train_variance": 5.044412853274763
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000166426.8",
+          "feature_index": 102,
+          "row": 6,
+          "symbol": "CRABP1",
+          "train_mean": 2.931421662540862,
+          "train_std": 2.620943972408498,
+          "train_variance": 6.869347306504438
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000166509.12",
+          "feature_index": 103,
+          "row": 6,
+          "symbol": "CLEC3A",
+          "train_mean": 2.694807537244265,
+          "train_std": 3.650646308080031,
+          "train_variance": 13.32721846669836
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000166819.12",
+          "feature_index": 104,
+          "row": 6,
+          "symbol": "PLIN1",
+          "train_mean": 3.6768628732769346,
+          "train_std": 2.689784729300417,
+          "train_variance": 7.2349418899777165
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000167588.13",
+          "feature_index": 105,
+          "row": 6,
+          "symbol": "GPD1",
+          "train_mean": 3.157825602473379,
+          "train_std": 2.5293025305946277,
+          "train_variance": 6.397371291272388
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000167676.4",
+          "feature_index": 106,
+          "row": 6,
+          "symbol": "PLIN4",
+          "train_mean": 3.844321345685461,
+          "train_std": 2.6112298990407266,
+          "train_variance": 6.818521585644243
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000167754.13",
+          "feature_index": 107,
+          "row": 6,
+          "symbol": "KLK5",
+          "train_mean": 3.154761663284147,
+          "train_std": 2.5986312412799153,
+          "train_variance": 6.752884328155994
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000167757.14",
+          "feature_index": 108,
+          "row": 6,
+          "symbol": "KLK11",
+          "train_mean": 2.010460575290492,
+          "train_std": 2.279808560233204,
+          "train_variance": 5.197527071312593
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000169347.17",
+          "feature_index": 109,
+          "row": 6,
+          "symbol": "GP2",
+          "train_mean": 2.9256244010229295,
+          "train_std": 2.4539491087463006,
+          "train_variance": 6.021866228316762
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000169900.8",
+          "feature_index": 110,
+          "row": 6,
+          "symbol": "PYDC1",
+          "train_mean": 2.3764152147185835,
+          "train_std": 2.4574234361735208,
+          "train_variance": 6.038929944654875
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000170099.6",
+          "feature_index": 111,
+          "row": 6,
+          "symbol": "SERPINA6",
+          "train_mean": 2.009463066874554,
+          "train_std": 2.7760738055639242,
+          "train_variance": 7.706585773938169
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000170323.9",
+          "feature_index": 112,
+          "row": 7,
+          "symbol": "FABP4",
+          "train_mean": 5.53582074243737,
+          "train_std": 3.1467161208721586,
+          "train_variance": 9.901822345356726
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000170367.5",
+          "feature_index": 113,
+          "row": 7,
+          "symbol": "CST5",
+          "train_mean": 1.385182280189503,
+          "train_std": 2.293100442220917,
+          "train_variance": 5.258309638113766
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000170373.8",
+          "feature_index": 114,
+          "row": 7,
+          "symbol": "CST1",
+          "train_mean": 3.7258383956825742,
+          "train_std": 2.6887097272744387,
+          "train_variance": 7.229159997540187
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000171102.14",
+          "feature_index": 115,
+          "row": 7,
+          "symbol": "OBP2B",
+          "train_mean": 2.3373444811859203,
+          "train_std": 2.402592958907176,
+          "train_variance": 5.77245292619034
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000171236.10",
+          "feature_index": 116,
+          "row": 7,
+          "symbol": "LRG1",
+          "train_mean": 4.602794376921545,
+          "train_std": 2.338864405083183,
+          "train_variance": 5.470286705365111
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000171346.16",
+          "feature_index": 117,
+          "row": 7,
+          "symbol": "KRT15",
+          "train_mean": 5.0561555146971955,
+          "train_std": 2.54602413922353,
+          "train_variance": 6.482238917508917
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000171428.15",
+          "feature_index": 118,
+          "row": 7,
+          "symbol": "NAT1",
+          "train_mean": 5.4745671848338295,
+          "train_std": 2.6090896598212474,
+          "train_variance": 6.807348852986152
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000172551.11",
+          "feature_index": 119,
+          "row": 7,
+          "symbol": "MUCL1",
+          "train_mean": 4.0873662990980355,
+          "train_std": 3.469769271230992,
+          "train_variance": 12.03929879557885
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000172724.12",
+          "feature_index": 120,
+          "row": 7,
+          "symbol": "CCL19",
+          "train_mean": 4.846167006687347,
+          "train_std": 2.393041326056074,
+          "train_variance": 5.7266467882122125
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000173335.5",
+          "feature_index": 121,
+          "row": 7,
+          "symbol": "CST9",
+          "train_mean": 1.905178469989039,
+          "train_std": 2.3750440734875493,
+          "train_variance": 5.640834351008332
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000173432.12",
+          "feature_index": 122,
+          "row": 7,
+          "symbol": "SAA1",
+          "train_mean": 6.384331812013234,
+          "train_std": 2.633579945006614,
+          "train_variance": 6.93574332674104
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000173467.9",
+          "feature_index": 123,
+          "row": 7,
+          "symbol": "AGR3",
+          "train_mean": 6.639317105246431,
+          "train_std": 3.2469140651040345,
+          "train_variance": 10.542450946170405
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000174697.5",
+          "feature_index": 124,
+          "row": 7,
+          "symbol": "LEP",
+          "train_mean": 1.840995725785797,
+          "train_std": 2.332844310236124,
+          "train_variance": 5.442162575801058
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000174827.14",
+          "feature_index": 125,
+          "row": 7,
+          "symbol": "PDZK1",
+          "train_mean": 3.0588527176518294,
+          "train_std": 2.285779319398491,
+          "train_variance": 5.224787096989829
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000175356.14",
+          "feature_index": 126,
+          "row": 7,
+          "symbol": "SCUBE2",
+          "train_mean": 5.501039171918438,
+          "train_std": 2.616326642871191,
+          "train_variance": 6.845165102197636
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000178372.8",
+          "feature_index": 127,
+          "row": 7,
+          "symbol": "CALML5",
+          "train_mean": 4.746741759569951,
+          "train_std": 3.279604506698618,
+          "train_variance": 10.755805720357888
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000179593.16",
+          "feature_index": 128,
+          "row": 8,
+          "symbol": "ALOX15B",
+          "train_mean": 3.359925555935305,
+          "train_std": 2.3265244491263797,
+          "train_variance": 5.412716012382804
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000181092.10",
+          "feature_index": 129,
+          "row": 8,
+          "symbol": "ADIPOQ",
+          "train_mean": 2.9806080804689135,
+          "train_std": 2.7281206624285135,
+          "train_variance": 7.4426423487693905
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000181617.6",
+          "feature_index": 130,
+          "row": 8,
+          "symbol": "FDCSP",
+          "train_mean": 3.8972771261672188,
+          "train_std": 3.2257513017222204,
+          "train_variance": 10.4054714605626
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000184564.11",
+          "feature_index": 131,
+          "row": 8,
+          "symbol": "SLITRK6",
+          "train_mean": 3.7034307315982615,
+          "train_std": 2.538094425363549,
+          "train_variance": 6.441923312061524
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000184811.4",
+          "feature_index": 132,
+          "row": 8,
+          "symbol": "TRARG1",
+          "train_mean": 2.2525409775882324,
+          "train_std": 2.3649202262093296,
+          "train_variance": 5.592847676333988
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000184956.16",
+          "feature_index": 133,
+          "row": 8,
+          "symbol": "MUC6",
+          "train_mean": 1.733826253936427,
+          "train_std": 2.386209811866012,
+          "train_variance": 5.69399726624563
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000185479.6",
+          "feature_index": 134,
+          "row": 8,
+          "symbol": "KRT6B",
+          "train_mean": 3.737109338862329,
+          "train_std": 2.5693675833018697,
+          "train_variance": 6.60164977812249
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000185686.18",
+          "feature_index": 135,
+          "row": 8,
+          "symbol": "PRAME",
+          "train_mean": 2.0564724678409605,
+          "train_std": 2.6222395090145016,
+          "train_variance": 6.8761400426366155
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000186081.12",
+          "feature_index": 136,
+          "row": 8,
+          "symbol": "KRT5",
+          "train_mean": 5.486628709565332,
+          "train_std": 3.029278301620174,
+          "train_variance": 9.176527028666806
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000186160.5",
+          "feature_index": 137,
+          "row": 8,
+          "symbol": "CYP4Z1",
+          "train_mean": 3.7819356512594577,
+          "train_std": 3.075264526118275,
+          "train_variance": 9.457251905601458
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000186377.8",
+          "feature_index": 138,
+          "row": 8,
+          "symbol": "CYP4X1",
+          "train_mean": 4.867006921673325,
+          "train_std": 2.375618166273593,
+          "train_variance": 5.643561671929109
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000186832.9",
+          "feature_index": 139,
+          "row": 8,
+          "symbol": "KRT16",
+          "train_mean": 3.200604601554809,
+          "train_std": 2.5016266648817416,
+          "train_variance": 6.258135970447345
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000186847.6",
+          "feature_index": 140,
+          "row": 8,
+          "symbol": "KRT14",
+          "train_mean": 5.7401930021825525,
+          "train_std": 3.158888115583963,
+          "train_variance": 9.9785741267776
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000186910.4",
+          "feature_index": 141,
+          "row": 8,
+          "symbol": "SERPINA11",
+          "train_mean": 3.5063808319455365,
+          "train_std": 2.4561459331162125,
+          "train_variance": 6.0326528447633105
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000187288.12",
+          "feature_index": 142,
+          "row": 8,
+          "symbol": "CIDEC",
+          "train_mean": 2.769270839146707,
+          "train_std": 2.6172863552869847,
+          "train_variance": 6.850187865571429
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000188257.12",
+          "feature_index": 143,
+          "row": 8,
+          "symbol": "PLA2G2A",
+          "train_mean": 3.0318579802920977,
+          "train_std": 2.304961560414079,
+          "train_variance": 5.312847794986507
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000188488.14",
+          "feature_index": 144,
+          "row": 9,
+          "symbol": "SERPINA5",
+          "train_mean": 4.429589804032021,
+          "train_std": 2.38079342203881,
+          "train_variance": 5.6681773184232656
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000189058.9",
+          "feature_index": 145,
+          "row": 9,
+          "symbol": "APOD",
+          "train_mean": 7.826277293341081,
+          "train_std": 2.495214291252189,
+          "train_variance": 6.226094359269163
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000189377.9",
+          "feature_index": 146,
+          "row": 9,
+          "symbol": "CXCL17",
+          "train_mean": 3.74087623875443,
+          "train_std": 2.5022283127203813,
+          "train_variance": 6.261146528979486
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000196611.5",
+          "feature_index": 147,
+          "row": 9,
+          "symbol": "MMP1",
+          "train_mean": 3.1914410447664787,
+          "train_std": 2.3950522814707496,
+          "train_variance": 5.7362754309782416
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000196616.14",
+          "feature_index": 148,
+          "row": 9,
+          "symbol": "ADH1B",
+          "train_mean": 2.762823881442157,
+          "train_std": 2.515835876427205,
+          "train_variance": 6.329430157118243
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000197977.4",
+          "feature_index": 149,
+          "row": 9,
+          "symbol": "ELOVL2",
+          "train_mean": 3.6858416817278554,
+          "train_std": 2.3343145999566253,
+          "train_variance": 5.44902465157066
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000198650.11",
+          "feature_index": 150,
+          "row": 9,
+          "symbol": "TAT",
+          "train_mean": 2.0931067187510495,
+          "train_std": 2.7200964207855156,
+          "train_variance": 7.3989245383701725
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000204385.13",
+          "feature_index": 151,
+          "row": 9,
+          "symbol": "SLC44A4",
+          "train_mean": 5.960129854467705,
+          "train_std": 2.4388240693606713,
+          "train_variance": 5.9478628412929435
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000205426.10",
+          "feature_index": 152,
+          "row": 9,
+          "symbol": "KRT81",
+          "train_mean": 3.487941531235616,
+          "train_std": 2.7259626202516514,
+          "train_variance": 7.43087220700925
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000211592.8",
+          "feature_index": 153,
+          "row": 9,
+          "symbol": "IGKC",
+          "train_mean": 11.853740418519536,
+          "train_std": 2.730559415109958,
+          "train_variance": 7.455954719445636
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000211597.2",
+          "feature_index": 154,
+          "row": 9,
+          "symbol": "IGKJ1",
+          "train_mean": 4.3655893294769905,
+          "train_std": 2.311572157089328,
+          "train_variance": 5.34336583743061
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000211598.2",
+          "feature_index": 155,
+          "row": 9,
+          "symbol": "IGKV4-1",
+          "train_mean": 7.029634350897205,
+          "train_std": 2.7263303883587944,
+          "train_variance": 7.432877386488615
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000211637.2",
+          "feature_index": 156,
+          "row": 9,
+          "symbol": "IGLV4-69",
+          "train_mean": 4.521519598942918,
+          "train_std": 2.5036719767911904,
+          "train_variance": 6.268373367369508
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000211638.2",
+          "feature_index": 157,
+          "row": 9,
+          "symbol": "IGLV8-61",
+          "train_mean": 4.06466094607001,
+          "train_std": 2.6283642368454228,
+          "train_variance": 6.908298561528021
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000211640.4",
+          "feature_index": 158,
+          "row": 9,
+          "symbol": "IGLV6-57",
+          "train_mean": 5.431270547937507,
+          "train_std": 2.6790578954293447,
+          "train_variance": 7.1773512070623084
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000211648.2",
+          "feature_index": 159,
+          "row": 9,
+          "symbol": "IGLV1-47",
+          "train_mean": 5.363937037545604,
+          "train_std": 2.6248612823267017,
+          "train_variance": 6.889896751457777
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000211649.3",
+          "feature_index": 160,
+          "row": 10,
+          "symbol": "IGLV7-46",
+          "train_mean": 3.8541056811685714,
+          "train_std": 2.262693945930632,
+          "train_variance": 5.1197838929511335
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000211651.3",
+          "feature_index": 161,
+          "row": 10,
+          "symbol": "IGLV1-44",
+          "train_mean": 5.770423857044408,
+          "train_std": 2.594072205472631,
+          "train_variance": 6.72921060720564
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000211653.2",
+          "feature_index": 162,
+          "row": 10,
+          "symbol": "IGLV1-40",
+          "train_mean": 6.471335375261712,
+          "train_std": 2.6141455815996193,
+          "train_variance": 6.833757121796811
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000211658.2",
+          "feature_index": 163,
+          "row": 10,
+          "symbol": "IGLV3-27",
+          "train_mean": 2.8533485000709486,
+          "train_std": 2.220441695961311,
+          "train_variance": 4.930361325163542
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000211659.2",
+          "feature_index": 164,
+          "row": 10,
+          "symbol": "IGLV3-25",
+          "train_mean": 5.930586722394057,
+          "train_std": 2.758402834700684,
+          "train_variance": 7.608786198484768
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000211660.3",
+          "feature_index": 165,
+          "row": 10,
+          "symbol": "IGLV2-23",
+          "train_mean": 6.319780165675888,
+          "train_std": 2.648511895213698,
+          "train_variance": 7.014615259088453
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000211662.2",
+          "feature_index": 166,
+          "row": 10,
+          "symbol": "IGLV3-21",
+          "train_mean": 5.859782717303805,
+          "train_std": 2.7345213668663364,
+          "train_variance": 7.477607105848538
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000211663.2",
+          "feature_index": 167,
+          "row": 10,
+          "symbol": "IGLV3-19",
+          "train_mean": 6.221335821967266,
+          "train_std": 2.7055273834787332,
+          "train_variance": 7.3198784227532805
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000211666.2",
+          "feature_index": 168,
+          "row": 10,
+          "symbol": "IGLV2-14",
+          "train_mean": 6.969328477571276,
+          "train_std": 2.7301108018112266,
+          "train_variance": 7.453504990166339
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000211668.2",
+          "feature_index": 169,
+          "row": 10,
+          "symbol": "IGLV2-11",
+          "train_mean": 5.861811521561847,
+          "train_std": 2.5516934814207084,
+          "train_variance": 6.511139623124935
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000211669.3",
+          "feature_index": 170,
+          "row": 10,
+          "symbol": "IGLV3-10",
+          "train_mean": 4.4893417954523605,
+          "train_std": 2.5937373745969743,
+          "train_variance": 6.727473568381204
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000211673.2",
+          "feature_index": 171,
+          "row": 10,
+          "symbol": "IGLV3-1",
+          "train_mean": 6.54418878328255,
+          "train_std": 2.8223560697796284,
+          "train_variance": 7.96569378462191
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000211677.2",
+          "feature_index": 172,
+          "row": 10,
+          "symbol": "IGLC2",
+          "train_mean": 8.208057827161694,
+          "train_std": 2.5609896489512236,
+          "train_variance": 6.558667982035311
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000211679.2",
+          "feature_index": 173,
+          "row": 10,
+          "symbol": "IGLC3",
+          "train_mean": 7.465169082494268,
+          "train_std": 2.630245073354222,
+          "train_variance": 6.918189145904157
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000211890.4",
+          "feature_index": 174,
+          "row": 10,
+          "symbol": "IGHA2",
+          "train_mean": 6.854036113187469,
+          "train_std": 2.8201481594598294,
+          "train_variance": 7.953235641304663
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000211892.4",
+          "feature_index": 175,
+          "row": 10,
+          "symbol": "IGHG4",
+          "train_mean": 5.719716449881677,
+          "train_std": 2.416314779437927,
+          "train_variance": 5.838577113330157
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000211893.4",
+          "feature_index": 176,
+          "row": 11,
+          "symbol": "IGHG2",
+          "train_mean": 6.793279689147309,
+          "train_std": 2.29425328088339,
+          "train_variance": 5.263598116844199
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000211895.5",
+          "feature_index": 177,
+          "row": 11,
+          "symbol": "IGHA1",
+          "train_mean": 9.288040876486658,
+          "train_std": 2.73212221051205,
+          "train_variance": 7.46449177317325
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000211896.7",
+          "feature_index": 178,
+          "row": 11,
+          "symbol": "IGHG1",
+          "train_mean": 8.969978239978015,
+          "train_std": 3.0103964932528564,
+          "train_variance": 9.062487046589094
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000211897.9",
+          "feature_index": 179,
+          "row": 11,
+          "symbol": "IGHG3",
+          "train_mean": 6.0856213330588815,
+          "train_std": 2.5116795927512987,
+          "train_variance": 6.308534376643329
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000211899.10",
+          "feature_index": 180,
+          "row": 11,
+          "symbol": "IGHM",
+          "train_mean": 7.300907828161498,
+          "train_std": 2.760800758347278,
+          "train_variance": 7.622020827290904
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000211900.2",
+          "feature_index": 181,
+          "row": 11,
+          "symbol": "IGHJ6",
+          "train_mean": 3.0310912794143268,
+          "train_std": 2.3471242940501686,
+          "train_variance": 5.508992451720503
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000211933.2",
+          "feature_index": 182,
+          "row": 11,
+          "symbol": "IGHV6-1",
+          "train_mean": 4.0465420066167095,
+          "train_std": 2.42358839440807,
+          "train_variance": 5.873780705509486
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000211934.3",
+          "feature_index": 183,
+          "row": 11,
+          "symbol": "IGHV1-2",
+          "train_mean": 5.253151439578907,
+          "train_std": 2.739450121197923,
+          "train_variance": 7.504586966531314
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000211935.3",
+          "feature_index": 184,
+          "row": 11,
+          "symbol": "IGHV1-3",
+          "train_mean": 4.5656301469021985,
+          "train_std": 2.774971529535972,
+          "train_variance": 7.700466989735211
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000211937.3",
+          "feature_index": 185,
+          "row": 11,
+          "symbol": "IGHV2-5",
+          "train_mean": 5.309642311136849,
+          "train_std": 2.639381931057449,
+          "train_variance": 6.96633697799255
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000211938.2",
+          "feature_index": 186,
+          "row": 11,
+          "symbol": "IGHV3-7",
+          "train_mean": 5.923111707047918,
+          "train_std": 2.6053532121723206,
+          "train_variance": 6.787865360176629
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000211941.3",
+          "feature_index": 187,
+          "row": 11,
+          "symbol": "IGHV3-11",
+          "train_mean": 4.992784098762044,
+          "train_std": 2.608090431055176,
+          "train_variance": 6.802135696561573
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000211943.2",
+          "feature_index": 188,
+          "row": 11,
+          "symbol": "IGHV3-15",
+          "train_mean": 5.673096652521009,
+          "train_std": 2.6188668503300048,
+          "train_variance": 6.8584635797574
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000211945.2",
+          "feature_index": 189,
+          "row": 11,
+          "symbol": "IGHV1-18",
+          "train_mean": 5.958466171163141,
+          "train_std": 2.8673487926095906,
+          "train_variance": 8.221689098479677
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000211946.3",
+          "feature_index": 190,
+          "row": 11,
+          "symbol": "IGHV3-20",
+          "train_mean": 2.912492998856731,
+          "train_std": 2.2404397956703486,
+          "train_variance": 5.019570478023393
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000211947.2",
+          "feature_index": 191,
+          "row": 11,
+          "symbol": "IGHV3-21",
+          "train_mean": 5.934078103541818,
+          "train_std": 2.739811804604361,
+          "train_variance": 7.506568724649405
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000211949.3",
+          "feature_index": 192,
+          "row": 12,
+          "symbol": "IGHV3-23",
+          "train_mean": 6.5901464543429915,
+          "train_std": 2.7065000721148382,
+          "train_variance": 7.325142640357623
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000211950.2",
+          "feature_index": 193,
+          "row": 12,
+          "symbol": "IGHV1-24",
+          "train_mean": 4.368892970203432,
+          "train_std": 2.495518916323713,
+          "train_variance": 6.22761466172948
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000211951.2",
+          "feature_index": 194,
+          "row": 12,
+          "symbol": "IGHV2-26",
+          "train_mean": 3.377427275241006,
+          "train_std": 2.3484448413752212,
+          "train_variance": 5.5151931729818875
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000211955.2",
+          "feature_index": 195,
+          "row": 12,
+          "symbol": "IGHV3-33",
+          "train_mean": 4.692431947500759,
+          "train_std": 2.549152853808862,
+          "train_variance": 6.498180272081867
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000211956.2",
+          "feature_index": 196,
+          "row": 12,
+          "symbol": "IGHV4-34",
+          "train_mean": 4.83034323100539,
+          "train_std": 2.364477571426517,
+          "train_variance": 5.590754185779041
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000211959.2",
+          "feature_index": 197,
+          "row": 12,
+          "symbol": "IGHV4-39",
+          "train_mean": 5.982428770056359,
+          "train_std": 2.6991576081860624,
+          "train_variance": 7.285451793828706
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000211962.2",
+          "feature_index": 198,
+          "row": 12,
+          "symbol": "IGHV1-46",
+          "train_mean": 4.4746001782025235,
+          "train_std": 2.452088994167618,
+          "train_variance": 6.012740435317959
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000211964.3",
+          "feature_index": 199,
+          "row": 12,
+          "symbol": "IGHV3-48",
+          "train_mean": 5.204015942349178,
+          "train_std": 2.654822266443872,
+          "train_variance": 7.048081266406178
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000211965.4",
+          "feature_index": 200,
+          "row": 12,
+          "symbol": "IGHV3-49",
+          "train_mean": 4.559710953027933,
+          "train_std": 2.50695507192293,
+          "train_variance": 6.284823732640103
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000211966.2",
+          "feature_index": 201,
+          "row": 12,
+          "symbol": "IGHV5-51",
+          "train_mean": 6.028165283877365,
+          "train_std": 2.7350602506635355,
+          "train_variance": 7.480554574759682
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000211973.2",
+          "feature_index": 202,
+          "row": 12,
+          "symbol": "IGHV1-69",
+          "train_mean": 3.193560527165737,
+          "train_std": 2.3171695070617684,
+          "train_variance": 5.369274524456878
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000211976.2",
+          "feature_index": 203,
+          "row": 12,
+          "symbol": "IGHV3-73",
+          "train_mean": 3.533292862247553,
+          "train_std": 2.3359965863251912,
+          "train_variance": 5.456880051322948
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000213088.12",
+          "feature_index": 204,
+          "row": 12,
+          "symbol": "ACKR1",
+          "train_mean": 4.307766589071939,
+          "train_std": 2.2663818795193706,
+          "train_variance": 5.136486823813755
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000213759.10",
+          "feature_index": 205,
+          "row": 12,
+          "symbol": "UGT2B11",
+          "train_mean": 1.7116004899176496,
+          "train_std": 2.5393253386647774,
+          "train_variance": 6.448173175584986
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000223808.1",
+          "feature_index": 206,
+          "row": 12,
+          "symbol": "AC044784.1",
+          "train_mean": 2.7246805526129485,
+          "train_std": 2.734780114866745,
+          "train_variance": 7.479022276670567
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000224373.3",
+          "feature_index": 207,
+          "row": 12,
+          "symbol": "IGHV4-59",
+          "train_mean": 5.460928876159907,
+          "train_std": 2.6121875545739703,
+          "train_variance": 6.82352382027114
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000224650.2",
+          "feature_index": 208,
+          "row": 13,
+          "symbol": "IGHV3-74",
+          "train_mean": 4.938101205409838,
+          "train_std": 2.321669100955587,
+          "train_variance": 5.390147414331924
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000225972.1",
+          "feature_index": 209,
+          "row": 13,
+          "symbol": "MTND1P23",
+          "train_mean": 3.199797006011939,
+          "train_std": 2.706402206182623,
+          "train_variance": 7.324612901630169
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000226278.1",
+          "feature_index": 210,
+          "row": 13,
+          "symbol": "PSPHP1",
+          "train_mean": 2.8712784427586464,
+          "train_std": 3.2206496692115425,
+          "train_variance": 10.372584291792418
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000227097.5",
+          "feature_index": 211,
+          "row": 13,
+          "symbol": "RPS28P7",
+          "train_mean": 9.042373270030568,
+          "train_std": 2.226106814999137,
+          "train_variance": 4.955551551785602
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000229453.2",
+          "feature_index": 212,
+          "row": 13,
+          "symbol": "SPINK8",
+          "train_mean": 2.966932876663993,
+          "train_std": 2.2557692392800255,
+          "train_variance": 5.088494860881985
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000230076.1",
+          "feature_index": 213,
+          "row": 13,
+          "symbol": "RPL10P6",
+          "train_mean": 3.214968349149919,
+          "train_std": 2.4326410034098203,
+          "train_variance": 5.917742251470736
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000231475.3",
+          "feature_index": 214,
+          "row": 13,
+          "symbol": "IGHV4-31",
+          "train_mean": 4.024860758413722,
+          "train_std": 2.3180899367306425,
+          "train_variance": 5.373540954771874
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000233622.3",
+          "feature_index": 215,
+          "row": 13,
+          "symbol": "CYP2T1P",
+          "train_mean": 3.9659762957149116,
+          "train_std": 2.5271644374062543,
+          "train_variance": 6.38656009369087
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000234918.1",
+          "feature_index": 216,
+          "row": 13,
+          "symbol": "AL157387.1",
+          "train_mean": 4.950315280765704,
+          "train_std": 3.167232043192701,
+          "train_variance": 10.031358815426609
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000235123.5",
+          "feature_index": 217,
+          "row": 13,
+          "symbol": "DSCAM-AS1",
+          "train_mean": 2.1930991656676584,
+          "train_std": 2.670216305144971,
+          "train_variance": 7.130055116262061
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000235687.9",
+          "feature_index": 218,
+          "row": 13,
+          "symbol": "LINC00993",
+          "train_mean": 5.376185303361191,
+          "train_std": 3.27634968277099,
+          "train_variance": 10.734467243793569
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000239855.1",
+          "feature_index": 219,
+          "row": 13,
+          "symbol": "IGKV1-6",
+          "train_mean": 4.531749013753307,
+          "train_std": 2.3915642422242613,
+          "train_variance": 5.719579524685705
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000239951.1",
+          "feature_index": 220,
+          "row": 13,
+          "symbol": "IGKV3-20",
+          "train_mean": 7.8756877335133,
+          "train_std": 2.666780856128097,
+          "train_variance": 7.111720134611307
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000240041.1",
+          "feature_index": 221,
+          "row": 13,
+          "symbol": "IGHJ4",
+          "train_mean": 3.3254775783472756,
+          "train_std": 2.252011143323813,
+          "train_variance": 5.071554189654627
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000240382.3",
+          "feature_index": 222,
+          "row": 13,
+          "symbol": "IGKV1-17",
+          "train_mean": 4.817947668841909,
+          "train_std": 2.520631994465479,
+          "train_variance": 6.35358565152302
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000240864.3",
+          "feature_index": 223,
+          "row": 13,
+          "symbol": "IGKV1-16",
+          "train_mean": 4.8344054945317785,
+          "train_std": 2.450610511927647,
+          "train_variance": 6.005491881170284
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000241294.1",
+          "feature_index": 224,
+          "row": 14,
+          "symbol": "IGKV2-24",
+          "train_mean": 4.1043663648379205,
+          "train_std": 2.2969830473759103,
+          "train_variance": 5.276131119932323
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000241351.3",
+          "feature_index": 225,
+          "row": 14,
+          "symbol": "IGKV3-11",
+          "train_mean": 6.713869544053817,
+          "train_std": 2.685187614161537,
+          "train_variance": 7.210232523246528
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000241755.1",
+          "feature_index": 226,
+          "row": 14,
+          "symbol": "IGKV1-9",
+          "train_mean": 5.242970517434826,
+          "train_std": 2.4862861379539427,
+          "train_variance": 6.181618759781931
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000242265.6",
+          "feature_index": 227,
+          "row": 14,
+          "symbol": "PEG10",
+          "train_mean": 4.990057969942881,
+          "train_std": 2.627931172373838,
+          "train_variance": 6.906022246734136
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000242887.1",
+          "feature_index": 228,
+          "row": 14,
+          "symbol": "IGHJ3",
+          "train_mean": 3.7066493336172712,
+          "train_std": 2.269369910474373,
+          "train_variance": 5.150039790566463
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000243238.1",
+          "feature_index": 229,
+          "row": 14,
+          "symbol": "IGKV2-30",
+          "train_mean": 4.314074968366412,
+          "train_std": 2.346117843061598,
+          "train_variance": 5.504268933532003
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000243264.2",
+          "feature_index": 230,
+          "row": 14,
+          "symbol": "IGKV2D-29",
+          "train_mean": 3.2203639740448757,
+          "train_std": 2.2795001873183183,
+          "train_variance": 5.1961211039842485
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000243290.3",
+          "feature_index": 231,
+          "row": 14,
+          "symbol": "IGKV1-12",
+          "train_mean": 4.15113974971529,
+          "train_std": 2.3313712922294156,
+          "train_variance": 5.435292102231456
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000243466.1",
+          "feature_index": 232,
+          "row": 14,
+          "symbol": "IGKV1-5",
+          "train_mean": 6.9428594899091935,
+          "train_std": 2.6938449384551633,
+          "train_variance": 7.256800552440502
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000244402.3",
+          "feature_index": 233,
+          "row": 14,
+          "symbol": "RN7SL314P",
+          "train_mean": 2.7180850729994335,
+          "train_std": 2.272074027207586,
+          "train_variance": 5.162320385111298
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000244437.1",
+          "feature_index": 234,
+          "row": 14,
+          "symbol": "IGKV3-15",
+          "train_mean": 5.900552512311296,
+          "train_std": 2.5683058992219414,
+          "train_variance": 6.596195191978224
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000244468.1",
+          "feature_index": 235,
+          "row": 14,
+          "symbol": "AC093001.1",
+          "train_mean": 4.9070767313913075,
+          "train_std": 3.640070050669441,
+          "train_variance": 13.250109973780626
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000244575.3",
+          "feature_index": 236,
+          "row": 14,
+          "symbol": "IGKV1-27",
+          "train_mean": 4.449890151799933,
+          "train_std": 2.3975980964872647,
+          "train_variance": 5.748476632279356
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000247627.2",
+          "feature_index": 237,
+          "row": 14,
+          "symbol": "MTND4P12",
+          "train_mean": 5.016317610741631,
+          "train_std": 2.475670259932079,
+          "train_variance": 6.128943235912168
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000248779.1",
+          "feature_index": 238,
+          "row": 14,
+          "symbol": "AC093297.1",
+          "train_mean": 1.8782542908780373,
+          "train_std": 2.552233120273018,
+          "train_variance": 6.513893900218546
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000251141.6",
+          "feature_index": 239,
+          "row": 14,
+          "symbol": "MRPS30-DT",
+          "train_mean": 3.3128023601337846,
+          "train_std": 2.57316122865755,
+          "train_variance": 6.621158708666432
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000252621.1",
+          "feature_index": 240,
+          "row": 15,
+          "symbol": "Y_RNA",
+          "train_mean": 4.222015164677423,
+          "train_std": 3.035300782360535,
+          "train_variance": 9.213050839398475
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000253755.1",
+          "feature_index": 241,
+          "row": 15,
+          "symbol": "IGHGP",
+          "train_mean": 6.066287622608416,
+          "train_std": 2.51750158384811,
+          "train_variance": 6.337814224677742
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000253768.1",
+          "feature_index": 242,
+          "row": 15,
+          "symbol": "AC008663.1",
+          "train_mean": 3.0406721925030764,
+          "train_std": 2.4863009072191415,
+          "train_variance": 6.181692201238725
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000256612.7",
+          "feature_index": 243,
+          "row": 15,
+          "symbol": "CYP2B7P",
+          "train_mean": 3.98682059213933,
+          "train_std": 3.1291125523239396,
+          "train_variance": 9.791345365111239
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000260318.1",
+          "feature_index": 244,
+          "row": 15,
+          "symbol": "COX6CP1",
+          "train_mean": 2.840531974051245,
+          "train_std": 2.479611886731418,
+          "train_variance": 6.148475108819741
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000263639.7",
+          "feature_index": 245,
+          "row": 15,
+          "symbol": "MSMB",
+          "train_mean": 2.8773102366278214,
+          "train_std": 2.3213958160488786,
+          "train_variance": 5.388878534769238
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000270550.1",
+          "feature_index": 246,
+          "row": 15,
+          "symbol": "IGHV3-30",
+          "train_mean": 5.334051441308291,
+          "train_std": 2.5667315184242017,
+          "train_variance": 6.588110687672208
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000274576.2",
+          "feature_index": 247,
+          "row": 15,
+          "symbol": "IGHV2-70",
+          "train_mean": 3.3063399880454702,
+          "train_std": 2.3813822269752083,
+          "train_variance": 5.670981310953402
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000276775.1",
+          "feature_index": 248,
+          "row": 15,
+          "symbol": "IGHV4-4",
+          "train_mean": 4.156468983425306,
+          "train_std": 2.6223335798016576,
+          "train_variance": 6.876633403755377
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000278196.3",
+          "feature_index": 249,
+          "row": 15,
+          "symbol": "IGLV2-8",
+          "train_mean": 4.754054368870259,
+          "train_std": 2.3461009352931708,
+          "train_variance": 5.504189598583491
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000280411.1",
+          "feature_index": 250,
+          "row": 15,
+          "symbol": "IGHV1-69D",
+          "train_mean": 4.570054268803187,
+          "train_std": 2.6033407271392885,
+          "train_variance": 6.777382941582119
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000281990.1",
+          "feature_index": 251,
+          "row": 15,
+          "symbol": "IGHV1-69-2",
+          "train_mean": 2.0566128439299383,
+          "train_std": 2.5552086317086347,
+          "train_variance": 6.529091151558312
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000282122.1",
+          "feature_index": 252,
+          "row": 15,
+          "symbol": "IGHV7-4-1",
+          "train_mean": 2.485133386508271,
+          "train_std": 2.6710421027203886,
+          "train_variance": 7.134465914504954
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000282431.1",
+          "feature_index": 253,
+          "row": 15,
+          "symbol": "TRBD1",
+          "train_mean": 3.1888687298587173,
+          "train_std": 2.2238819594353347,
+          "train_variance": 4.945650969501943
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000282639.1",
+          "feature_index": 254,
+          "row": 15,
+          "symbol": "IGHV3-64D",
+          "train_mean": 3.427048643563124,
+          "train_std": 2.458633486087713,
+          "train_variance": 6.044878618911821
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000282651.2",
+          "feature_index": 255,
+          "row": 15,
+          "symbol": "IGHV5-10-1",
+          "train_mean": 3.3265185141286184,
+          "train_std": 2.7706648378959655,
+          "train_variance": 7.676583643953077
+        }
+      ],
+      "partitions": {
+        "test": {
+          "class_counts": {
+            "Primary Tumor": 160,
+            "Solid Tissue Normal": 17
+          },
+          "participants": 160,
+          "sample_order_sha256": "2b1ed3fc2e8c50896e5baf5465af6a6c572425c6efe752e20580de03e1a069b0",
+          "samples": 177,
+          "source_site_counts": {
+            "3C": 1,
+            "5L": 1,
+            "A1": 1,
+            "A2": 19,
+            "A7": 6,
+            "A8": 10,
+            "AC": 6,
+            "AN": 10,
+            "AO": 3,
+            "AQ": 3,
+            "AR": 8,
+            "B6": 7,
+            "BH": 28,
+            "C8": 6,
+            "D8": 10,
+            "E2": 18,
+            "E9": 16,
+            "EW": 11,
+            "GM": 4,
+            "LD": 1,
+            "LL": 1,
+            "OL": 4,
+            "S3": 3
+          }
+        },
+        "train": {
+          "class_counts": {
+            "Primary Tumor": 739,
+            "Solid Tissue Normal": 77
+          },
+          "participants": 739,
+          "sample_order_sha256": "920f34c616d86983cd4bbce52edfc0bae1637c114c914d4f25a66291438c17f1",
+          "samples": 816,
+          "source_site_counts": {
+            "3C": 1,
+            "4H": 1,
+            "5T": 1,
+            "A1": 11,
+            "A2": 67,
+            "A7": 35,
+            "A8": 53,
+            "AC": 34,
+            "AN": 24,
+            "AO": 33,
+            "AQ": 3,
+            "AR": 53,
+            "B6": 41,
+            "BH": 157,
+            "C8": 31,
+            "D8": 58,
+            "E2": 70,
+            "E9": 48,
+            "EW": 21,
+            "GI": 2,
+            "GM": 14,
+            "HN": 2,
+            "JL": 2,
+            "LD": 4,
+            "LL": 14,
+            "LQ": 1,
+            "OK": 1,
+            "OL": 17,
+            "PE": 3,
+            "S3": 5,
+            "UL": 1,
+            "UU": 1,
+            "V7": 1,
+            "W8": 1,
+            "WT": 2,
+            "XX": 1,
+            "Z7": 2
+          }
+        },
+        "validation": {
+          "class_counts": {
+            "Primary Tumor": 160,
+            "Solid Tissue Normal": 17
+          },
+          "participants": 160,
+          "sample_order_sha256": "117165dce28ae4e7deae466fcad690f5751ba6c4756031beeef758f669e239a0",
+          "samples": 177,
+          "source_site_counts": {
+            "3C": 2,
+            "A1": 1,
+            "A2": 15,
+            "A7": 6,
+            "A8": 9,
+            "AC": 10,
+            "AN": 5,
+            "AO": 9,
+            "AQ": 2,
+            "AR": 6,
+            "B6": 10,
+            "BH": 36,
+            "C8": 9,
+            "D8": 9,
+            "E2": 13,
+            "E9": 13,
+            "EW": 10,
+            "GM": 3,
+            "LL": 3,
+            "MS": 1,
+            "OL": 2,
+            "S3": 2,
+            "XX": 1
+          }
+        }
+      },
+      "patient_overlap": 0,
+      "processed_arrays_sha256": "da67ce3cd43d4a359c0009714e5568b2b31cba70a099629698d6b39cacea407a",
+      "scaled_round_trip_max_abs_error": 0.0
+    },
+    "site_BH_holdout": {
+      "case_overlap": 0,
+      "float32_input_digest": "7a70404eff32c77cf7eef76db4e2a14982c9231bcf72491c8ec7c93fbd7635af",
+      "gene_count": 256,
+      "grid_shape": [
+        16,
+        16
+      ],
+      "mapping": [
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000003989.18",
+          "feature_index": 0,
+          "row": 0,
+          "symbol": "SLC7A2",
+          "train_mean": 5.051773170854761,
+          "train_std": 2.6000369615078953,
+          "train_variance": 6.760192201207208
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000007062.12",
+          "feature_index": 1,
+          "row": 0,
+          "symbol": "PROM1",
+          "train_mean": 3.2278126912015512,
+          "train_std": 2.351261057917852,
+          "train_variance": 5.528428562480976
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000008196.13",
+          "feature_index": 2,
+          "row": 0,
+          "symbol": "TFAP2B",
+          "train_mean": 3.499880902934579,
+          "train_std": 2.753511660754617,
+          "train_variance": 7.581826465911648
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000012223.13",
+          "feature_index": 3,
+          "row": 0,
+          "symbol": "LTF",
+          "train_mean": 6.7922216210552655,
+          "train_std": 3.3143446761449975,
+          "train_variance": 10.98488063229069
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000019505.8",
+          "feature_index": 4,
+          "row": 0,
+          "symbol": "SYT13",
+          "train_mean": 3.1295017329585613,
+          "train_std": 2.56312536573928,
+          "train_variance": 6.569611640496119
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000047457.14",
+          "feature_index": 5,
+          "row": 0,
+          "symbol": "CP",
+          "train_mean": 3.0785104822414064,
+          "train_std": 2.3968178154794595,
+          "train_variance": 5.744735640599729
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000060718.22",
+          "feature_index": 6,
+          "row": 0,
+          "symbol": "COL11A1",
+          "train_mean": 5.035109770845233,
+          "train_std": 2.3610588191647013,
+          "train_variance": 5.574598747555413
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000069535.14",
+          "feature_index": 7,
+          "row": 0,
+          "symbol": "MAOB",
+          "train_mean": 5.565988043727259,
+          "train_std": 2.275094731671176,
+          "train_variance": 5.176056038077939
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000074410.14",
+          "feature_index": 8,
+          "row": 0,
+          "symbol": "CA12",
+          "train_mean": 6.738592191647221,
+          "train_std": 2.358189795506064,
+          "train_variance": 5.561059111628933
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000075461.6",
+          "feature_index": 9,
+          "row": 0,
+          "symbol": "CACNG4",
+          "train_mean": 5.101624907954398,
+          "train_std": 2.2879076275153754,
+          "train_variance": 5.234521312043034
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000078898.7",
+          "feature_index": 10,
+          "row": 0,
+          "symbol": "BPIFB2",
+          "train_mean": 2.2939270958858278,
+          "train_std": 2.2913023743030703,
+          "train_variance": 5.2500665704868865
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000081479.15",
+          "feature_index": 11,
+          "row": 0,
+          "symbol": "LRP2",
+          "train_mean": 3.0989278948672885,
+          "train_std": 2.2808957949500326,
+          "train_variance": 5.2024856274207405
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000082175.15",
+          "feature_index": 12,
+          "row": 0,
+          "symbol": "PGR",
+          "train_mean": 3.3148728722461187,
+          "train_std": 2.48736749622721,
+          "train_variance": 6.186997061287619
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000084628.10",
+          "feature_index": 13,
+          "row": 0,
+          "symbol": "NKAIN1",
+          "train_mean": 4.0622062898498195,
+          "train_std": 2.4526979271292455,
+          "train_variance": 6.015727121744097
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000086548.9",
+          "feature_index": 14,
+          "row": 0,
+          "symbol": "CEACAM6",
+          "train_mean": 4.805705674788082,
+          "train_std": 3.0375692017336644,
+          "train_variance": 9.226826655320892
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000091831.24",
+          "feature_index": 15,
+          "row": 0,
+          "symbol": "ESR1",
+          "train_mean": 5.601342472447227,
+          "train_std": 2.7055229306169855,
+          "train_variance": 7.319854328094322
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000094755.17",
+          "feature_index": 16,
+          "row": 1,
+          "symbol": "GABRP",
+          "train_mean": 3.8362633708262663,
+          "train_std": 2.9087052202121253,
+          "train_variance": 8.460566058089269
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000096006.12",
+          "feature_index": 17,
+          "row": 1,
+          "symbol": "CRISP3",
+          "train_mean": 1.9388503012108684,
+          "train_std": 2.461330396399645,
+          "train_variance": 6.058147320240834
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000100146.18",
+          "feature_index": 18,
+          "row": 1,
+          "symbol": "SOX10",
+          "train_mean": 2.5621588840393565,
+          "train_std": 2.5113198111233443,
+          "train_variance": 6.30672719374059
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000100362.13",
+          "feature_index": 19,
+          "row": 1,
+          "symbol": "PVALB",
+          "train_mean": 2.2764461344880593,
+          "train_std": 2.607461891217021,
+          "train_variance": 6.798857514149042
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000100867.15",
+          "feature_index": 20,
+          "row": 1,
+          "symbol": "DHRS2",
+          "train_mean": 2.9823697122951236,
+          "train_std": 2.8571843041402714,
+          "train_variance": 8.163502147825527
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000101210.13",
+          "feature_index": 21,
+          "row": 1,
+          "symbol": "EEF1A2",
+          "train_mean": 4.477883856201883,
+          "train_std": 2.5972090084621033,
+          "train_variance": 6.745494633636703
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000101443.18",
+          "feature_index": 22,
+          "row": 1,
+          "symbol": "WFDC2",
+          "train_mean": 6.2472206797319565,
+          "train_std": 2.68390317690546,
+          "train_variance": 7.20333626300322
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000102243.13",
+          "feature_index": 23,
+          "row": 1,
+          "symbol": "VGLL1",
+          "train_mean": 1.866862641709184,
+          "train_std": 2.2485867145870873,
+          "train_variance": 5.056142213017551
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000102837.7",
+          "feature_index": 24,
+          "row": 1,
+          "symbol": "OLFM4",
+          "train_mean": 2.149673981603724,
+          "train_std": 2.3816177376729577,
+          "train_variance": 5.672103048398458
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000102854.16",
+          "feature_index": 25,
+          "row": 1,
+          "symbol": "MSLN",
+          "train_mean": 1.6978847121266667,
+          "train_std": 2.301380893691349,
+          "train_variance": 5.296354017847592
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000104332.12",
+          "feature_index": 26,
+          "row": 1,
+          "symbol": "SFRP1",
+          "train_mean": 5.042267038124716,
+          "train_std": 2.7643847715165375,
+          "train_variance": 7.641823164992538
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000105048.17",
+          "feature_index": 27,
+          "row": 1,
+          "symbol": "TNNT1",
+          "train_mean": 4.029517125512323,
+          "train_std": 2.4833368469334283,
+          "train_variance": 6.166961895337262
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000105141.6",
+          "feature_index": 28,
+          "row": 1,
+          "symbol": "CASP14",
+          "train_mean": 1.6083880337333964,
+          "train_std": 2.415977809146443,
+          "train_variance": 5.836948774288046
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000105388.16",
+          "feature_index": 29,
+          "row": 1,
+          "symbol": "CEACAM5",
+          "train_mean": 2.843456502296568,
+          "train_std": 2.5685858219204953,
+          "train_variance": 6.5976331245709865
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000106541.12",
+          "feature_index": 30,
+          "row": 1,
+          "symbol": "AGR2",
+          "train_mean": 7.789882021420203,
+          "train_std": 3.14120323931485,
+          "train_variance": 9.867157790682107
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000108244.17",
+          "feature_index": 31,
+          "row": 1,
+          "symbol": "KRT23",
+          "train_mean": 4.20627568081226,
+          "train_std": 2.252407124021619,
+          "train_variance": 5.073337852343341
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000109321.11",
+          "feature_index": 32,
+          "row": 2,
+          "symbol": "AREG",
+          "train_mean": 4.813620944360288,
+          "train_std": 2.48340768270914,
+          "train_variance": 6.16731371853878
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000110484.7",
+          "feature_index": 33,
+          "row": 2,
+          "symbol": "SCGB2A2",
+          "train_mean": 6.744717118007745,
+          "train_std": 4.514057179647671,
+          "train_variance": 20.376712221128685
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000113739.10",
+          "feature_index": 34,
+          "row": 2,
+          "symbol": "STC2",
+          "train_mean": 6.638660811330273,
+          "train_std": 2.3844846497870615,
+          "train_variance": 5.685767045070126
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000117472.10",
+          "feature_index": 35,
+          "row": 2,
+          "symbol": "TSPAN1",
+          "train_mean": 5.813472658217031,
+          "train_std": 2.337584701919134,
+          "train_variance": 5.4643022386463675
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000121270.16",
+          "feature_index": 36,
+          "row": 2,
+          "symbol": "ABCC11",
+          "train_mean": 3.0687402846111946,
+          "train_std": 2.2775857091320115,
+          "train_variance": 5.187396662442368
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000123500.10",
+          "feature_index": 37,
+          "row": 2,
+          "symbol": "COL10A1",
+          "train_mean": 6.035733030637664,
+          "train_std": 2.274579930013098,
+          "train_variance": 5.17371385801839
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000124102.5",
+          "feature_index": 38,
+          "row": 2,
+          "symbol": "PI3",
+          "train_mean": 2.1146075496087446,
+          "train_std": 2.3768039382406805,
+          "train_variance": 5.6491969608364085
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000124107.5",
+          "feature_index": 39,
+          "row": 2,
+          "symbol": "SLPI",
+          "train_mean": 6.503250734512556,
+          "train_std": 2.5565236563590075,
+          "train_variance": 6.535813205523228
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000124664.11",
+          "feature_index": 40,
+          "row": 2,
+          "symbol": "SPDEF",
+          "train_mean": 7.604395415249633,
+          "train_std": 2.336595096638841,
+          "train_variance": 5.459676645636675
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000124935.4",
+          "feature_index": 41,
+          "row": 2,
+          "symbol": "SCGB1D2",
+          "train_mean": 6.207756967526878,
+          "train_std": 4.19871864832598,
+          "train_variance": 17.62923828780034
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000124939.6",
+          "feature_index": 42,
+          "row": 2,
+          "symbol": "SCGB2A1",
+          "train_mean": 4.033443143727182,
+          "train_std": 2.749396707997168,
+          "train_variance": 7.559182257945666
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000125999.11",
+          "feature_index": 43,
+          "row": 2,
+          "symbol": "BPIFB1",
+          "train_mean": 3.0847593501537096,
+          "train_std": 2.387143573872778,
+          "train_variance": 5.698454442282101
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000128422.17",
+          "feature_index": 44,
+          "row": 2,
+          "symbol": "KRT17",
+          "train_mean": 5.494786782604603,
+          "train_std": 2.8306071991424306,
+          "train_variance": 8.012337115836957
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000129514.8",
+          "feature_index": 45,
+          "row": 2,
+          "symbol": "FOXA1",
+          "train_mean": 6.9772438146064815,
+          "train_std": 2.5277895566393513,
+          "train_variance": 6.389720042654969
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000129988.6",
+          "feature_index": 46,
+          "row": 2,
+          "symbol": "LBP",
+          "train_mean": 2.3484719755263206,
+          "train_std": 2.362112798226676,
+          "train_variance": 5.579576871546258
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000131771.14",
+          "feature_index": 47,
+          "row": 2,
+          "symbol": "PPP1R1B",
+          "train_mean": 4.569250074573078,
+          "train_std": 2.617987731270809,
+          "train_variance": 6.853859761084479
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000132465.12",
+          "feature_index": 48,
+          "row": 3,
+          "symbol": "JCHAIN",
+          "train_mean": 6.835086808004539,
+          "train_std": 2.488142219777553,
+          "train_variance": 6.190851705839568
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000133169.6",
+          "feature_index": 49,
+          "row": 3,
+          "symbol": "BEX1",
+          "train_mean": 2.197176359171984,
+          "train_std": 2.6260142716813677,
+          "train_variance": 6.895950955074225
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000134184.13",
+          "feature_index": 50,
+          "row": 3,
+          "symbol": "GSTM1",
+          "train_mean": 2.4626479020406813,
+          "train_std": 2.651412574789237,
+          "train_variance": 7.029988641750492
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000134240.12",
+          "feature_index": 51,
+          "row": 3,
+          "symbol": "HMGCS2",
+          "train_mean": 3.207384503193337,
+          "train_std": 2.9526577006443486,
+          "train_variance": 8.718187497174371
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000134258.17",
+          "feature_index": 52,
+          "row": 3,
+          "symbol": "VTCN1",
+          "train_mean": 5.986770762116179,
+          "train_std": 2.544641903877838,
+          "train_variance": 6.475202418971027
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000134827.8",
+          "feature_index": 53,
+          "row": 3,
+          "symbol": "TCN1",
+          "train_mean": 2.7616565085872,
+          "train_std": 2.6138233361510332,
+          "train_variance": 6.832072432607717
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000135346.9",
+          "feature_index": 54,
+          "row": 3,
+          "symbol": "CGA",
+          "train_mean": 1.2182645063225084,
+          "train_std": 2.291429925274039,
+          "train_variance": 5.250651102441388
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000135374.11",
+          "feature_index": 55,
+          "row": 3,
+          "symbol": "ELF5",
+          "train_mean": 2.7896044477196535,
+          "train_std": 2.261597237438081,
+          "train_variance": 5.114822064387559
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000136457.10",
+          "feature_index": 56,
+          "row": 3,
+          "symbol": "CHAD",
+          "train_mean": 3.7639916957436106,
+          "train_std": 2.417102118833809,
+          "train_variance": 5.842382652870889
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000137077.8",
+          "feature_index": 57,
+          "row": 3,
+          "symbol": "CCL21",
+          "train_mean": 4.027371604168043,
+          "train_std": 2.357532676568322,
+          "train_variance": 5.557960321087398
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000137673.9",
+          "feature_index": 58,
+          "row": 3,
+          "symbol": "MMP7",
+          "train_mean": 5.1753009938169425,
+          "train_std": 2.272591709314094,
+          "train_variance": 5.1646730772431555
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000137745.12",
+          "feature_index": 59,
+          "row": 3,
+          "symbol": "MMP13",
+          "train_mean": 3.688068252538569,
+          "train_std": 2.207246042539523,
+          "train_variance": 4.871935092306385
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000137975.8",
+          "feature_index": 60,
+          "row": 3,
+          "symbol": "CLCA2",
+          "train_mean": 2.015204726684169,
+          "train_std": 2.2365982496560246,
+          "train_variance": 5.002371730364393
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000138207.14",
+          "feature_index": 61,
+          "row": 3,
+          "symbol": "RBP4",
+          "train_mean": 3.0734697643317683,
+          "train_std": 2.2105083810852513,
+          "train_variance": 4.886347302848139
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000138696.11",
+          "feature_index": 62,
+          "row": 3,
+          "symbol": "BMPR1B",
+          "train_mean": 3.9538852311940564,
+          "train_std": 3.0306870548081215,
+          "train_variance": 9.185064024181525
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000138755.6",
+          "feature_index": 63,
+          "row": 3,
+          "symbol": "CXCL9",
+          "train_mean": 5.51036526196511,
+          "train_std": 2.252433058891833,
+          "train_variance": 5.07345468478882
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000139219.19",
+          "feature_index": 64,
+          "row": 4,
+          "symbol": "COL2A1",
+          "train_mean": 1.9243140133333851,
+          "train_std": 2.4389289497246067,
+          "train_variance": 5.948374421804773
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000141750.7",
+          "feature_index": 65,
+          "row": 4,
+          "symbol": "STAC2",
+          "train_mean": 3.0981564278688736,
+          "train_std": 2.680173743412553,
+          "train_variance": 7.183331294878059
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000143546.10",
+          "feature_index": 66,
+          "row": 4,
+          "symbol": "S100A8",
+          "train_mean": 4.308857813039421,
+          "train_std": 2.65577795917927,
+          "train_variance": 7.053156568462407
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000143556.9",
+          "feature_index": 67,
+          "row": 4,
+          "symbol": "S100A7",
+          "train_mean": 2.944447400260486,
+          "train_std": 3.6071297899363755,
+          "train_variance": 13.01138532144644
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000144891.18",
+          "feature_index": 68,
+          "row": 4,
+          "symbol": "AGTR1",
+          "train_mean": 2.7089100931823813,
+          "train_std": 2.257756169764489,
+          "train_variance": 5.0974629221096155
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000145824.13",
+          "feature_index": 69,
+          "row": 4,
+          "symbol": "CXCL14",
+          "train_mean": 7.287370106004919,
+          "train_std": 2.5003735011725765,
+          "train_variance": 6.251867645366009
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000148346.12",
+          "feature_index": 70,
+          "row": 4,
+          "symbol": "LCN2",
+          "train_mean": 3.3622826660406244,
+          "train_std": 2.2860319117113304,
+          "train_variance": 5.22594190136256
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000148513.18",
+          "feature_index": 71,
+          "row": 4,
+          "symbol": "ANKRD30A",
+          "train_mean": 3.4819207497465627,
+          "train_std": 2.616816710384218,
+          "train_variance": 6.8477296957460805
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000151365.2",
+          "feature_index": 72,
+          "row": 4,
+          "symbol": "THRSP",
+          "train_mean": 3.808038476581912,
+          "train_std": 2.34073284885318,
+          "train_variance": 5.479030269700323
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000151892.15",
+          "feature_index": 73,
+          "row": 4,
+          "symbol": "GFRA1",
+          "train_mean": 5.403824219537993,
+          "train_std": 2.8734788597323435,
+          "train_variance": 8.25688075732869
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000153002.12",
+          "feature_index": 74,
+          "row": 4,
+          "symbol": "CPB1",
+          "train_mean": 2.9769563239952044,
+          "train_std": 3.736205510026218,
+          "train_variance": 13.959231613150274
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000156234.7",
+          "feature_index": 75,
+          "row": 4,
+          "symbol": "CXCL13",
+          "train_mean": 4.141994336638394,
+          "train_std": 2.636945367835085,
+          "train_variance": 6.953480872946912
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000156689.7",
+          "feature_index": 76,
+          "row": 4,
+          "symbol": "GLYATL2",
+          "train_mean": 3.362481056717464,
+          "train_std": 2.383871544764583,
+          "train_variance": 5.682843541938279
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000157303.11",
+          "feature_index": 77,
+          "row": 4,
+          "symbol": "SUSD3",
+          "train_mean": 6.182182131208187,
+          "train_std": 2.258765699526311,
+          "train_variance": 5.102022485356586
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000157765.13",
+          "feature_index": 78,
+          "row": 4,
+          "symbol": "SLC34A2",
+          "train_mean": 2.864598365847535,
+          "train_std": 2.3434062419211257,
+          "train_variance": 5.491552814674892
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000158258.16",
+          "feature_index": 79,
+          "row": 4,
+          "symbol": "CLSTN2",
+          "train_mean": 4.329894533691489,
+          "train_std": 2.242003557971209,
+          "train_variance": 5.026579953955562
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000159212.13",
+          "feature_index": 80,
+          "row": 5,
+          "symbol": "CLIC6",
+          "train_mean": 3.7335150467800227,
+          "train_std": 2.708140125598296,
+          "train_variance": 7.334022939875554
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000159763.4",
+          "feature_index": 81,
+          "row": 5,
+          "symbol": "PIP",
+          "train_mean": 6.892846245767039,
+          "train_std": 3.94993493238921,
+          "train_variance": 15.601985970108553
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000160180.15",
+          "feature_index": 82,
+          "row": 5,
+          "symbol": "TFF3",
+          "train_mean": 7.31132021019011,
+          "train_std": 3.337442408836503,
+          "train_variance": 11.1385218323004
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000160182.3",
+          "feature_index": 83,
+          "row": 5,
+          "symbol": "TFF1",
+          "train_mean": 7.121212192897521,
+          "train_std": 4.15384945243754,
+          "train_variance": 17.25446527351565
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000161055.4",
+          "feature_index": 84,
+          "row": 5,
+          "symbol": "SCGB3A1",
+          "train_mean": 2.7513132460860565,
+          "train_std": 2.4404664505420093,
+          "train_variance": 5.955876496221113
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000161634.12",
+          "feature_index": 85,
+          "row": 5,
+          "symbol": "DCD",
+          "train_mean": 1.2187318726359602,
+          "train_std": 2.3974212049471655,
+          "train_variance": 5.747628433930318
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000161798.7",
+          "feature_index": 86,
+          "row": 5,
+          "symbol": "AQP5",
+          "train_mean": 2.239349893778616,
+          "train_std": 2.3911381474947095,
+          "train_variance": 5.7175416404044315
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000162482.5",
+          "feature_index": 87,
+          "row": 5,
+          "symbol": "AKR7A3",
+          "train_mean": 4.717812428456247,
+          "train_std": 2.4024487112441,
+          "train_variance": 5.7717598101584375
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000162896.6",
+          "feature_index": 88,
+          "row": 5,
+          "symbol": "PIGR",
+          "train_mean": 3.1241321128844137,
+          "train_std": 2.5002973462491562,
+          "train_variance": 6.251486819660573
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000162989.5",
+          "feature_index": 89,
+          "row": 5,
+          "symbol": "KCNJ3",
+          "train_mean": 2.352084119211874,
+          "train_std": 2.7967990008244414,
+          "train_variance": 7.822084651012594
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000163220.11",
+          "feature_index": 90,
+          "row": 5,
+          "symbol": "S100A9",
+          "train_mean": 6.781657449988194,
+          "train_std": 2.7529452263439005,
+          "train_variance": 7.57870741924967
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000163993.7",
+          "feature_index": 91,
+          "row": 5,
+          "symbol": "S100P",
+          "train_mean": 6.577320304606131,
+          "train_std": 2.844736731797108,
+          "train_variance": 8.092527073235692
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000164128.7",
+          "feature_index": 92,
+          "row": 5,
+          "symbol": "NPY1R",
+          "train_mean": 4.556194942254431,
+          "train_std": 3.0065430016407872,
+          "train_variance": 9.039300820715196
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000164326.5",
+          "feature_index": 93,
+          "row": 5,
+          "symbol": "CARTPT",
+          "train_mean": 0.8810760283002623,
+          "train_std": 2.557645827364883,
+          "train_variance": 6.541552178236999
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000164434.12",
+          "feature_index": 94,
+          "row": 5,
+          "symbol": "FABP7",
+          "train_mean": 1.6609752164357918,
+          "train_std": 2.3860994735563303,
+          "train_variance": 5.693470697705797
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000164756.12",
+          "feature_index": 95,
+          "row": 5,
+          "symbol": "SLC30A8",
+          "train_mean": 1.5600740176582293,
+          "train_std": 2.285081202911968,
+          "train_variance": 5.221596103901606
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000164825.4",
+          "feature_index": 96,
+          "row": 6,
+          "symbol": "DEFB1",
+          "train_mean": 3.302067759290665,
+          "train_std": 2.209559117324252,
+          "train_variance": 4.882151492950729
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000166426.8",
+          "feature_index": 97,
+          "row": 6,
+          "symbol": "CRABP1",
+          "train_mean": 2.8051192144995065,
+          "train_std": 2.672058380572922,
+          "train_variance": 7.139895989189986
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000166509.12",
+          "feature_index": 98,
+          "row": 6,
+          "symbol": "CLEC3A",
+          "train_mean": 2.6232629560786793,
+          "train_std": 3.637849099062626,
+          "train_variance": 13.233946067550761
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000166819.12",
+          "feature_index": 99,
+          "row": 6,
+          "symbol": "PLIN1",
+          "train_mean": 3.37089125542426,
+          "train_std": 2.5134461780256596,
+          "train_variance": 6.317411689831795
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000167588.13",
+          "feature_index": 100,
+          "row": 6,
+          "symbol": "GPD1",
+          "train_mean": 2.8737363656607506,
+          "train_std": 2.35176085989674,
+          "train_variance": 5.530779142142255
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000167676.4",
+          "feature_index": 101,
+          "row": 6,
+          "symbol": "PLIN4",
+          "train_mean": 3.5824030453211253,
+          "train_std": 2.4694427863939286,
+          "train_variance": 6.098147675273009
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000167754.13",
+          "feature_index": 102,
+          "row": 6,
+          "symbol": "KLK5",
+          "train_mean": 2.908667546524728,
+          "train_std": 2.5182003568170046,
+          "train_variance": 6.341333037073289
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000169347.17",
+          "feature_index": 103,
+          "row": 6,
+          "symbol": "GP2",
+          "train_mean": 2.8868722016021224,
+          "train_std": 2.4276235882759734,
+          "train_variance": 5.893356286353913
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000169900.8",
+          "feature_index": 104,
+          "row": 6,
+          "symbol": "PYDC1",
+          "train_mean": 2.468087656263802,
+          "train_std": 2.486501776945935,
+          "train_variance": 6.182691086755293
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000170099.6",
+          "feature_index": 105,
+          "row": 6,
+          "symbol": "SERPINA6",
+          "train_mean": 1.9225091040620756,
+          "train_std": 2.788393503707641,
+          "train_variance": 7.775138331518973
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000170323.9",
+          "feature_index": 106,
+          "row": 6,
+          "symbol": "FABP4",
+          "train_mean": 5.208672773932873,
+          "train_std": 3.039127674013753,
+          "train_variance": 9.236297018956243
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000170367.5",
+          "feature_index": 107,
+          "row": 6,
+          "symbol": "CST5",
+          "train_mean": 1.4800707233702968,
+          "train_std": 2.453180892314087,
+          "train_variance": 6.018096490414941
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000170373.8",
+          "feature_index": 108,
+          "row": 6,
+          "symbol": "CST1",
+          "train_mean": 3.8272366393645822,
+          "train_std": 2.6264251002414474,
+          "train_variance": 6.898108807178296
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000171102.14",
+          "feature_index": 109,
+          "row": 6,
+          "symbol": "OBP2B",
+          "train_mean": 2.270968797645931,
+          "train_std": 2.4949598598825626,
+          "train_variance": 6.2248247024252175
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000171236.10",
+          "feature_index": 110,
+          "row": 6,
+          "symbol": "LRG1",
+          "train_mean": 4.6076970666783845,
+          "train_std": 2.324928419611853,
+          "train_variance": 5.405292156318868
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000171346.16",
+          "feature_index": 111,
+          "row": 6,
+          "symbol": "KRT15",
+          "train_mean": 4.787907157893608,
+          "train_std": 2.460025381861188,
+          "train_variance": 6.051724879401284
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000171428.15",
+          "feature_index": 112,
+          "row": 7,
+          "symbol": "NAT1",
+          "train_mean": 5.497170382739923,
+          "train_std": 2.6796557808234356,
+          "train_variance": 7.180555103700456
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000172551.11",
+          "feature_index": 113,
+          "row": 7,
+          "symbol": "MUCL1",
+          "train_mean": 3.818850184816486,
+          "train_std": 3.414638522606427,
+          "train_variance": 11.659756240067802
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000172724.12",
+          "feature_index": 114,
+          "row": 7,
+          "symbol": "CCL19",
+          "train_mean": 4.791823941987889,
+          "train_std": 2.413451281107477,
+          "train_variance": 5.824747086279322
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000173335.5",
+          "feature_index": 115,
+          "row": 7,
+          "symbol": "CST9",
+          "train_mean": 1.8884205640937874,
+          "train_std": 2.410102834387304,
+          "train_variance": 5.808595672321715
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000173432.12",
+          "feature_index": 116,
+          "row": 7,
+          "symbol": "SAA1",
+          "train_mean": 6.122637119084003,
+          "train_std": 2.575626642776666,
+          "train_variance": 6.633852602980998
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000173467.9",
+          "feature_index": 117,
+          "row": 7,
+          "symbol": "AGR3",
+          "train_mean": 6.548492774598389,
+          "train_std": 3.39144578072035,
+          "train_variance": 11.501904483565866
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000174827.14",
+          "feature_index": 118,
+          "row": 7,
+          "symbol": "PDZK1",
+          "train_mean": 2.9206544015067153,
+          "train_std": 2.324544571126599,
+          "train_variance": 5.403507463154143
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000175356.14",
+          "feature_index": 119,
+          "row": 7,
+          "symbol": "SCUBE2",
+          "train_mean": 5.370051346909542,
+          "train_std": 2.702493301715699,
+          "train_variance": 7.303470045818221
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000178372.8",
+          "feature_index": 120,
+          "row": 7,
+          "symbol": "CALML5",
+          "train_mean": 4.834964282585951,
+          "train_std": 3.351790338141084,
+          "train_variance": 11.234498470855922
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000179593.16",
+          "feature_index": 121,
+          "row": 7,
+          "symbol": "ALOX15B",
+          "train_mean": 3.24400158484017,
+          "train_std": 2.3294039375894067,
+          "train_variance": 5.426122704457032
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000180730.5",
+          "feature_index": 122,
+          "row": 7,
+          "symbol": "SHISA2",
+          "train_mean": 3.7520299475178955,
+          "train_std": 2.2282122171051304,
+          "train_variance": 4.9649296844565605
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000181092.10",
+          "feature_index": 123,
+          "row": 7,
+          "symbol": "ADIPOQ",
+          "train_mean": 2.6841703987465984,
+          "train_std": 2.5898239592027763,
+          "train_variance": 6.707188139660745
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000181617.6",
+          "feature_index": 124,
+          "row": 7,
+          "symbol": "FDCSP",
+          "train_mean": 3.788610388087687,
+          "train_std": 3.254277929951724,
+          "train_variance": 10.59032484537088
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000184564.11",
+          "feature_index": 125,
+          "row": 7,
+          "symbol": "SLITRK6",
+          "train_mean": 3.658440305358851,
+          "train_std": 2.6208972199277363,
+          "train_variance": 6.869102237424937
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000184811.4",
+          "feature_index": 126,
+          "row": 7,
+          "symbol": "TRARG1",
+          "train_mean": 1.9986621507321158,
+          "train_std": 2.219031303242887,
+          "train_variance": 4.924099924771826
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000184956.16",
+          "feature_index": 127,
+          "row": 7,
+          "symbol": "MUC6",
+          "train_mean": 1.6828410968479326,
+          "train_std": 2.409358708157101,
+          "train_variance": 5.805009384572456
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000185479.6",
+          "feature_index": 128,
+          "row": 8,
+          "symbol": "KRT6B",
+          "train_mean": 3.551767977063089,
+          "train_std": 2.6430939915649287,
+          "train_variance": 6.985945848246628
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000185686.18",
+          "feature_index": 129,
+          "row": 8,
+          "symbol": "PRAME",
+          "train_mean": 2.141565501029764,
+          "train_std": 2.632126189881846,
+          "train_variance": 6.9280882794619245
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000186081.12",
+          "feature_index": 130,
+          "row": 8,
+          "symbol": "KRT5",
+          "train_mean": 5.148838977286983,
+          "train_std": 2.9753056565167664,
+          "train_variance": 8.852443749700665
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000186160.5",
+          "feature_index": 131,
+          "row": 8,
+          "symbol": "CYP4Z1",
+          "train_mean": 3.698860853999635,
+          "train_std": 3.1361020160875017,
+          "train_variance": 9.835135855308094
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000186377.8",
+          "feature_index": 132,
+          "row": 8,
+          "symbol": "CYP4X1",
+          "train_mean": 4.78692429338835,
+          "train_std": 2.413387700703975,
+          "train_variance": 5.8244401939092185
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000186832.9",
+          "feature_index": 133,
+          "row": 8,
+          "symbol": "KRT16",
+          "train_mean": 3.1145132311691266,
+          "train_std": 2.5968361506398407,
+          "train_variance": 6.7435579932699445
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000186847.6",
+          "feature_index": 134,
+          "row": 8,
+          "symbol": "KRT14",
+          "train_mean": 5.332982707068694,
+          "train_std": 3.136459998941127,
+          "train_variance": 9.837381324957773
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000186910.4",
+          "feature_index": 135,
+          "row": 8,
+          "symbol": "SERPINA11",
+          "train_mean": 3.4193220301838374,
+          "train_std": 2.4603203562100564,
+          "train_variance": 6.053176255181578
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000187288.12",
+          "feature_index": 136,
+          "row": 8,
+          "symbol": "CIDEC",
+          "train_mean": 2.4548405893012704,
+          "train_std": 2.436652185803721,
+          "train_variance": 5.93727387458205
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000188257.12",
+          "feature_index": 137,
+          "row": 8,
+          "symbol": "PLA2G2A",
+          "train_mean": 2.97838431709508,
+          "train_std": 2.339194811542733,
+          "train_variance": 5.471832366348443
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000188488.14",
+          "feature_index": 138,
+          "row": 8,
+          "symbol": "SERPINA5",
+          "train_mean": 4.29016857820796,
+          "train_std": 2.4219504944723402,
+          "train_variance": 5.865844197674814
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000189058.9",
+          "feature_index": 139,
+          "row": 8,
+          "symbol": "APOD",
+          "train_mean": 7.565920236757813,
+          "train_std": 2.537740171419625,
+          "train_variance": 6.440125177636907
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000189377.9",
+          "feature_index": 140,
+          "row": 8,
+          "symbol": "CXCL17",
+          "train_mean": 3.7159017822299663,
+          "train_std": 2.5705512181514885,
+          "train_variance": 6.607733565140101
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000196611.5",
+          "feature_index": 141,
+          "row": 8,
+          "symbol": "MMP1",
+          "train_mean": 3.346382259033375,
+          "train_std": 2.404956499281372,
+          "train_variance": 5.783815763435713
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000196616.14",
+          "feature_index": 142,
+          "row": 8,
+          "symbol": "ADH1B",
+          "train_mean": 2.453720089745173,
+          "train_std": 2.3566417061492664,
+          "train_variance": 5.553760131162125
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000197977.4",
+          "feature_index": 143,
+          "row": 8,
+          "symbol": "ELOVL2",
+          "train_mean": 3.5936313015312864,
+          "train_std": 2.356817912042629,
+          "train_variance": 5.554590670524976
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000198650.11",
+          "feature_index": 144,
+          "row": 9,
+          "symbol": "TAT",
+          "train_mean": 1.8600123529196966,
+          "train_std": 2.5782868589991255,
+          "train_variance": 6.647563127287577
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000204385.13",
+          "feature_index": 145,
+          "row": 9,
+          "symbol": "SLC44A4",
+          "train_mean": 5.923708035071211,
+          "train_std": 2.5397655751493464,
+          "train_variance": 6.4504091767136895
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000205420.11",
+          "feature_index": 146,
+          "row": 9,
+          "symbol": "KRT6A",
+          "train_mean": 1.607624046412213,
+          "train_std": 2.2264741722510735,
+          "train_variance": 4.957187239701104
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000205426.10",
+          "feature_index": 147,
+          "row": 9,
+          "symbol": "KRT81",
+          "train_mean": 3.4610298476368953,
+          "train_std": 2.8193607737616806,
+          "train_variance": 7.948795172626062
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000211592.8",
+          "feature_index": 148,
+          "row": 9,
+          "symbol": "IGKC",
+          "train_mean": 11.807682512007535,
+          "train_std": 2.7592216780899372,
+          "train_variance": 7.613304268841448
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000211597.2",
+          "feature_index": 149,
+          "row": 9,
+          "symbol": "IGKJ1",
+          "train_mean": 4.315450413578516,
+          "train_std": 2.3304954417739325,
+          "train_variance": 5.4312090041290775
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000211598.2",
+          "feature_index": 150,
+          "row": 9,
+          "symbol": "IGKV4-1",
+          "train_mean": 6.961195922764291,
+          "train_std": 2.749409620067564,
+          "train_variance": 7.559253258920066
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000211637.2",
+          "feature_index": 151,
+          "row": 9,
+          "symbol": "IGLV4-69",
+          "train_mean": 4.47339110338777,
+          "train_std": 2.528813192897274,
+          "train_variance": 6.394896164571305
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000211638.2",
+          "feature_index": 152,
+          "row": 9,
+          "symbol": "IGLV8-61",
+          "train_mean": 4.02241296967227,
+          "train_std": 2.6433142950699264,
+          "train_variance": 6.987110462521021
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000211639.2",
+          "feature_index": 153,
+          "row": 9,
+          "symbol": "IGLV4-60",
+          "train_mean": 2.6100436629705106,
+          "train_std": 2.2638973774734983,
+          "train_variance": 5.125231335731383
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000211640.4",
+          "feature_index": 154,
+          "row": 9,
+          "symbol": "IGLV6-57",
+          "train_mean": 5.353601608022413,
+          "train_std": 2.7151112784504723,
+          "train_variance": 7.371829254368957
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000211648.2",
+          "feature_index": 155,
+          "row": 9,
+          "symbol": "IGLV1-47",
+          "train_mean": 5.345561819861254,
+          "train_std": 2.665719540860026,
+          "train_variance": 7.106060670522986
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000211649.3",
+          "feature_index": 156,
+          "row": 9,
+          "symbol": "IGLV7-46",
+          "train_mean": 3.715961934768554,
+          "train_std": 2.2473586824852525,
+          "train_variance": 5.05062104774185
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000211651.3",
+          "feature_index": 157,
+          "row": 9,
+          "symbol": "IGLV1-44",
+          "train_mean": 5.671429641965524,
+          "train_std": 2.648039222055902,
+          "train_variance": 7.012111721546426
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000211653.2",
+          "feature_index": 158,
+          "row": 9,
+          "symbol": "IGLV1-40",
+          "train_mean": 6.344951775248398,
+          "train_std": 2.6707549500142562,
+          "train_variance": 7.132932003025651
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000211658.2",
+          "feature_index": 159,
+          "row": 9,
+          "symbol": "IGLV3-27",
+          "train_mean": 2.7565961921721125,
+          "train_std": 2.246982456213634,
+          "train_variance": 5.048930158531856
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000211659.2",
+          "feature_index": 160,
+          "row": 10,
+          "symbol": "IGLV3-25",
+          "train_mean": 5.881570442325295,
+          "train_std": 2.8194544004220834,
+          "train_variance": 7.949323116059449
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000211660.3",
+          "feature_index": 161,
+          "row": 10,
+          "symbol": "IGLV2-23",
+          "train_mean": 6.207276699340157,
+          "train_std": 2.6397407108458966,
+          "train_variance": 6.968231020497199
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000211662.2",
+          "feature_index": 162,
+          "row": 10,
+          "symbol": "IGLV3-21",
+          "train_mean": 5.809373149008777,
+          "train_std": 2.7547388843164113,
+          "train_variance": 7.5885863207648265
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000211663.2",
+          "feature_index": 163,
+          "row": 10,
+          "symbol": "IGLV3-19",
+          "train_mean": 6.172632849345106,
+          "train_std": 2.7843602294013716,
+          "train_variance": 7.752661887072058
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000211666.2",
+          "feature_index": 164,
+          "row": 10,
+          "symbol": "IGLV2-14",
+          "train_mean": 6.88567857588189,
+          "train_std": 2.7547818143758422,
+          "train_variance": 7.588822844815858
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000211668.2",
+          "feature_index": 165,
+          "row": 10,
+          "symbol": "IGLV2-11",
+          "train_mean": 5.740088659818412,
+          "train_std": 2.5521065958094744,
+          "train_variance": 6.513248076374225
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000211669.3",
+          "feature_index": 166,
+          "row": 10,
+          "symbol": "IGLV3-10",
+          "train_mean": 4.412947328612661,
+          "train_std": 2.6601881654070194,
+          "train_variance": 7.076601075371564
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000211670.2",
+          "feature_index": 167,
+          "row": 10,
+          "symbol": "IGLV3-9",
+          "train_mean": 2.9455262059089278,
+          "train_std": 2.229710036577604,
+          "train_variance": 4.9716068472149
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000211673.2",
+          "feature_index": 168,
+          "row": 10,
+          "symbol": "IGLV3-1",
+          "train_mean": 6.469111720618613,
+          "train_std": 2.862809900668185,
+          "train_variance": 8.195680527363782
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000211677.2",
+          "feature_index": 169,
+          "row": 10,
+          "symbol": "IGLC2",
+          "train_mean": 8.174655991672356,
+          "train_std": 2.587675939112968,
+          "train_variance": 6.696066765864179
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000211679.2",
+          "feature_index": 170,
+          "row": 10,
+          "symbol": "IGLC3",
+          "train_mean": 7.416033007369968,
+          "train_std": 2.6651022020092237,
+          "train_variance": 7.102769747154413
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000211890.4",
+          "feature_index": 171,
+          "row": 10,
+          "symbol": "IGHA2",
+          "train_mean": 6.5914075789122295,
+          "train_std": 2.706767303069639,
+          "train_variance": 7.326589232966887
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000211892.4",
+          "feature_index": 172,
+          "row": 10,
+          "symbol": "IGHG4",
+          "train_mean": 5.820561158211145,
+          "train_std": 2.4556361094060803,
+          "train_variance": 6.03014870181903
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000211893.4",
+          "feature_index": 173,
+          "row": 10,
+          "symbol": "IGHG2",
+          "train_mean": 6.829830446101285,
+          "train_std": 2.3311851799300496,
+          "train_variance": 5.434424343125499
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000211895.5",
+          "feature_index": 174,
+          "row": 10,
+          "symbol": "IGHA1",
+          "train_mean": 9.12623962862869,
+          "train_std": 2.65041483055396,
+          "train_variance": 7.024698774020376
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000211896.7",
+          "feature_index": 175,
+          "row": 10,
+          "symbol": "IGHG1",
+          "train_mean": 9.11289989973434,
+          "train_std": 3.076918836243513,
+          "train_variance": 9.467429524830134
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000211897.9",
+          "feature_index": 176,
+          "row": 11,
+          "symbol": "IGHG3",
+          "train_mean": 6.215581657263018,
+          "train_std": 2.575411625297594,
+          "train_variance": 6.632745039717996
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000211899.10",
+          "feature_index": 177,
+          "row": 11,
+          "symbol": "IGHM",
+          "train_mean": 7.3056953527888675,
+          "train_std": 2.8317661231954103,
+          "train_variance": 8.018899376477163
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000211900.2",
+          "feature_index": 178,
+          "row": 11,
+          "symbol": "IGHJ6",
+          "train_mean": 3.0275316616761665,
+          "train_std": 2.3169175266342794,
+          "train_variance": 5.368106825225108
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000211933.2",
+          "feature_index": 179,
+          "row": 11,
+          "symbol": "IGHV6-1",
+          "train_mean": 3.9690754288933494,
+          "train_std": 2.4431994327577202,
+          "train_variance": 5.969223468227646
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000211934.3",
+          "feature_index": 180,
+          "row": 11,
+          "symbol": "IGHV1-2",
+          "train_mean": 5.19001767936372,
+          "train_std": 2.7470603020129425,
+          "train_variance": 7.546340302895439
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000211935.3",
+          "feature_index": 181,
+          "row": 11,
+          "symbol": "IGHV1-3",
+          "train_mean": 4.461196244796432,
+          "train_std": 2.7612172039945624,
+          "train_variance": 7.624320447635548
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000211937.3",
+          "feature_index": 182,
+          "row": 11,
+          "symbol": "IGHV2-5",
+          "train_mean": 5.17839502299595,
+          "train_std": 2.6305340588411052,
+          "train_variance": 6.9197094347230585
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000211938.2",
+          "feature_index": 183,
+          "row": 11,
+          "symbol": "IGHV3-7",
+          "train_mean": 5.812372612066913,
+          "train_std": 2.6143605684387987,
+          "train_variance": 6.8348811818076385
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000211941.3",
+          "feature_index": 184,
+          "row": 11,
+          "symbol": "IGHV3-11",
+          "train_mean": 4.916302118474598,
+          "train_std": 2.597561941139594,
+          "train_variance": 6.747328038056897
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000211943.2",
+          "feature_index": 185,
+          "row": 11,
+          "symbol": "IGHV3-15",
+          "train_mean": 5.574460052435221,
+          "train_std": 2.6096719829871167,
+          "train_variance": 6.81038785878791
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000211945.2",
+          "feature_index": 186,
+          "row": 11,
+          "symbol": "IGHV1-18",
+          "train_mean": 5.87911132601836,
+          "train_std": 2.8589122243141296,
+          "train_variance": 8.173379106332764
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000211946.3",
+          "feature_index": 187,
+          "row": 11,
+          "symbol": "IGHV3-20",
+          "train_mean": 2.8567718516148877,
+          "train_std": 2.2524196388542164,
+          "train_variance": 5.073394229496159
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000211947.2",
+          "feature_index": 188,
+          "row": 11,
+          "symbol": "IGHV3-21",
+          "train_mean": 5.867937846072736,
+          "train_std": 2.7765121108797324,
+          "train_variance": 7.709019501861828
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000211949.3",
+          "feature_index": 189,
+          "row": 11,
+          "symbol": "IGHV3-23",
+          "train_mean": 6.543763351870305,
+          "train_std": 2.7397404050043526,
+          "train_variance": 7.506177486813414
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000211950.2",
+          "feature_index": 190,
+          "row": 11,
+          "symbol": "IGHV1-24",
+          "train_mean": 4.338273899156936,
+          "train_std": 2.5211724140606355,
+          "train_variance": 6.356310341420333
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000211951.2",
+          "feature_index": 191,
+          "row": 11,
+          "symbol": "IGHV2-26",
+          "train_mean": 3.243464821293838,
+          "train_std": 2.348241057593081,
+          "train_variance": 5.514236064565872
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000211955.2",
+          "feature_index": 192,
+          "row": 12,
+          "symbol": "IGHV3-33",
+          "train_mean": 4.624735721152452,
+          "train_std": 2.5402919146321628,
+          "train_variance": 6.45308301154554
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000211956.2",
+          "feature_index": 193,
+          "row": 12,
+          "symbol": "IGHV4-34",
+          "train_mean": 4.771122134971653,
+          "train_std": 2.379943344406218,
+          "train_variance": 5.664130322583455
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000211959.2",
+          "feature_index": 194,
+          "row": 12,
+          "symbol": "IGHV4-39",
+          "train_mean": 5.908512354885494,
+          "train_std": 2.750755333580774,
+          "train_variance": 7.566654905223076
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000211962.2",
+          "feature_index": 195,
+          "row": 12,
+          "symbol": "IGHV1-46",
+          "train_mean": 4.383333236556454,
+          "train_std": 2.4426562105674066,
+          "train_variance": 5.966569363023522
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000211964.3",
+          "feature_index": 196,
+          "row": 12,
+          "symbol": "IGHV3-48",
+          "train_mean": 5.113755820361541,
+          "train_std": 2.636344507939682,
+          "train_variance": 6.9503123645437235
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000211965.4",
+          "feature_index": 197,
+          "row": 12,
+          "symbol": "IGHV3-49",
+          "train_mean": 4.4439858014796325,
+          "train_std": 2.5176486514936873,
+          "train_variance": 6.338554732367982
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000211966.2",
+          "feature_index": 198,
+          "row": 12,
+          "symbol": "IGHV5-51",
+          "train_mean": 5.991113309967389,
+          "train_std": 2.754748361206056,
+          "train_variance": 7.588638533567452
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000211973.2",
+          "feature_index": 199,
+          "row": 12,
+          "symbol": "IGHV1-69",
+          "train_mean": 3.1938174424986863,
+          "train_std": 2.4157552087053364,
+          "train_variance": 5.835873228386963
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000211976.2",
+          "feature_index": 200,
+          "row": 12,
+          "symbol": "IGHV3-73",
+          "train_mean": 3.488916090990982,
+          "train_std": 2.405698142157444,
+          "train_variance": 5.787383551179779
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000213088.12",
+          "feature_index": 201,
+          "row": 12,
+          "symbol": "ACKR1",
+          "train_mean": 4.052688865184483,
+          "train_std": 2.234255358358703,
+          "train_variance": 4.991897006354575
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000213759.10",
+          "feature_index": 202,
+          "row": 12,
+          "symbol": "UGT2B11",
+          "train_mean": 1.6263945448590298,
+          "train_std": 2.5344672781925524,
+          "train_variance": 6.423524384228765
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000223808.1",
+          "feature_index": 203,
+          "row": 12,
+          "symbol": "AC044784.1",
+          "train_mean": 2.7978911367707844,
+          "train_std": 2.6998767071336767,
+          "train_variance": 7.289334233722986
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000224373.3",
+          "feature_index": 204,
+          "row": 12,
+          "symbol": "IGHV4-59",
+          "train_mean": 5.394869156792876,
+          "train_std": 2.651394914055544,
+          "train_variance": 7.029894990279606
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000224650.2",
+          "feature_index": 205,
+          "row": 12,
+          "symbol": "IGHV3-74",
+          "train_mean": 4.808602668913057,
+          "train_std": 2.3217503233076258,
+          "train_variance": 5.390524563779065
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000225972.1",
+          "feature_index": 206,
+          "row": 12,
+          "symbol": "MTND1P23",
+          "train_mean": 3.236619179019683,
+          "train_std": 2.7727692671238455,
+          "train_variance": 7.6882494087065085
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000226278.1",
+          "feature_index": 207,
+          "row": 12,
+          "symbol": "PSPHP1",
+          "train_mean": 3.1760957088451622,
+          "train_std": 3.271001563051464,
+          "train_variance": 10.699451225485122
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000227097.5",
+          "feature_index": 208,
+          "row": 13,
+          "symbol": "RPS28P7",
+          "train_mean": 9.006507701805258,
+          "train_std": 2.255697521287157,
+          "train_variance": 5.088171307541024
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000229453.2",
+          "feature_index": 209,
+          "row": 13,
+          "symbol": "SPINK8",
+          "train_mean": 2.840478950390563,
+          "train_std": 2.2769742707707015,
+          "train_variance": 5.184611829751768
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000230076.1",
+          "feature_index": 210,
+          "row": 13,
+          "symbol": "RPL10P6",
+          "train_mean": 3.2393813833618226,
+          "train_std": 2.467884186360338,
+          "train_variance": 6.090452357287427
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000231475.3",
+          "feature_index": 211,
+          "row": 13,
+          "symbol": "IGHV4-31",
+          "train_mean": 3.9345136684505535,
+          "train_std": 2.3097893948214767,
+          "train_variance": 5.335127048429763
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000233622.3",
+          "feature_index": 212,
+          "row": 13,
+          "symbol": "CYP2T1P",
+          "train_mean": 4.028301332105076,
+          "train_std": 2.6443930892324357,
+          "train_variance": 6.992814810380263
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000234918.1",
+          "feature_index": 213,
+          "row": 13,
+          "symbol": "AL157387.1",
+          "train_mean": 4.79760690933551,
+          "train_std": 3.2904512592435227,
+          "train_variance": 10.827069489457285
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000235123.5",
+          "feature_index": 214,
+          "row": 13,
+          "symbol": "DSCAM-AS1",
+          "train_mean": 2.1436652229636843,
+          "train_std": 2.6443430555786347,
+          "train_variance": 6.99255019558695
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000235687.9",
+          "feature_index": 215,
+          "row": 13,
+          "symbol": "LINC00993",
+          "train_mean": 5.206761164271938,
+          "train_std": 3.4142016828949386,
+          "train_variance": 11.656773131482632
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000238117.1",
+          "feature_index": 216,
+          "row": 13,
+          "symbol": "AP000844.2",
+          "train_mean": 2.517594319848723,
+          "train_std": 2.2054027702876375,
+          "train_variance": 4.8638013791923855
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000239855.1",
+          "feature_index": 217,
+          "row": 13,
+          "symbol": "IGKV1-6",
+          "train_mean": 4.387039041113222,
+          "train_std": 2.3543567532573424,
+          "train_variance": 5.542995721608455
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000239951.1",
+          "feature_index": 218,
+          "row": 13,
+          "symbol": "IGKV3-20",
+          "train_mean": 7.794935726832337,
+          "train_std": 2.691789951341203,
+          "train_variance": 7.245733142141478
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000240041.1",
+          "feature_index": 219,
+          "row": 13,
+          "symbol": "IGHJ4",
+          "train_mean": 3.2940609430246117,
+          "train_std": 2.260765826757627,
+          "train_variance": 5.111062123435096
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000240382.3",
+          "feature_index": 220,
+          "row": 13,
+          "symbol": "IGKV1-17",
+          "train_mean": 4.6470239559186775,
+          "train_std": 2.50455135426503,
+          "train_variance": 6.272777486150796
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000240864.3",
+          "feature_index": 221,
+          "row": 13,
+          "symbol": "IGKV1-16",
+          "train_mean": 4.736038191053856,
+          "train_std": 2.46081380801037,
+          "train_variance": 6.055604597694498
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000241294.1",
+          "feature_index": 222,
+          "row": 13,
+          "symbol": "IGKV2-24",
+          "train_mean": 4.00999773122231,
+          "train_std": 2.3339732965786,
+          "train_variance": 5.447431349141979
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000241351.3",
+          "feature_index": 223,
+          "row": 13,
+          "symbol": "IGKV3-11",
+          "train_mean": 6.6312487525936366,
+          "train_std": 2.7079713573407207,
+          "train_variance": 7.333108872177745
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000241755.1",
+          "feature_index": 224,
+          "row": 14,
+          "symbol": "IGKV1-9",
+          "train_mean": 5.111110240565871,
+          "train_std": 2.4935372303408183,
+          "train_variance": 6.2177279190957595
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000242265.6",
+          "feature_index": 225,
+          "row": 14,
+          "symbol": "PEG10",
+          "train_mean": 4.838444298494618,
+          "train_std": 2.708595957980682,
+          "train_variance": 7.33649206358929
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000242887.1",
+          "feature_index": 226,
+          "row": 14,
+          "symbol": "IGHJ3",
+          "train_mean": 3.6181693059945172,
+          "train_std": 2.306582728138942,
+          "train_variance": 5.320323881748886
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000243238.1",
+          "feature_index": 227,
+          "row": 14,
+          "symbol": "IGKV2-30",
+          "train_mean": 4.1939649569002615,
+          "train_std": 2.30853671808563,
+          "train_variance": 5.329341778749573
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000243264.2",
+          "feature_index": 228,
+          "row": 14,
+          "symbol": "IGKV2D-29",
+          "train_mean": 3.119754232582212,
+          "train_std": 2.290123190706246,
+          "train_variance": 5.2446642286105565
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000243290.3",
+          "feature_index": 229,
+          "row": 14,
+          "symbol": "IGKV1-12",
+          "train_mean": 4.031347152242284,
+          "train_std": 2.310891242609775,
+          "train_variance": 5.340218335170551
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000243466.1",
+          "feature_index": 230,
+          "row": 14,
+          "symbol": "IGKV1-5",
+          "train_mean": 6.8558334049533185,
+          "train_std": 2.7126630164815473,
+          "train_variance": 7.358540640986766
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000244402.3",
+          "feature_index": 231,
+          "row": 14,
+          "symbol": "RN7SL314P",
+          "train_mean": 2.6135010634912224,
+          "train_std": 2.3225491394045625,
+          "train_variance": 5.394234504948874
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000244437.1",
+          "feature_index": 232,
+          "row": 14,
+          "symbol": "IGKV3-15",
+          "train_mean": 5.8817338754804105,
+          "train_std": 2.568474460874439,
+          "train_variance": 6.597061056164242
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000244468.1",
+          "feature_index": 233,
+          "row": 14,
+          "symbol": "AC093001.1",
+          "train_mean": 4.938475846054069,
+          "train_std": 3.6969083799785785,
+          "train_variance": 13.667131569955837
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000244575.3",
+          "feature_index": 234,
+          "row": 14,
+          "symbol": "IGKV1-27",
+          "train_mean": 4.354009481856727,
+          "train_std": 2.3732455926268337,
+          "train_variance": 5.632294642922691
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000247627.2",
+          "feature_index": 235,
+          "row": 14,
+          "symbol": "MTND4P12",
+          "train_mean": 4.987107408320026,
+          "train_std": 2.4778241360777593,
+          "train_variance": 6.139612449329493
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000248779.1",
+          "feature_index": 236,
+          "row": 14,
+          "symbol": "AC093297.1",
+          "train_mean": 1.9516255418790138,
+          "train_std": 2.5879399987870007,
+          "train_variance": 6.69743343732166
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000251141.6",
+          "feature_index": 237,
+          "row": 14,
+          "symbol": "MRPS30-DT",
+          "train_mean": 3.3376297842434757,
+          "train_std": 2.655581281863176,
+          "train_variance": 7.0521119445820695
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000252621.1",
+          "feature_index": 238,
+          "row": 14,
+          "symbol": "Y_RNA",
+          "train_mean": 4.051715759848535,
+          "train_std": 3.097079885286697,
+          "train_variance": 9.591903815847461
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000253755.1",
+          "feature_index": 239,
+          "row": 14,
+          "symbol": "IGHGP",
+          "train_mean": 6.11721430204103,
+          "train_std": 2.5994230914994136,
+          "train_variance": 6.75700040862037
+        },
+        {
+          "column": 0,
+          "ensembl_id": "ENSG00000253768.1",
+          "feature_index": 240,
+          "row": 15,
+          "symbol": "AC008663.1",
+          "train_mean": 2.9312759763273593,
+          "train_std": 2.4986402840962434,
+          "train_variance": 6.243203269308556
+        },
+        {
+          "column": 1,
+          "ensembl_id": "ENSG00000255974.8",
+          "feature_index": 241,
+          "row": 15,
+          "symbol": "CYP2A6",
+          "train_mean": 1.5287046937673159,
+          "train_std": 2.329387493320183,
+          "train_variance": 5.426046094036485
+        },
+        {
+          "column": 2,
+          "ensembl_id": "ENSG00000256612.7",
+          "feature_index": 242,
+          "row": 15,
+          "symbol": "CYP2B7P",
+          "train_mean": 4.138481006413157,
+          "train_std": 3.2239898181875324,
+          "train_variance": 10.394110347776879
+        },
+        {
+          "column": 3,
+          "ensembl_id": "ENSG00000260318.1",
+          "feature_index": 243,
+          "row": 15,
+          "symbol": "COX6CP1",
+          "train_mean": 2.9252168924173025,
+          "train_std": 2.5023883958116615,
+          "train_variance": 6.26194768349286
+        },
+        {
+          "column": 4,
+          "ensembl_id": "ENSG00000262902.1",
+          "feature_index": 244,
+          "row": 15,
+          "symbol": "MTCO1P40",
+          "train_mean": 3.1457586882992397,
+          "train_std": 2.205511161568301,
+          "train_variance": 4.864279483802357
+        },
+        {
+          "column": 5,
+          "ensembl_id": "ENSG00000263639.7",
+          "feature_index": 245,
+          "row": 15,
+          "symbol": "MSMB",
+          "train_mean": 2.8912801600487725,
+          "train_std": 2.436652689823786,
+          "train_variance": 5.937276330825492
+        },
+        {
+          "column": 6,
+          "ensembl_id": "ENSG00000270550.1",
+          "feature_index": 246,
+          "row": 15,
+          "symbol": "IGHV3-30",
+          "train_mean": 5.243581396821301,
+          "train_std": 2.582237792789188,
+          "train_variance": 6.667952018508779
+        },
+        {
+          "column": 7,
+          "ensembl_id": "ENSG00000274576.2",
+          "feature_index": 247,
+          "row": 15,
+          "symbol": "IGHV2-70",
+          "train_mean": 3.2051647446904856,
+          "train_std": 2.4050860468851534,
+          "train_variance": 5.784438892921655
+        },
+        {
+          "column": 8,
+          "ensembl_id": "ENSG00000276775.1",
+          "feature_index": 248,
+          "row": 15,
+          "symbol": "IGHV4-4",
+          "train_mean": 4.092157901258662,
+          "train_std": 2.642817256492047,
+          "train_variance": 6.984483051212151
+        },
+        {
+          "column": 9,
+          "ensembl_id": "ENSG00000278196.3",
+          "feature_index": 249,
+          "row": 15,
+          "symbol": "IGLV2-8",
+          "train_mean": 4.6130186811772065,
+          "train_std": 2.3326463783369458,
+          "train_variance": 5.44123912636847
+        },
+        {
+          "column": 10,
+          "ensembl_id": "ENSG00000280411.1",
+          "feature_index": 250,
+          "row": 15,
+          "symbol": "IGHV1-69D",
+          "train_mean": 4.529458703269044,
+          "train_std": 2.609479708330091,
+          "train_variance": 6.809384348186495
+        },
+        {
+          "column": 11,
+          "ensembl_id": "ENSG00000281990.1",
+          "feature_index": 251,
+          "row": 15,
+          "symbol": "IGHV1-69-2",
+          "train_mean": 2.1249433059917306,
+          "train_std": 2.67170185850187,
+          "train_variance": 7.137990820722346
+        },
+        {
+          "column": 12,
+          "ensembl_id": "ENSG00000282122.1",
+          "feature_index": 252,
+          "row": 15,
+          "symbol": "IGHV7-4-1",
+          "train_mean": 2.3828921142632096,
+          "train_std": 2.6247513159065066,
+          "train_variance": 6.8893194703529375
+        },
+        {
+          "column": 13,
+          "ensembl_id": "ENSG00000282639.1",
+          "feature_index": 253,
+          "row": 15,
+          "symbol": "IGHV3-64D",
+          "train_mean": 3.302351472179786,
+          "train_std": 2.4052338693887414,
+          "train_variance": 5.785149966454736
+        },
+        {
+          "column": 14,
+          "ensembl_id": "ENSG00000282651.2",
+          "feature_index": 254,
+          "row": 15,
+          "symbol": "IGHV5-10-1",
+          "train_mean": 3.203714528827865,
+          "train_std": 2.7835853694722257,
+          "train_variance": 7.748347509139827
+        },
+        {
+          "column": 15,
+          "ensembl_id": "ENSG00000287914.1",
+          "feature_index": 255,
+          "row": 15,
+          "symbol": "AL078582.2",
+          "train_mean": 3.1906875629748725,
+          "train_std": 2.262394322066391,
+          "train_variance": 5.118428068518244
+        }
+      ],
+      "partitions": {
+        "test": {
+          "class_counts": {
+            "Primary Tumor": 148,
+            "Solid Tissue Normal": 73
+          },
+          "participants": 148,
+          "sample_order_sha256": "b1c9a2bc6cc4da25ccfe824af4a818cc0ae3d2153a62a0b2605508cec91669f9",
+          "samples": 221,
+          "source_site_counts": {
+            "BH": 221
+          }
+        },
+        "train": {
+          "class_counts": {
+            "Primary Tumor": 774,
+            "Solid Tissue Normal": 32
+          },
+          "participants": 774,
+          "sample_order_sha256": "6a1189488ad858bd60abaf0121a8fb0ada681d61e9dca7f7c92d4c1ae0aa0dbc",
+          "samples": 806,
+          "source_site_counts": {
+            "3C": 3,
+            "4H": 1,
+            "5L": 1,
+            "5T": 1,
+            "A1": 12,
+            "A2": 83,
+            "A7": 45,
+            "A8": 62,
+            "AC": 40,
+            "AN": 33,
+            "AO": 39,
+            "AQ": 4,
+            "AR": 65,
+            "B6": 47,
+            "C8": 39,
+            "D8": 62,
+            "E2": 83,
+            "E9": 65,
+            "EW": 35,
+            "GM": 18,
+            "HN": 2,
+            "JL": 1,
+            "LD": 5,
+            "LL": 16,
+            "LQ": 1,
+            "MS": 1,
+            "OL": 20,
+            "PE": 3,
+            "S3": 9,
+            "UL": 1,
+            "UU": 1,
+            "V7": 1,
+            "W8": 1,
+            "WT": 2,
+            "XX": 2,
+            "Z7": 2
+          }
+        },
+        "validation": {
+          "class_counts": {
+            "Primary Tumor": 137,
+            "Solid Tissue Normal": 6
+          },
+          "participants": 137,
+          "sample_order_sha256": "c06afb794d1abb7abbd5e49f4e4bf8bb225c26b7566f1cb1b9e0842d1991d5ab",
+          "samples": 143,
+          "source_site_counts": {
+            "3C": 1,
+            "A1": 1,
+            "A2": 18,
+            "A7": 2,
+            "A8": 10,
+            "AC": 10,
+            "AN": 6,
+            "AO": 6,
+            "AQ": 4,
+            "AR": 2,
+            "B6": 11,
+            "C8": 7,
+            "D8": 15,
+            "E2": 18,
+            "E9": 12,
+            "EW": 7,
+            "GI": 2,
+            "GM": 3,
+            "JL": 1,
+            "LL": 2,
+            "OK": 1,
+            "OL": 3,
+            "S3": 1
+          }
+        }
+      },
+      "patient_overlap": 0,
+      "processed_arrays_sha256": "9d60dce9a10fcc3924c37f65ffdd75de78b9d810807fe47b45766567f898e8d6",
+      "scaled_round_trip_max_abs_error": 0.0
+    }
+  },
+  "source_hashes": {
+    "TCGA-BRCA.clinical.tsv.gz": "a510e8013897ac75dde1e16f6fa400bf39629377c7b50c6766bfa347ca888783",
+    "TCGA-BRCA.star_tpm.tsv.gz": "d14b127a98e71e4aef15196bdee0f6b0c4d5a236a61fbc7b99ae7e825ed052cc",
+    "gencode.v36.annotation.gtf.gene.probemap": "f027752d663b1da74f4113998bf008e6ebecfa3732607513e027bb6eb1f635b5"
+  }
+}

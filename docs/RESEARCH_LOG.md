@@ -1,5 +1,57 @@
 # Research log
 
+## 31 October 2026 — supplied SOM2IMG code and weekly findings
+
+**Completed:** inspected the user-supplied [author repository](https://github.com/Kerbash/tab2img-bench) and pinned commit `dc0ef691db733ebcba4d13b53ca58e258f76ef0a`. Confirmed its fit/transform interface, saved feature map, default spillover collision rule, training-fold-local fitting and documented uint8 wraparound behavior. The current README describes a newer 51-dataset study, so it is recorded separately from the prior anonymous manuscript and IEEE citation. Preserved upstream unmodified under an ignored cache; added only pinned missing dependencies, without upgrading the earlier modeling libraries.
+
+Recorded [Experiment 07's protocol](../experiments/07_som2img_layout/protocol.json) before execution. Split the saved training partition into 318 fit / 79 inner-stop records and used the old 86 validation records only for exploratory scoring after model freezing. Compared one fixed, three lossless random and three SOM layouts, crossed with three identical CNN seeds (21 models). All use the same float inputs, features, CNN and optimizer settings. No old learning-test inputs were transformed/scored, no genomic model was changed, and no new attribution comparison was claimed.
+
+**Findings:** all layouts retained 30/30 features with exact float64 scaled-value recovery. SOM neighbor-profile absolute Pearson correlation averaged 0.580 versus 0.416 for random; neighbor-set Jaccard across SOM seeds averaged 0.211. Same-measurement distance remained within the descriptive random reference interval, so no established semantic enrichment is claimed. Mean evaluation accuracy: 98.97% SOM, 98.32% random, 97.67% fixed. The 0.65-point SOM/random difference is small on 86 previously inspected records; all 21 runs reached the fixed epoch cap. A separate numeric audit confirmed 28 values in nine evaluation samples differ by over 0.5 between default and clipped uint8 export. The authors already document this issue, and our matched comparison avoids it with float32. No effect on prediction from quantization, general model ranking, biological benefit or novelty is asserted.
+
+**Deliverables:** [full experiment report with four figures](../experiments/07_som2img_layout/README.md), protocol, computed evidence, mappings, runner, 12 tests, version-specific references, and a [brief professor discussion report](WEEKLY_FINDINGS_2026-10-31.md). The brief connects the new layout findings to last week's explanation and shortcut controls without inventing a meeting or advisor approval.
+
+**Verification:** 94 project tests and 18 upstream tests pass; new-code Ruff and dependency checks pass. Independent execution produced byte-identical JSON and four figure files. All 21 local checkpoints reloaded to identical saved evaluation probabilities, and source hashes matched. Figures visually inspected. The upstream test using bundled results is not a retraining of 51 datasets. No old experiments, archives or user changes were deleted; no GitHub push is implied by this local verification.
+
+**Next:** keep models frozen, agree on the intended code/paper version and define a matched input-attribution comparison across layouts, including reference sensitivity and feature replacement. Evaluate attributions by feature names rather than image coordinates. Biological usefulness and confirmatory genomic evaluation remain later work.
+
+## 26 October 2026 — first TCGA-BRCA prediction pilot and guidance check
+
+**Completed:** after the user authorized the next step, adopted the conservative learning cohort, recorded [Experiment 06's protocol](../experiments/06_tcga_brca_pilot/protocol.json) before training, and froze two metadata-only participant/case-disjoint splits. The primary split has 816/177/177 samples; the BH-site sensitivity scenario has 806/143/221. Selected 256 genes independently using each training partition's variance, standardized with training statistics, and verified identical float32 table/grid values in a 16×16 fixed layout. Trained logistic regression, three forests, three small CNNs and a majority/prior control per scenario. All fitting/checkpoint selection in both scenarios preceded test scoring.
+
+**Results:** grouped-test logistic regression and forests classified 177/177 correctly; CNNs scored 171/173/172. On BH, logistic regression scored 215/221, forests 210/209/209, and CNNs 209/213/214. BH balanced accuracy: 96.24% logistic, 92.01% forest mean, 96.38% CNN mean. These show different class-error tradeoffs, not a general winner or biological interpretation quality. [Full report and sources](../experiments/06_tcga_brca_pilot/README.md).
+
+**Limits:** one selected cohort and two dependent splits; only 17 normal samples in the grouped test and six in BH validation; five CNN runs reached the fixed epoch cap. The layout is arbitrary, not similarity-preserving or SOM-based. No post-test retuning, genomic attribution, pathway validation, independent external dataset or novelty claim. Class-weighted scores are not calibrated clinical probabilities.
+
+**Problems/verification:** a float32 reduction assertion was corrected to accumulate diagnostics in float64 before training; partitions/protocol remained unchanged and the preflight file was preserved. All 82 tests and new-code Ruff checks pass. Full independent preparation and model reruns match byte-for-byte; all 48 metric sets were recomputed from saved local predictions, all classifiers reloaded to matching validation/test predictions, and the learning-curves figure visually inspected. Scientific-data skill guidance informed source preservation, explicit identities and reproducible transformations; no workbook was needed. Bundled NumPy handled preparation; the existing pinned modeling environment supplied the unavailable PyTorch/scikit-learn packages.
+
+**Professor alignment:** still following the separate-learning phase: Wisconsin first, conversion/CNN/explanation controls, then the professor-suggested TCGA/Xena extension. Three classifier families do not complete the broader three-dataset/T2I-comparison/interpretation-metrics plan. The report includes questions on the final biological target, eligibility/site controls, useful gene-group interpretation and SOM2IMG author materials. No new meeting or advisor approval is invented.
+
+**Next:** freeze the fitted models and specify a small deterministic validation-only genomic explanation exercise. Compare input tracing and reference/perturbation behavior before testing biological meaning or learned layouts. Preserve the now-observed test sets as learning results rather than repeatedly tuning against them.
+
+## 26 October 2026 — complete TCGA-BRCA acquisition audit
+
+**Completed:** acquired the full expression, clinical and gene-map files after the user's approval. Added a streaming full-value/identity/mapping audit, a pinned resumable downloader, 18 tests, [Experiment 05 report](../experiments/05_tcga_brca_audit/README.md), pre-scan protocol, source-count reconciliation and aggregate results. Raw data and sample-level manifests remain ignored; no previous experiment or archive was removed.
+
+**Measured findings:** 60,660 versioned expression IDs × 1,226 samples, all 74,369,160 values finite/nonnegative, complete clinical-ID matching and exact gene-map coverage. There are 1,095 participants. Excluding seven metastatic samples and selecting one vial per participant/type gives 1,095 tumors and 113 normals; all 113 normals are paired with tumor participants. The initial 60,661 source-page listing was reconciled by inspecting the complete browser inventory: its extra entry is `sampleID`, and the sorted gene-ID digest matches the downloaded file.
+
+**Issues and options:** 31 candidate samples/29 participants carry case annotations. Preservation fields disagree on four candidate samples. Only six of 40 collection-site codes supply both classes, so a participant-only split cannot rule out site effects. A documented metadata-only conservative option yields 1,059 tumors and 111 normals from 1,059 participants. It excludes annotated/prior-treatment-not-explicitly-No cases and sample-level annotation/FFPE flags before choosing vials. This is a proposal, not a clinical assertion that flagged records are invalid, an adopted model cohort, or a final thesis acceptance decision. GDC annotation guidance and exact data sources are linked in the report.
+
+**Verification:** gzip integrity, full-file sizes/SHA-256, complete numeric scan, independent row-count/ID-set checks, full browser-ID digest comparison, 68 passing tests and clean new-code Ruff checks. A second full audit produced byte-identical aggregate and private-manifest JSON. Whole-cohort zero-row counts remain diagnostic only; no genes were selected, no split was made, and no genomic model was trained.
+
+**Next:** freeze a learning-cohort policy and participant-grouped partitions, specify a collection-site sensitivity check, then compare a modest tabular baseline and fixed-grid CNN on the same training-selected genes. Ask the professor how this tumor–normal exercise should connect to the final biological explanation target. No biological discovery or interpretability superiority is claimed.
+
+## 26 October 2026 — professor-suggested TCGA/Xena source inspection
+
+**Completed:** followed the two resources the user attributed to guidance dated 21 October. Distinguished the TCGA research program from the Xena access platform; inspected the live GDC BRCA RNA-seq details, clinical preview and complete 85-field inventory. Saved and checksummed three small description files (1,560 bytes) outside Git tracking. Added a [feasibility report](TCGA_XENA_FEASIBILITY.md), [source manifest](TCGA_XENA_SOURCE_MANIFEST.json), references and bounded next steps.
+
+**Findings:** the expression page lists 60,661 identifiers × 1,226 samples, already in `log2(TPM+1)`, with a GENCODE v36 mapping route. A header-only request reports a 342,300,776-byte compressed matrix. Expression and clinical metadata point to GDC releases 40.0 and 41.0 respectively. The clinical file lists sample-type/case fields but no PAM50; the separate cohort PAM50 listing covers only 74 ATAC-associated samples. These are source observations, not computed full-cohort counts or proof of unusable data.
+
+**Decision/limits:** propose BRCA as the next acquisition audit, with primary tumor versus solid-tissue normal as a possible learning target. No final target, thesis acceptance, full matrix, patient-level clinical table, mapping table, training, or biological result was produced. Patient grouping, release overlap, gene identities and class balance must be audited first. Preserve all Wisconsin, MILE and archived work. Do not count Xena and TCGA as independent datasets.
+
+**Verification:** checked metadata sizes/hashes, source units/releases and Git-ignore status; recorded the source clinical sidecar's trailing comma without altering its bytes. The provenance manifest is strict JSON. Documentation-only change; previous model scores and the recorded 50-test milestone are not newly computed findings.
+
+**Next:** acquire and audit the three data tables under the documented protocol, then agree on the biological prediction/evaluation target before training. Actual SOM2IMG reproduction still requires the intended author implementation details.
+
 ## 23 October 2026 — completed the week's separate learning cycle
 
 **Scope and work completed**
@@ -193,7 +245,7 @@ The [dataset notes](../week02/DATASET_CANDIDATES.md) identify unresolved preproc
 
 ## Next milestone
 
-1. Review the completed one-dataset cycle and shortcut demonstration using the [weekly summary](WEEKLY_COMPLETION_2026-10-23.md); explain the results in the student's own words.
-2. Obtain the intended SOM2IMG implementation/version and exact benchmark/preprocessing/collision details before reproduction. Specify an isolated layout experiment without tuning against the observed learning-test scores.
-3. Consider Spambase after the first pipeline and explanation limits are understood; do not count synthetic bars as a second real dataset.
-4. Return to the preserved genomic acceptance work and agree on the final thesis protocol before confirmatory experiments.
+1. Review the [31 October findings](WEEKLY_FINDINGS_2026-10-31.md) and explain input value, neighborhood grouping and model attribution in the student's own words.
+2. Confirm which SOM2IMG code/paper version the professor intends. The author-code layout exercise is now complete; define a frozen-model explanation comparison without tuning against observed scores.
+3. Preserve the completed TCGA-BRCA audit and pilot, and resolve biological target/cohort questions before genomic interpretation or confirmatory experiments.
+4. Consider a second real learning dataset only after the first pipeline's limitations are understood; do not count synthetic bars as a real dataset or Xena and TCGA as independent datasets.

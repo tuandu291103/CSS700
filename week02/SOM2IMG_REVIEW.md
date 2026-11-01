@@ -2,6 +2,14 @@
 
 19 October 2026 | Week 2 initial study | Literature review, not a reproduction
 
+## Update — author code supplied 31 October 2026
+
+The earlier statements below about unavailable code are **historical search results**, not current availability claims. The user supplied [Kerbash/tab2img-bench](https://github.com/Kerbash/tab2img-bench); we inspected and ran commit `dc0ef691db733ebcba4d13b53ca58e258f76ef0a`. It provides a usable SOM2IMG fit/transform API, an explicit default nearest-free-pixel spillover rule, a one-to-one random control, and fold-local scaling/layout fitting in its benchmark. It also explicitly documents uint8 wraparound and simplified implementations of several comparators. [Pinned source README](https://github.com/Kerbash/tab2img-bench/blob/dc0ef691db733ebcba4d13b53ca58e258f76ef0a/README.md).
+
+**Do not merge versions:** that repository describes a 51-dataset study under a different title; S1 below is our nine-dataset reading copy. The current code does not establish how the older manuscript's experiments were performed or that its comparator definitions are identical. The bibliography now includes `kerbash2026tab2imgCode` separately.
+
+[Experiment 07](../experiments/07_som2img_layout/README.md) uses this actual layout implementation on Wisconsin, with documented changes to the CNN, float encoding and split. It verifies all-feature preservation, measures neighborhood structure/stability, and reports a matched exploratory model comparison. This resolves practical access to the algorithm, not a full published-score reproduction or genomic interpretation claim. Our first fixed grid remains a separate teaching baseline.
+
 ## Bottom line
 
 SOM2IMG is a **transformation method evaluated on nine datasets**, not the name of a single dataset. The supplied manuscript motivates arranging similar feature profiles in a grid, but it does not report a gene-expression benchmark or quantify improved biological interpretation. It is a candidate comparison method for our thesis, not evidence that our hypothesis has already been established. [S1, Table I, Sections III, V.C and VI]

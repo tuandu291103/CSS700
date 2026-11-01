@@ -1,0 +1,12 @@
+{
+  "review_date_local": "2026-10-26",
+  "source_url": "https://xenabrowser.net/datapages/?host=https%3A%2F%2Fgdc.xenahubs.net&dataset=TCGA-BRCA.star_tpm.tsv&allIdentifiers=true",
+  "method": "Read the complete rendered identifier inventory through the browser accessibility tree. Count unique versioned Ensembl identifiers including _PAR_Y suffixes, and the separate sampleID entry.",
+  "listed_total_identifiers": 60661,
+  "listed_unique_ensembl_identifiers": 60660,
+  "listed_non_expression_identifiers": ["sampleID"],
+  "sorted_ensembl_identifiers_sha256": "eed79a6e4ab83f04b1dcfcd2dbf14364cd5137942aee6f89d5ecc7bced03f993",
+  "hash_serialization": "Unique Ensembl identifiers sorted lexicographically, joined by LF, with final LF, UTF-8",
+  "conclusion": "The extra listed identifier is sampleID, not a missing gene-expression row. Compare the full downloaded expression-ID digest to this browser-derived digest; do not merely subtract one from an expected count.",
+  "timing": "Follow-up to the initial full audit, before any feature selection, split or model fitting. The original acquisition protocol retains the initially observed 60661 listing."
+}

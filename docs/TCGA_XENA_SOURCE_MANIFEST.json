@@ -1,0 +1,75 @@
+{
+  "review_date_local": "2026-10-26",
+  "timezone": "America/Los_Angeles",
+  "professor_resource_date_reported_by_user": "2026-10-21",
+  "status": "full acquisition audit and exploratory prediction pilot completed; conservative cohort adopted for the pilot only, final thesis acceptance remains open",
+  "learning_pilot": "experiments/06_tcga_brca_pilot/README.md",
+  "full_acquisition_evidence": "experiments/05_tcga_brca_audit/results.json",
+  "full_acquisition_report": "experiments/05_tcga_brca_audit/README.md",
+  "history_note": "Source-page observations and the HTTP HEAD record below describe the initial inspection. Complete-file bytes/hashes, measured counts and the 60661-to-60660 identifier reconciliation are recorded in the subsequent full acquisition evidence.",
+  "cohort": "GDC TCGA Breast Cancer (BRCA)",
+  "hub": "https://gdc.xenahubs.net",
+  "source_descriptions": [
+    {
+      "url": "https://gdc-hub.s3.us-east-1.amazonaws.com/download/TCGA-BRCA.star_tpm.tsv.json",
+      "local_path": "data/raw/tcga_brca_xena_2026-10-26/TCGA-BRCA.star_tpm.tsv.json",
+      "bytes": 818,
+      "sha256": "3e262d22f866564b0f0caf305c9c8075b29a8e1f213dbc5ebf3d3880554fbad7",
+      "source_version": "05-20-2024",
+      "gdc_release_link": "40.0",
+      "units": "log2(tpm+1)"
+    },
+    {
+      "url": "https://gdc-hub.s3.us-east-1.amazonaws.com/download/TCGA-BRCA.clinical.tsv.json",
+      "local_path": "data/raw/tcga_brca_xena_2026-10-26/TCGA-BRCA.clinical.tsv.json",
+      "bytes": 390,
+      "sha256": "bce55b440e7ea5de43226755ad8c1b92a18f0cdcd4f5415749d3bd2f40867f83",
+      "source_version": "09-07-2024",
+      "gdc_release_link": "41.0",
+      "format_caution": "Original source has a trailing comma; preserved unchanged, not strict JSON."
+    },
+    {
+      "url": "https://gdc-hub.s3.us-east-1.amazonaws.com/download/gencode.v36.annotation.gtf.gene.probemap.json",
+      "local_path": "data/raw/tcga_brca_xena_2026-10-26/gencode.v36.annotation.gtf.gene.probemap.json",
+      "bytes": 352,
+      "sha256": "a50ae7bf12bb048d5659478b47977ea10866750c30055e80cd3dfe397ec32a4e",
+      "source_version": "2023-08-07",
+      "assembly": "hg38",
+      "annotation_release": "GENCODE 36"
+    }
+  ],
+  "full_data_urls_downloaded_subsequently": {
+    "expression": "https://gdc-hub.s3.us-east-1.amazonaws.com/download/TCGA-BRCA.star_tpm.tsv.gz",
+    "clinical": "https://gdc-hub.s3.us-east-1.amazonaws.com/download/TCGA-BRCA.clinical.tsv.gz",
+    "gene_mapping": "https://gdc-hub.s3.us-east-1.amazonaws.com/download/gencode.v36.annotation.gtf.gene.probemap"
+  },
+  "initial_source_page_observations": {
+    "expression_identifiers": 60661,
+    "expression_samples": 1226,
+    "clinical_samples": 1255,
+    "clinical_fields": 85,
+    "clinical_inventory_has_sample_type": true,
+    "clinical_inventory_has_pam50": false,
+    "separate_atac_pam50_listing_samples": 74,
+    "expression_page": "https://xenabrowser.net/datapages/?dataset=TCGA-BRCA.star_tpm.tsv&host=https%3A%2F%2Fgdc.xenahubs.net",
+    "clinical_page": "https://xenabrowser.net/datapages/?dataset=TCGA-BRCA.clinical.tsv&host=https%3A%2F%2Fgdc.xenahubs.net",
+    "clinical_inventory_page": "https://xenabrowser.net/datapages/?host=https%3A%2F%2Fgdc.xenahubs.net&dataset=TCGA-BRCA.clinical.tsv&allIdentifiers=true"
+  },
+  "expression_http_head": {
+    "status": 200,
+    "content_length_bytes": 342300776,
+    "last_modified": "Fri, 11 Oct 2024 16:20:06 GMT",
+    "etag": "a5b27357bbad380d8455188422ff6179-41",
+    "s3_version_id": "xhMqQwiiUwBz9aC_Abfhq6fZ1ikNXkCU",
+    "sha256": null,
+    "integrity_status": "At initial inspection this was a header-only check. The later full acquisition evidence records the complete-file SHA-256 and successful gzip/full-matrix checks."
+  },
+  "uncomputed_at_initial_inspection": [
+    "unique participants",
+    "eligible sample-type class counts",
+    "expression/phenotype intersection",
+    "missingness and duplicates",
+    "complete gene-map coverage and ambiguity",
+    "model performance and interpretation quality"
+  ]
+}

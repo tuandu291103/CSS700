@@ -1,0 +1,19 @@
+{
+  "experiment": "05_tcga_brca_audit",
+  "recorded_date": "2026-10-26",
+  "scope": "Acquisition and feasibility audit, followed by a separately specified learning pilot only if gates pass. Not confirmatory thesis acceptance.",
+  "raw_directory": "data/raw/tcga_brca_xena_2026-10-26",
+  "source_manifest": "docs/TCGA_XENA_SOURCE_MANIFEST.json",
+  "expected_source_dimensions": {"expression_features": 60661, "expression_samples": 1226, "clinical_samples": 1255},
+  "units": "log2(TPM + 1), as supplied; no second log or outcome-informed normalization",
+  "learning_target": {"01": 1, "11": 0},
+  "labels": {"0": "Solid Tissue Normal", "1": "Primary Tumor"},
+  "other_sample_types": "Audit and exclude from this binary learning task",
+  "participant_check": "Validate full TCGA sample-vial barcode; participant prefix must equal clinical submitter_id; case UUID and participant must be one-to-one",
+  "repeated_vials": "After joining by exact sample ID, keep lexicographically first sample ID per participant and sample type; record excluded IDs, never select by expression or model outcome",
+  "missingness": "Audit every expression value; do not replace missing/nonfinite values with zero or silently impute",
+  "mapping": "Exact versioned Ensembl-ID join; retain original ID and source symbol; report duplicate IDs and ambiguous/repeated symbols without collapsing them",
+  "clinical_controls": ["code.tissue_source_site", "preservation_method.samples", "is_ffpe.samples", "prior_treatment.diagnoses", "category.annotations", "annotations.samples"],
+  "training_gate": "No automatic training if malformed/duplicate expression IDs, nonfinite/negative expression, missing/conflicting eligible labels, patient identity mismatch, unmapped expression IDs, cross-participant exact duplicate profiles, or unresolved sample exclusion annotations are found. Describe unresolved problems rather than silently repairing source data.",
+  "privacy": "Full expression, clinical table, sample-level manifest and gene map stay ignored by Git. Commit aggregate evidence, code and protocol only."
+}

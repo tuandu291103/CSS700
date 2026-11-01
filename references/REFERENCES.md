@@ -2,6 +2,15 @@
 
 Initial review 15 October 2026; MILE and SOM2IMG references added 19 October. Stable citation keys are in [references.bib](references.bib). Locators identify the material used; “reviewed” does not imply a reproduction or exhaustive review of every supplement.
 
+## SOM2IMG software source — 31 October 2026
+
+**`kerbash2026tab2imgCode` — Kerbash, tab2img-bench**, commit `dc0ef691db733ebcba4d13b53ca58e258f76ef0a`, MIT license. [Pinned repository](https://github.com/Kerbash/tab2img-bench/tree/dc0ef691db733ebcba4d13b53ca58e258f76ef0a).
+
+- Read the README, license, API/base/grid/SOM/random/encoding/evaluation code, layout helper and tests. Source-file hashes are retained in [Experiment 07 results](../experiments/07_som2img_layout/results.json).
+- Confirms a usable fit/transform API, default spillover assignment, training-fold fitting, and the distinction between feature-dropping `Random` and lossless `SnakeRandom`. The README documents uint8 wraparound and simplified comparator implementations.
+- Version boundary: describes a 51-dataset study titled *Which Tabular-to-Image Method, for Which Data? A Regime Map from 51 Datasets*. Do not assign its results, code behavior or dataset list to the previously reviewed nine-dataset anonymous manuscript or inaccessible final IEEE article without verification.
+- Ran the 18 upstream tests and a separate Wisconsin layout exercise with our CNN/splits/float inputs; not a reproduction of the full benchmark. The bundled-output test checks supplied statistics, not independent training. [Experiment and limitations](../experiments/07_som2img_layout/README.md).
+
 ## Explanation-learning additions — 23 October 2026
 
 The four paper records below were read at **abstract level**, with official software documentation used for the implemented settings. Do not cite these notes as a full reading or replication of their benchmarks. Our measured outcomes are in [Experiment 03](../experiments/03_wisconsin_explanations/README.md) and [Experiment 04](../experiments/04_shortcut_sandbox/README.md).
@@ -123,6 +132,15 @@ W.-M. Liu. **Algorithms for classification of disease subtypes and for prognosis
 
 ## Dataset records
 
+### TCGA/Xena source follow-up — 26 October 2026
+
+- M. J. Goldman et al., **Visualizing and interpreting cancer genomics data via the Xena platform**, Nature Biotechnology 38, 675–678 (2020). [Publisher](https://www.nature.com/articles/s41587-020-0546-8), DOI `10.1038/s41587-020-0546-8`, key `goldman2020xena`. Read publisher preview and bibliographic record; the PMC route returned a browser check. Supports the resource/platform, not superior T2I explanations.
+- The Cancer Genome Atlas Network, **Comprehensive molecular portraits of human breast tumours**, Nature 490, 61–70 (2012). [Primary article](https://www.nature.com/articles/nature11412), DOI `10.1038/nature11412`, key `tcga2012breast`. Read the relevant gene-expression/PAM50 section and publication metadata, not all methods/supplements. Provides study context and evidence that PAM50 labels are expression-derived; does not establish the size or preprocessing of the current candidate release.
+- Official resource/pipeline pages and exact Xena release locators are recorded in the [initial TCGA/Xena feasibility report](../docs/TCGA_XENA_FEASIBILITY.md) and [metadata manifest](../docs/TCGA_XENA_SOURCE_MANIFEST.json). The subsequent [Experiment 05](../experiments/05_tcga_brca_audit/README.md) acquired and audited all three full files; its results contain complete-file hashes. The complete live gene-ID inventory was read to resolve Xena's additional `sampleID` listing.
+- [GDC Annotations documentation](https://docs.gdc.cancer.gov/Encyclopedia/pages/Annotations/), key `gdcAnnotations`, reviewed 26 October: annotations can describe important file/case differences and should inform analysis. It does not prescribe our proposed blanket exclusion of annotated participants. The separate historical TCGA annotation page is explicitly not the current GDC standard.
+
+### Earlier shortlist records
+
 | ID / BibTeX key | Primary record | Locators used |
 |---|---|---|
 | D1 / `geoGSE45827` | [GSE45827](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45827) | Overall design, Platforms, Samples, download routes |
@@ -168,3 +186,9 @@ These are teaching/API references, not empirical evidence that one model family 
 - [PyTorch reproducibility notes](https://docs.pytorch.org/docs/2.14/notes/randomness.html), key `pytorchReproducibility`: seeds/deterministic operations and cross-platform/version limits.
 - [LogisticRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html), key `sklearnLogisticRegression`: regularization, solver and convergence settings. [RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html), key `sklearnRandomForest`: tree, feature-subsampling and leaf settings.
 - [Classification metrics](https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics), key `sklearnClassificationMetrics`: accuracy, balanced accuracy, macro-F1, ROC-AUC, log loss and confusion matrices. These are prediction measures, not attribution-quality measures.
+
+### Genomic learning pilot implementation references — 26 October
+
+- Rechecked the existing `sklearnLeakage`, `sklearnLogisticRegression`, `sklearnRandomForest` and `sklearnClassificationMetrics` references for training-only gene selection/scaling, inverse-frequency class weights and prediction metrics. [Experiment 06](../experiments/06_tcga_brca_pilot/README.md) records our choices and results separately from the documentation.
+- [PyTorch CrossEntropyLoss](https://docs.pytorch.org/docs/2.14/generated/torch.nn.CrossEntropyLoss.html), key `pytorchWeightedCrossEntropy`: read logits/class-weight and weighted-mean reduction definitions. This supports implementation, not a claim that weighting removes all sampling bias.
+- [Balanced accuracy](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html): verified average class recall. Our three-seed spread is not a confidence interval or external-validation evidence.
