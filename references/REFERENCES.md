@@ -1,6 +1,6 @@
 # Research reference library
 
-Initial review 15 October 2026; MILE and SOM2IMG references added 19 October. Stable citation keys are in [references.bib](references.bib). Locators identify the material used; “reviewed” does not imply a reproduction or exhaustive review of every supplement.
+Initial review 15 October 2026; MILE and SOM2IMG references added 19 October. Stable citation keys are in [references.bib](references.bib). Each entry records the material inspected and its role in the study. Reading depth varies by source, and reproduction is reported separately in the experiment notes.
 
 ## SOM2IMG software source — 31 October 2026
 
@@ -8,12 +8,12 @@ Initial review 15 October 2026; MILE and SOM2IMG references added 19 October. St
 
 - Read the README, license, API/base/grid/SOM/random/encoding/evaluation code, layout helper and tests. Source-file hashes are retained in [Experiment 07 results](../experiments/07_som2img_layout/results.json).
 - Confirms a usable fit/transform API, default spillover assignment, training-fold fitting, and the distinction between feature-dropping `Random` and lossless `SnakeRandom`. The README documents uint8 wraparound and simplified comparator implementations.
-- Version boundary: describes a 51-dataset study titled *Which Tabular-to-Image Method, for Which Data? A Regime Map from 51 Datasets*. Do not assign its results, code behavior or dataset list to the previously reviewed nine-dataset anonymous manuscript or inaccessible final IEEE article without verification.
+- Version boundary: describes a 51-dataset study titled *Which Tabular-to-Image Method, for Which Data? A Regime Map from 51 Datasets*. Its results and implementation details are recorded separately from the earlier nine-dataset manuscript and final IEEE article, whose equivalence has not been verified.
 - Ran the 18 upstream tests and a separate Wisconsin layout exercise with our CNN/splits/float inputs; not a reproduction of the full benchmark. The bundled-output test checks supplied statistics, not independent training. [Experiment and limitations](../experiments/07_som2img_layout/README.md).
 
 ## Explanation-learning additions — 23 October 2026
 
-The four paper records below were read at **abstract level**, with official software documentation used for the implemented settings. Do not cite these notes as a full reading or replication of their benchmarks. Our measured outcomes are in [Experiment 03](../experiments/03_wisconsin_explanations/README.md) and [Experiment 04](../experiments/04_shortcut_sandbox/README.md).
+The four paper records below were read at **abstract level**, with official software documentation used for the implemented settings. Full-paper methodological review and benchmark replication remain outside these entries. Our measured outcomes are in [Experiment 03](../experiments/03_wisconsin_explanations/README.md) and [Experiment 04](../experiments/04_shortcut_sandbox/README.md).
 
 | Key / original work | Use and limits | Implementation source inspected |
 |---|---|---|
@@ -64,7 +64,7 @@ C. Strobl, A.-L. Boulesteix, T. Kneib, T. Augustin, and A. Zeileis. **Conditiona
 
 - [Full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC2491635/).
 - Key: `strobl2008conditional`. Reviewed Abstract and Background, with methods context.
-- Use: distinguish marginal from conditional importance under correlated predictors. Do not generalize its particular random-forest results to every attribution algorithm.
+- Use: distinguish marginal from conditional importance under correlated predictors. Its conclusions concern the importance measures studied, rather than all attribution algorithms.
 
 ## R6
 
@@ -80,7 +80,7 @@ Y. Zhu et al. **Converting tabular data into images for deep learning with convo
 
 - [Publisher](https://www.nature.com/articles/s41598-021-90923-y); [author implementation](https://github.com/zhuyitan/IGTD).
 - Key: `zhu2021igtd`. Publisher retrieval failed during this review; the author repository's Description, Uniqueness, and Components were inspected. No numerical paper result is used.
-- Use: the documented one-feature-per-pixel similarity-layout mechanism. Re-read the paper's detailed protocol before implementing a reproduction.
+- Use: the documented one-feature-per-pixel similarity-layout mechanism. A reproduction will require review of the paper's detailed protocol.
 
 ## R8
 
@@ -96,7 +96,7 @@ A. Subramanian et al. **Gene set enrichment analysis: A knowledge-based approach
 
 - [Publisher](https://www.pnas.org/doi/10.1073/pnas.0506580102).
 - Key: `subramanian2005gsea`. Reviewed Abstract, Introduction, and Methods overview.
-- Use: gene-set context is not unique to image representations. Ranked-list GSEA and a Fisher-test overrepresentation analysis of a selected set are different procedures; do not conflate them in a future protocol.
+- Use: gene-set context is not unique to image representations. Ranked-list GSEA and a Fisher-test overrepresentation analysis of a selected set are different procedures; the experimental protocol needs to specify which is used.
 
 ## R10 — added for the MILE audit
 
@@ -121,14 +121,14 @@ W. Selke and W. Kim. **SOM2IMG: Self-Organizing Map Based Tabular-to-Image Trans
 - [IEEE record](https://ieeexplore.ieee.org/abstract/document/11676815); bibliographic metadata verified through the [author's publication list](https://faculty.washington.edu/kimw6/publication.html). Published citation key: `selke2026som2img`. Final IEEE full text was not retrieved.
 - **Text reviewed:** the supplied [local six-page anonymous manuscript](/Users/dudinh/Desktop/SOM2IMG.pdf), separately keyed as `som2imgSuppliedManuscript2026`. All pages read and visually inspected, including Tables I–II, Figures 1–3, and the BMU/grid equations. Size: 1,467,643 bytes; SHA-256: `b80c6d67ef05ea7ec806848c102b0b17bd3d0535f90fdcc673e4268031da18f9`.
 - Its anonymous heading and PDF creation metadata do not prove identity with the final publication. The existing archive preserves it; it has not been republished in this repository. An OpenReview version was located but not reviewed.
-- Use: candidate feature-layout method, benchmark inventory, and qualitative interpretation motivation. See the [focused review](../week02/SOM2IMG_REVIEW.md) for source-version boundaries, dataset discrepancies, collision/fold questions, and the difference between reported predictive metrics and unmeasured explanation quality. No reproduction or novelty claim.
+- Use: candidate feature-layout method, benchmark inventory, and qualitative interpretation motivation. See the [focused review](../week02/SOM2IMG_REVIEW.md) for source-version boundaries, dataset discrepancies, collision/fold questions, and the difference between reported predictive metrics and unmeasured explanation quality. The manuscript review motivates the experiment but does not establish reproduction or novelty.
 
 ## Additional primary technical record — not a peer-reviewed paper
 
 W.-M. Liu. **Algorithms for classification of disease subtypes and for prognosis with gene expression profiling.** US patent application publication US20100130372A1, published 27 May 2010.
 
 - [Primary disclosure](https://patents.google.com/patent/US20100130372A1/en). Key: `liu2010expressionDisclosure`.
-- Read the Description's signal-generation and normalization steps, particularly steps 335–380 and Dn3 variants. Used only as technical context; not a reproduction of the GEO pipeline, peer-reviewed validation, or advice about legal rights.
+- Read the Description's signal-generation and normalization steps, particularly steps 335–380 and Dn3 variants. Used only as technical context; it is neither a peer-reviewed validation nor verification of the exact GEO processing pipeline.
 
 ## Dataset records
 
@@ -175,7 +175,7 @@ These support record-level cross-checks, not an assertion that the author's exac
 
 - Rechecked the [Wisconsin official record](https://doi.org/10.24432/C5DW2B) and read the complete [original `wdbc.names` documentation](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.names), including field order, mean/SE/worst definitions, and provenance. Keys: `uciWisconsinDiagnostic`, `uciWisconsinNames`. Acquired and checksummed both source files; [experiment report](../experiments/01_wisconsin/README.md). The historical feature-extraction paper named by UCI was not independently read in this milestone.
 - Read the [official scikit-learn data-leakage guidance](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage). Key: `sklearnLeakage`. Used to keep scaler fitting and exploratory feature analysis on training data. This engineering check does not establish independent patients or a clinically valid test cohort.
-- Reused the already reviewed supplied SOM2IMG manuscript through its [source-specific notes](../week02/SOM2IMG_REVIEW.md); no newly retrieved final paper or author implementation is claimed.
+- Used the supplied SOM2IMG manuscript through the [source-specific notes](../week02/SOM2IMG_REVIEW.md). The final paper and author implementation were not available for this 23 October exercise.
 
 ### Learning experiment 02 implementation references — 23 October
 

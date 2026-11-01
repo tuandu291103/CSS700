@@ -1,6 +1,6 @@
 # Weekly learning milestone — 23 October 2026
 
-Scope recorded 23 October 2026 from the current research notes and the user's instruction to finish this week's work. This is the one-dataset learning cycle, not the full thesis. One dataset satisfies the professor's "1–2" starting direction; Spambase and author-code SOM2IMG reproduction were explicitly recorded as later milestones.
+This week I completed the first benchmark learning cycle, following my advisor's recommendation to study one or two SOM2IMG datasets and understand each stage separately. I used Wisconsin Diagnostic to work through data preparation, image conversion, CNN training and explanation checks. Spambase and the author-code SOM2IMG experiment remained planned follow-ups at this stage.
 
 | Deliverable | Evidence / status |
 |---|---|
@@ -11,11 +11,11 @@ Scope recorded 23 October 2026 from the current research notes and the user's in
 | Test explanations through perturbation, reference sensitivity and model randomization | Complete: [saved diagnostics](../experiments/03_wisconsin_explanations/results.json) |
 | Demonstrate an object-versus-background shortcut under controlled conditions | Complete: [Experiment 04](../experiments/04_shortcut_sandbox/README.md) |
 | Brief findings, limitations, references and professor discussion notes | Complete: this summary and the linked reports |
-| Verify outputs and publish completed work | 50 tests pass; both new experiments reproduce exactly; final publication check recorded in the session handoff |
+| Verify the implementation and outputs | 50 tests pass; both new experiments reproduce exactly |
 
-Completion means delivering reproducible exercises and a learning guide. It cannot certify the student's personal mastery, demonstrate thesis novelty, or resolve unavailable author-code details. No final thesis dataset acceptance, genomic model, clinical finding, or actual SOM2IMG reproduction will be claimed.
+The deliverables establish a reproducible learning pipeline. They do not yet test biological usefulness: the data describe cell morphology, the layout is fixed rather than learned, and the explanation checks cover a small set of cases.
 
-## Brief meeting summary
+## Findings prepared for advisor discussion
 
 - **Data and conversion:** audited 569 Wisconsin Diagnostic records and 30 morphology features; verified exact scaled-value tracing through a 5×6 fixed grid. This is a SOM2IMG benchmark learning dataset, not gene-expression data or a learned SOM layout. [Dataset, provenance and encoding evidence](../experiments/01_wisconsin/README.md).
 - **Prediction:** logistic regression scored 83/86 correct on the learning test set; three CNN runs scored 83/83/82. Similar accuracy did not imply equal probability quality, and neither proves better interpretation. These are fixed-settings exploratory results, not a universal model ranking. [Model report](../experiments/02_wisconsin_models/README.md).
@@ -23,9 +23,9 @@ Completion means delivering reproducible exercises and a learning guide. It cann
 - **Shortcut:** three synthetic background-correlated CNNs went from 100% to 0% accuracy after background reversal; independent-background controls stayed at 100%. A background-only IG reference nevertheless placed 100% of absolute attribution on the shape in both groups. That is a reference-dependent contrast, not proof of object-based reasoning. [Controlled experiment](../experiments/04_shortcut_sandbox/README.md).
 - **Research implication:** coordinate tracing, model faithfulness, and domain meaning must be evaluated separately. A visually clear map alone does not settle all three. This is a lesson informing our thesis design, not a claim that we invented tracing or proved a biological benefit. Related foundations: [Grad-CAM](https://arxiv.org/abs/1610.02391), [IG](https://arxiv.org/abs/1703.01365), [sanity checks](https://arxiv.org/abs/1810.03292).
 
-## Are we on track?
+## Progress against the research plan
 
-**Yes, for the professor's initial separate-experiment learning phase.** We now have one end-to-end benchmark exercise and a separate controlled vision demonstration, with protocols, code, named-feature tracing, diagnostics and sources. This does not mean the autumn–spring thesis is complete or that later milestones should be skipped.
+The work addresses the initial learning phase: I can now follow one benchmark from its source table to CNN predictions and named-feature explanations, and use a controlled vision task to examine shortcut behavior. The broader thesis still requires learned-layout comparisons, an accepted genomic evaluation and a clear definition of useful biological interpretation.
 
 The useful result is methodological: in this small setting, naive spatial-to-feature attribution and reference-dependent overlap can be misleading. We have not established that T2I improves biological interpretation, that CNNs always underperform traditional models, or that these observations are novel. Existing work already links image explanations to nonimage features; see [DeepFeature and the prior-art review](../week02/CLAIM_EVIDENCE.md).
 
@@ -43,11 +43,11 @@ The useful result is methodological: in this small setting, naive spatial-to-fea
 2. Should the next isolated experiment compare fixed/random/SOM layouts on Wisconsin, with a clearly defined regional-versus-input explanation question, before adding Spambase?
 3. For the eventual thesis, what would count as useful **domain** interpretation beyond model faithfulness: known feature groups, expert review, pathway annotations, or another explicitly defined target? Biological claims still require accepted genomic data and suitable controls.
 
-No meeting or advisor approval is implied by this prepared discussion note.
+These questions were prepared for discussion; this document is not a record of a meeting.
 
-## Five-minute walkthrough to practice
+## Review questions
 
-Try answering without reading the reports first:
+I will use these questions to check my understanding before moving to the next experiment:
 
 1. Why can a valid scaled validation value fall outside [0, 1]? (Training-only extrema; no clipping.)
 2. What does feature index 21 map to, and what does a positive score mean for the incorrectly predicted benign case? (`texture_worst`, row 3/column 3; support for the model's original benign target.)
@@ -55,10 +55,10 @@ Try answering without reading the reports first:
 4. Why can a background-dependent model have zero IG on all background pixels? (Those pixels equal the selected reference, so their input-minus-reference factor is zero.)
 5. Why are these not thesis discoveries yet? (Small learning subsets, selected references/perturbations, one synthetic design, no accepted biological evaluation or novelty study.)
 
-## Verification and next boundary
+## Verification and next steps
 
 All 50 tests pass, including 17 new analytic/control/output checks. Full reruns of Experiments 03 and 04 generated byte-identical JSON results. All five new figures were visually inspected; dependencies are pinned and an offline installation dry-run and package check passed. Earlier experiment outputs and genomic/archived work were preserved.
 
-New-code Ruff checks pass. A repository-wide check also revealed five pre-existing style findings in the untouched MILE audit script/tests; they are not new experiment failures and were not silently changed in this milestone.
+New-code Ruff checks pass. The broader check found five existing style warnings in the MILE audit script and tests, which were outside this experiment's scope and remain unchanged.
 
-This week's scoped deliverables are complete. Next is a guided review and a separately specified layout experiment once the SOM2IMG reproduction details are available—not further tuning of the already observed learning-test results.
+The next step is to review these findings with my advisor and specify a fixed/random/SOM layout comparison once the intended implementation is available. The observed learning-test results will remain fixed; they will not be used for further tuning.

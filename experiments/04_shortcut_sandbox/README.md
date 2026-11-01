@@ -1,6 +1,6 @@
 # Experiment 04 — shape or background?
 
-Completed 23 October 2026. A controlled synthetic learning exercise inspired by the professor's “ears or background?” question. This is **not** an additional real thesis dataset, reproduction of a published experiment, or evidence of a shortcut in Wisconsin. [Protocol](protocol.json) · [computed results](results.json) · [generator and experiment](../../scripts/shortcut_sandbox.py).
+Completed 23 October 2026. This synthetic experiment follows my advisor's question about whether an image classifier recognizes the object or its background. It isolates that distinction using simple shapes. [Protocol](protocol.json), [results](results.json) and [generator](../../scripts/shortcut_sandbox.py).
 
 ## Controlled question
 
@@ -13,13 +13,13 @@ Two training conditions use identical foregrounds and labels:
 
 Each uses the same 1,282-parameter CNN and three predefined seeds. Validation loss selects checkpoints within the corresponding training regime. All six checkpoints are selected before test scoring. No settings are changed after viewing results.
 
-The paired test views keep every foreground pixel, shape position and label unchanged. Only the background assignment changes: correlated, independently balanced, or reversed. A shape-based decision should be stable to these particular changes; a changed prediction demonstrates sensitivity to the changed background, not a real-world causal or clinical conclusion.
+The paired test views retain the foreground pixels, shape positions and labels while changing only the background assignment: correlated, independently balanced or reversed. Prediction changes can therefore be attributed to the changed background within this synthetic construction. The experiment does not test shortcuts in Wisconsin or other real data.
 
 ![Paired test examples](paired_inputs.png)
 
 ## Results
 
-These are our measured synthetic results from [results.json](results.json). Every one of the three seeds has the displayed accuracy, so seed SD is zero here; that does not mean zero uncertainty for different generators or real images.
+The table summarizes [results.json](results.json). All three seeds produced the displayed accuracy, giving a seed SD of zero for this construction. Variation across other generators or real images has not been measured.
 
 | Training condition | Correlated test | Independent test | Reversed test | Predictions flipped after reversal |
 |---|---:|---:|---:|---:|
@@ -46,13 +46,13 @@ IG includes an input-minus-reference factor. Where that difference is zero, the 
 | Correlated background | 100% | 35.8% |
 | Independent background | 100% | 36.9% |
 
-Thus a “100% attribution on the object” score does not establish that the classifier relies appropriately on shape. For the correlated model, the background-only images themselves already receive mean true-class probability **0.99995** across these eight cases. Absolute mass ignores sign; the first illustrated shortcut-model shape attribution is negative, opposing the true class. Do not describe this as positive evidence for the correct object merely because the highlighted pixels outline it.
+The foreground-attribution score alone fails to distinguish the two model groups. For the correlated model, the background-only images already receive a mean true-class probability of **0.99995** across the eight cases. Absolute attribution mass also omits sign: in the first illustrated shortcut-model example, the shape attribution is negative and opposes the true class. Its location on the object does not imply positive support for that class.
 
 ![Same image, different reference questions](reference_sensitivity.png)
 
 Raw mass also depends on region size (12 foreground versus 132 background pixels). Results retain absolute sums and per-pixel means for both regions. All 32 IG calculations met the predefined normalized completeness tolerance of 0.001; maximum residual was 0.000952. Numerical completeness does not resolve which reference question is useful.
 
-The lesson is to combine explicitly defined attribution questions with behavioral controls, not to treat an attractive picture or an overlap score as sufficient validation. This is consistent with the motivation for explanation sanity checks in [Adebayo et al.](https://arxiv.org/abs/1810.03292), but our exercise is not their benchmark.
+The results support combining a stated attribution reference with behavioral controls. Spatial overlap alone was insufficient to identify background reliance in this experiment. This concern is consistent with the motivation for the sanity checks of [Adebayo et al.](https://arxiv.org/abs/1810.03292), although the present study uses a different experimental design.
 
 ## Limits
 

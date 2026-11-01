@@ -1,10 +1,10 @@
 # Experiment 03 — explaining a frozen Wisconsin CNN
 
-Completed 23 October 2026. This is an explanation-learning exercise, not a new classifier comparison, clinical analysis, or final thesis experiment. [Protocol](protocol.json) · [computed evidence](results.json) · [implementation](../../scripts/wisconsin_explanations.py).
+Completed 23 October 2026. This experiment compares explanations of one previously trained CNN. [Protocol](protocol.json), [results](results.json) and [implementation](../../scripts/wisconsin_explanations.py).
 
 ## Question and setup
 
-Can we trace a CNN explanation to the original 30 features, and do different explanations behave similarly when checked?
+The study asks whether CNN explanations can be traced to the original 30 features and how their rankings respond to reference choices, feature replacement and model randomization.
 
 We froze the first listed CNN seed from [Experiment 02](../02_wisconsin_models/README.md), including its weights, scaler and 5×6 row-major mapping. The 12 primary examples are the first six validation records of each true class, in saved order. The first validation error is an extra illustration only. This is a purposive learning subset, not a representative evaluation sample. No test-set explanations, new classifier fitting, threshold changes or hyperparameter search occurred.
 
@@ -21,13 +21,13 @@ All methods explain the **same score**: the logit margin supporting the CNN's or
 
 Grad-CAM is introduced as coarse localization, whereas IG targets input attribution. SHAP provides additive feature explanations and LIME fits a local interpretable surrogate. These are related but different questions. Sources: [Grad-CAM](https://arxiv.org/abs/1610.02391), [IG](https://arxiv.org/abs/1703.01365), [SHAP](https://arxiv.org/abs/1705.07874), [LIME](https://arxiv.org/abs/1602.04938).
 
-For comparison, our reported **LIME local effect** is its standardized coefficient multiplied by `(sample − training median) / training standard deviation`. This is our explicitly labeled baseline-relative surrogate comparison, not a new explanation method or standard SHAP value. Raw LIME coefficients, local predictions, fit scores and scales are retained. LIME's Gaussian neighborhoods can leave the observed data range. See the [official tabular API](https://lime-ml.readthedocs.io/en/latest/lime.html#module-lime.lime_tabular).
+For comparison, the reported **LIME local effect** multiplies its standardized coefficient by `(sample − training median) / training standard deviation`. This expresses the surrogate's effect relative to the selected baseline; it is distinct from a SHAP value. The results retain the raw coefficients, local predictions, fit scores and scales. LIME's Gaussian perturbations can extend beyond the observed data range. See the [official tabular API](https://lime-ml.readthedocs.io/en/latest/lime.html#module-lime.lime_tabular).
 
 Implementation settings: IG starts at 512 Gauss–Legendre steps and refines only for a preset numerical residual threshold; Kernel SHAP uses 512 samples with no L1 feature selection; LIME uses 2,048 samples and all 30 features. Two sampling seeds are checked for SHAP/LIME. Each base sampling/deletion seed in the protocol is offset by the validation position. Captum's Grad-CAM positive-only option is explicitly enabled. [IG API](https://captum.ai/api/integrated_gradients.html), [Grad-CAM API](https://captum.ai/api/layer.html#gradcam), [Kernel SHAP API](https://shap.readthedocs.io/en/latest/generated/shap.KernelExplainer.html).
 
 ## Results: same model, same examples
 
-All numbers below are computed from [results.json](results.json), not taken from a paper. Means use only the 12 primary cases.
+The following results are calculated from [results.json](results.json). Means include only the 12 primary cases.
 
 | Pair | Mean Spearman, absolute magnitudes | Mean top-five Jaccard |
 |---|---:|---:|
@@ -51,7 +51,7 @@ Replace the top five features by their training medians and measure the drop in 
 | Kernel SHAP | 3.803 | 12/12 |
 | LIME local effect | 3.621 | 12/12 |
 
-This challenges **our naive use of Grad-CAM coordinates as feature ranks**, not Grad-CAM's usefulness for its intended localization task. It does not establish a general ordering of explanation methods. Replacement can create unrealistic combinations of correlated measurements; no conditional masking, causal inference, confidence interval or biological validation is supplied.
+The result raises concerns about treating Grad-CAM coordinates directly as feature ranks in this setup. It does not evaluate the method's intended regional-localization task or establish a general ordering of explainers. Median replacement can also create unrealistic combinations of correlated measurements. The diagnostic therefore measures behavior under the stated intervention, without conditional masking or biological validation.
 
 ![Five-feature diagnostic](deletion_diagnostic.png)
 
@@ -85,6 +85,6 @@ cmp experiments/03_wisconsin_explanations/results.json /private/tmp/css700-expla
 
 Choose a fresh output directory. The script refuses to overwrite an existing result. A complete repeat in a separate directory produced byte-identical results on this machine. Source/model/protocol hashes, vectors, selected features, sampling checks and diagnostic scores are retained. Cross-platform bitwise identity is not promised.
 
-## Lesson and next step
+## Discussion and follow-up
 
-Exact coordinate recovery is necessary for tracing, but does not make every spatial explanation an exact feature attribution. Evaluate input-level and regional explanations separately. Next, use the [controlled shortcut exercise](../04_shortcut_sandbox/README.md) to see why the choice of reference and evaluation intervention matter. A learned SOM layout remains a separate future experiment.
+Exact coordinate recovery identifies the feature represented at a pixel, but does not make a regional explanation an individual feature contribution. Input-level and regional methods therefore require separate interpretation and evaluation. The [controlled shortcut study](../04_shortcut_sandbox/README.md) examines the effect of reference choice and evaluation intervention. The later [SOM layout experiment](../07_som2img_layout/README.md) studies the representation before extending this attribution comparison.

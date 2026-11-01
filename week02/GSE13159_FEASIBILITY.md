@@ -4,9 +4,9 @@
 
 ## Outcome
 
-We verified the complete deposited sample inventory and a usable platform-annotation route. However, specimen type is strongly associated with diagnosis, patient/center linkage is not explicit in the downloaded metadata, and probe-to-gene mapping is not one-to-one. These are reasons to finish the data protocol before training—not evidence that an image representation solves the interpretation problem.
+We verified the complete deposited sample inventory and a usable platform-annotation route. However, specimen type is strongly associated with diagnosis, patient/center linkage is not explicit in the downloaded metadata, and probe-to-gene mapping is not one-to-one. These issues require an explicit cohort, preprocessing and confounding-control protocol before training.
 
-This is an original **data-quality audit**, not a novel biological finding or a model comparison. The follow-up inspected two individual expression tables; no full-cohort expression matrix, raw CEL archive, model, split, or enrichment analysis was produced. The [machine-readable audit](GSE13159_AUDIT.json) contains computed counts, source URLs, retrieval date, byte sizes, and SHA-256 hashes. The [acceptance protocol](GSE13159_ACCEPTANCE_PROTOCOL.md) is a draft for advisor review.
+The audit covers sample metadata, platform annotation and two individual expression tables. Full-cohort acquisition, model comparison and biological analysis are subsequent stages. The [machine-readable audit](GSE13159_AUDIT.json) contains computed counts, source URLs, retrieval date, byte sizes, and SHA-256 hashes. The [acceptance protocol](GSE13159_ACCEPTANCE_PROTOCOL.md) is a draft for advisor review.
 
 ## 1. What we checked
 
@@ -52,11 +52,11 @@ The following counts are computed from all downloaded sample attributes, not cop
 
 Source and calculation: [sample export](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13159&targ=gsm&form=text&view=brief), `samples.label_by_specimen_type` in the [audit JSON](GSE13159_AUDIT.json).
 
-**Our analysis / protocol implications:**
+**Implications for the study design:**
 
 - There are 18 complete labels, but class sizes range from 13 to 448 (34.46:1). Overall accuracy alone would be an inadequate account of performance. Plan per-class results and macro-averaged measures; quantify uncertainty for small classes.
 - All CLL samples are blood; all MDS samples are marrow. This is an observed metadata association, **not proof that a model uses a shortcut**. Disease and specimen-source effects cannot be cleanly separated for these classes from this cohort alone.
-- Propose a specimen-type-only baseline and specimen-stratified sensitivity analyses. These are diagnostic controls, not a complete cure for confounding. A marrow-only analysis would remove every CLL sample and change the scientific question; do not silently apply that filter.
+- Propose a specimen-type-only baseline and specimen-stratified sensitivity analyses. These are diagnostic controls, not a complete cure for confounding. A marrow-only analysis would remove every CLL sample and therefore requires a separately defined scientific question.
 - Keep the combined “Non-leukemia and healthy bone marrow” label intact. Do not describe all 74 samples as healthy controls; one even has a peripheral-blood specimen annotation requiring reconciliation.
 
 ## 3. Independence and processing: unresolved
@@ -82,9 +82,9 @@ The single-gene rows cover **20,848 distinct identifiers**, with 10,924 identifi
 
 For example, `1007_s_at` maps to both `100616237` / MIR4640 and `780` / DDR1 in this snapshot. Selecting the first name would conceal ambiguity. Also, matching the platform's row count to the sample-declared row count does not verify an exact expression-ID join.
 
-**Proposed policy, not yet implemented:** preserve probe-level attribution and provenance; flag controls, unmapped probes, and one-to-many mappings; never silently assign an ambiguous probe to one gene. Before gene-set analysis, choose and freeze a versioned annotation, reconcile retired identifiers, and document how multiple probes per gene are combined. Use the same eligible-gene background and mapping rules for image and tabular explanations. Report a sensitivity analysis if mapping choices materially affect findings. The 2016 snapshot is suitable for this feasibility check, not automatically the final biological annotation.
+**Proposed policy, not yet implemented:** preserve probe-level attribution and provenance; flag controls, unmapped probes, and one-to-many mappings; retain all candidate gene identities for ambiguous probes. Before gene-set analysis, choose and freeze a versioned annotation, reconcile retired identifiers, and document how multiple probes per gene are combined. Use the same eligible-gene background and mapping rules for image and tabular explanations. Report a sensitivity analysis if mapping choices materially affect findings. The 2016 snapshot is suitable for this feasibility check, not automatically the final biological annotation.
 
-## 5. Decision and next bounded milestone
+## 5. Dataset decision and next steps
 
 | Acceptance check | Status |
 |---|---|
@@ -97,19 +97,19 @@ For example, `1007_s_at` maps to both `100616237` / MIR4640 and `780` / DDR1 in 
 | Final gene mapping and enrichment background | Not frozen |
 | Reuse terms and original-study requirements | Public download verified; no blanket CC BY assumption or complete terms review |
 
-**Recommendation:** retain MILE as a conditional candidate, not a confirmed thesis benchmark. A [draft acceptance protocol](GSE13159_ACCEPTANCE_PROTOCOL.md) now specifies specimen-type controls, patient grouping, and mapping policy; it is not advisor approval. If remaining constraints cannot support the intended claims, narrow the claims or replace the candidate before model development. The other two candidate datasets remain unaudited; three independent datasets have not yet been accepted.
+**Recommendation:** retain MILE as a conditional candidate, not a confirmed thesis benchmark. A [draft acceptance protocol](GSE13159_ACCEPTANCE_PROTOCOL.md) now specifies specimen-type controls, patient grouping, and mapping policy; the scope remains to be discussed with my advisor. If remaining constraints cannot support the intended claims, narrow the claims or replace the candidate before model development. The other two candidate datasets remain unaudited; three independent datasets have not yet been accepted.
 
 ## Follow-up: original study and two-profile check
 
 **Original study.** The full primary HTML and embedded appendix were retrieved during the follow-up. Table 1 contains center-by-class counts; its center-10 column contains 199 CLL cases and no other class. The appendix describes patient-origin profiles, assay preparation, quality control, and Dn3's beta target. Tables A1–A3 cover marker summaries, Stage II diagnostic discrepancies, and selected misclassified cases; A3 lists six Stage I `N1_` identifiers, not a full patient/center map. No complete map was recovered from these reviewed materials. [Haferlach et al., Methods, Table 1, and Appendix](https://pmc.ncbi.nlm.nih.gov/articles/PMC5569671/).
 
-The local reading copy is ignored at `data/raw/gse13159/PMC5569671.html`: 349,405 bytes; SHA-256 `97f8fd3c0143ec0060057d9c78599dd3900b1410c43b999900807a32745a66ec`. It was retrieved from the article URL on 19 October. Table 1's row totals sum to 2,096. Aggregate counts must not be used to invent an accession-to-center map.
+The local reading copy is ignored at `data/raw/gse13159/PMC5569671.html`: 349,405 bytes; SHA-256 `97f8fd3c0143ec0060057d9c78599dd3900b1410c43b999900807a32745a66ec`. It was retrieved from the article URL on 19 October. Table 1's row totals sum to 2,096. Aggregate counts do not identify the center of each individual accession.
 
-**Normalization evidence.** The author's [technical disclosure US20100130372A1, Description, steps 335 and 380](https://patents.google.com/patent/US20100130372A1/en) describes normalization to fixed theoretical beta quantiles or a fixed external reference, rather than quantiles fitted anew to the study cohort. It gives p=1.2, q=3 for a Dn3 variant and discusses different probe subsets and preprocessing variants. This supports the *possibility* of sample-independent normalization; it does not identify every upstream setting used for this release. This is a patent publication, not peer-reviewed validation or advice about legal rights. The complete Liu 2006 paper remains unread.
+**Normalization evidence.** The author's [technical disclosure US20100130372A1, Description, steps 335 and 380](https://patents.google.com/patent/US20100130372A1/en) describes normalization to fixed theoretical beta quantiles or a fixed external reference, rather than quantiles fitted anew to the study cohort. It gives p=1.2, q=3 for a Dn3 variant and discusses different probe subsets and preprocessing variants. This supports the *possibility* of sample-independent normalization; it does not identify every upstream setting used for this release. This patent publication provides technical context, not peer-reviewed validation. The complete Liu 2006 paper remains unread.
 
 **Linked metadata.** [GSE122511](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE122511) is a third-party meta-analysis including GSE13159 and a new RMA processing route. It is not an independent MILE validation cohort or evidence that the original DQN3 release used RMA. Its large matrix was not downloaded; no patient linkage was recovered from the reviewed series description.
 
-**Bounded profile inspection.** Before inspecting values, selected the first deposited CLL accession and first MDS accession from the existing inventory: [GSM330929](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM330929) (blood, N1_1293) and [GSM331453](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM331453) (marrow, N1_1817). These are purposive schema checks, not representative samples or a disease comparison.
+**Two-profile inspection.** Before inspecting values, selected the first deposited CLL accession and first MDS accession from the existing inventory: [GSM330929](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM330929) (blood, N1_1293) and [GSM331453](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM331453) (marrow, N1_1817). These are purposive schema checks, not representative samples or a disease comparison.
 
 | Check | GSM330929 | GSM331453 |
 |---|---:|---:|
@@ -122,7 +122,7 @@ The local reading copy is ignored at `data/raw/gse13159/PMC5569671.html`: 349,40
 | Finite DS (`VALUE_DS`) entries | 54,675 | 54,675 |
 | DS minimum / maximum | 6.81111 / 103,204 | 3.2326 / 50,535 |
 
-These are computed file statistics, reproducible with the script below. Input bytes/hashes are recorded under `selected_sample_profiles` in [audit JSON schema v2](GSE13159_AUDIT.json). Both files have the same 45 missing DQN3 probe IDs. That is distinct from the 62 total `AFFX-` annotation rows. Do not replace missing DQN3 entries with zero, equate DS with DQN3, or automatically log-transform values that include zero. No transformation was applied. The whole-cohort audit flags remain false because two-profile checks do not certify all 2,096 expression profiles.
+These are computed file statistics, reproducible with the script below. Input bytes/hashes are recorded under `selected_sample_profiles` in [audit JSON schema v2](GSE13159_AUDIT.json). Both files have the same 45 missing DQN3 probe IDs. That is distinct from the 62 total `AFFX-` annotation rows. Missing DQN3 entries were preserved rather than zero-filled. DS and DQN3 were kept separate, and no additional transformation was applied to the DQN3 values, which already include zero. The whole-cohort audit flags remain false because two-profile checks do not certify all 2,096 expression profiles.
 
 ## Reproduce this audit
 

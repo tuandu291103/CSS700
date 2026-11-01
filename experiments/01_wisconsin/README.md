@@ -1,10 +1,10 @@
 # Experiment 01: Wisconsin data understanding and fixed-grid encoding
 
-23 October 2026 · Learning milestone · No classifier or explanation method trained
+23 October 2026. Dataset review and fixed-grid encoding, completed before classifier training.
 
 ## Question and scope
 
-Can we explain the data fields and trace every numeric feature into a grid and back without loss? This is the first small exercise requested after the professor's learning-first guidance. It is not a SOM2IMG reproduction, a clinical evaluation, or a thesis novelty claim. Earlier genomic work remains available under `week02/`.
+The first experiment examines whether each numeric feature can be placed in a grid and recovered without loss. Following my advisor's recommendation to study the pipeline in separate stages, I began with the feature definitions and encoding rules. The fixed grid serves as a simple reference representation before learning a SOM layout. The genomic feasibility work remains documented under `week02/`.
 
 Start with the executed [walkthrough notebook](walkthrough.ipynb). The [machine-readable results](results.json) contain source checksums, software versions, split membership, feature locations, scaling parameters, and numerical checks. Figures are [one encoded sample](encoding.png) and [training correlations](correlations.png).
 
@@ -31,11 +31,11 @@ The source order has three blocks of ten: `mean`, `se` (standard error), and `wo
 | symmetry | Shape symmetry |
 | fractal_dimension | Boundary-complexity measure |
 
-The brief dictionary is for orientation, not a replacement for the original feature-extraction specification. Physical units and full extraction formulas are not independently established here; do not invent micrometers or interpret these as raw microscopy pixels.
+This abbreviated dictionary summarizes the source descriptions. The physical units and full extraction formulas have not been independently verified, so the analysis treats the columns as the supplied measurements rather than raw microscopy pixels.
 
 ## Protocol chosen for this exercise
 
-These are our learning-design choices, not settings claimed from SOM2IMG:
+The following settings define this experiment rather than the SOM2IMG benchmark:
 
 1. Validate the exact source checksums, 32 fields, valid IDs/labels, finite measurements, and duplicate predictor rows. Stop on duplicate predictors until a grouping policy is specified.
 2. Make a stratified approximately 70/15/15 train/validation/test split, seed `20261023`. Store the precise row indices and IDs. Full-file checks cover integrity and label counts only; distributions and correlations use training rows.
@@ -44,7 +44,7 @@ These are our learning-design choices, not settings claimed from SOM2IMG:
 5. Decode all partitions. Require exact recovery of scaled values, then raw-value recovery within `rtol=1e-12, atol=1e-10`. An occupancy mask distinguishes unused pixels from genuine zero values; this particular grid has no padding.
 6. Examine training-only correlations and one deterministic training sample (the first training row in source order). Do not select an example because its picture looks convincing.
 
-The recorded learning test partition is not certified as an untouched final thesis holdout: this dataset appeared in the earlier archived pilot and is now used for learning. Unique record IDs and absence of exact duplicates do not establish patient independence or external clinical validity. Source values are already rounded; round-trip preservation concerns the downloaded numeric values, not the underlying measurement process.
+Wisconsin also appeared in the earlier archived pilot, so the saved test partition is used for preliminary studies rather than final thesis validation. Unique record IDs and the absence of exact duplicates do not establish patient independence. The recovery checks concern the rounded values in the downloaded file, not the original measurement process.
 
 ## Fixed grid versus SOM2IMG
 
@@ -77,9 +77,9 @@ Open `walkthrough.ipynb` in a notebook-capable editor and select `.venv/bin/pyth
 
 After walking through this notebook, compare logistic regression, random forest, and a small fixed-grid CNN on the recorded learning split. Use validation data for choices, and distinguish exploratory results from later confirmatory work. Then study explanations and shortcut controls one at a time. Spambase remains the proposed second dataset, not acquired in this milestone.
 
-Ask the professor or previous student for the intended SOM2IMG version, source code, dataset files, preprocessing, split seeds, and collision rule before numerical reproduction. No contact or author-code verification is claimed here.
+At this stage, reproducing SOM2IMG required clarification of the intended paper/code version, dataset files, preprocessing, split seeds and collision rule. The later author-code comparison is recorded separately in [Experiment 07](../07_som2img_layout/README.md).
 
-## Results and session summary
+## Results and interpretation
 
 Computed from the checksummed source files by `scripts/wisconsin_learning.py`; full evidence is in [results.json](results.json).
 
@@ -98,8 +98,8 @@ Computed from the checksummed source files by `scripts/wisconsin_learning.py`; f
 | Maximum raw-value round-trip error | 4.55 × 10⁻¹³, every partition |
 | Constant predictors in training | 0 |
 
-Training-only Spearman correlations include mean radius versus mean area **0.9996**, and mean radius versus mean perimeter **0.9977**. These associations predate image conversion. Our interpretation: a meaningful later comparison should ask what the layout or explanation adds beyond a standard correlation view, not claim that spatial placement discovered these relationships. No causal, diagnostic, or biological benefit has been demonstrated.
+Training-only Spearman correlations were **0.9996** for mean radius versus mean area and **0.9977** for mean radius versus mean perimeter. These relationships are already present in the table. A later layout comparison should therefore assess what the spatial representation adds beyond a conventional correlation analysis.
 
-**Completed:** acquired sources, documented features, checked data quality, stored reproducible splits and mappings, traced values both ways, and executed a walkthrough with figures. **Not completed:** CNN training, SOM2IMG implementation/reproduction, feature attribution, a second dataset, or a thesis finding. All 23 tests passed (ten new synthetic tests plus 13 existing audit tests); new-code lint and notebook validation passed. Both generated figures were visually inspected. These tests establish implementation checks, not research validity.
+The experiment produced a documented feature dictionary, reproducible splits, a reversible mapping and an executed walkthrough with two figures. Classifier training and attribution were deferred to subsequent experiments. At completion, all 23 tests passed, including ten new encoding tests and 13 existing audit tests. Lint and notebook validation also passed, and both figures were checked visually.
 
 A second run in a separate temporary directory produced byte-identical `results.json` under the recorded environment.

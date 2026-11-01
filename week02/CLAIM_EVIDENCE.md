@@ -4,7 +4,7 @@
 
 ## Main conclusion
 
-The biological-interpretation direction is credible, but the original motivation needs qualification. We should investigate an added benefit of spatial gene-group explanations, not begin by declaring that one model family always wins or that another family's explanations have no value.
+The literature supports investigating spatial gene-group explanations, but not the original universal claims about model performance or the usefulness of tabular explanations. I therefore frame the thesis around a testable question: under what conditions does spatial organization add reliable information to an explanation?
 
 This review is purposive, not an exhaustive systematic review. Reference IDs R1-R9 resolve in the [reference library](../references/REFERENCES.md); publication locators and reading depth are recorded there.
 
@@ -25,7 +25,7 @@ Sources: [R1](https://proceedings.neurips.cc/paper_files/paper/2022/hash/0378c76
 
 ## What exactly is the interpretability problem?
 
-Our proposed operational problem has three parts. These are study definitions and deductions, not claims that the literature has proven our method superior.
+I separate the interpretability problem into three questions. This is a working framework for the study, rather than an established advantage of the proposed method.
 
 1. **Traceability:** Which original probe or gene produced a highlighted pixel? Record the input identifier, annotation version, transformations, coordinate, and any collisions.
 2. **Model explanation:** Does a highlighted group actually matter to the chosen prediction under a stated test? A lookup table answers where a gene was placed, not whether a heatmap faithfully explains the model.
@@ -37,9 +37,9 @@ Also distinguish **feature grouping** from **sample grouping**: the layout organ
 
 ## What this means for our contribution
 
-DeepFeature is the closest starting reference found in this review. Its existence rules out presenting image-to-gene decoding plus pathway analysis as wholly new. Our possible contribution is a controlled evaluation of when spatial organization adds reproducible group-level information, with explicit mapping limitations. Whether that is sufficiently novel is still an advisor and broader literature-review decision.
+DeepFeature is the closest starting reference found in this review. Its existence rules out presenting image-to-gene decoding plus pathway analysis as wholly new. Our possible contribution is a controlled evaluation of when spatial organization adds reproducible group-level information, with explicit mapping limitations. Its novelty and scope need further literature review and discussion with my advisor.
 
-Proposed safeguards for a later protocol, **not implementations completed this week**:
+The following controls are proposed for the experimental protocol:
 
 - Compare tabular explanations plus the **same** gene-set analysis against T2I explanations plus gene-set analysis. Comparing a bare ranked list to a richly annotated heatmap would mix modeling and presentation effects.
 - Match gene budgets, annotation universe, pathway release, and multiple-testing procedure. Do not equate a larger number of enriched sets with an automatically better explanation.
@@ -49,11 +49,11 @@ Proposed safeguards for a later protocol, **not implementations completed this w
 - Use model-dependence checks motivated by R8, and a random-layout control if later testing whether neighborhood structure adds value.
 - Reserve “easier to understand” for measured human-task outcomes; reserve causal or clinical claims for evidence beyond this proposed computational study.
 
-These choices are proposed research controls derived from the identified risks. They do not require us to launch an experiment matrix during Week 2.
+Week 2 establishes the rationale for these controls; their implementation belongs to later experimental stages.
 
 ## Source-audit note
 
-DeepFeature's Materials and methods states 6,280 downloaded files, 64 removed, and 6,126 remaining. The subtraction gives 6,216. This is an unresolved inconsistency in the published text, verified in both the publisher text and the institutional PDF (printed page 7). We do **not** silently repair it or treat either final count as an audited cohort. If reproducing that cohort later, verify the actual release and sample manifest.
+DeepFeature's Materials and methods states 6,280 downloaded files, 64 removed, and 6,126 remaining. The subtraction gives 6,216. This is an unresolved inconsistency in the published text, verified in both the publisher text and the institutional PDF (printed page 7). Neither reported final count is treated as an audited cohort size. Reproduction would require the original release and sample manifest to resolve the discrepancy.
 
 ## Week 2 acceptance status
 
@@ -66,4 +66,4 @@ DeepFeature's Materials and methods states 6,280 downloaded files, 64 removed, a
 
 ## 19 October addition: SOM2IMG
 
-The [focused review](SOM2IMG_REVIEW.md) now covers all six pages of the supplied anonymous manuscript, separately from the final IEEE bibliographic record. Its qualitative feature-grouping discussion supports a reason to inspect spatial layouts, not a demonstrated improvement in biological interpretation. None of its nine reported benchmarks is identified as a gene-expression study. Collision handling and fold-local layout fitting require implementation verification before reuse. These limits concern the reviewed copy, not an uninspected final publication; they neither prove a code defect nor establish our thesis's novelty.
+The [focused review](SOM2IMG_REVIEW.md) now covers all six pages of the supplied anonymous manuscript, separately from the final IEEE bibliographic record. Its qualitative feature-grouping discussion supports a reason to inspect spatial layouts, not a demonstrated improvement in biological interpretation. None of its nine reported benchmarks is identified as a gene-expression study. Collision handling and fold-local layout fitting require implementation verification before reuse. These questions concern the reviewed manuscript rather than the uninspected final publication. The later [author-code experiment](../experiments/07_som2img_layout/README.md) examines the implementation separately.

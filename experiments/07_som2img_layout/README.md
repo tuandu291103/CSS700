@@ -1,18 +1,18 @@
-# Experiment 07 — SOM2IMG: layout, preservation, and a matched CNN comparison
+# Experiment 07: SOM2IMG feature layouts and CNN classification
 
-Completed **31 October 2026**. Separate learning experiment on Wisconsin Diagnostic; not a clinical study, genomic finding, or reproduction of an entire published benchmark.
+Completed 31 October 2026. This preliminary study uses Wisconsin Diagnostic to examine feature preservation, spatial organization and classification with the authors' SOM2IMG implementation.
 
 [Protocol recorded before execution](protocol.json) · [All computed evidence](results.json) · [Runner](../../scripts/som2img_learning.py) · [Tests](../../tests/test_som2img_learning.py) · [Weekly discussion brief](../../docs/WEEKLY_FINDINGS_2026-10-31.md)
 
 ## Main finding
 
-Using the supplied SOM2IMG implementation, all three learned layouts preserved all 30 features and put more similar training-feature profiles next to one another than our three lossless random layouts. However, exact neighbor relationships varied across SOM seeds. The small prediction differences do not establish a general winner, and we have not yet measured explanation quality on these new models.
+All three SOM layouts preserved the 30 features and placed more similar training-feature profiles next to one another than the three lossless random layouts. However, the exact neighbor relationships varied across SOM seeds. The mean accuracy difference between SOM and random layouts was 0.65 percentage points on 86 evaluation records. This difference is too limited to establish a general advantage, and explanation quality has not yet been evaluated for these models.
 
-The lesson for our thesis is to measure **feature preservation, neighborhood structure, prediction, explanation faithfulness, and domain meaning separately**. A good result on one is not evidence that the others are good.
+These results motivate separate evaluations of feature preservation, neighborhood structure, prediction and explanation quality. In particular, an organized layout may provide a basis for interpretation, but its usefulness depends on whether the explanations are faithful, stable and meaningful in the application domain.
 
 ## 1. What the newly supplied repository resolves
 
-The user supplied [Kerbash/tab2img-bench](https://github.com/Kerbash/tab2img-bench). We inspected and executed commit **`dc0ef691db733ebcba4d13b53ca58e258f76ef0a`** (30 October 2026), preserved an unchanged checkout under the ignored `.cache/tab2img-bench/`, and saved source-file SHA-256 hashes in `results.json`. The project has an MIT license; no upstream source was copied into our tracked implementation.
+The experiment uses [Kerbash/tab2img-bench](https://github.com/Kerbash/tab2img-bench) at commit **`dc0ef691db733ebcba4d13b53ca58e258f76ef0a`** (30 October 2026). An unchanged checkout is stored locally under `.cache/tab2img-bench/`, with source-file SHA-256 hashes recorded in `results.json`. The repository is MIT-licensed. This project calls its implementation without maintaining a separate copy of the authors' source code.
 
 | Earlier question | Evidence in this specific code version |
 |---|---|
@@ -20,14 +20,14 @@ The user supplied [Kerbash/tab2img-bench](https://github.com/Kerbash/tab2img-ben
 | What happens when features share a best-matching unit (BMU)? | Default `spillover` sequentially moves a feature to the nearest free pixel by Manhattan distance. Ties follow the first free coordinate in array order. With our sufficient 5×6 grid, every feature is retained. A user-specified undersized grid can overwrite features; preservation must be checked, not assumed for every configuration. [SOM implementation][som] |
 | Is fitting within each fold? | The current benchmark fits its outer scaler and each layout on the training fold. This resolves the code-version question; it does not retroactively prove how the older manuscript was run. [Benchmark implementation][evaluation] |
 | Which random baseline isolates placement? | `SnakeRandom` places every feature once with the same featurewise scaling. `Random` samples with replacement and applies different, within-row scaling; it confounds placement, feature coverage and value transformation. [Controls][random] |
-| Are benchmark method names exact author implementations? | The README explicitly describes several comparators as simplified implementations; its `IGTD`, for example, is not the original iterative pixel-swapping implementation. Do not use these alone to claim a definitive comparison with the original methods. [README][repo] |
+| Are benchmark method names exact author implementations? | The README describes several comparators as simplified implementations. Its `IGTD`, for example, differs from the original iterative pixel-swapping method. A comparison with the original methods would therefore require checking their respective implementations. [README][repo] |
 | Is this identical to our six-page reading copy? | Not established. This repository describes *Which Tabular-to-Image Method, for Which Data? A Regime Map from 51 Datasets*, whereas the older supplied copy describes nine benchmarks. We keep manuscript, IEEE citation and code-version evidence separate. [README][repo]; [historical reading notes](../../week02/SOM2IMG_REVIEW.md). |
 
-The 18 upstream tests passed locally, including its bundled-result ranking check. That check reads supplied outputs; it does **not** mean we retrained 51 datasets or independently validated their provenance.
+All 18 upstream tests passed locally. One checks rankings in the supplied benchmark outputs; passing it does not reproduce the underlying 51-dataset training study.
 
 ## 2. Our controlled setup and deviations from upstream
 
-We reuse the audited [UCI Wisconsin Diagnostic data](../01_wisconsin/README.md): 569 samples, 30 cell-morphology measurements, benign/malignant labels. No IDs or labels enter an image. These are not gene-expression measurements. The ten measurement families and their mean/SE/worst summaries come from the [original feature dictionary][dictionary].
+The experiment reuses the audited [UCI Wisconsin Diagnostic data](../01_wisconsin/README.md), comprising 569 samples, 30 cell-morphology measurements and benign/malignant labels. IDs and labels are excluded from the image inputs. The ten measurement families and their mean/SE/worst summaries follow the [original feature dictionary][dictionary]. This morphology dataset provides a small, documented example before a later genomic application.
 
 - Split the old 397 training records into **318 fitting / 79 inner-stop** records, stratified with seed 20261031. Fit all scalers and SOM layouts on the 318 only.
 - Use the old **86 validation records** for evaluation after all models are frozen: 54 benign, 32 malignant. These records were inspected previously, so they are exploratory evaluation data, not a new sealed holdout.
@@ -37,13 +37,13 @@ We reuse the audited [UCI Wisconsin Diagnostic data](../01_wisconsin/README.md):
 - Cross each layout with CNN seeds 20261023/24/25: **21 models**, not 21 independent datasets. Reuse our 1,282-parameter CNN, Adam 0.003, weight decay 0.0001, batch 32, cap 200 epochs and patience 30. Select the lowest inner-stop cross-entropy, never an evaluation score.
 - CNN inputs are **one-channel float32, without clipping or 8-bit quantization**. This deliberately differs from the upstream default three-channel uint8 pipeline, larger default CNN, 30 epochs and 10-fold weighted-F1 benchmark. It is a controlled adaptation using the author's layout code, not an exact paper-score reproduction.
 
-All settings were written before the first run. No best-seed selection, settings search, threshold tuning, or training extension followed the observed scores. All 21 runs reached the 200-epoch cap; many selected late checkpoints, so convergence beyond this fixed training budget is unresolved.
+The settings were recorded before training and remained unchanged after evaluation. Every seed is included in the report. All 21 runs reached the 200-epoch limit, with many selecting late checkpoints, so the experiment does not establish convergence beyond this budget.
 
 ## 3. Feature preservation and layout structure
 
-All seven layouts recover all 30 scaled values **exactly in float64** on fitting, inner-stop and evaluation partitions. Float32 model inputs introduce only normal casting precision, not layout-specific value changes.
+Decoding each of the seven layouts recovered all 30 scaled values exactly in float64 on the fitting, inner-stop and evaluation partitions. The subsequent float32 cast introduces a small precision difference shared by all methods.
 
-For SOM seeds 42/43/44, only **23/24/25 distinct BMUs** were initially selected by the 30 features. Spillover retained all 30, moving **11/12/11 features** away from their own BMUs. These counts need not equal the duplicate-BMU count: an earlier spillover can occupy a later feature's preferred cell. Maximum moves were 5/3/3 Manhattan grid steps. Thus the collision rule can affect local neighborhoods even when no feature is lost. These are measured outcomes for this configuration, not a general defect claim.
+For SOM seeds 42/43/44, the 30 features initially selected **23/24/25 distinct best-matching units (BMUs)**. Spillover retained all features but moved **11/12/11** away from their own BMUs. A previous spillover can occupy a later feature's preferred cell, which explains why the number moved can exceed the number of duplicate BMUs. The largest moves were 5/3/3 Manhattan grid steps. Collision handling therefore affects the final neighborhoods even when it preserves every feature.
 
 ![First predeclared layout seed per method; colors identify measurement families, not values or importance](feature_layouts.png)
 
@@ -60,7 +60,7 @@ Same-measurement distance averages the Manhattan distances for the 30 pairs shar
 | SOM2IMG, mean of 3 layouts | 0.1662 | 0.5803 | 3.244 |
 | Descriptive reference, 1,000 random layouts | 0.2273 | 0.4035 | 3.682 |
 
-SOM improves both profile-similarity summaries here. That is partly an expected check of the objective it was trained to optimize, not a novel independent finding. Moreover, SOM's same-measurement distances (3.20–3.27) remain inside the random reference's central 95% interval (3.07–4.20). We therefore do **not** claim established semantic enrichment. The reference band is a distribution of random layouts, not a confidence interval for model performance or a corrected hypothesis test.
+SOM improves both profile-similarity measures in this experiment, consistent with its training objective. This result is an implementation and organization check rather than independent evidence of domain meaning. The same-measurement distances for SOM (3.20–3.27) also fall within the random reference's central 95% interval (3.07–4.20), so this diagnostic does not establish semantic enrichment. The reference band describes variation among random layouts; it is neither a performance confidence interval nor a corrected hypothesis test.
 
 ![All seeds and random-layout reference](layout_diagnostics.png)
 
@@ -71,7 +71,7 @@ Compare the unordered sets of adjacent feature pairs using Jaccard overlap, `int
 - SOM2IMG mean neighbor Jaccard: **0.211**, range **0.153–0.256**.
 - SnakeRandom mean neighbor Jaccard: **0.035**, range **0.021–0.054**.
 
-SOM is more consistent than these random controls, but exact neighbor sets still vary substantially. Three layout seeds do not characterize all uncertainty. A single attractive map should not be presented as a definitive grouping; later work should evaluate broader neighborhoods and explanation stability as well.
+The SOM layouts are more consistent than these random controls, although their exact neighbor sets still vary substantially. Three seeds provide only a limited estimate of layout variability. Further work should assess broader neighborhoods and the stability of feature explanations, rather than relying on one selected map.
 
 ## 4. Prediction: promising, small exploratory differences
 
@@ -83,15 +83,15 @@ Every model uses the same 86 evaluation records and threshold `P(M) > 0.5`. Mean
 | SnakeRandom | 9 | 98.32% | 98.03% | 0.9820 | 0.0744 |
 | SOM2IMG | 9 | 98.97% | 98.96% | 0.9890 | 0.0536 |
 
-SOM's accuracy advantage over random averages **0.65 percentage points**—less than one additional correct prediction per 86-record run. In nine paired layout/CNN-seed comparisons it scored higher four times and tied five times. Fixed scored 83–85/86, random 84–85/86, and SOM 84–86/86. These dependent seed runs on one previously studied split do not establish statistical superiority or generalization to another dataset.
+The mean SOM–random accuracy difference is **0.65 percentage points**, equivalent to less than one additional correct prediction per 86-record run. SOM scored higher in four of the nine paired layout/CNN-seed comparisons and tied in five. Correct predictions ranged from 83–85/86 for fixed, 84–85/86 for random and 84–86/86 for SOM. Because these runs share one previously studied split, the differences do not establish statistical superiority or performance on another dataset.
 
 ![All model runs rather than a selected best seed](prediction_comparison.png)
 
-Do not compare this table directly with last week's learning-test table: fitting sizes, checkpoint partitions and evaluation records differ. We did not refit tabular baselines here, so this is not evidence that SOM-CNN outperforms tabular ML.
+The fitting sizes, checkpoint partitions and evaluation records differ from last week's learning-test comparison. Direct comparison with those scores would therefore be inappropriate. Tabular baselines were not refitted here, so the experiment does not compare SOM-CNN with tabular ML.
 
 ## 5. Separate numerical audit: a pixel can change before the CNN sees it
 
-The upstream authors already document that default `quantize=True, clip=False` can wrap out-of-range values when casting to uint8. We confirmed this with their **unchanged `encode_images` function**, rather than claiming discovery of a previously unknown bug. [Encoding implementation][encoding]; [README reproducibility notes][repo].
+The authors document that the default `quantize=True, clip=False` settings can wrap out-of-range values during conversion to uint8. The audit reproduced this behavior using their unchanged `encode_images` function and measured its occurrence on the Wisconsin evaluation inputs. [Encoding implementation][encoding]; [README reproducibility notes][repo].
 
 On our 86 evaluation rows × 30 features:
 
@@ -103,13 +103,13 @@ On our 86 evaluation rows × 30 features:
 
 ![Largest numerical changes; these examples do not estimate model performance effects](encoding_audit.png)
 
-We did not train matched clipped/unclipped models, so we cannot quantify accuracy or attribution consequences. The layout comparison above uses floating values for **every** method and is not affected by this uint8 behavior. Future benchmark reproduction must distinguish reproducing historical behavior from choosing safe numerical inputs for new interpretation experiments.
+No matched clipped or quantized models were trained, leaving the effect on accuracy and attribution unmeasured. Every model in the layout comparison uses floating-point values and therefore avoids this uint8 conversion. Any later reproduction of the authors' benchmark will need to record whether it retains the historical encoding or changes it.
 
 ## 6. How this connects to last week's work
 
 Our [fixed-model explanation exercise](../03_wisconsin_explanations/README.md) found strong IG/SHAP magnitude agreement but poor results when Grad-CAM coordinates were naively treated as individual feature rankings. Our [synthetic shortcut experiment](../04_shortcut_sandbox/README.md) showed that an apparently foreground-only attribution can coexist with background-dependent prediction when the reference leaves the background unchanged.
 
-This week adds a preceding check: **what information actually reaches the model, and how stable is its spatial arrangement?** Exact feature tracing is now demonstrated for real author-code SOM layouts, but no new attribution comparison or biological interpretation benefit has been measured. Sources for the explanation concepts remain [Grad-CAM](https://arxiv.org/abs/1610.02391), [Integrated Gradients](https://arxiv.org/abs/1703.01365), and [sanity checks](https://arxiv.org/abs/1810.03292); the numerical observations are our saved experiment outputs.
+The present experiment examines an earlier stage of that process: the information entering the model and the stability of its spatial arrangement. Feature tracing now works with the authors' SOM layouts. The next study will test explanations from these models using the principles in [Grad-CAM](https://arxiv.org/abs/1610.02391), [Integrated Gradients](https://arxiv.org/abs/1703.01365) and [saliency sanity checks](https://arxiv.org/abs/1810.03292). Improved attribution or biological interpretation remains an open question.
 
 ## Reproduce and verify
 
@@ -133,11 +133,11 @@ MPLCONFIGDIR=/private/tmp/css700-matplotlib .venv/bin/python -m unittest discove
 .venv/bin/python -m ruff check scripts/som2img_learning.py tests/test_som2img_learning.py
 ```
 
-Verification completed locally: **94 project tests**, **18 upstream tests**, clean new-code lint, and `pip check`. A separate complete run reproduced the JSON and all four PNGs byte-for-byte. All 21 saved checkpoints were reloaded and produced exactly the stored evaluation probabilities. Figures were visually inspected. Upstream code, earlier results and archived research were not changed. Checkpoints, raw data and the upstream checkout remain ignored; the compact evidence, code and report are tracked candidates.
+All **94 project tests** and **18 upstream tests** passed, along with lint checks for the new code and `pip check`. A separate full execution reproduced the JSON and four PNGs byte-for-byte. Reloading all 21 saved checkpoints reproduced the stored evaluation probabilities. The figures were also checked visually. Checkpoints, raw data and the unchanged upstream checkout remain outside version control; the repository contains the experiment code, compact evidence and report.
 
-## Next bounded step
+## Next experiment
 
-Keep all fitted models frozen. Specify the same deterministic evaluation cases, original-class target and training-median reference across layouts, then compare input-level attributions **after decoding back to feature names**. Check reference sensitivity and feature replacement before proposing any biological usefulness claim. Do not pick the best SOM seed or retune these models against the observed evaluation scores.
+The next experiment will use the existing models without retraining. It will specify common evaluation cases, target scores and a training-median reference, then compare input-level attributions after decoding them to feature names. Reference sensitivity and matched feature replacement will test whether the resulting explanations reflect model reliance. All SOM seeds will remain in the analysis.
 
 [repo]: https://github.com/Kerbash/tab2img-bench/blob/dc0ef691db733ebcba4d13b53ca58e258f76ef0a/README.md
 [som]: https://github.com/Kerbash/tab2img-bench/blob/dc0ef691db733ebcba4d13b53ca58e258f76ef0a/src/tab2img/methods/som.py

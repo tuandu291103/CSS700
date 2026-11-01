@@ -1,12 +1,12 @@
-# Experiment 02: learn the models before explaining them
+# Experiment 02: Wisconsin classifier comparison
 
-23 October 2026 · Exploratory learning experiment · Not a SOM2IMG reproduction
+23 October 2026. Preliminary comparison of tabular classifiers and a fixed-grid CNN.
 
 ## Brief result
 
-The small fixed-grid CNN learned a useful classifier on this split, with accuracy close to logistic regression. It did not establish better interpretability, a biological discovery, or a general ranking of model families. Our next question is what evidence each model used to reach its predictions.
+The small fixed-grid CNN achieved accuracy close to logistic regression on the selected split. Its mean log loss was higher, indicating a difference in probability assignments despite similar classification accuracy. This experiment evaluates prediction; the subsequent explanation study examines which features support the models' decisions.
 
-All models use the same 397 training, 86 validation, and 86 learning-test records from [Experiment 01](../01_wisconsin/README.md). Values below are computed results, not numbers copied from a paper. See the [complete results and saved predictions](results.json) and the [settings recorded before the first training run](protocol.json). This local protocol is not an external preregistration.
+All models use the same 397 training, 86 validation and 86 learning-test records from [Experiment 01](../01_wisconsin/README.md). The [complete results](results.json) retain the predictions supporting the tables below. The [protocol](protocol.json) was recorded locally before training, rather than externally preregistered.
 
 ### Learning-test results
 
@@ -23,12 +23,12 @@ Individual correct counts: logistic regression **83/86**; CNN **83, 83, 82/86**;
 
 Metric meanings: accuracy is overall correctness; balanced accuracy averages the two class recalls; macro-F1 averages classwise F1; ROC-AUC evaluates score ranking across thresholds; log loss evaluates probability assignments, with lower values better. These measure **prediction**, not explanation quality. Definitions: [scikit-learn evaluation guide](https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics).
 
-## What we learned
+## Analysis
 
 1. **Similar accuracy can hide different behavior.** Logistic regression and the CNN have similar hard-label performance, but CNN mean log loss is worse (0.2480 versus 0.1561). This is a difference in probability quality, not a completed calibration analysis or an attribution result.
 2. **One metric is not a universal ranking.** Forest has the highest mean ROC-AUC here despite lower accuracy at the fixed threshold. We did not optimize a threshold after inspecting test labels.
 3. **Checkpoint selection matters.** CNN seeds selected epochs 199, 197, and 142. The first two reached the 200-epoch cap; convergence is not established. The third stopped at 172 after 30 epochs without a better validation loss, then restored epoch 142. At that selected epoch train/validation losses were 0.0741/0.0605; at the last epoch they were 0.0709/0.0841. This is a concrete example of training loss improving while validation loss worsens. [Learning curves](learning_curves.png)
-4. **A gap needs investigation, not a diagnosis by itself.** Forest training macro-F1 is 0.9946 while mean test macro-F1 is 0.9167. All three families score well on this small validation set. Training/test gaps can reflect fitting and split difficulty; this exercise cannot isolate the cause. No automatic retuning was performed.
+4. **Training and test performance differ.** Forest training macro-F1 is 0.9946 while mean test macro-F1 is 0.9167. All three families perform well on the small validation set. This experiment cannot distinguish the effects of fitting from differences in partition difficulty. The settings remained unchanged after test evaluation.
 5. **We still do not know which features caused a particular model decision.** Predictive success and visually organized inputs do not establish faithful explanations. Fixed-grid neighborhood positions are arbitrary. Interpretation and shortcut tests remain separate experiments.
 
 ## How our CNN works
@@ -52,7 +52,7 @@ During training, cross-entropy compares the logits with the known class. Backpro
 
 **Concrete forward-pass check:** using the first listed CNN seed and the same first training record as Experiment 01 (ID 842302, label M), the selected model outputs logits approximately `[-5.9268, 4.2315]`, then probabilities `[0.0000388, 0.9999613]`. This is a training example for tracing computation, not evidence of generalization or calibrated clinical confidence. Reloading the saved checkpoint reproduces its outputs.
 
-Questions to answer before continuing: What changes when weights are trained? Why does a 5×6 activation map not mean that each activation belongs to exactly one original feature? Why can a confident prediction be wrong? How would we test the reason rather than just inspect a picture?
+These observations motivate the explanation study. In particular, an activation at one coordinate combines information from neighboring inputs, and a high predicted probability can still accompany an error. The next analysis will test feature reliance rather than infer it from the appearance of an activation map.
 
 ## Fixed protocol and controls
 
@@ -81,6 +81,6 @@ Validation performed: all 33 tests and new-code lint passed; complete rerun equa
 
 ## Limits and next milestone
 
-This is one morphology dataset and one reused learning split, with no patient-independence guarantee, external clinical validation, matched tuning budget, SOM2IMG reproduction, or explanation-quality measurement. The results do not prove that CNNs always beat or lose to tabular methods. Earlier genomic work is preserved.
+The comparison covers one morphology dataset and one reused learning split. Patient independence and external clinical performance have not been established, and the model families did not receive matched tuning budgets. These limits prevent a general ranking of CNNs and tabular models. Explanation quality is outside the scope of this experiment.
 
-Next, freeze these models and study explanations on a small deterministic set of validation examples, beginning with the first listed CNN seed rather than choosing a seed by its test score. Learn Grad-CAM and input-level attribution, map outputs back to named features, then introduce perturbation and model-randomization checks. Do not call a heatmap a thesis finding before these checks. The second dataset and learned-layout comparison remain later milestones.
+The planned follow-up uses the existing models and a deterministic set of validation examples. It starts with the first listed CNN seed, avoiding selection by test score, and compares Grad-CAM with input-level attribution after tracing the outputs to feature names. Perturbation and model-randomization checks will assess the behavior of those explanations. This work is reported in [Experiment 03](../03_wisconsin_explanations/README.md).

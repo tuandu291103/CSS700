@@ -1,12 +1,12 @@
 # MILE acceptance protocol — draft v0.1
 
-19 October 2026 | For advisor review | **No approval to begin confirmatory training**
+19 October 2026 | Draft for advisor review; confirmatory training remains contingent on acceptance
 
 ## Decision
 
-Keep GSE13159 as a **conditional candidate**. Permit file/provenance checks now. A processed-data exploratory pilot may become reasonable after the technical gates below pass and its limitations are agreed with the advisor. Do not yet claim patient-independent validation, center generalization, or improved biological interpretation.
+GSE13159 remains a conditional candidate while file integrity and processing provenance are assessed. An exploratory pilot may be appropriate after the technical criteria below are met and its limitations are discussed with my advisor. Patient independence, center generalization and biological interpretation remain unresolved.
 
-This document specifies our proposed design choices; they are not published findings or completed experiments. The [feasibility report](GSE13159_FEASIBILITY.md) separates observed evidence from assumptions, including the follow-up on the original article and two sample tables.
+This draft sets out the proposed acceptance criteria and analysis choices. The [feasibility report](GSE13159_FEASIBILITY.md) separates observed evidence from assumptions, including the follow-up on the original article and two sample tables.
 
 ## Evidence now available
 
@@ -14,7 +14,7 @@ This document specifies our proposed design choices; they are not published find
 - The original paper's Table 1 provides center-by-class counts, not an assay-level center map. Center 10 contributed 199 samples, all CLL. The Methods/Appendix describe patient-origin specimens and laboratory processing, but the reviewed article/appendix does not provide a complete patient/center linkage file. [Haferlach et al., Table 1 and Appendix](https://pmc.ncbi.nlm.nih.gov/articles/PMC5569671/).
 - Two preselected full sample tables have exact GPL570 probe-ID coverage. Each contains 54,630 finite DQN3 values in [0, 1] and 45 missing values, all on `AFFX-` probes. These two checks do not establish the full cohort's missingness or independence. [GSM330929](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM330929), [GSM331453](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM331453), [computed statistics](GSE13159_AUDIT.json).
 
-## 1. Acceptance gates and permitted claims
+## 1. Acceptance criteria and scope of conclusions
 
 | Gate | Evidence required before passing | Current status / consequence |
 |---|---|---|
@@ -27,12 +27,12 @@ This document specifies our proposed design choices; they are not published find
 
 If patient grouping stays unavailable, an advisor-approved exploratory **assay-level** analysis must say so; it must not be relabeled patient-independent. If center IDs stay unavailable, within-cohort results cannot establish center robustness. These are separate limitations: missing center IDs do not by themselves prove duplicate patients. No identifying patient information is needed or should be sought.
 
-If processing or identity concerns cannot support the intended thesis claims, replace MILE for the confirmatory study. Do not repeatedly relax criteria to retain it. A dataset's convenience or CNN performance is not an acceptance criterion.
+MILE will need to be replaced in the confirmatory study if its processing or identity records cannot support the intended evaluation. Acceptance depends on data quality and study suitability, not convenience or observed CNN performance.
 
 ## 2. Proposed cohort and split rules
 
 1. Start with the 18 deposited labels as the descriptive reference cohort. Preserve original labels and a separate versioned analysis-label dictionary. Do not rename the combined non-leukemia/healthy group as entirely healthy or adopt modern clinical labels by guesswork.
-2. Freeze any exclusions before performance comparisons. Keep an accession-level reason for each exclusion. Do not silently remove CLL by selecting only marrow, or merge rare groups merely to improve scores.
+2. Freeze any exclusions before performance comparisons. Keep an accession-level reason for each exclusion. A marrow-only cohort would exclude CLL and therefore requires a separate target definition; rare groups will not be merged solely to improve scores.
 3. If verified patient/specimen groups are available, keep related assays together in every outer and inner partition. If grouping is unavailable, explicitly record that fact; a duplicate-expression screen is not a substitute for donor linkage.
 4. Define fold count, seeds, and rare-class support after the independent-group counts are known. Store the exact split manifest before tuning. Never split by accession order or use test results to select the cohort.
 5. Fit new feature filtering/selection, scaling, image layouts, and hyperparameters only within the corresponding training partition. Use identical held-out groups and eligible features for compared model families. Do not present the original study's reported score as a directly comparable baseline under our different protocol.
@@ -60,12 +60,12 @@ For predictive reporting, propose macro-F1, balanced accuracy, and per-class pre
 - Proposed primary biological comparison: exclude controls, unmapped probes, and multi-gene probes under the frozen annotation, then combine multiple eligible probes per gene by a declared within-sample median. Keep probe-level results as a sensitivity analysis. Apply the same input/mapping policy to image and tabular models; this rule has not been implemented or validated yet.
 - Freeze the gene-set knowledgebase and eligible-gene background independently of held-out outcomes. Separate annotation used to construct a model from annotation used to evaluate explanations. Enrichment alone is not proof of a causal mechanism or added interpretability; the broader evaluation must also assess stability, faithfulness, and randomization checks. See the [claim evidence review](CLAIM_EVIDENCE.md).
 
-Fixed-target normalization can be sample-independent in principle. A primary technical disclosure describes beta-target DQN normalization, but multiple implementation variants are possible; it is not a reproduction certificate for this GEO release. See the preprocessing follow-up in the [audit](GSE13159_FEASIBILITY.md#follow-up-original-study-and-two-profile-check).
+Fixed-target normalization can be sample-independent in principle. A primary technical disclosure describes beta-target DQN normalization, but multiple implementation variants are possible; it does not verify the exact pipeline used for this GEO release. See the preprocessing follow-up in the [audit](GSE13159_FEASIBILITY.md#follow-up-original-study-and-two-profile-check).
 
-## Next bounded work
+## Next steps
 
-1. Present this draft and the specimen/center limitations to the advisor. Ask whether a clearly labeled exploratory MILE pilot is useful if complete linkage remains unavailable. No advisor approval is recorded yet.
+1. Present this draft and the specimen/center limitations to the advisor. Ask whether a clearly labeled exploratory MILE pilot is useful if complete linkage remains unavailable. The exploratory scope remains to be agreed.
 2. Check the complete processed release's size and provenance before acquisition; then audit IDs, missingness, and duplicate profiles without training. Freeze the final annotation policy separately.
-3. Continue feasibility checks on the other candidate datasets. Do not let unresolved MILE metadata substitute for the proposal's requirement for three accepted independent datasets.
+3. Continue feasibility checks on the other candidate datasets. The broader plan still requires three accepted independent datasets.
 
-**Stop before model training:** record the acceptance decision, permitted claim scope, remaining limitations, cohort/feature manifests, split rules, and evaluation protocol. This draft is a concrete preparation step, not a completed experimental protocol or a positive model result.
+Before model training, the study needs a recorded acceptance decision, a defined evaluation scope, cohort and feature manifests, split rules and a complete experimental protocol. This draft provides the criteria for that decision.

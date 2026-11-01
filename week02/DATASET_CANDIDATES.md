@@ -4,13 +4,13 @@ Started 15 October; updated 19 October 2026 | MILE metadata/annotation and two p
 
 ## Selection principle
 
-**26 October follow-up:** the professor supplied the NCI TCGA and UCSC Xena resources (guidance dated 21 October). An [initial source check](../docs/TCGA_XENA_FEASIBILITY.md) was followed by a [full TCGA-BRCA acquisition audit](../experiments/05_tcga_brca_audit/README.md): 60,660 expression identifiers × 1,226 samples, complete clinical/map joins, 1,095 participants. The conservative 1,170-sample cohort is now used in an [exploratory prediction pilot](../experiments/06_tcga_brca_pilot/README.md), including a BH-site holdout. Final biological/eligibility/site-confounding questions remain. This has not replaced or finally accepted any candidate below. Xena and TCGA are not independent datasets, and potential overlap with D3 must be checked.
+**26 October follow-up:** the professor supplied the NCI TCGA and UCSC Xena resources (guidance dated 21 October). An [initial source check](../docs/TCGA_XENA_FEASIBILITY.md) was followed by a [full TCGA-BRCA acquisition audit](../experiments/05_tcga_brca_audit/README.md): 60,660 expression identifiers × 1,226 samples, complete clinical/map joins, 1,095 participants. The conservative 1,170-sample cohort is now used in an [exploratory prediction pilot](../experiments/06_tcga_brca_pilot/README.md), including a BH-site holdout. Final biological/eligibility/site-confounding questions remain. The earlier candidates remain under consideration; the final biological evaluation set is not yet selected. Xena and TCGA are not independent datasets, and potential overlap with D3 must be checked.
 
-Our proposed selection criteria are: a clear prediction target; recoverable gene or probe identities; enough independent samples for the intended evaluation; inspectable preprocessing; and an annotation route for group-level interpretation. We will not select datasets because they already favor a CNN. A repository sample count is not a verified count of independent patients, and a probe count is not a count of unique genes.
+Our proposed selection criteria are: a clear prediction target; recoverable gene or probe identities; enough independent samples for the intended evaluation; inspectable preprocessing; and an annotation route for group-level interpretation. Dataset selection will be based on these criteria rather than an expected advantage for either model family. A repository sample count is not a verified count of independent patients, and a probe count is not a count of unique genes.
 
 The shortlist spans breast-tumor subtypes, hematological diagnoses, and multi-tumor RNA-seq classification. This is domain breadth within transcriptomics, not evidence for all genomic modalities or all noisy tabular problems.
 
-**SOM2IMG clarification (19 October):** the supplied reference evaluates a method on nine benchmarks, none described as gene-expression data. The [focused review](SOM2IMG_REVIEW.md#2-which-datasets-were-used) records their identities and source-count discrepancies. Wisconsin Diagnostic is a possible separate technical check, not a substitute for a gene-expression cohort. None of the three candidates below was established as a SOM2IMG benchmark by that review. Confirm what the advisor means by reusing its dataset before changing the shortlist.
+**SOM2IMG clarification (19 October):** the supplied reference evaluates a method on nine benchmarks, none described as gene-expression data. The [focused review](SOM2IMG_REVIEW.md#2-which-datasets-were-used) records their identities and source-count discrepancies. Wisconsin Diagnostic is a possible separate technical check, not a substitute for a gene-expression cohort. None of the three candidates below was established as a SOM2IMG benchmark by that review. The intended role of the SOM2IMG benchmarks needs to be distinguished from that of the genomic evaluation datasets.
 
 ## Shortlist at a glance
 
@@ -30,11 +30,11 @@ An inspected sample record reports 29,873 processed probe rows. Its processing d
 
 **Why it could fit (our rationale).** A within-organ subtype task could test whether spatial groups convey information beyond a ranked list without relying entirely on differences between organs. The small proposed cohort also makes feasibility checks manageable, though it is a weak setting for confident claims about a large CNN.
 
-**Proposed cohort.** Initially consider the 130 primary tumors only; exclude normal tissue and cell lines. Do not silently equate the series' “TN” wording with every sample-level “Basal” label: reconcile the label dictionary and associated study. The subset has not been constructed.
+**Proposed cohort.** Initially consider the 130 primary tumors only; exclude normal tissue and cell lines. The series' “TN” terminology and sample-level “Basal” labels require reconciliation against the label dictionary and associated study. The subset has not been constructed.
 
-**Acceptance gates.** Determine exactly which deposited values received sample-type-aware adjustment and cohort-wide filtering. These procedures create a potential leakage/selection concern for a fresh prediction benchmark; their effect is not resolved by later fitting a scaler only on training rows. Prefer an auditable raw-data preprocessing route if feasible, or reject this candidate for the confirmatory benchmark. Identify patients and technical replicates before any split. Map retained probes to versioned gene identifiers and report unmapped or ambiguous cases.
+**Acceptance criteria.** Determine exactly which deposited values received sample-type-aware adjustment and cohort-wide filtering. These procedures create a potential leakage/selection concern for a fresh prediction benchmark; their effect is not resolved by later fitting a scaler only on training rows. Prefer an auditable raw-data preprocessing route if feasible, or reject this candidate for the confirmatory benchmark. Identify patients and technical replicates before any split. Map retained probes to versioned gene identifiers and report unmapped or ambiguous cases.
 
-**Decision:** scientifically relevant, but **not a ready-to-train clean starter dataset**. A credible preprocessing plan is required first.
+**Decision:** scientifically relevant, but preprocessing must be resolved before this cohort can support a valid prediction experiment.
 
 ## D2. GSE13159: MILE Stage 1
 
@@ -52,7 +52,7 @@ An inspected sample record reports 29,873 processed probe rows. Its processing d
 
 **Access and independence.** Start with metadata and processed-data provenance, not the large raw archive. The parent accession and this subseries are not two independent studies. Freeze a sample manifest before adding any other MILE-derived dataset.
 
-**Decision:** **conditional candidate after bounded metadata/annotation and two-profile checks**, not accepted for confirmatory experiments. Proposed controls and mapping policy are documented for review; patient linkage and full processing verification remain unresolved. No full-cohort expression matrix, raw CEL archive, or model training has been started.
+**Decision:** **conditional candidate after metadata, annotation and two-profile checks**, not accepted for confirmatory experiments. Proposed controls and mapping policy are documented for review; patient linkage and full processing verification remain unresolved. No full-cohort expression matrix, raw CEL archive, or model training has been started.
 
 ## D3. UCI gene expression cancer RNA-Seq
 
@@ -60,9 +60,9 @@ An inspected sample record reports 29,873 processed probe rows. Its processing d
 
 **Why it could fit (our rationale).** It provides an RNA-seq contrast to the microarray candidates and a compact distribution for an eventual technical pilot. Its convenience must not take priority over interpretable gene identities.
 
-**Hard identifier gate.** Obtain the exact source-version column list, verify ordering and dimensions against the UCI release, and store a checksummed mapping from each `gene_XX` to a stable identifier. Never guess gene names by column number or attach a generic list from a different PANCAN release. If mapping cannot be verified, this dataset can support only an anonymous-feature technical pilot, **not** the thesis's gene/pathway interpretation claims; select a replacement for the biological study.
+**Identifier requirement.** Obtain the exact source-version column list, verify ordering and dimensions against the UCI release, and store a checksummed mapping from each `gene_XX` to a stable identifier. Column positions alone and gene lists from other PANCAN releases are insufficient to establish identity. If mapping cannot be verified, this dataset can support only an anonymous-feature technical pilot, **not** the thesis's gene/pathway interpretation claims; select a replacement for the biological study.
 
-**Additional gates.** Audit donor IDs, preprocessing and class counts. Evaluate tissue-of-origin effects as an alternative explanation for biological groups. Do not count a larger TCGA cohort from DeepInsight/DeepFeature as independent validation without checking patient overlap.
+**Additional acceptance criteria.** Audit donor IDs, preprocessing and class counts. Evaluate tissue-of-origin effects as an alternative explanation for biological groups. Do not count a larger TCGA cohort from DeepInsight/DeepFeature as independent validation without checking patient overlap.
 
 **Decision:** conditional candidate. The identifier map has **not** been recovered this week.
 
@@ -70,7 +70,7 @@ An inspected sample record reports 29,873 processed probe rows. Its processing d
 
 The GEO series describes 286 lymph-node-negative breast-cancer patients, with 180 relapse-free and 106 developing distant metastasis, on GPL96. It provides a prognostic endpoint rather than a simple tumor-type task. [GEO GSE2034](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE2034).
 
-Our rationale for retaining it as a reserve is its within-disease outcome and identifiable microarray probes. However, event status must not be treated as a uniform fixed-time outcome without auditing follow-up and censoring. A survival or carefully defined time-horizon protocol would add scope. Use only after confirming endpoint feasibility and obtaining advisor agreement; it is not an automatic plug-in replacement for D3.
+Our rationale for retaining it as a reserve is its within-disease outcome and identifiable microarray probes. However, event status must not be treated as a uniform fixed-time outcome without auditing follow-up and censoring. A survival or carefully defined time-horizon protocol would add scope. Its use would require an endpoint-feasibility review and agreement with my advisor on the added survival-analysis scope.
 
 ## Common acquisition checklist for the next milestone
 
@@ -84,6 +84,6 @@ The following are full-dataset acceptance requirements. Partial MILE checks are 
 - [ ] Freeze inclusion/exclusion criteria and patient/batch grouping before assessing model performance.
 - [ ] Fit newly learned filtering, scaling, selection, and layouts within training partitions only; define how each step is applied to unseen samples.
 - [ ] Define an eligible-gene background and versioned biological annotation for fair downstream comparisons.
-- [ ] Estimate memory/time with a bounded feasibility check before committing to the full study.
+- [ ] Estimate memory/time with a small feasibility check before committing to the full study.
 
-**Week 2 outcome:** three evidence-backed candidates, one reserve, and explicit rejection/acceptance criteria. This is not a claim that three datasets have been collected, cleaned, approved, or shown to favor the proposed method.
+**Week 2 outcome:** a shortlist of three transcriptomic candidates and one reserve, with explicit acceptance criteria. The data-quality, independence and identifier questions must be resolved before this shortlist becomes the experimental dataset collection.

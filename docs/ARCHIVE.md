@@ -1,6 +1,6 @@
 # Earlier work and recovery
 
-The repository's active contents now cover the thesis restart begun on 15 October 2026. The cleanup on 17 October removed the earlier implementation, configurations, tests, protocols, experiment logs, and generated files from the active checkout. It did not erase the Git history or the preserved backups.
+This repository contains the revised thesis study begun on 15 October 2026. The cleanup on 17 October removed the earlier implementation, configurations, tests, protocols, experiment logs, and generated files from the active checkout. It did not erase the Git history or the preserved backups.
 
 ## Git history
 
@@ -23,7 +23,7 @@ The backup remains outside the repository, in the adjacent `CSS700_archives` dir
 - `CSS700_before_restart_2026-10-15.verification.json`
 - `CSS700_before_restart_2026-10-15.sha256`
 
-The ZIP covers both identified earlier workspaces, their Git histories and ignored files, plus the original proposal and locally supplied SOM2IMG manuscript. It contains 104,253 regular files and is 1,582,300,693 bytes. The original verification checked the complete inventory and every archived file against SHA-256 hashes and unchanged source files. The ZIP checksum was checked again before this cleanup.
+The ZIP covers both identified earlier workspaces, their Git histories and ignored files, plus the original proposal and locally supplied SOM2IMG manuscript. It contains 104,253 regular files and is 1,582,300,693 bytes. The archive was verified against the complete file inventory, SHA-256 hashes and unchanged source files. Its ZIP checksum was rechecked before the 17 October cleanup.
 
 SHA-256:
 
@@ -37,8 +37,8 @@ The archive is local, not hosted on GitHub, and is not encrypted. It may contain
 
 Before importing the restart files, all 18 legacy top-level checkout entries, excluding `.git`, were moved into `CSS700_archives/retired_checkout_2026-10-17/`. A `RETIREMENT_RECEIPT.json` records their locations. The move preserved each entry's inode. This includes the old environment, caches, generated artifacts, and data folders as they existed immediately before cleanup.
 
-The separate `CSS700_restart_2026-10-15` source folder also remains unchanged. It is a preserved restart snapshot; **this Git repository is now the active working location**. Its old README's statement that nothing had been pushed describes 15 October, before this migration.
+The separate `CSS700_restart_2026-10-15` source folder also remains unchanged. It serves as a snapshot of the restart; ongoing work belongs in this Git repository. The snapshot's README describes the state on 15 October, before the revised study was published here.
 
 ## Recovery precautions
 
-Recover historical files into a new empty directory or separate checkout. Do not extract the ZIP over the active research repository. Verify its checksum and consult the manifest first. No force push or history rewrite is part of this cleanup.
+Recover historical files into a new empty directory or separate checkout. Do not extract the ZIP over the active research repository. Verify its checksum and consult the manifest first. The cleanup preserved the existing Git history.
