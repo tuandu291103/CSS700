@@ -4,6 +4,8 @@ Initial review 15 October 2026; MILE and SOM2IMG references added 19 October. St
 
 ## SOM2IMG software source — 31 October 2026
 
+The subsequent [Experiment 08](../experiments/08_som2img_attributions/README.md) uses the saved layouts and CNNs without refitting them. On 2 November I rechecked the [IG paper record](https://arxiv.org/abs/1703.01365) and [saliency sanity-check paper record](https://arxiv.org/abs/1810.03292) at abstract level, together with the official [Captum IG](https://captum.ai/api/integrated_gradients.html) and [Occlusion](https://captum.ai/api/occlusion.html) API definitions. The API sources establish the reference, quadrature, convergence-delta and replacement semantics; they do not validate this study's case selection or comparison metrics. New keys: `captumIntegratedGradients`, `captumOcclusion`. The true-label target, matched random replacement and seed comparisons are choices specified in our protocol. A full weight reset is a limited model-dependence diagnostic, not a reproduction of the complete sanity-check study.
+
 **`kerbash2026tab2imgCode` — Kerbash, tab2img-bench**, commit `dc0ef691db733ebcba4d13b53ca58e258f76ef0a`, MIT license. [Pinned repository](https://github.com/Kerbash/tab2img-bench/tree/dc0ef691db733ebcba4d13b53ca58e258f76ef0a).
 
 - Read the README, license, API/base/grid/SOM/random/encoding/evaluation code, layout helper and tests. Source-file hashes are retained in [Experiment 07 results](../experiments/07_som2img_layout/results.json).

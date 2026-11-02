@@ -1,5 +1,17 @@
 # Research log
 
+## 2 November 2026 — feature attribution across SOM, random and fixed layouts
+
+I completed [Experiment 08](../experiments/08_som2img_attributions/README.md), comparing Integrated Gradients and single-feature occlusion across all 21 saved Experiment 07 CNNs. The protocol was recorded before attribution computation. The same twelve cases, selected by label and saved order, were used for every model, with a common recorded-class logit-margin target. The study retained the one incorrect model-case prediction, used fitting-median and fitting-minimum references, and included matched random replacement and full weight-reset controls. No model or layout was refitted.
+
+With the median reference, IG magnitude-rank correlation across CNN seeds averaged 0.880 for SOM, 0.745 for random and 0.693 for fixed layouts. Across layout seeds, the means were 0.698 for SOM and 0.527 for random. The ordering also held with the minimum reference and with occlusion. These are descriptive comparisons on twelve reused cases, not independent evidence of general superiority.
+
+The controls qualify the stability result. Five-feature replacement exceeded the random mean for every method, layout and reference, making it a weak discriminator here. Median-to-minimum signed IG agreement was only 0.306 for SOM. Trained-to-reset SOM magnitude agreement remained 0.626, compared with signed agreement of 0.261; IG also correlated with model-free input–reference distance. The current evidence therefore supports investigating consistency, while leaving faithfulness and biological usefulness unresolved. Method definitions and reading limits are documented in the report and [reference library](../references/REFERENCES.md).
+
+All 112 tests passed, including 18 new controls and evidence checks, and Ruff passed for the new code. All saved checkpoint hashes and evaluation probabilities matched Experiment 07. All 756 IG calculations met the numerical tolerance; direct named-feature replacement verified the occlusion results. A separate full run reproduced the JSON and three visually checked figures byte-for-byte. Earlier results and source files remained unchanged; raw data and model checkpoints remain local.
+
+Next I will specify a stronger comparison against a model-free ranking and references drawn from actual fitting records. The genomic study still needs an agreed interpretation target and cohort policy; this morphology experiment does not establish a biological finding.
+
 ## 31 October 2026 — documentation revision and publication
 
 I published the completed TCGA audit, genomic prediction pilot and controlled SOM2IMG layout experiment in commit [`df812d9`](https://github.com/tuandu291103/CSS700/commit/df812d9). I then revised the repository documentation for clearer academic writing, keeping the measured results, sources, dated decisions and limitations intact. The presentation was outside this editorial pass. No experiment was rerun or research claim added as part of the wording changes.
@@ -251,7 +263,7 @@ The [dataset notes](../week02/DATASET_CANDIDATES.md) identify unresolved preproc
 
 ## Next milestone
 
-1. Review the [31 October findings](WEEKLY_FINDINGS_2026-10-31.md), focusing on the distinction between input values, feature neighborhoods and model attributions.
-2. Confirm which SOM2IMG code/paper version the professor intends. The author-code layout exercise is now complete; define a frozen-model explanation comparison without tuning against observed scores.
+1. Review the [2 November attribution results](../experiments/08_som2img_attributions/README.md), particularly the difference between stable magnitudes and model-dependent explanations.
+2. Specify model-free ranking and real-record-reference controls before another explanation run. Keep the existing models frozen and clarify the intended SOM2IMG code/paper version with the professor.
 3. Preserve the completed TCGA-BRCA audit and pilot, and resolve biological target/cohort questions before genomic interpretation or confirmatory experiments.
 4. Consider a second real learning dataset only after the first pipeline's limitations are understood; do not count synthetic bars as a real dataset or Xena and TCGA as independent datasets.

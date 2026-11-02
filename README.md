@@ -8,6 +8,14 @@ For the genomic application, the question is whether spatial explanations provid
 
 ## Current progress
 
+### SOM2IMG attribution comparison, 2 November
+
+I compared Integrated Gradients (IG) and single-feature occlusion across all 21 saved fixed, random and SOM CNNs, using the same 12 evaluation cases and class targets. Explanations were decoded to the original feature names. The study also tested two references, matched feature replacement and full model resets.
+
+With the fitting-median reference, IG magnitude-rank agreement across CNN seeds averaged **0.880 for SOM, 0.745 for random layouts and 0.693 for the fixed grid**. Across layout seeds, SOM also had higher agreement than random layouts. However, changing references affected the explanations, some magnitude agreement survived weight resets, and the replacement test gave nearly every layout a strong result. This is preliminary evidence of greater consistency, not proof of better biological interpretation or faithfulness.
+
+The [Experiment 08 report](experiments/08_som2img_attributions/README.md) includes the tables, three figures, sources and limitations. All 112 project tests pass; an independent execution reproduced the results and figures byte-for-byte. Existing models were not retrained.
+
 ### SOM2IMG experiment, 31 October
 
 I used the authors' [tab2img-bench implementation](https://github.com/Kerbash/tab2img-bench/tree/dc0ef691db733ebcba4d13b53ca58e258f76ef0a) to compare fixed, lossless random and SOM layouts on Wisconsin Diagnostic. Seven layouts were crossed with three CNN initialization seeds, giving 21 models. Scaling and layout fitting used 318 records, checkpoint selection used 79 records, and evaluation used the existing 86-record validation partition.
@@ -33,7 +41,7 @@ These are preliminary studies. The TCGA pilot has not yet evaluated biological i
 
 ## Next experiment
 
-The next step is to compare explanations from the existing fixed, random and SOM CNNs without retraining them. I will specify common evaluation cases, target scores and attribution references, then compare the results after tracing them to the same named features. Reference sensitivity and matched feature-replacement controls will help assess whether differences in the maps correspond to differences in model reliance.
+The next step is to strengthen the explanation controls: compare IG with a model-free input–reference-distance ranking under the same replacement test, and examine references drawn from real fitting records. This will help distinguish useful model-dependent information from consistency caused by the input and reference. Group-level and genomic interpretation remain later stages requiring a separate protocol.
 
 The supplied code resolves several implementation questions, including collision handling. Its README describes a 51-dataset study, whereas the earlier manuscript I reviewed describes nine benchmarks. The intended paper/code version still needs clarification. Experiment 07 uses the authors' layout code with this project's small CNN and floating-point inputs, rather than reproducing the complete published benchmark.
 
@@ -50,7 +58,7 @@ The supplied code resolves several implementation questions, including collision
 
 ## Reproducibility
 
-Each experiment directory contains its protocol, compact results and reproduction instructions. The project currently has 94 passing tests, and the pinned author repository has 18 passing tests. An independent local execution of Experiment 07 reproduced its result JSON and four figures byte-for-byte. Reloading all 21 checkpoints reproduced the saved predictions.
+Each experiment directory contains its protocol, results and reproduction instructions. The project currently has 112 passing tests; the earlier author-code check passed all 18 upstream tests. Independent local executions of Experiments 07 and 08 reproduced their result JSON and figures byte-for-byte. Reloading all 21 checkpoints reproduced the saved predictions. Experiment 08 retains detailed attribution vectors and random replacement outcomes for inspection.
 
 The environment snapshot in `requirements-learning.txt` records Python 3.12 on macOS ARM. It does not guarantee identical results on other platforms. Raw data, sample-level genomic manifests and predictions, environments, upstream source checkout and model checkpoints remain outside version control.
 

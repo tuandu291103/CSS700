@@ -2,6 +2,8 @@
 
 Completed 31 October 2026. This preliminary study uses Wisconsin Diagnostic to examine feature preservation, spatial organization and classification with the authors' SOM2IMG implementation.
 
+The planned frozen-model explanation comparison was completed on 2 November in [Experiment 08](../08_som2img_attributions/README.md). The account below retains the methods, findings and limitations of the layout study itself.
+
 [Protocol recorded before execution](protocol.json) · [All computed evidence](results.json) · [Runner](../../scripts/som2img_learning.py) · [Tests](../../tests/test_som2img_learning.py) · [Weekly discussion brief](../../docs/WEEKLY_FINDINGS_2026-10-31.md)
 
 ## Main finding
