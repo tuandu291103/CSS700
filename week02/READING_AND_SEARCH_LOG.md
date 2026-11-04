@@ -4,6 +4,8 @@ Initial review: 15 October 2026; dataset-audit and focused SOM2IMG follow-ups: 1
 
 ## Search approach
 
+**2 November reference-control follow-up:** reviewed the selected baseline-distribution and evaluation sections of [Sturmfels et al.](https://distill.pub/2020/attribution-baselines/), and rechecked Captum IG's reference and completeness definitions. Reading scope and the new citation key are in the reference library.
+
 **2 November attribution follow-up:** rechecked the IG and saliency sanity-check arXiv records at abstract level, and the official Captum IG and Occlusion API definitions. The implementation review covered baseline broadcasting, the input-minus-reference factor, numerical completeness, patch shapes and batched replacement. [Experiment 08](../experiments/08_som2img_attributions/README.md) records the study-specific targets, comparisons and limitations. This was a targeted implementation review, not a full-paper expansion of the related-work search.
 
 **31 October author-code follow-up:** inspected `https://github.com/Kerbash/tab2img-bench`. Browser retrieval failed, but a read-only Git clone succeeded. Pinned commit `dc0ef691db733ebcba4d13b53ca58e258f76ef0a`; read the README, license, package/dependency declarations, SOM/base/random/grid/encoding/evaluation implementations, grouping helper and upstream tests. Executed its 18 tests and a separate controlled Wisconsin exercise; the final IEEE full text and full 51-dataset benchmark remain outside this review. The newer repository's title/scope, simplified comparators, spillover policy and explicit numeric-export caveat are separated from the older manuscript. [Experiment 07](../experiments/07_som2img_layout/README.md) records all source hashes and local adaptations.

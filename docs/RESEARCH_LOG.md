@@ -1,5 +1,15 @@
 # Research log
 
+## 4 November 2026 — reference-control review and repository organization
+
+I reviewed the ten pending files from Experiment 09 and retained them as one complete study: the runner, 18 tests, protocol, detailed results, three figures and reference updates. I added the [experiment report](../experiments/09_reference_controls/README.md), replaced the homepage's outdated next-step description and organized its navigation around all nine experiments. Earlier studies, the archive and local data remain intact. Duplicate verification outputs, checkpoints and presentation files remain excluded from Git; the standalone review paper is separate.
+
+The experiment was computed on 2 November using all 21 frozen models, the same twelve cases and four real fitting records, alongside two reused constructed references. With real references, IG magnitude stability across CNN seeds averaged 0.901 for SOM, 0.757 for random and 0.626 for fixed layouts. SOM IG won 334 of 432 matched comparisons against distance, with one tie. These dependent observations do not establish general superiority. Under the median reference, SOM's mean random percentile was essentially the same for IG and distance despite more IG wins. Signed explanations changed substantially across reference classes.
+
+One of 1,008 new IG vectors missed the prescribed numerical tolerance at the 2,048-step cap. It remains flagged and included in the summaries, as specified before execution. The report identifies the exact model, case and reference. This is a numerical limitation, not a software-test failure or grounds for silently discarding the result.
+
+All 130 tests passed during review, and Ruff passed for the Experiment 09 script and tests. The saved independent run matches the result JSON and all three figures byte-for-byte. This cleanup adds documentation and navigation, without retraining models or recomputing the experiment. Method sources and limits are recorded in the report and [reference library](../references/REFERENCES.md).
+
 ## 2 November 2026 — feature attribution across SOM, random and fixed layouts
 
 I completed [Experiment 08](../experiments/08_som2img_attributions/README.md), comparing Integrated Gradients and single-feature occlusion across all 21 saved Experiment 07 CNNs. The protocol was recorded before attribution computation. The same twelve cases, selected by label and saved order, were used for every model, with a common recorded-class logit-margin target. The study retained the one incorrect model-case prediction, used fitting-median and fitting-minimum references, and included matched random replacement and full weight-reset controls. No model or layout was refitted.
@@ -263,7 +273,7 @@ The [dataset notes](../week02/DATASET_CANDIDATES.md) identify unresolved preproc
 
 ## Next milestone
 
-1. Review the [2 November attribution results](../experiments/08_som2img_attributions/README.md), particularly the difference between stable magnitudes and model-dependent explanations.
-2. Specify model-free ranking and real-record-reference controls before another explanation run. Keep the existing models frozen and clarify the intended SOM2IMG code/paper version with the professor.
+1. Review the [reference-control results](../experiments/09_reference_controls/README.md), including the reference-sensitive conclusions and the one numerical tolerance exception.
+2. Define a group-level question and a correlated-feature replacement protocol before another explanation run. Keep the existing models frozen and clarify the intended SOM2IMG code/paper version with the professor.
 3. Preserve the completed TCGA-BRCA audit and pilot, and resolve biological target/cohort questions before genomic interpretation or confirmatory experiments.
 4. Consider a second real learning dataset only after the first pipeline's limitations are understood; do not count synthetic bars as a real dataset or Xena and TCGA as independent datasets.
